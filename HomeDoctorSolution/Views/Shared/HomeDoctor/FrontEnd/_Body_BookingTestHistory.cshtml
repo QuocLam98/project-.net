@@ -1,0 +1,1202 @@
+﻿<!-- jsPDF -->
+<script src="/HomeDoctor/js/jspdf/jspdf.umd.min.js"></script>
+<!-- html2canvas -->
+<script src="/HomeDoctor/js/jspdf/html2canvas.min.js"></script>
+
+<link href="/css/flatpickr.min.css" rel="stylesheet" />
+<script src="/js/flatpickr.min.js"></script>
+<script src="/js/language/vn.js"></script>
+<style>
+    .booking-guide-component {
+        margin-top: 20px;
+    }
+
+    .booking-guide {
+        color: var(--Black, #000);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+    }
+
+    #item-result-guide {
+        color: var(--Black, #000);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .booking-status-result {
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 125% */
+    }
+
+    .status-confirm {
+        color: #006169 !important;
+    }
+
+    .status-cancel {
+        color: rgba(255, 0, 25, 0.97) !important;
+    }
+
+    .status-complete {
+        color: #2AA900 !important;
+    }
+
+    .input-form label {
+        color: var(--Black, #1B1E28);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+        margin-bottom: 8px;
+    }
+
+    .hidden {
+        visibility: hidden;
+    }
+
+    .select-form > .select2-container--default .select2-selection--single {
+        border-radius: 10px !important;
+        border: 1px solid #D9D9D9 !important;
+        background: #FFF !important;
+        height: 50.2083px !important;
+    }
+
+    .select2-container {
+        width: 100% !important
+    }
+
+    .select2-results__option {
+        cursor: pointer !important;
+    }
+
+        .select2-results__option:hover {
+            background-color: #007983 !important;
+            color: #fff !important;
+        }
+
+    .select2-dropdown {
+        background: #fff !important;
+        border: 1px solid #D9D9D9 !important;
+        border-top: 0 !important;
+    }
+
+    .select2-selection__rendered {
+        padding-left: 14px !important;
+    }
+
+    .result-item {
+        cursor: pointer;
+    }
+
+    .filter-history {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #D9D9D9;
+    }
+
+    .test-history {
+        margin-top: 32px;
+        border-radius: 10px;
+        border: 1px solid #D9D9D9;
+        border-top: 3px solid #007983;
+        /* background: rgba(0, 0, 0, 0.02); */
+        background: #FFF;
+        max-width: 946px;
+        padding: 20px 11px;
+        -webkit-box-shadow: 0 0 25px rgb(0 0 0 / 10%);
+        /* min-height: 800px; */
+    }
+
+    .filter-history input {
+        width: 100%;
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+        padding: 12px 14px;
+        border-radius: 10px !important;
+        border: 1px solid #D9D9D9 !important;
+        background: #FFF !important;
+        height: 50.2083px !important;
+        font-size: 16px;
+    }
+
+    .mb-15 {
+        margin-bottom: 15px;
+    }
+
+    #filter-button {
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        background: #F6AC00;
+        color: #FFF;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 142.857% */
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+    }
+
+    #remove-filter-button {
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        background: #006169;
+        color: #FFF;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 142.857% */
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+    }
+
+    .icon-search {
+        margin-right: 10px;
+    }
+
+    .result-no-content {
+        display: flex;
+        flex-direction: column;
+        padding: 60px 300px 60px 300px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .result-no-content-consultant {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 300px 0px 300px;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .result-no-content img, .result-no-content-consultant img {
+            width: 100%;
+        }
+
+    .result-no-content p {
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+    }
+
+    .booking-result h3 {
+        color: #007983;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0;
+        margin-top: 20px;
+    }
+
+    .result-item {
+        border-radius: 10px;
+        border: 1px solid rgba(0, 121, 131, 0.20);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 14px 25px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 20px;
+    }
+
+        .result-item p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 20px; /* 125% */
+            width: 49%;
+        }
+
+        .result-item span {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 125% */
+        }
+
+    .test-end {
+        color: #2AA900 !important;
+        font-weight: 700 !important
+    }
+
+    .test-confirm {
+        color: rgb(0, 121, 131) !important;
+        font-weight: 700 !important;
+    }
+
+    .test-cancel {
+        color: rgba(255, 0, 25, 0.97) !important;
+        font-weight: 700 !important;
+    }
+
+    .result-name {
+        font-family: Mulish;
+        font-size: 18px !important;
+        font-style: normal;
+        font-weight: 700 !important;
+        line-height: normal;
+        background: var(--Linear, linear-gradient(90deg, #007983 0%, #FFC800 103.21%));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 16px;
+        width: 100% !important;
+    }
+
+    .header-result {
+        padding: 60px 0px 20px 0px;
+        border-bottom: 0;
+    }
+
+    .header-result-title {
+        width: 100%;
+        text-align: center;
+        color: #000;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .header-result-btn {
+        margin: -1rem !important;
+    }
+
+    .footer-result {
+        border-top: 0;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 70px;
+        padding-top: 0;
+    }
+
+    .content-result {
+        border-radius: 20px;
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        background-image: url(/HomeDoctor/img/test-in-home/top.png), url(/HomeDoctor/img/test-in-home/bottom.png);
+        background-repeat: no-repeat;
+        background-position: top, bottom;
+        background-size: 100%;
+    }
+
+    .body-result {
+        padding: 20px 0px 20px 0px;
+        border-top: 1px solid #D9D9D9;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .item-left {
+        color: var(--Black, #000);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 125% */
+    }
+
+    .item-right {
+        color: var(--Black, #000);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+        display: flex;
+        gap: 16px;
+    }
+
+    .modal-item-result {
+        max-width: 986px;
+    }
+
+    .mt-10 {
+        margin-top: 10px
+    }
+
+    #table-result-tb, #payment-table-tb {
+        width: 100%;
+        border: 1px solid #D9D9D9;
+    }
+
+        #table-result-tb thead tr th, #payment-table-tb thead tr th {
+            padding: 10px;
+            background: #F5F5F5;
+            border-bottom: 1px solid #D9D9D9;
+            color: #000;
+            font-family: Mulish;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 20px; /* 142.857% */
+            text-transform: uppercase;
+        }
+
+        #table-result-tb tbody tr td, #payment-table-tb tbody tr td {
+            padding: 5px 10px;
+            border-right: 1px solid #D9D9D9;
+            border-bottom: 1px solid #D9D9D9;
+            color: #000;
+            font-family: Mulish;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px; /* 142.857% */
+        }
+
+    .item-status-done {
+        color: #2AA900;
+        font-weight: 700;
+    }
+
+    #table-result-tb thead tr th:nth-child(1),
+    #table-result-tb tbody tr td:nth-child(1) {
+    }
+
+    #table-result-tb thead tr th:nth-child(2),
+    #table-result-tb tbody tr td:nth-child(2),
+    #table-result-tb thead tr th:nth-child(3),
+    #table-result-tb tbody tr td:nth-child(3),
+    #table-result-tb thead tr th:nth-child(4),
+    #table-result-tb tbody tr td:nth-child(4) {
+        text-align: center;
+    }
+
+    #table-result-tb thead tr th:nth-child(5),
+    #table-result-tb tbody tr td:nth-child(5) {
+        font-weight: 700;
+        text-align: center;
+        width: 20%;
+    }
+
+    #table-result-tb thead tr th:nth-child(6),
+    #table-result-tb tbody tr td:nth-child(6) {
+        text-align: right;
+        font-weight: bold;
+        width: 15%;
+    }
+
+    .result-payment {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+        .result-payment h4 {
+            color: #000;
+            text-align: center;
+            font-family: Mulish;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0;
+        }
+
+    #payment-table-tb {
+        text-align: right;
+    }
+
+        #payment-table-tb tbody tr td {
+            font-weight: 700;
+        }
+
+    .footer-thanks p {
+        color: var(--Black, #000);
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+        text-align: center;
+    }
+
+    .phone-tel {
+        color: var(--Main-color-2, #007983) !important;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    .pdf-result {
+        color: var(--Main-color-2, #007983) !important;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 125% */
+        text-decoration-line: underline !important;
+        margin: 0 !important;
+        cursor: pointer;
+    }
+
+    .filter-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    @@media screen and (max-width: 768px) {
+        .result-no-content {
+            padding: 40px;
+        }
+        /*         #filter-button {
+                        margin-top: 20px;
+                    } */
+
+        .result-item {
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+            .result-item p {
+                width: 100%;
+            }
+
+        .test-history {
+            margin-top: 10px;
+        }
+
+        .filter-history {
+            padding-bottom: 20px;
+        }
+
+            .filter-history button {
+                height: unset;
+            }
+
+        .content-result {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .item-left {
+            width: 40%
+        }
+
+        .item-right {
+            width: 60%;
+        }
+
+        .header-result {
+            padding: 30px 0px 10px 0px;
+        }
+
+        .body-result {
+            gap: 10px;
+            padding: 10px 0px 10px 0px;
+        }
+
+        .result-payment {
+            gap: 10px;
+        }
+
+        .footer-result {
+            gap: 10px;
+            padding-bottom: 40px;
+        }
+
+        #table-result-tb thead tr th, #payment-table-tb thead tr th, #table-result-tb tbody tr td, #payment-table-tb tbody tr td {
+            padding: 0;
+        }
+
+        .result-item {
+            padding: 10px;
+        }
+
+            .result-item p, .result-item span {
+                font-size: 14px;
+            }
+
+        .result-name {
+            font-size: 16px !important;
+        }
+
+        .filter-history input {
+            padding: 10px;
+            height: unset;
+            font-size: 14px;
+        }
+
+        .select-form > .select2-container--default .select2-selection--single {
+            height: unset !important
+        }
+
+        .select2-container {
+            font-size: 14px !important;
+        }
+    }
+</style>
+
+<div class="test-history container">
+    <div class="filter-history ">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-15 input-form">
+                <label>Từ ngày</label>
+                <input class="flatpickr flatpickr-input" id="filter-startTime" type="text" readonly="readonly" placeholder="VD: 01/06/2024">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-15 input-form">
+                <label>Đến ngày</label>
+                <input class="flatpickr flatpickr-input" id="filter-endTime" type="text" readonly="readonly" placeholder="VD: 28/06/2024">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-15 select-form input-form">
+                <label>Trạng thái</label>
+                <select id="filter-status"> </select>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 input-form">
+                <label>Mã tra cứu</label>
+                <input id="filter-id" placeholder="VD: T1000042" />
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 filter-buttons input-form">
+                <div>
+                    <label class="hidden">Tìm kiếm</label>
+                    <button id="filter-button">
+                        <svg class="icon-search" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                            <path d="M7.79313 1.28711C4.48732 1.28711 1.79443 3.97999 1.79443 7.28582C1.79443 10.5916 4.48732 13.2898 7.79313 13.2898C9.20515 13.2898 10.5038 12.7949 11.5301 11.9733L14.0288 14.4707C14.1549 14.5916 14.3233 14.6583 14.498 14.6565C14.6727 14.6547 14.8397 14.5846 14.9633 14.4612C15.0869 14.3377 15.1572 14.1708 15.1592 13.9962C15.1613 13.8215 15.0948 13.653 14.9741 13.5267L12.4754 11.0281C13.2977 10.0001 13.7931 8.69946 13.7931 7.28582C13.7931 3.97999 11.0989 1.28711 7.79313 1.28711ZM7.79313 2.62046C10.3784 2.62046 12.4585 4.7006 12.4585 7.28582C12.4585 9.87104 10.3784 11.9564 7.79313 11.9564C5.20791 11.9564 3.12777 9.87104 3.12777 7.28582C3.12777 4.7006 5.20791 2.62046 7.79313 2.62046Z" fill="white" />
+                        </svg><span>Tìm kiếm</span>
+                    </button>
+                </div>
+                <div>
+                    <label class="hidden">Bỏ lọc</label>
+                    <button id="remove-filter-button">Bỏ lọc</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="booking-result">
+        <h3>Kết quả tra cứu</h3>
+        <div class="result-content">
+            <div class="result-no-content">
+                <img src="/HomeDoctor/img/test-in-home/empty-filter.png" />
+                <p>Không có kết quả phù hợp</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@* Modal Result *@
+<div class="modal" id="modal-result" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-item-result" role="document">
+        <div class="modal-content content-result" id="content-export">
+            <div class="modal-header header-result">
+                <h5 class="modal-title header-result-title">Kết quả dịch vụ xét nghiệm</h5>
+                <button type="button" class="close header-result-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body body-result">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="row body-result-item">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Họ tên
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-name"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Ngày sinh
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-dob"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Giới tính
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-gender"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Số điện thoại
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-phone"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Email
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-email"></span>
+                            </div>
+                        </div>
+                        @*                         <div class="row body-result-item mt-10">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                        Tỉnh/ Thành phố
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                        <span>:</span><span class="item-right-text">Hà Nội</span>
+                        </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                        Quận/Huyện
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                        <span>:</span><span class="item-right-text">Đống Đa</span>
+                        </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                        Phường/xã
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                        <span>:</span><span class="item-right-text">Thịnh Quang</span>
+                        </div>
+                        </div> *@
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Địa chỉ
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-address"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="row body-result-item">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Mã tra cứu
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-id"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Thời gian
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-time"></span>
+                            </div>
+                        </div>
+                        @*                         <div class="row body-result-item mt-10">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                        Giờ đặt
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                        <span>:</span><span class="item-right-text">08:00 - 09:00 / Sáng</span>
+                        </div>
+                        </div> *@
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Loại xét nghiệm
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-service"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Bác sĩ
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-doctor"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Trạng thái
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-status"></span>
+                            </div>
+                        </div>
+                        <div class="row body-result-item mt-10">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 item-left">
+                                Mô tả
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 item-right">
+                                <span>:</span><span class="item-right-text" id="item-result-description"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-result">
+                    <table id="table-result-tb">
+                        <thead>
+                            <tr>
+                                <th>Danh mục khám</th>
+                                <th>Kết quả</th>
+                                <th>Đơn vị</th>
+                                <th>CS bình thường</th>
+                                <th>Ghi chú</th>
+                                <th>Đơn giá</th>
+                            </tr>
+                        </thead>
+                        <tbody id="result-consultant-body">
+                            @*                             <tr>
+                            <td>Tổng phân tích máu số 32 chỉ số</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><span class="number-currency">109.000</span></td>
+                            </tr>
+                            <tr>
+                            <td>Số lượng bạch cầu (WBC)</td>
+                            <td>6.9</td>
+                            <td>Giga/L</td>
+                            <td>(4-10)</td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <td>Số lượng hồng cầu (RBC)</td>
+                            <td>4.05</td>
+                            <td>Tera/L</td>
+                            <td>(3.8-5.8)</td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <td>Số lượng huyết sắc tố (Hb)</td>
+                            <td>13.2</td>
+                            <td>g/dL</td>
+                            <td>(12-16.5)</td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <td>Thể tích khối hồng cầu (HCT)</td>
+                            <td>38.4</td>
+                            <td>%</td>
+                            <td>(35-48)</td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <td>Thể tích trung bình HC (MCV)</td>
+                            <td>95</td>
+                            <td>fL</td>
+                            <td>(85-95)</td>
+                            <td>
+                            <span style="color: #007983;">Cao</span>
+                            </td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <td>Lượng Hb trung bình HC (MCH)</td>
+                            <td><span style="color: rgba(255, 0, 25, 0.97);">32.5</span></td>
+                            <td>pg</td>
+                            <td>(26-32)</td>
+                            <td>
+                            </td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <td>Nồng độ Hb trung bình HC</td>
+                            <td>34.2</td>
+                            <td>g/dL</td>
+                            <td>(32-36)</td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                            <tr>
+                            <td>Độ phân bổ HC(RDW-CV)</td>
+                            <td>14.1</td>
+                            <td>g/dL</td>
+                            <td>(32-36)</td>
+                            <td>
+                            <span style="color: #007983;">Cao</span>
+                            </td>
+                            <td></td>
+                            </tr> *@
+                        </tbody>
+                    </table>
+                    <div class="booking-guide-component">
+                        <p class="booking-guide">Tư vấn của bác sĩ: <span id="item-result-guide"></span></p>
+                    </div>
+                </div>
+                <div class="result-payment d-none">
+                    <h4>Tổng tiền thanh toán(vnđ)</h4>
+                    <div class="payment-table">
+                        <table id="payment-table-tb">
+                            <thead>
+                                <tr>
+                                    <th>Tổng tiền xét nghiệm</th>
+                                    <th>Giảm giá</th>
+                                    <th>Thành tiền</th>
+                                    <th>Tiền đi lại</th>
+                                    <th>Tổng tiền thanh toán</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>109.000</td>
+                                    <td>0</td>
+                                    <td>109.000</td>
+                                    <td>10.000</td>
+                                    <td>119.000</td>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer footer-result">
+                <div class="footer-thanks">
+                    <p>
+                        Xin cảm ơn Quý Khách đã lựa chọn dịch vụ của chúng tôi
+                    </p>
+                    <p>
+                        Nếu cần tư vấn kết quả xin vui lòng liên hệ tổng đài <a class="phone-tel" href="tel:1900123456">1900 123 456</a>
+                    </p>
+                </div>
+                <a class="pdf-result" id="exportToPdf">Tải xuống kết quả dạng PDF</a>
+
+                @* <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="removeModalShow()">Đóng</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        if (accountId == 0) {
+            OpenModalLogin();
+        }
+        $("#modal-signin").on("hidden.bs.modal", function () {
+            Swal.fire({
+                title: "Vui lòng đăng nhập",
+                html: "Bạn cần đăng nhập để sử dụng dịch vụ đặt lịch xét nghiệm",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Xác nhận',
+                cancelButtonText: 'Huỷ'
+            }).then((result) => {
+                if (result.value) {
+                    OpenModalLogin();
+                }
+                else {
+                    window.location.href = "/";
+                }
+            })
+        });
+        var dateStartPicker = new flatpickr("#filter-startTime", {
+            dateFormat: "d/m/Y",
+            locale: "vn",
+            disableMobile: "true"
+        })
+
+        var dateEndPicker = new flatpickr("#filter-endTime", {
+            dateFormat: "d/m/Y",
+            locale: "vn",
+            disableMobile: "true"
+        })
+        $("#filter-status").select2();
+        LoadDataStatus();
+        LoadDataService();
+        LoadDataDoctor();
+        Filter();
+    })
+    $("#remove-filter-button").on("click", function () {
+        $("#filter-startTime").val("");
+        $("#filter-endTime").val("");
+        $("#filter-status").val("");
+        $("#filter-id").val("");
+        Filter();
+    })
+    $("#filter-button").on("click", function () {
+        Filter();
+    })
+
+    $(".result-content").on("click", ".result-item", function (element) {
+        ShowModalResult($(this).data('bookingid'));
+    })
+    var dataBookingStatus = [];
+    async function LoadDataStatus() {
+        $('#filter-status').append(new Option("Chọn trạng thái", "", true, true)).trigger("change");
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'bookingstatus/api/list',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            dataBookingStatus = data;
+            data.forEach(function (item) {
+                $('#filter-status').append(new Option(item.name, item.id, false, false));
+            });
+        } catch (error) {
+            console.error("Error loading status data:", error);
+        }
+    }
+
+    var dataBookingService = [];
+    async function LoadDataService() {
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'services/api/list-test',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            dataBookingService = responseData.data;
+        } catch (error) {
+            console.error("Error loading service data:", error);
+        }
+    }
+
+    var dataBookingDoctor = [];
+    async function LoadDataDoctor() {
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'doctors/api/list',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            dataBookingDoctor = responseData.data;
+        } catch (error) {
+            console.error("Error loading service data:", error);
+        }
+    }
+    function formatDateTime(dateTimeString) {
+        // Create a Date object from the string
+        const date = new Date(dateTimeString);
+
+        // Get hours and minutes in desired format (24-hour format)
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const time = `${hours}:${minutes}`;
+
+        // Get date parts (day, month, year) and format them (dd/MM/yyyy)
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed
+        const year = date.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+
+        // Return the formatted string
+        return `${time} - ${formattedDate}`;
+    }
+
+    function Filter() {
+        // $("#loading").addClass("show");
+        let startTime = $("#filter-startTime").val();
+        let endTime = $("#filter-endTime").val();
+        let status = $("#filter-status").val();
+        let filterId = $("#filter-id").val();
+        $(".result-content").html("");
+        $.ajax({
+            url: systemURL + "booking/api/list-booking-test?startTime=" + startTime + "&endTime=" + endTime + "&bookingStatusId=" + status + "&filterId=" + filterId,
+            type: "GET",
+            contentType: "application/json",
+            beforeSend: function (xhr) {
+                if (localStorage.token) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+                }
+            },
+            success: function (responseData) {
+                // $("#loading").removeClass("show");
+                let data = responseData.data;
+                if (data.length > 0) {
+                    for (let i = 0; i < data.length; i++) {
+                        let currrentStatusId = data[i].bookingStatusId;
+                        var currentStatus = "";
+                        if (currrentStatusId == 1000002) {
+                            currentStatus = `<span class="booking-status-result status-confirm">` + data[i].bookingStatusName + `</span>`;
+                        }
+                        else if (currrentStatusId == 1000004) {
+                            currentStatus = `<span class="booking-status-result status-cancel">` + data[i].bookingStatusName + `</span>`;
+                        }
+                        else if (currrentStatusId == 1000003) {
+                            currentStatus = `<span class="booking-status-result status-complete">` + data[i].bookingStatusName + `</span>`;
+                        }
+                        else {
+                            currentStatus = `<span class="booking-status-result">` + data[i].bookingStatusName + `</span>`;
+                        }
+                        $(".result-content").append(`
+                                                <div class="result-item" data-bookingId="` + data[i].id + `">
+                                                    <p class="result-name">`+ data[i].name + ` (T` + data[i].id + `)</p>
+                                                    <p>Loại xét nghiệm: <span>` + data[i].serviceName + `</span></p>
+                                                    <p>Thời gian lấy mẫu: <span>` + formatDateTime(data[i].startTime) + `</span></p>
+                                                    <p class="w-100">Địa chỉ: <span>` + data[i].address + `</span></p>
+                                                    <p>Trạng thái: ` + currentStatus + `</p>
+                                               </div>
+                             `)
+                    }
+                }
+                else {
+                    $(".result-content").append(`<div class="result-no-content">
+                                    <img src="/HomeDoctor/img/test-in-home/empty-filter.png" />
+                                    <p>Không có kết quả phù hợp</p>
+                                </div> `)
+                }
+            },
+            error: function (e) {
+                // $("#loading").removeClass("show");
+                $(".result-content").append(`<div class="result-no-content">
+                                  <img src="/HomeDoctor/img/test-in-home/empty-filter.png" />
+                                   <p>Không có kết quả phù hợp</p>
+                                </div> `)
+            }
+        });
+    }
+
+    function ShowModalResult(bookingid) {
+        $.ajax({
+            url: systemURL + "booking/api/detail/" + bookingid,
+            type: "GET",
+            contentType: "application/json",
+            success: function (responseData) {
+                let dataBooking = responseData.data[0];
+                if (dataBooking != null) {
+                    //Load thông tin chung
+                    $("#modal-result").modal("show");
+                    $("#item-result-name").text(dataBooking.name != null ? dataBooking.name : "");
+                    $("#item-result-dob").text(dataBooking.doB != null ? dataBooking.doB : "");
+                    $("#item-result-gender").text(dataBooking.gender != null ? dataBooking.gender : "");
+                    $("#item-result-phone").text(dataBooking.url != null ? dataBooking.url : "");
+                    $("#item-result-email").text(dataBooking.email != null ? dataBooking.email : "");
+                    $("#item-result-address").text(dataBooking.address != null ? dataBooking.address : "");
+                    $("#item-result-id").text(dataBooking.id != null ? "T" + dataBooking.id : "");
+                    $("#item-result-time").text(formatDateTime(dataBooking.startTime));
+                    $("#item-result-description").text(dataBooking.info != null ? dataBooking.info : "Không có");
+                    $("#item-result-guide").text(dataBooking.guide != null ? dataBooking.guide : "Chưa có tư vấn");
+
+                    let curentBookingStatus = dataBookingStatus.find(x => x.id === dataBooking.bookingStatusId);
+                    if (curentBookingStatus != null) {
+                        if (curentBookingStatus.id == 1000002) {
+                            $("#item-result-status").html(`<span class="booking-status-result status-confirm">` + curentBookingStatus.name + `</span>`);
+                        }
+                        else if (curentBookingStatus.id == 1000004) {
+                            $("#item-result-status").html(`<span class="booking-status-result status-cancel">` + curentBookingStatus.name + `</span>`);
+                        }
+                        else if (curentBookingStatus.id == 1000003) {
+                            $("#item-result-status").html(`<span class="booking-status-result status-complete">` + curentBookingStatus.name + `</span>`);
+                        }
+                        else {
+                            $("#item-result-status").html(`<span class="booking-status-result">` + curentBookingStatus.name + `</span>`);
+                        }
+                    }
+                    let curentBookingService = dataBookingService.find(x => x.id === dataBooking.serviceId);
+                    $("#item-result-service").text(curentBookingService != null ? curentBookingService.name : "");
+
+                    let curentBookingDoctor = dataBookingDoctor.find(x => x.id === dataBooking.counselorId);
+                    $("#item-result-doctor").text(curentBookingDoctor != null ? curentBookingDoctor.name : "Chưa có");
+
+                    $("#result-consultant-body").html("");
+                    if (dataBooking.consultant.length > 0) {
+                        for (let i = 0; i < dataBooking.consultant.length; i++) {
+                            let item = dataBooking.consultant[i];
+                            $("#result-consultant-body").append(`
+                                    <tr>
+                                        <td>`+ (item.reason) + ` </td>
+                                        <td>`+ (item.consultingResults != null ? item.consultingResults : "") + `</td>
+                                        <td>`+ (item.symptom != null ? item.symptom : "") + `</td>
+                                        <td>`+ (item.consultingPlan != null ? item.consultingPlan : "") + `</td>
+                                        <td>`+ (item.review != null ? item.review : "") + `</td>
+                                        <td><span>`+ (item.rating != null ? formatNumberCurrency(item.rating.toString()) : "") + `</span></td>
+                                  </tr>
+                            `)
+                        }
+                    }
+                    else {
+                        $("#result-consultant-body").html(`<tr class="odd"><td valign="top" colspan="6" class="dataTables_empty"><div class="result-no-content-consultant">
+                                      <img src="/HomeDoctor/img/test-in-home/empty-filter.png">
+                                       <p>Chưa có số liệu xét nghiệm</p>
+                                    </div></td></tr>`)
+                    }
+                }
+            },
+            error: function (e) {
+                Swal.fire(
+                    'Không tải được dữ liệu',
+                    'Không tải được dữ liệu của lịch xét nghiệm này, vui lòng thử lại sau',
+                    'warning'
+                );
+            }
+        });
+    }
+    function formatNumberCurrency(n) {
+        // format number 1000000 to 1,234,567
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+    window.jsPDF = window.jspdf.jsPDF;
+    $("#exportToPdf").on("click", function () {
+        var viewportWidth = 1600; // Width of a typical desktop viewport
+        var viewportHeight = 1200; // Height of a typical desktop viewport
+        document.documentElement.style.width = viewportWidth + "px";
+        document.documentElement.style.height = viewportHeight + "px";
+        document.querySelector('meta[name=viewport]').setAttribute("content", "width=1600");
+        $(".content-result").css("border-radius", "0");
+        const element = document.getElementById('content-export'); // Replace with your element ID
+        html2canvas(element, {
+            width: viewportWidth,
+            height: viewportHeight,
+            scrollX: 0,
+            scrollY: 0,
+            windowWidth: document.documentElement.offsetWidth,
+            windowHeight: document.documentElement.offsetHeight,
+            x: 0,
+            y: 0,
+            onrendered: function (canvas) {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('Kết quả xét nghiệm ' + $("#item-result-id").text() + '.pdf');
+                $(".content-result").css("border-radius", "20px");
+                // Reset the viewport size after capturing (optional)
+                document.documentElement.style.width = "";
+                document.documentElement.style.height = "";
+            }
+        });
+    })
+</script>

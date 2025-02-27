@@ -1,0 +1,208 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .container {
+        margin-top: 16px;
+    }
+
+    .card-footer {
+        padding: 0 !important;
+        background-color: rgba(0,0,0,.03);
+        border-top: 1px solid rgba(0,0,0,.125);
+    }
+
+    .button {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background: #F7F7F9;
+        border-radius: 42px;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: #1B1E28;
+        width: 100%;
+        cursor: pointer;
+    }
+
+        .button:hover {
+            background-color: #1470F5;
+            color: white !important;
+        }
+
+    .text {
+        font-size: 16px;
+        font-family: SF Pro Display;
+        font-weight: 400;
+        line-height: 20px;
+        word-wrap: break-word
+    }
+
+    .button-logout {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background: #F7F7F9;
+        border-radius: 42px;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex;
+        margin-bottom: 16px;
+        color: #1B1E28;
+        width: 100%;
+        cursor: pointer;
+        background-color: #1470F5;
+        justify-content: center;
+    }
+
+    .text-logout {
+        font-size: 16px;
+        font-family: SF Pro Display;
+        font-weight: 400;
+        line-height: 20px;
+        word-wrap: break-word;
+        color: #FFFFFF
+    }
+
+    .image {
+        width: 100%;
+        margin-bottom: 32px;
+    }
+
+    .head {
+        padding-top: 23px !important;
+        padding-left: 55px !important;
+        padding-bottom: 28px !important;
+        padding-right: 23px !important;
+    }
+
+    .mess-left {
+        background-color: #EFEFEF;
+        padding-top: 21px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 32px;
+        max-width: 60% !important;
+    }
+
+    .mess-right {
+        background-color: rgba(20, 112, 245, 0.10);
+        padding-top: 21px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 32px;
+        max-width: 60% !important;
+    }
+
+    .text-chat {
+        height: 58px;
+        border: unset;
+        width: 100%;
+        border-radius: 5px;
+        background: var(--Background-xam, #F7F7F9);
+    }
+
+    .button-send {
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+</style>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <img class="image" src="~/happys/svg/rectangle 887.svg" />
+                    <div class="button">
+                        <span class="text">Thông tin cá nhân</span>
+                    </div>
+                    <div class="button">
+                        <span class="text">Thông báo</span>
+                    </div>
+                    <div class="button">
+                        <span class="text">Tin nhắn</span>
+                    </div>
+                    <div class="button">
+                        <span class="text">Thông tin y tế</span>
+                    </div>
+                    <div class="button">
+                        <span class="text">Lịch sử hoạt động</span>
+                    </div>
+                    <div class="button">
+                        <span class="text">Đổi mật khẩu</span>
+                    </div>
+                    <div class="button-logout">
+                        <span class="text-logout">Đăng xuất</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card h-100">
+                @*User*@
+                <div class="border-bottom d-flex head-listmessage">
+                    <div style="margin-right: 15px">
+                        <img src="~/happys/svg/rectangle 888.svg" class="rounded-circle" style="width: 48px; height: 48px;" />
+                    </div>
+                    <div class="d-flex flex-column" style="text-align: left">
+                        <span>Trung Trần</span>
+                        <span>Online</span>
+                    </div>
+                </div>
+                @*listMessage*@
+                <div class="card-body">
+                    <div>
+                        <div class="d-flex justify-content-start">
+                            <div class="d-flex flex-column text-left rounded text-dark mess-left">
+                                <span class="">
+                                    Lorem Ipsum
+                                </span>
+                                <span>
+                                    08:00 - 28/09/2023
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex  justify-content-end">
+                            <div class="d-flex flex-column text-left rounded text-dark mess-right">
+                                <span>
+                                    Lorem Ipsum is simply dummy text of the
+                                </span>
+                                <span>
+                                    08:00 - 28/09/2023
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column text-left rounded text-dark mess-left justify-content-end">
+                            <span class="">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's                                      standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to                                     make a type specimen book. It has survived not only five centuries,
+                            </span>
+                            <span>
+                                08:00 - 28/09/2023
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @*SendMessage*@
+                <div class="card-footer d-flex">
+                    <input type="text" class="form-control text-chat" placeholder="Nhập tin nhắn" ata-kt-autosize="true" />
+                    <button class="btn btn-primary d-flex button-send" type="button" data-kt-element="send">
+                        Send <img src="~/happys/svg/send.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

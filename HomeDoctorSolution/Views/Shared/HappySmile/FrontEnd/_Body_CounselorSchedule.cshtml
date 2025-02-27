@@ -1,0 +1,204 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" href="/happys/css/booking/booking.css">
+<style type="text/css">
+    .fc-col-header-cell {
+        font-size: large;
+    }
+
+    .badge-6 {
+        font-size: 14px;
+        line-height: 15px;
+        font-weight: 500;
+        color: white !important;
+        margin-bottom: 15px;
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        display: inline-block;
+        background: var(--bs-primary);
+        color: var(--bs-primary);
+    }
+
+    .fc .fc-button-primary {
+        background-color: #4d6eeb !important;
+        border-color: #4d6eeb !important;
+        color: white !important;
+    }
+
+        .fc .fc-button-primary:hover,
+        .fc .fc-button-primary:focus,
+        .fc .fc-button-primary:active {
+            background-color: #2f57ef !important;
+            border-color: #2f57ef !important;
+            color: white !important;
+        }
+
+        .fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+            background-color: #2f57ef !important;
+            border-color: #2f57ef !important;
+            color: white !important;
+        }
+
+
+    .modal-backdrop {
+        position: inherit !important;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+    }
+
+    .rbt-team-modal {
+        background: rgb(0 0 0 / 50%) !important;
+    }
+
+    .modal-title {
+        top: 20px;
+        left: 20px;
+        position: absolute;
+    }
+
+    .modal-content {
+        min-width: 700px !important;
+        border-radius: 10px !important;
+    }
+
+    #btnCopyLinkEvent i {
+        padding-left: 0px !important;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 18px;
+    }
+
+    @@media (min-width: 768px) {
+
+        .fc-daygridmonth-view .fc-scroller {
+            overflow: hidden !important;
+        }
+    }
+
+    @@media (max-width: 1199.98px) {
+        .fc .fc-toolbar {
+            flex-direction: column !important;
+        }
+    }
+
+    @@media (max-width: 767.98px) {
+        .modal-content {
+            width: 100% !important;
+        }
+    }
+
+    .fc-toolbar-title {
+        font-size: 30px !important;
+    }
+
+    .rbt-round-btn i {
+        margin-right: 0;
+    }
+
+    p {
+        margin-bottom: 0px;
+    }
+
+    .inner {
+        margin: 0 30px;
+    }
+
+    .fc-view-harness {
+        height: 700px !important
+    }
+
+</style>
+<section class="doc_blog_grid_area sec_pad_happys details">
+    <div class="container">
+        <!-- Start MyEvent  -->
+        <div class="pxp-dashboard-content-details">
+            <h1>Lịch tư vấn</h1>
+            <div class="row g-5" id="calendar">
+            </div>
+        </div>
+        <!-- End MyEvent  -->
+        <!-- Start Detail Event  -->
+        <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered justify-content-center">
+                <div class="modal-content w-800">
+                    <div class="modal-header mb--20">
+                        <button type="button" class="btn d-none" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-x"></i>
+                        </button>
+                        <h3 class="modal-title">Tên cuộc phỏng vấn</h3>
+                    </div>
+                    <div class="modal-body mt-5 ml-5">
+                        <div class="inner">
+                            <div class="row g-5 row--30 align-items-center">
+                                <div class="col-md-12">
+                                    <span class="badge-6 " id="eventStatus"></span>
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="d-flex align-items-center" id="eventTimeDiv">
+                                        <i class="fa fa-regular fa-calendar me-3"></i>
+
+                                        <p id="eventTime" class="ms-1"></p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="btn-button">
+                                        <button class="btn btn-primary" id="btnLinkEvent" title="Tham gia buổi tư vấn">
+                                        </button>
+
+                                        <button class="btn btn-secondary" id="btnCopyLinkEvent" title="Sao chép đường dẫn">
+                                            <i class="fa fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="d-flex align-items-center mt-3" id="linkDiv">
+                                        <i class="fa fa-link me-3"></i>
+                                        <p id="eventLink"></p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="d-flex align-items-center" id="eventLocationDiv">
+                                        <i class="fa fa-solid fa-location-dot me-3"></i>
+                                        <p id="eventLocation" class="ms-2"></p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="d-flex align-items-center" id="eventDescriptionDiv">
+                                        <i class="fa fa-align-right me-3"></i>
+                                        <p id="eventDescription" class="ms-1"></p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Detail Event  -->
+    </div>
+</section>
+<script>
+    var counselorId = @ViewBag.AccountId;
+</script>
+<script src="~/happys/js/page/counselor-schedule.js"></script>

@@ -1,0 +1,622 @@
+﻿<style>
+    @@media screen and (max-width: 768px){
+        .filter-doctor-div {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .item-filter {
+            padding: 0 !important;
+        }
+
+        .item_doctor {
+            padding-right: 0 !important;
+        }
+
+        .check-confirm-term-of-service {
+            align-items: flex-start !important;
+        }
+
+        .check-confirm-term-of-service input {
+            margin-top: 7px !important;
+            margin-bottom: unset !important;
+        }
+    }
+    .select {
+        appearance: none;
+        width: 100%;
+        height: 44px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--Place, #333);
+        background-color: white;
+        padding: 7px 0px 7px 17px;
+        border-radius: 10px;
+    }
+    
+    .search {
+        position: relative;
+    }
+    
+    .search input {
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        background: #FFF;
+        padding: 7px 0px 7px 17px;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--Place, #333);
+        width: 100%;
+    }
+
+    .search button {
+        position: absolute;
+        right: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        background: #F6AC00;
+        width: 44px;
+        height: 44px;
+    }
+    .check-confirm-term-of-service {
+        align-items:center;
+    }
+
+    .check-confirm-term-of-service input {
+        margin-bottom:3px;
+    }
+    .select2-container {
+        width:100% !important;
+    }
+    .select2-container .select2-selection--multiple {
+        background: #F7F7F9 !important;
+        border-radius: 14px !important;
+        height: 56px !important;
+        border: 0 !important;
+        padding: 0;
+    }
+    
+    .select2-container--default .select2-selection--single {
+        background: #F7F7F9;
+        border-radius: 14px;
+        display: flex;
+        justify-content: space-between;
+        height: 56px;
+        border: 0;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        width: 100%;
+        line-height: 60px;
+        padding-left: 7px;
+        
+        /*padding: 14px;*/
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__arrow svg {
+        width: 24px;
+        height: 100%;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        width: 30px !important;
+        height: 56px;
+    }
+    
+    .select2-container .select2-selection--multiple .select2-selection__rendered {
+        display: inline-flex !important;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        flex-wrap: wrap;
+    }
+    
+    .select2-container--default .select2-search--inline .select2-search__field {
+        width: 100% !important;
+        height: 56px;
+        margin: 0 !important;
+        padding: 16px;
+        color: var(--Label, #7D848D);
+        /* Text body */
+        font-family: Lexend;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+    }
+    
+    .select2-search--inline {
+        width: 100%;
+        display: flex;
+        position: absolute;
+    }
+    
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        width: fit-content;
+        top: 65px;
+        height: fit-content;
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 12px 20px;
+        border-radius: 15px;
+        background: var(--Blue-sky, #1470F5);
+        justify-content: center;
+        align-items: center;
+        border: unset !important;
+        color: white;
+        gap: 8px;
+    }
+    
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        position: relative !important;
+        border-right: unset !important;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        color: white;
+        background: #ffffff45;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 2px;
+    }
+    .select2-search__field::placeholder {
+        color: var(--Label, #7D848D);
+        /* Text body */
+        font-family: Lexend;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        width: 30px !important;
+        height: 56px;
+    }
+        .select2-container--default .select2-selection--single .select2-selection__arrow svg {
+            width: 15px;
+            height: 100%;
+        }
+    .select2-selection__rendered{
+        background: white;
+        /*line-height: 60px;*/
+    }
+
+    .dropdown-menu-outstanding-doctors{
+        width:600px;
+        border-radius:15px;
+        -webkit-box-shadow: 2px 4px 18px 4px rgba(0,0,0,0.23);
+    }
+    .dropdown-menu-outstanding-doctors-header{
+        font-family: Mulish;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20.08px;
+        text-align: left;
+        padding: 14px 24px;
+    }
+
+    .dropdown-item .item_doctor .item_box .img_doctor{
+        width:120px;
+        height:90px;
+        margin-right:10px;
+    }
+    .dropdown-item .item_doctor .item_box .img_doctor img{
+        height:100%;
+        padding:10px;
+    }
+    .dropdown-item .item_doctor .item_box{
+        display:flex;
+    }
+    .dropdown-item .item_doctor{
+        margin-bottom:unset;
+        padding:0px;
+    }
+    .dropdown-item .infor_doctor{
+        padding:0px;
+        gap:unset;
+        text-align:left;
+        justify-content:center;
+    }
+    .dropdown-item .infor_doctor .name_doctor{
+        font-size:16px;
+        line-height:20px;
+    }
+    .dropdown-item .infor_doctor .medical_doctor{
+        font-size:12px;
+        line-height:20px;
+    }
+    .doctorBooking{
+        display:flex
+    }
+    .doctor_booking_header{
+        font-family: Mulish;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 25.1px;
+        text-align: left;
+        padding: 35px 0px;
+    }
+    .doctor_booking_container{
+        background-color:#0079831A;
+    }
+    </style>
+<div class="container-fluid doctor_booking_container" style="padding:0">
+    <div class="container">
+        <p class="doctor_booking_header">Bác sĩ đã đặt</p>
+        <div class="doctorBooking">
+
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <div class="d-flex mt-5 filter-doctor-div">
+        <div class="col-lg-3 col-sm-6 item-filter" style="padding: 0">
+            <select class="select" id="select_healthFacility">
+            </select>
+        </div>
+        <div class="col-lg-3 col-sm-6 item-filter">
+            <select class="select" id="select_services">
+            </select>
+        </div>
+        <div class="col-lg-3 col-sm-6 item-filter">
+            <select class="select" id="select_districts">
+            </select>
+        </div>
+        <div class="col-lg-3 col-sm-6 ml-auto item-filter">
+            <div class="search">
+                <input type="text" placeholder="Tìm kiếm bác sĩ" id="search_doctor" class="dropdown-toggle" data-toggle="dropdown"/>
+                <button type="submit" class="btn_search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M7.29264 1.2876C3.98683 1.2876 1.29395 3.98048 1.29395 7.28631C1.29395 10.5921 3.98683 13.2902 7.29264 13.2902C8.70466 13.2902 10.0033 12.7954 11.0296 11.9738L13.5283 14.4712C13.6544 14.5921 13.8228 14.6588 13.9975 14.657C14.1722 14.6552 14.3392 14.5851 14.4628 14.4617C14.5864 14.3382 14.6567 14.1713 14.6588 13.9967C14.6608 13.822 14.5943 13.6535 14.4736 13.5272L11.9749 11.0285C12.7972 10.0006 13.2926 8.69995 13.2926 7.28631C13.2926 3.98048 10.5985 1.2876 7.29264 1.2876ZM7.29264 2.62095C9.87787 2.62095 11.958 4.70108 11.958 7.28631C11.958 9.87153 9.87787 11.9569 7.29264 11.9569C4.70742 11.9569 2.62728 9.87153 2.62728 7.28631C2.62728 4.70108 4.70742 2.62095 7.29264 2.62095Z" fill="white"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu dropdown-menu-outstanding-doctors dropdown-menu-right">
+                    <p class="dropdown-menu-outstanding-doctors-header">Bác sĩ nổi bật</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="home_doctor">
+        <div id="list_doctor" class="row col-sm-12 p-0 m-0">
+
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 ">
+                <div class="item_box">
+                    <div class="img_doctor">
+                        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png"/>
+                    </div>
+                    <div class="infor_doctor">
+                        <p class="name_doctor">BS. Trung Tran</p>
+                        <p class="medical_doctor">Đa khoa</p>
+                        <div class="des_doctor">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <partial name="HomeDoctor/FrontEnd/_paginate"/>
+        @* <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class ="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a>
+        <a class="item_doctor col-sm-12 col-xl-4 col-md-6 col-lg-4 " href="https://localhost:7244/chi-tiet-bac-si/1000002">
+        <div class="item_box">
+        <div class="img_doctor">
+        <img src="~/HomeDoctor/img/list_doctor/img_doctor.png" />
+        </div>
+        <div class="infor_doctor">
+        <p class="name_doctor">BS. Trung Tran</p>
+        <p class="medical_doctor">Đa khoa</p>
+        <div class="des_doctor">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        </div>
+        </div>
+        </div>
+        </a> *@
+    </div>
+</div>
+<div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="booking-modal modal-content">
+            <div class="booking-modal-header">
+                <div class="d-flex justify-content-between">
+                    <div class="list-ratting-title">
+                        Thông tin đặt lịch
+                        <div class="line-mini"></div>
+
+                    </div>
+                    <div class="close" data-dismiss="modal">
+                        <img src="/homedoctor/img/detail-doctor/close.svg"/>
+                    </div>
+                </div>
+                <div style="margin-top: 10px">
+                    <p class="label-bookingform required">Loại đặt lịch</p>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <div style="width: 100%">
+                            <input checked id="349" type="radio" value="1000001" name="question1">
+                            <label style="margin-bottom: 0" for="349">Khám tại nhà</label>
+                        </div>
+                        <div style="width: 100%">
+                            <input id="350" type="radio" value="1000002" name="question1">
+                            <label style="margin-bottom: 0" for="350">Khám tại phòng khám</label>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 14px">
+                    <div style="width: 70%">
+                        <p class="label-bookingform">Tên bác sĩ</p>
+                        <input class="booking-input" id="doctor-name" disabled readonly/>
+                    </div>
+                    <div style="width: 100%">
+                        <p class="label-bookingform">Tên dịch vụ</p>
+                        <input class="booking-input" id="service" disabled readonly/>
+                        @* <span class="service-fee-value"><span class="column-price">1.000.000</span>đ</span> *@
+                    </div>
+                </div>
+                <div>
+                    <p class="label-bookingform required">Địa chỉ khám (Nếu khám tại nhà hãy điền địa chỉ nhà của bạn)</p>
+                    <input type="text" class="booking-input" id="booking-address"/>
+                </div>
+                <div style="margin-top: 10px">
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <div style="width: 100%">
+                            <input id="351" type="checkbox" value="1000001" name="question2">
+                            <label style="margin-bottom: 0" for="351">Thêm người phụ thuộc</label>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 14px;">
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Họ tên người khám</p>
+                        <input class="booking-input" id="name"/>
+                    </div>
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Số điện thoại</p>
+                        <input class="booking-input" id="phone-number"/>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 14px;">
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Ngày đặt</p>
+                        <input class="booking-input date datepicker2" id="day" placeholder="Chọn ngày"/>
+                    </div>
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Giờ đặt</p>
+                        <select class="booking-input " data-control="select2" id="time">
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="label-bookingform">Ghi chú</p>
+                    <textarea class="booking-input" id="description"></textarea>
+                </div>
+                <div class="form-check d-flex check-confirm-term-of-service">
+                    <input type="checkbox" class="form-check-input" value="" id="pxp-confirmCheckbox"/>
+                    <label class="form-check-label" for="pxp-confirmCheckbox">
+                        Tôi đồng ý với <a href="/chinh-sach-bao-mat">Điều khoản dịch vụ</a> và <a href="/chinh-sach-bao-mat">Chính sách bảo mật</a>
+                    </label>
+                </div>
+            </div>
+            <div class="booking-footer">
+                <a class="btn-booking" onclick="validateBooking()">
+                    Đặt lịch
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var accountId = @ViewBag.accountId
+</script>

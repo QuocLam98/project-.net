@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/happys/css/notificationwv/notificationwv.css" rel="stylesheet" />
+<style>
+    .noti-link {
+        display: flex;
+        color: black;
+    }
+
+    .read-noti {
+        color: #1B1E28;
+        font-size: 14px;
+        font-family: Lexend;
+        font-weight: 400;
+        line-height: 20px;
+        display: inline-block;
+        cursor : pointer;
+    }
+    
+    .icon-check-parent{
+        background: white;
+        border-radius: 30px;
+        border: 1px #1B1E28 solid;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex;
+    }
+
+    .icon-check{
+        height: 10.14px;
+        left: 3.47px;
+        top: 2.8px;
+        position: absolute;
+    }
+
+    .button-loadMore{
+        display: flex;
+        justify-content: center;
+    }
+
+    .button-notificationLoadMore {
+        width: 100%;
+        max-width: 199px;
+        display: inline-flex;
+        height: 54px;
+        padding: 20px 40px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 35px;
+        background: var(--Blue-linear, linear-gradient(90deg, #1470F5 0%, #388AFF 100%));
+        box-shadow: 0px 4px 20px 0px rgba(20, 112, 245, 0.50);
+        border: none;
+        color: white;
+        align-self: center;
+    }
+
+        .button-notificationLoadMore:hover {
+        background: var(--Blue-linear, linear-gradient(90deg, #1470F5 100%, #388AFF 0%));
+        background-position: 100% 0;
+        transition: all .4s ease-in-out;
+        opacity: 0.8;
+        color: white;
+    }
+</style>
+<section id="noti-sec" class="none">
+    <div class="noti-container">
+        <div style="float: right; padding: 10px 15px;">
+            <div class="icon-check-parent">
+                <div style="width: 16px; height: 16px; position: relative">
+                    <img src="~/happys/img/check.svg" class="icon-check" />
+                </div>
+            </div>
+            <div class="read-noti">
+                <a href="#" id="read-noti-all">Đánh dấu tất cả đã đọc</a>
+            </div>
+        </div>
+        <ul class="noti-list" id="ulNotification">
+        </ul>
+        <div class="button-loadMore">
+            <button class="btn btn-secondary button-notificationLoadMore" key="loadMore" id="notiSectionLoadMore">Xem thêm</button>
+        </div>
+    </div>
+</section>
+<script src="~/happys/js/page/notificationwv.js"></script>
+<script>
+    var getCookies = function () {
+        var pairs = document.cookie.split(";");
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+            var pair = pairs[i].split("=");
+            cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='));
+        }
+        return cookies;
+    }
+    var myCookies = getCookies();
+    localStorage.setItem("token", myCookies.Authorization);
+</script>

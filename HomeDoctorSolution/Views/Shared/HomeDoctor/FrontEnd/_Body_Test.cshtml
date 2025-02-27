@@ -1,0 +1,1224 @@
+﻿@{
+    Layout = null;
+}
+<link href="/HomeDoctor/js/aos-master/src/aos.css" rel="stylesheet">
+<script src="/HomeDoctor/js/aos-master/src/aos.js"></script>
+<style>
+    body {
+        color: unset;
+    }
+
+    .detail-money-component p {
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+    }
+
+    .detail-money-component span {
+        color: #007983;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 20px; /* 111.111% */
+    }
+
+    #detail-service-facility {
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .detail-facility-component {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-direction: row;
+    }
+
+    .detail-money-component {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #detail-service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    #modal-service {
+        padding: 0 !important;
+    }
+
+    .best-service-item {
+        border-radius: 10px;
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+        padding: var(--spacing-xl, 16px) 21px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-direction: row;
+    }
+
+    .item-info {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+        .item-info img {
+            width: 92px;
+            height: 92px;
+            border-radius: 10px;
+        }
+
+    .item-info-service {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl, 15px);
+    }
+
+    .info-service-name {
+        color: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px; /* 100% */
+    }
+
+    .item-info-service-facility {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+        .item-info-service-facility p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 125% */
+        }
+
+    .item-info-service-price {
+        /* gap: var(--spacing-xl, 16px); */
+        display: flex;
+        flex-direction: row;
+    }
+
+        .item-info-service-price p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 125% */
+        }
+
+        .item-info-service-price span {
+            color: #007983;
+            font-family: Mulish;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: 20px; /* 100% */
+        }
+
+    .service-function-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .function-detail {
+        color: #007983 !important;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        cursor: pointer;
+    }
+
+    .function-book {
+        padding: 11px var(--spacing-xl, 16px);
+        border-radius: 37px;
+        background: #007983;
+        color: #FFF;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border: 0 !important;
+    }
+
+    .info-service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    .service-button-viewall {
+        border-radius: 37px;
+        border: 1px solid #FFF;
+        background: #007983;
+        box-shadow: 0px 4px 20px 0px rgba(0, 121, 131, 0.20);
+        padding: 13px 40px;
+        color: #FFF;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border: 0 !important;
+        width: fit-content;
+    }
+
+    .linktag-component {
+        display: none;
+    }
+
+    .modal-item-service {
+        max-width: 50%;
+    }
+
+    .header-service-title {
+        background: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px; /* 100% */
+    }
+
+    .header-title-component {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header-service {
+        /* border-bottom: 0; */
+    }
+
+    .body-service {
+        padding-top: 0;
+        padding-bottom: 0;
+        max-height: 65vh;
+        overflow: auto;
+    }
+
+
+    #detail-service-info img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        /* margin-bottom: 16px; */
+    }
+
+    #detail-service-info p {
+        color: #000 !important;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .footer-service-component {
+        border-radius: 16px;
+        background: #FFF;
+        box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10);
+        padding: 16px;
+    }
+
+    .footer-service {
+        justify-content: center;
+        padding: 0;
+        display: block;
+        border-top: 0;
+        margin-top: 26px;
+        text-align: right;
+    }
+
+    .footer-service-button {
+        border-radius: 35px;
+        background: var(--Main-color-1, #FFC800);
+        box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+        color: #000;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+        padding: 14px 25px;
+        border: 0 !important;
+        width: fit-content;
+    }
+
+    .content-result {
+        border-radius: 16px;
+    }
+
+    .services-component {
+        margin-top: 80px;
+        background: linear-gradient(0deg, rgba(0, 121, 131, 0.00) 0%, rgba(0, 121, 131, 0.10) 100%);
+        background-repeat: no-repeat;
+        background-position: top;
+        padding: 80px 0px 0px 0px;
+        display: none !important;
+    }
+
+    .allservice-list-item {
+        margin-top: 80px;
+    }
+
+    .all-service-item {
+        margin-bottom: 40px;
+    }
+
+        .all-service-item h5 {
+            width: calc(100% - 55px);
+            position: absolute;
+            top: 5px;
+            left: 40px;
+        }
+
+    .service-viewmore {
+        color: #007983 !important;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-decoration-line: underline !important;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    h1, h2, h3, h4, h5 {
+        margin: 0;
+    }
+
+    .no-margin {
+        margin: 0;
+    }
+
+    .test-intro-four {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between
+    }
+
+    .intro-test-container {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .intro-four-item img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .intro-four-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+
+        .intro-four-item p {
+            color: #000;
+            text-align: center;
+            font-family: Mulish;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+
+    .right-side-banner img {
+        width: 100%;
+        height: 525px;
+    }
+
+    .intro-banner {
+        margin-top: 80px;
+        display: flex;
+        align-items: center;
+    }
+
+    .left-site-banner-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .test-procedure {
+        padding-top: 80px;
+        padding-bottom: 120px;
+    }
+
+    .procedure-three-item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+    }
+
+        .procedure-three-item h5 {
+            font-weight: 600;
+        }
+
+    .item-group-img img {
+        width: 100%;
+    }
+
+    .procedure-three {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        margin-top: 40px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .three-item-content {
+        text-align: center;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+        .three-item-content p {
+            margin-top: 15px;
+        }
+
+    .component-title {
+        color: #007983;
+        font-family: Mulish;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .left-site-banner-content p {
+        color: #000;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .step-text {
+        color: #000;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        align-items: center;
+    }
+
+    .number-detail {
+        color: #007983;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-right: 20px;
+    }
+
+    .left-site-banner-content button {
+        padding: 20px 40px;
+        justify-content: center;
+        align-items: center;
+        color: #FFF;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border-radius: 37px;
+        background: #007983;
+        box-shadow: 0px 4px 20px 0px rgba(0, 121, 131, 0.20);
+        border: 0;
+        width: fit-content;
+    }
+
+    .free-text {
+        color: #007983;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin-left: 5px;
+    }
+
+    .left-site-banner-content div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .test-procedure-flud {
+        background: linear-gradient(180deg, rgba(0, 121, 131, 0.00) 0%, rgba(0, 121, 131, 0.10) 100%);
+        background-image: url(/HomeDoctor/img/test-in-home/background-2.png);
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+
+    .three-item-content h5 {
+        color: #000;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .three-item-content p {
+        color: #000;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .reason-container-flud {
+        background-image: url(/HomeDoctor/img/test-in-home/BG-Reason.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .reason-content {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .list-reason {
+        display: flex;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 20px 41px;
+        flex-wrap: wrap;
+        width: 948px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .three-content1-bg, .three-content2-bg, .three-content3-bg {
+        background-image: url(/HomeDoctor/img/test-in-home/BG-Procedure-1.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: calc(100%/3);
+        padding: 180px 22px 37px 22px;
+    }
+
+    .three-content1-bg {
+        background-image: url(/HomeDoctor/img/test-in-home/BG-Procedure-1.png);
+    }
+
+    .three-content2-bg {
+        background-image: url(/HomeDoctor/img/test-in-home/BG-Procedure-2.png);
+    }
+
+    .three-content3-bg {
+        background-image: url(/HomeDoctor/img/test-in-home/BG-Procedure-3.png);
+    }
+
+    .reason-content h3 {
+        color: #FFF;
+        font-family: Mulish;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .m-b-10 {
+        margin-bottom: 10px;
+    }
+
+    .reason-item p {
+        color: #FFF;
+        text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.10);
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-transform: uppercase;
+        width: 300px;
+    }
+
+    .reason-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 19px;
+    }
+
+    .reason-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .reason-content button {
+        padding: 20px 40px;
+        border-radius: 37px;
+        border: 1px solid #FFF;
+        background: #007983;
+        box-shadow: 0px 4px 20px 0px rgba(0, 121, 131, 0.20);
+        width: fit-content;
+        color: #fff;
+    }
+
+    .service-image {
+        height: 525px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .best-service {
+        padding-top: 82.5px;
+        /* padding-bottom: 80px; */
+    }
+
+    .m-b-20 {
+        margin-bottom: 20px;
+    }
+
+    .service-item, .all-service-item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+    }
+
+    .service-name {
+        border-radius: 10px;
+        background: linear-gradient(266deg, rgba(0, 121, 131, 0.20) -0.31%, rgba(9, 196, 211, 0.20) 97.8%);
+        padding: var(--radius-md, 8px) 30px;
+        color: #000;
+        /* text-align: right; */
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        z-index: 0;
+        width: calc(100% - 26px);
+    }
+
+    .service-number {
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .ellipse-icon {
+        width: 48px;
+        height: 48px;
+        fill: var(--linear-2, linear-gradient(266deg, #007983 -0.31%, #09C4D3 97.8%));
+        stroke-width: 1px;
+        stroke: #FFF;
+        filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.10));
+    }
+
+    .ellipse-content {
+        position: absolute;
+        left: 16px;
+        top: 9px;
+        color: #FFF;
+        text-align: right;
+        font-family: Mulish;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .ellipse-content2 {
+        position: absolute;
+        left: 9px;
+        top: 9px;
+        color: #FFF;
+        text-align: right;
+        font-family: Mulish;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .service-item h5 {
+        position: absolute;
+        top: 5px;
+        left: 26px;
+    }
+
+    .service-description {
+        color: #000;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        min-height: 42px !important;
+    }
+
+    .service-list-item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    @@media screen and (max-width: 991px) {
+        .banner-test-container {
+            padding: 20px;
+        }
+
+        .banner-content h3 {
+            max-width: unset;
+        }
+
+        .banner-title {
+            font-size: 22px;
+        }
+
+        .banner-content span {
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .banner-content {
+            gap: 20px;
+        }
+
+        .banner-background-content {
+            background-image: unset;
+        }
+    }
+
+    @@media screen and (max-width: 768px) {
+        .linktag-component {
+            display: block;
+        }
+
+        .footer-service {
+            margin-top: 16px;
+        }
+
+        .content-result {
+            padding: 0;
+        }
+
+        .services-component {
+            margin-top: 30px;
+            padding-top: 20px;
+        }
+
+        .allservice-list-item {
+            margin-top: 20px;
+        }
+
+        .all-service-item {
+            margin-bottom: 20px;
+        }
+
+        .intro-four-item {
+            gap: 20px;
+        }
+
+            .intro-four-item p {
+                font-size: 16px;
+            }
+
+        .intro-four-item {
+            width: 45%;
+            gap: 10px;
+        }
+
+        .test-intro-four {
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .intro-test-container {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .intro-banner {
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .component-title {
+            font-size: 22px;
+            text-align: left !important
+        }
+
+        .left-site-banner-content p {
+            font-size: 16px;
+        }
+
+        .step-text {
+            font-size: 18px;
+        }
+
+        .right-side-banner img {
+            height: unset;
+        }
+
+        .left-side-banner {
+            order: 1
+        }
+
+        .right-side-banner {
+            order: 0;
+        }
+
+        .intro-four-item img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .test-procedure {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .procedure-three {
+            flex-direction: column;
+        }
+
+        .three-content1-bg, .three-content2-bg, .three-content3-bg {
+            width: 100%;
+        }
+
+        .procedure-three {
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .reason-content h3 {
+            font-size: 22px;
+        }
+
+        .list-reason {
+            width: unset;
+        }
+
+        .reason-content {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .banner-img-mobile {
+            display: block;
+        }
+
+        .reason-container-flud {
+            background-image: url(/HomeDoctor/img/test-in-home/BG-Mobile-2.png);
+        }
+
+        .best-service {
+            padding-top: 30px;
+        }
+
+        .service-content {
+            margin-top: 20px;
+        }
+
+        .service-item {
+            gap: 10px;
+        }
+
+        .reason-item {
+            gap: 10px;
+        }
+
+        .modal-item-service {
+            max-width: unset;
+        }
+
+        .footer-service-button {
+            width: 100%;
+        }
+    }
+
+    @@media screen and (max-width: 650px) {
+        .best-service-item {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .best-service-item {
+            align-items: unset;
+        }
+
+        .service-function-container {
+            justify-content: space-between;
+        }
+
+        .service-button-component {
+            display: flex;
+            justify-content: center;
+        }
+
+        .info-service-price {
+            margin-left: 10px;
+        }
+    }
+</style>
+
+@* Intro *@
+<div class="container intro-test-container">
+    @* Intro Test *@
+    <div class="test-intro-four">
+        <div class="intro-four-item">
+            <img src="/HomeDoctor/img/test-in-home/item1.png">
+            <p>
+                Đặt lịch đơn giản, nhanh chóng
+            </p>
+        </div>
+        <div class="intro-four-item">
+            <img src="/HomeDoctor/img/test-in-home/item2.png">
+            <p>
+                Hơn 5000 bác sỹ tin tưởng
+            </p>
+        </div>
+        <div class="intro-four-item">
+            <img src="/HomeDoctor/img/test-in-home/item3.png">
+            <p>
+                Giá xét nghiệm không đổi
+            </p>
+        </div>
+        <div class="intro-four-item">
+            <img src="/HomeDoctor/img/test-in-home/item4.png">
+            <p>
+                Nhận kết quả qua Email/SMS
+            </p>
+        </div>
+    </div>
+    @* Intro banner *@
+    <div class="row intro-banner">
+        <div data-aos="fade-right" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 left-side-banner">
+            <div class="left-site-banner-content">
+                <h3 class="component-title no-margin m-b-10">HẠN CHẾ DI CHUYỂN, ĐỢI CHỜ TẠI PHÒNG KHÁM</h3>
+                <p>Bác sĩ tại nhà thấu hiểu sự e ngại về vấn đề tốn thời gian khi phải di chuyển xa đến các trung tâm y tế, chờ đợi, hay bị bối rối trước các quy trình, thủ tục khám rườm rà đặc biệt là đối với người lớn tuổi.</p>
+                <p>Dịch vụ lấy mẫu tại nhà của Bác sĩ tại nhà sẽ hỗ trợ quý khách hàng giải quyết được những nỗi trăn trở này một cách dễ dàng</p>
+                <div>
+                    <span class="number-detail">01</span>
+                    <span class="step-text">Dễ dàng đặt lịch qua các kênh: Facebook, website, hotline, Zalo...</span>
+                </div>
+                <div>
+                    <span class="number-detail">02</span>
+                    <span class="step-text">Đội ngũ điều dưỡng chuyên môn cao, thái độ thân thiện nhã nhặn</span>
+                </div>
+                <div>
+                    <span class="number-detail">03</span>
+                    <span class="step-text">Bác sĩ chuyên khoa tư vấn sức khoẻ trực tiếp<span class="free-text">MIỄN PHÍ</span></span>
+                </div>
+            </div>
+        </div>
+        <div data-aos="fade-left" class="col-xl-6 col-lg-6 col-md-12 col-sm-12 right-side-banner">
+            <img src="/HomeDoctor/img/test-in-home/intro-body-image.png" />
+        </div>
+    </div>
+</div>
+
+@* Test Procedure *@
+<div class="test-procedure-flud">
+    <div class="test-procedure container">
+        <h3 class="component-title no-margin text-center">Quy trình lấy mẫu xét nghiệm nhanh chóng </h3>
+        <div class="procedure-three">
+            <div data-aos="fade-right" class="three-item-content three-content1-bg">
+                <h5>
+                    1. ĐĂNG KÍ LỊCH HẸN
+                </h5>
+                <p>
+                    Quý khách để lại thông tin đặt lịch để được nhân viên tư vấn chủ động liên hệ.
+                </p>
+            </div>
+
+            <div data-aos="fade-up" class="three-item-content three-content2-bg">
+                <h5>
+                    2. LẤY MẪU TẠI NHÀ
+                </h5>
+                <p>
+                    Điều dưỡng đến nhà lấy mẫu xét nghiệm cần thiết cho gói khám (mẫu máu, nước tiểu,…).
+                </p>
+            </div>
+            <div data-aos="fade-left" class="three-item-content three-content3-bg">
+                <h5>
+                    3. NHẬN TƯ VẤN TỪ BÁC SĨ
+                </h5>
+                <p>
+                    Bác sĩ chuyên khoa sẽ chủ động điện thoại cho quý khách để tư vấn, giải thích các chỉ số sức khỏe, đề xuất phương án điều trị thích hợp.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@* Reason *@
+<div class="reason-container-flud">
+    <div class="container reason-content">
+        <h3>Tại sao nên xét nghiệm tại Bác sĩ tại nhà</h3>
+        <div class="list-reason">
+            <div data-aos="fade-right" class="reason-item">
+                <img class="reason-icon" src="/HomeDoctor/img/test-in-home/reason-icon-1.png" />
+                <p>
+                    Công nghệ tiên tiến
+                    HỆ THỐNG DỮ LIỆU SỐ HOÁ
+                </p>
+            </div>
+            <div data-aos="fade-down" class="reason-item">
+                <img class="reason-icon" src="/HomeDoctor/img/test-in-home/reason-icon-2.png" />
+                <p>
+                    20+ năm kinh nghiệm
+                    TRONG LĨNH VỰC Y KHOA
+                </p>
+            </div>
+            <div data-aos="fade-up" class="reason-item">
+                <img class="reason-icon" src="/HomeDoctor/img/test-in-home/reason-icon-3.png" />
+                <p>
+                    5000+ Y, Bác sĩ đối tác
+                    TIN TƯỞNG ĐỒNG HÀNH
+                </p>
+            </div>
+            <div data-aos="fade-left" class="reason-item">
+                <img class="reason-icon" src="/HomeDoctor/img/test-in-home/reason-icon-4.png" />
+                <p>
+                    100+ xét nghiệm
+                    ĐA DẠNG DANH MỤC
+                </p>
+            </div>
+        </div>
+        <button class="btn-booking-test">Đặt lịch xét nghiệm</button>
+    </div>
+</div>
+
+@* Best Service *@
+<div class="container best-service">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <img class="service-image" src="/HomeDoctor/img/test-in-home/best-service-image.png" />
+        </div>
+        <div class="col-lg-6 col-12 service-content">
+            <h3 class="component-title m-b-20">
+                DỊCH VỤ XÉT NGHIỆM NỔI BẬT
+            </h3>
+            <div class="service-list-item">
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Modal Result *@
+<div class="modal" id="modal-service" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-item-service" role="document">
+        <div class="modal-content content-result" id="content-export">
+            <div class="modal-header header-service">
+                <div class="header-title-component">
+                    <h5 class="modal-title header-service-title" id="detail-service-name"></h5>
+                    <div class="detail-facility-component">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <g clip-path="url(#clip0_4682_16790)">
+                                <path d="M12.2905 6.08152C12.2905 4.26713 10.8144 2.79102 8.99997 2.79102C7.18556 2.79102 5.70947 4.2671 5.70947 6.08152C5.70947 7.89587 7.18556 9.37198 8.99997 9.37198C10.8144 9.37198 12.2905 7.8959 12.2905 6.08152ZM7.15655 6.6089V5.55413H8.47262V4.23802H9.5274V5.55413H10.8435V6.6089H9.5274V7.92498H8.47262V6.6089H7.15655Z" fill="#FFC800" />
+                                <path d="M15.0672 6.06712C15.0672 2.7217 12.3456 0 9.00015 0C5.65473 0 2.93311 2.7217 2.93311 6.06712C2.93311 9.89323 7.70753 14.0617 9.00019 15.1199C10.2927 14.0618 15.0672 9.89323 15.0672 6.06712ZM4.65492 6.08178C4.65492 3.6858 6.60417 1.73651 9.00019 1.73651C11.3962 1.73651 13.3455 3.68576 13.3455 6.08178C13.3455 8.47773 11.3962 10.427 9.00019 10.427C6.60417 10.427 4.65492 8.47777 4.65492 6.08178Z" fill="#FFC800" />
+                                <path d="M13.7299 15.337C13.4422 15.167 13.0459 15.0182 12.5518 14.8946C12.1328 14.7899 11.6547 14.7059 11.1374 14.6445C10.1316 15.5947 9.36573 16.1793 9.31903 16.2148L9.00014 16.4569L8.68125 16.2148C8.63459 16.1793 7.86869 15.5947 6.86293 14.6445C6.34563 14.7059 5.8675 14.7899 5.44848 14.8946C4.95442 15.0182 4.55807 15.167 4.27037 15.337C3.74179 15.6495 3.63086 16.0126 3.63086 16.2622C3.63086 16.5118 3.74182 16.875 4.27037 17.1873C4.55807 17.3574 4.95442 17.5062 5.44848 17.6297C6.40361 17.8685 7.66494 18 9.00014 18C10.3353 18 11.5967 17.8685 12.5518 17.6297C13.0459 17.5062 13.4422 17.3574 13.7299 17.1873C14.2585 16.8749 14.3694 16.5118 14.3694 16.2622C14.3694 16.0126 14.2585 15.6495 13.7299 15.337Z" fill="#FFC800" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_4682_16790">
+                                    <rect width="18" height="18" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p id="detail-service-facility"></p>
+                    </div>
+                    <div class="detail-money-component">
+                        <p>Giá chỉ tử</p>
+                        <span id="detail-service-price"></span>
+                        <span>đ</span>
+                    </div>
+                    @*                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="2" viewBox="0 0 22 2" fill="none">
+                    <path d="M1 1H21" stroke="#FFC800" stroke-width="2" stroke-linecap="round" />
+                    </svg> *@
+                </div>
+
+                <button type="button" class="close header-result-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body body-service" id="detail-service-info">
+            </div>
+            <div class="modal-footer footer-service">
+                <div class="footer-service-component">
+                    <button class="footer-service-button" id="button-service">
+                        Đặt lịch xét nghiệm
+                    </button>
+                </div>
+
+                @* <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+@* All Service *@
+<div class="container-fluid services-component">
+    <div class="container">
+        <h3 class="component-title no-margin text-center">Tất cả dịch vụ xét nghiệm</h3>
+        <div class="row allservice-list-item">
+        </div>
+    </div>
+</div>
+<script>
+    var dataService = [];
+    AOS.init();
+    $(".btn-booking-test").on("click", function () {
+        window.location.href = '/danh-sach-xet-nghiem'
+    })
+
+    $(".footer-service-button").on("click", function () {
+        window.location.href = '/dat-lich-xet-nghiem?serviceId=' + $(this).attr("data-serviceId");
+    })
+    function RedirectBooking(serviceId) {
+        window.location.href = '/dat-lich-xet-nghiem?serviceId=' + serviceId;
+    }
+    function RedirectListTest() {
+        window.location.href = '/danh-sach-xet-nghiem'
+    }
+    $(document).ready(function () {
+        LoadDataService();
+    })
+    async function LoadDataService() {
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'services/api/list-test',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            dataService = responseData.data;
+            for (let i = 0; i < dataService.length; i++) {
+                if (i <= 2) {
+                    $(".service-list-item").append(`<div data-aos="fade-left" class="best-service-item">
+                                <div class="item-info">
+                                    <img src="`+ dataService[i].photo + `"/>
+                                    <div class="item-info-service">
+                                        <p class="info-service-name">` + dataService[i].name + `</p>
+                                        <div class="item-info-service-facility">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                <g clip-path="url(#clip0_4682_15879)">
+                                                    <path d="M12.29 6.08152C12.29 4.26713 10.8139 2.79102 8.99949 2.79102C7.18507 2.79102 5.70898 4.2671 5.70898 6.08152C5.70898 7.89587 7.18507 9.37198 8.99949 9.37198C10.8139 9.37198 12.29 7.8959 12.29 6.08152ZM7.15606 6.6089V5.55413H8.47214V4.23802H9.52691V5.55413H10.843V6.6089H9.52691V7.92498H8.47214V6.6089H7.15606Z" fill="#FFC800" />
+                                                    <path d="M15.0667 6.06712C15.0667 2.7217 12.3451 0 8.99967 0C5.65425 0 2.93262 2.7217 2.93262 6.06712C2.93262 9.89323 7.70704 14.0617 8.9997 15.1199C10.2923 14.0618 15.0667 9.89323 15.0667 6.06712ZM4.65443 6.08178C4.65443 3.6858 6.60368 1.73651 8.9997 1.73651C11.3957 1.73651 13.345 3.68576 13.345 6.08178C13.345 8.47773 11.3957 10.427 8.9997 10.427C6.60368 10.427 4.65443 8.47777 4.65443 6.08178Z" fill="#FFC800" />
+                                                    <path d="M13.7299 15.337C13.4422 15.167 13.0459 15.0182 12.5518 14.8946C12.1328 14.7899 11.6547 14.7059 11.1374 14.6445C10.1316 15.5947 9.36573 16.1793 9.31903 16.2148L9.00014 16.4569L8.68125 16.2148C8.63459 16.1793 7.86869 15.5947 6.86293 14.6445C6.34563 14.7059 5.8675 14.7899 5.44848 14.8946C4.95442 15.0182 4.55807 15.167 4.27037 15.337C3.74179 15.6495 3.63086 16.0126 3.63086 16.2622C3.63086 16.5118 3.74182 16.875 4.27037 17.1873C4.55807 17.3574 4.95442 17.5062 5.44848 17.6297C6.40361 17.8685 7.66494 18 9.00014 18C10.3353 18 11.5967 17.8685 12.5518 17.6297C13.0459 17.5062 13.4422 17.3574 13.7299 17.1873C14.2585 16.8749 14.3694 16.5118 14.3694 16.2622C14.3694 16.0126 14.2585 15.6495 13.7299 15.337Z" fill="#FFC800" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_4682_15879">
+                                                        <rect width="18" height="18" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            <p>` + dataService[i].healthFacilityName + `</p>
+                                        </div>
+                                        <div class="item-info-service-price">
+                                            <p>Giá chỉ từ</p>
+                                            <span class="info-service-price">`+ formatNumberCart(dataService[i].price.toString()) + `</span><span>đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service-function-container">
+                                    <a onclick="ShowService(`+ dataService[i].id + `)" class="function-detail">Xem chi tiết</a>
+                                        <button onclick="RedirectBooking(`+ dataService[i].id + `)" class="function-book">Đặt lịch ngay</button>
+                                </div>
+                            </div>`)
+                }
+                // else if (i <= 8) {
+                //     $(".allservice-list-item").append(`<div data-aos="flip-up" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 all-service-item">
+                //         <div class="service-number"><img class="ellipse-icon" src="/HomeDoctor/img/test-in-home/Ellipse 689.png" /><span class="ellipse-content">` + (i + 1) + `</span></div>
+                //         <h5 class="service-name">
+                //             `+ dataService[i].name + `
+                //         </h5>
+                //         <div>
+                //             <p class="service-description">` + (dataService[i].intro != null ? dataService[i].intro : "") + `</p>
+                //             <a onclick="ShowService(`+ dataService[i].id + `)" class="service-viewmore">Xem thêm</a>
+                //         </div>
+                //     </div>`)
+                //     //appentd to listService
+                // }
+                // else {
+                //     $(".allservice-list-item").append(`<div data-aos="flip-up" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 all-service-item">
+                //         <div class="service-number"><img class="ellipse-icon" src="/HomeDoctor/img/test-in-home/Ellipse 689.png" /><span class="ellipse-content2">` + (i + 1) + `</span></div>
+                //         <h5 class="service-name">
+                //             `+ dataService[i].name + `
+                //         </h5>
+                //         <div>
+                //             <p class="service-description">` + (dataService[i].intro != null ? dataService[i].intro : "") + `</p>
+                //             <a onclick="ShowService(`+ dataService[i].id + `)" class="service-viewmore">Xem thêm</a>
+                //         </div>
+                //     </div>`)
+                // }
+            }
+            $(".service-list-item").append(`<div onclick="RedirectListTest()" class="service-button-component"><button class="service-button-viewall">Xem tất cả</button></div>`)
+        } catch (error) {
+            console.error("Error loading service data:", error);
+        }
+    }
+    function ShowService(serviceId) {
+        let currentService = dataService.find(x => x.id == serviceId);
+        if (currentService != null) {
+            $("#modal-service").modal("show");
+            $("#detail-service-name").text(currentService.name);
+            $("#detail-service-info").html(currentService.description);
+            $("#button-service").attr("data-serviceId", currentService.id);
+            $("#detail-service-facility").text(currentService.healthFacilityName);
+            $("#detail-service-price").text(formatNumberCart(currentService.price.toString()));
+
+        }
+    }
+
+</script>

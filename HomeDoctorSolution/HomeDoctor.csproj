@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\happys\js\page\booking-detail.js" />
+    <Content Remove="wwwroot\happys\js\page\booking.js" />
+    <Content Remove="wwwroot\happys\js\page\bookingDetailForCounselor.js" />
+    <Content Remove="wwwroot\happys\js\page\bookingDetailForUser.js" />
+    <Content Remove="wwwroot\happys\js\page\consultant.js" />
+    <Content Remove="wwwroot\happys\js\page\rate.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\happys\js\page\booking.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\happys\js\page\consultant.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\happys\js\page\rate.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FirebaseAdmin" Version="2.4.0" />
+    <PackageReference Include="FirebaseNet" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NPOI" Version="2.6.2" />
+    <PackageReference Include="Quartz" Version="3.8.0" />
+    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.0" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\happys\img\banner\" />
+    <Folder Include="wwwroot\happys\img\counselors-detail\" />
+    <Folder Include="wwwroot\happys\img\list_survey\" />
+    <Folder Include="wwwroot\happys\img\counselors\" />
+    <Folder Include="wwwroot\happys\img\booking\" />
+    <Folder Include="wwwroot\HomeDoctor\css\consulting-history\NewFolder\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\header-homepage\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\doctor-detail\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\list-clinic\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\list-product\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\list-product\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\cart\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\homepage\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\consulting-history\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\changepassword\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\show-card-infor\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\paginate\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\list-post\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\list-doctor\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\product-detail\" />
+    <Folder Include="wwwroot\HomeDoctor\js\page\sign-up\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\happys\js\page\bookingDetailForUser.js" />
+    <None Include="wwwroot\happys\js\page\bookingDetailForCounselor.js" />
+    <None Include="wwwroot\happys\js\page\booking-detail.js" />
+    <None Include="wwwroot\happys\js\page\booking.js" />
+    <None Include="wwwroot\happys\js\page\consultant.js" />
+  </ItemGroup>
+
+</Project>

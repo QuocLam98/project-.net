@@ -1,0 +1,125 @@
+﻿@{
+    Layout = null;
+}
+<style>
+
+    @@media screen and (max-width: 768px){
+        .booking-detail-item-info {
+            align-items: flex-start;
+        }
+
+        .booking-detail {
+            height: unset;
+            max-height: unset;
+            padding: 15px;
+        }
+
+        .body_wrapper {
+            min-height: unset;
+        }
+
+        .booking-detail-price {
+            flex-direction: column;
+        }
+
+        .booking-detail-pay {
+            width: 50% !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+
+        .booking-detail-price {
+            gap: 5px;
+        }
+    }
+
+</style>
+<section class="doc_banner_area banner_creative1 text-banner" style="min-height: 750px">
+    <div class="container">
+        <div class="booking-detail">
+            <div class="booking-detail-item-info">
+                <div class="booking-detail-avatar">
+                    <img src="/homedoctor/img/detail-doctor/ava.svg" />
+                </div>
+                <div class="booking-detail-info">
+                    <div class="booking-detail-name">
+                    </div>
+                    <div class="booking-detail-time">
+                        <span class="booking-detail-time-info-top"> </span>
+                    </div>
+                    <div class="booking-detail-reason">
+                        Dịch vụ: <span class="booking-detail-reason-detail"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-detail-item">
+                <div class="booking-detail-title">
+                    Thông tin người khám
+                </div>
+                <div class="booking-detail-cotent">
+                    Họ tên: <span class="accountBooking-name"></span>
+                </div>
+                <div class="booking-detail-cotent">
+                    Số điện thoại: <span class="accountBooking-phone"></span>
+                </div>
+@*                 <div class="booking-detail-cotent accountBooking-address">
+                   
+                </div> *@
+            </div>
+
+            <div class="booking-detail-item">
+                <div class="booking-detail-title">
+                    Thông tin đặt lịch
+                </div>
+                <div class="booking-detail-cotent">
+                    Loại đặt lịch: <span class="booking-detail-type"></span>
+                </div>
+                <div class="booking-detail-cotent">
+                    Trạng thái: <span class="booking-detail-status"></span>
+                </div>
+                <div class="booking-detail-cotent reason">
+                    Bác sĩ đã huỷ vì <span class="booking-detail-reason"></span>
+                </div>
+                <div class="booking-detail-cotent">
+                    Địa chỉ: <span class="booking-detail-address-info"> </span>
+                </div>
+                <div class="booking-detail-cotent">
+                    Thời gian: <span class="booking-detail-time-info"> </span>
+                </div>
+                <div class="booking-detail-cotent">
+                    Ghi chú đặt lịch: <span class="booking-detail-info-content"></span>
+                </div>
+            </div>
+
+            <div class="booking-detail-item">
+                <div class="booking-detail-title">
+                    Đánh giá của tư vấn viên
+                </div>
+                <div class="booking-detail-cotent">
+                    <span class="doctor-evaluate"></span>
+                </div>
+            </div>
+            <div class="booking-detail-item">
+                <div class="booking-detail-price">
+                    <div class="booking-detail-title">
+                        Tổng tiền dịch vụ:
+                    </div>
+                    <div class="booking-detail-price-div">
+                        <span class="booking-detail-price-value column-price"></span> đ
+                    </div>
+                </div>
+                <div class="booking-detail-pay" onclick="PayRequest()">
+                    Thanh Toán
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<div class="container"><div style="border-bottom: 1px #D9D9D9 solid;"></div></div>
+
+</div>
+<script>
+    var bookingId = @ViewBag.BookingId;
+</script>

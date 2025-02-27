@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<style>
+    .featured-member {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .featured-member-photo img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        object-fit: cover;
+    }
+
+    .featured-member-detail {
+        margin-left: 16px;
+    }
+
+    .featured-member-name {
+        color: var(--Black, #1B1E28);
+        text-align: justify;
+        /* Textbody bold */
+        font-family: SF Pro Display;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; /* 125% */
+    }
+</style>
+<section class="forum_content_full">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 forum_content" id="detail_forum_content">
+                <div id="detail_forum_header"> 
+                </div>
+                <div class="all-answers">
+                    <div class="forum-comment d-flex flex-column" id="list_cmt_forum">
+                     </div>
+                    <partial name="HappySmile/FrontEnd/_paginate" />
+                </div>
+                <div class="comment d-flex flex-column" id="comment_text" style="gap:16px;">
+                   
+                </div>
+            </div>
+            <!-- /.col-lg-8 -->
+
+            <div class="col-lg-3 side_bar_forum">
+                
+                <div class="right_side_forum">
+
+                    <aside class="r_widget user_list_wd">
+                        <div class="r_heading d-flex justify-content-between">
+                            <h3>Chủ đề</h3>
+                        </div>
+                        <ul class="navbar-nav list-unstyled ticket_categories" id="typical-category">
+                        </ul>
+                    </aside>
+                    <div class="widget status_widget">
+                        <h4 class="c_head">Thành viên nổi bật</h4>
+                        <div class="featured-member row" id="featureda-account">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    var accountID = @ViewBag.accountId;
+    var forumId = @ViewBag.ForumId;
+    var forumSlug = "@ViewBag.ForumSlug";
+</script>
+<script src="~/happys/assets/ckeditor/ckeditor.js" asp-append-version="true"></script>
+<script src="~/happys/assets/ckeditor/vi.js" asp-append-version="true"></script>

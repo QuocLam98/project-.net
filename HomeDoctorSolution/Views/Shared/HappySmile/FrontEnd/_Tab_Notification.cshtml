@@ -1,0 +1,172 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .checkbox_container_noti {
+        padding-left: 40px;
+        height: 24px;
+        color: var(--Blue-sky, #1470F5);
+        font-family: SF Pro Display;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        gap: 14px;
+    }
+
+        .checkbox_container_noti input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+    .checkmark-profile {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 1px solid var(--Blue-sky, #1470F5);
+    }
+
+    .checkbox_container_noti input:checked ~ .checkmark-profile {
+        background-color: #ffff;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark-profile:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .checkbox_container_noti input:checked ~ .checkmark-profile:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .checkbox_container_noti .checkmark-profile:after {
+        left: 9px;
+        top: 4px;
+        width: 7px;
+        height: 14px;
+        border: solid #007bff;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+
+    .list_noti {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .forum_topic_list h2 {
+        margin-bottom: 32px !important;
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        background: var(--Line, #E8F1FD);
+        position: absolute;
+        left: 0;
+    }
+
+    .forum_body_area {
+        padding: 38px 20px;
+    }
+
+    .list_noti .card {
+        border-radius: 14px;
+        border: 1px solid var(--Line, #E8F1FD);
+        background: var(--bs-white);
+        padding: 21px;
+        gap: 20px;
+    }
+
+        .list_noti .card .card_item_img {
+            width: 75px;
+            height: 75px;
+            min-width: 75px;
+            min-height: 75px;
+        }
+
+            .list_noti .card .card_item_img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 14px;
+            }
+
+    .card_item_date {
+        color: #777;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .card_unread {
+        background: var(--Line, #E8F1FD) !important;
+    }
+
+    .card-item {
+        cursor: pointer;
+    }
+
+    .forum_topic_list h2 {
+        color: black;
+        font-size: 24px;
+        font-family: Lexend;
+        font-weight: 700;
+    }
+</style>
+<div class="tab-pane fade" id="notify" role="tabpanel"
+     aria-labelledby="notify-tab">
+@*     <div class="input-group search_forum">
+        <input type="text" class="form-control" placeholder="Recipient's username"
+               aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button"
+                    id="button-addon2">
+                <i class="icon_search"></i>
+            </button>
+        </div>
+    </div> *@
+    <div class="d-flex flex-row justify-content-between noti-title">
+        <h2>Thông báo</h2>
+        <label class="checkbox_container_noti d-flex flex-row align-items-center m-0">
+            <input type="checkbox" id="checkbox_noti">
+            <span class="checkmark-profile"></span>
+            Đánh dấu tất cả đã đọc
+        </label>
+    </div>
+    <div class="line"></div>
+    <div class="list_noti">
+       
+    </div>
+    <partial name="HappySmile/FrontEnd/_paginate" />
+</div>
+
+<div class="tab-pane fade" id="notify-detail" role="tabpanel" aria-labelledby="notify-tab-detail">
+    <div class="noti-title">
+        <h2>Chi tiết thông báo</h2>
+    </div>
+
+    <div>
+
+    </div>
+</div>
+<script src="~/happys/js/page/userprofile/notification.js"></script>

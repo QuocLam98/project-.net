@@ -1,0 +1,98 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .menu > .nav-item > .nav-link {
+        font-size: 16px !important;
+    }
+</style>
+<link href="~/happys/css/header/header.css" rel="stylesheet" />
+<nav class="navbar navbar-expand-lg menu_one menu_purple sticky-nav">
+    <div class="container">
+        <a class="navbar-brand header_logo" href="/">
+            <img class="first_logo sticky_logo" src="happys/img/logo/logo-2-w.png" srcset="happys/img/logo/logo-2-w.png 2x" alt="logo">
+            <img class="white_logo main_logo" src="happys/img/logo/logo-2-b.png" srcset="happys/img/logo/logo-2-b.png" alt="logo">
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="menu_toggle">
+                <span class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="hamburger-cross">
+                    <span></span>
+                    <span></span>
+                </span>
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav menu ml-auto">
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/ve-chung-toi" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        HappyS
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/trac-nghiem-suc-khoe-tam-than" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Trắc nghiệm Sức khỏe tâm thần
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/dat-lich-tu-van-vien" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Đặt Lịch Tư Vấn
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/dien-dan" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Diễn Đàn
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/tin-tuc" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Tin Tức
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/thu-vien" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Thư Viện
+                    </a>
+                </li>
+            </ul>
+            <div class="right-nav">
+                @if (@ViewBag.AccountId != 0)
+                {
+                    <a class="nav_btn" href="/thong-tin-ca-nhan">@ViewBag.AccountName</a>
+                }
+                else
+                {
+                    <a class="nav_btn" href="/dang-nhap">Đăng nhập</a>
+                }
+                @*  <div class="px-2 js-darkmode-btn d-none" title="Toggle dark mode">
+                <label for="something" class="tab-btn tab-btns">
+                <ion-icon name="moon"></ion-icon>
+                </label>
+                <label for="something" class="tab-btn">
+                <ion-icon name="sunny"></ion-icon>
+                </label>
+                <label class=" ball" for="something"></label>
+                <input type="checkbox" name="something" id="something" class="dark_mode_switcher">
+                </div> *@
+            </div>
+        </div>
+    </div>
+</nav>

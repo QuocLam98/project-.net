@@ -1,0 +1,233 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="/happys/css/Counselors-detail/Counselors-detail.css">
+<section class="doc_blog_grid_area sec_pad_happys details">
+    <div class="container">
+        <div class="screen big">
+            <div class="profile">
+                <div class="ava">
+                    <img class="shadow" src="`+ item.photo + `" />
+
+                    <div class="interact d-flex">
+                        <div class="w-100">
+                            <label class="number">`+ item.countBooking +`</label>
+                            <span class="tags">Lượt tương tác</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="lines"></label>
+                        </div>
+                        <div class="w-100">
+                            <label class="number">`+ item.countInteract +`</label>
+                            <span class="tags">Lượt đặt lịch hẹn</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="w-100 detail-counselors">
+                    <div class="head-detail">
+                        <label class="name">`+ item.accountName +`</label>
+
+                        <div class="w-100" style="margin-top: 24px; margin-bottom: 16px;">
+                            <div class="tag">
+                                <span class="line">`+ item.workingName +`</span>
+                            </div>
+                        </div>
+                        <div class="w-100">
+                            <div class="tag">
+                                <span class="line">`+ item.healthFacilityName +`</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="body-detail">
+                        <div class="box">
+                            <div class="input">
+                                <span class="text-input">
+                                    Đánh giá
+                                </span>
+
+                                <div class="d-flex evaluate">
+                                    <div class="my-rating" data-rating="`+ item.totalRating +`"></div>
+                                    <span style="margin-left: 16px; margin-right: 16px;">`+ item.totalRating +`</span>
+                                </div>
+
+                            </div>
+
+                            <div class="input">
+                                <span class="text-input">
+                                    Số điện thoại
+                                </span>
+
+                                <div class="text-input">
+                                    `+ item.phone +`
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="input">
+                                <span class="text-input">
+                                    Email
+                                </span>
+
+                                <div class="text-input">
+                                    `+ item.email +`
+                                </div>
+
+                            </div>
+
+                            <div class="input">
+                                <span class="text-input">
+                                    Lịch làm việc
+                                </span>
+
+                                <div class="text-input">
+                                    <a href="" class="link-calender">Xem chi tiết <img src="/happys/img/counselors-detail/right.svg" /></a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="detail-button">
+                                <div class=" button_booking">
+                                    <a class="shadow-lg btn btn-light btnHS  inbox btn-lg rounded-pill" id="booking" href="`+ systemURL +`dat-lich-tu-van-vien?id=`+ item.accountId + `">Đặt lịch hẹn</a>
+                                </div>
+                                <div class=" button_inbox">
+                                    <a class="shadow-lg btn btn-light btnHS  inbox btn-lg rounded-pill" href="`+ systemURL +`chat?id=`+ item.accountId + `">Nhắn tin</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="name">
+                    Thông tin về cán bộ tư vấn
+                </label>
+
+                <p class="content">
+                    `+ item.description +`
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen small">
+        <div class="banner">
+        </div>
+        <div class="profile">
+            <div class="ava">
+                <img src="`+ item.photo + `" />
+            </div>
+
+            <div class="w-100 head-detail">
+                <label class="name"> `+ item.accountName +`</label>
+            </div>
+        </div>
+
+        <div class="interact d-flex">
+            <div class="w-100">
+                <label class="number">`+ item.countBooking +`</label>
+                <span class="tags">Lượt tương tác</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <label class="lines"></label>
+            </div>
+            <div class="w-100">
+                <label class="number">`+ item.countInteract +`</label>
+                <span class="tags">Lượt đặt lịch hẹn</span>
+            </div>
+
+        </div>
+
+        <div class="tag">
+            <span class="line">`+ item.workingName +`</span>
+        </div>
+
+        <div class="tag">
+            <span class="line">`+ item.healthFacilityName +`</span>
+        </div>
+
+        <div class="input" style="margin-top: 16px;">
+            <span class="text-input">
+                Đánh giá
+            </span>
+
+            <div class="d-flex evaluate">
+                <div class="my-rating" data-rating="`+ item.totalRating + `"></div>
+                <span style="margin-left: 16px; margin-right: 16px;">`+ item.totalRating +`</span>
+            </div>
+
+        </div>
+
+
+    <div class="input">
+        <span class="text-input">
+            Số điện thoại
+        </span>
+
+        <span class="text-input">
+            `+ item.phone +`
+        </span>
+
+    </div>
+
+    <div class="input">
+        <span class="text-input">
+            Email
+        </span>
+
+        <span class="text-input">
+            `+ item.email +`
+        </span>
+
+    </div>
+
+    <div class="input">
+        <span class="text-input">
+            Nơi công tác
+        </span>
+
+        <span class="text-input">
+            `+ item.healthFacilityName +`
+        </span>
+
+    </div>
+
+    <div class="input">
+        <span class="text-input">
+            Thời gian làm việc
+        </span>
+
+        <span class="text-input">
+            08:00 - 22:00 từ thứ 2 - thứ 6
+        </span>
+
+    </div>
+
+    <div class="detail-button">
+        <div class=" button_booking">
+            <a class="btn btn-light btnHS   inbox btn-lg rounded-pill" href="`+ systemURL +`dat-lich-tu-van-vien?id=`+ item.accountId + `">Đặt lịch hẹn</a>
+        </div>
+        <div class=" button_inbox">
+            <a class="btn btn-light btnHS   inbox btn-lg rounded-pill" href="`+ systemURL +`chat?id=`+ item.accountId + `">Nhắn tin</a>
+        </div>
+    </div>
+
+    <label class="info-name">
+        Thông tin về cán bộ tư vấn
+    </label>
+
+    <p class="content">
+        `+ item.description +`
+    </p>
+    </div>
+
+</section>

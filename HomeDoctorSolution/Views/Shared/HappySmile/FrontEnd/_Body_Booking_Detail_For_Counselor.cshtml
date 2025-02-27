@@ -1,0 +1,256 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    .gap-16 {
+        gap: 16px;
+    }
+    input:disabled {
+        opacity: 0.5; /* Điều chỉnh độ mờ */
+    }
+    textarea:disabled {
+        opacity: 0.5; /* Điều chỉnh độ mờ */
+    }
+    .btnCancel{
+        background:#ff0b0b !important;
+    }
+    .btnUpdate{
+        background:#00b100 !important;
+    }
+</style>
+<link rel="stylesheet" href="/happys/css/booking/bookingv2.css">
+<section class="doc_blog_grid_area sec_pad_happys">
+    <div class="container book">
+        <input id="status" class="d-none" value="@BookingStatusId.WAIT" />
+        <div class="screen big">
+            <div class="booking-user">
+                <div class="image d-none">
+                    <div class="img d-none">
+                        <img src="~/happys/img/booking/big.svg" />
+                    </div>
+
+                    <div class="accountName d-none"></div>
+                </div>
+
+                <div class="booking-detail">
+                    <div class="booking-header">
+                        <label class="title-booking">Thông tin đặt lịch</label>
+
+                    </div>
+
+                    <div class="booking-body shadow ">
+                        <div class="row">
+                            <div class="col-8">
+                                <label class="title-booking d-none" id="done">
+                                    Đã hoàn thành
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <a class="detail-consultant d-none" id="consultant">
+                                    Xem biên bản buổi tư vấn
+                                </a>
+                            </div>
+                        </div>
+
+                        <label class="title-booking d-none" id="accept">Đã xác nhận</label>
+                        <label class="title-booking d-none" id="wait">Chờ xác nhận</label>
+                        <label class="title-booking d-none" id="cancel">Đã hủy</label>
+                        <label class="title-booking d-none" id="reject">Đã bị từ chối</label>
+                        
+                        <div class="columns w-100">
+                            <label class="title-input d-none" id="reason">Lý do hủy</label>
+                        </div>
+
+                        <div class="columns w-100">
+                            <label class="title-input">Hình thức tư vấn</label>
+                            <div class=" row">
+                                <label for="online-pc" class="select-input col-6">
+                                    <input type="radio" id="online-pc" class="booking-online" name="radio-bookingtype" value="@BookingTypeConstant.ONLINE">
+                                    <span class="select-content">Đặt lịch hẹn trực tuyến</span>
+                                </label>
+                                <label for="offline-pc" class="select-input col-6">
+                                    <input type="radio" id="offline-pc" class="booking-offline" name="radio-bookingtype" value="@BookingTypeConstant.OFFLINE">
+                                    <span class="select-content">Đặt lịch hẹn trực tiếp</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="columns w-100 address">
+                        </div>
+                        <div class="booking-col">
+                            <div class="columns date datepicker">
+                                <label class="title-input">Ngày đặt lịch</label>
+                                <input type="text" id="date-pc" class="input-booking" />
+                            </div>
+                            <div class="columns">
+                                <label class="title-input">Thời gian</label>
+                                <select id="time-pc" class="input-booking time" data-control="select2" data-placeholder="Select an option">
+                                    <option value=""></option>
+                                    <option value="08:00-09:30">08:00-08:30</option>
+                                    <option value="08:30-09:00">08:30-09:00</option>
+                                    <option value="09:00-09:30">09:00-09:30</option>
+                                    <option value="09:30-10:00">09:30-10:00</option>
+                                    <option value="10:00-10:30">10:00-10:30</option>
+                                    <option value="10:30-11:00">10:30-11:00</option>
+                                    <option value="11:00-11:30">11:00-11:30</option>
+                                    <option value="13:30-14:00">13:30-14:00</option>
+                                    <option value="14:00-14:30">14:00-14:30</option>
+                                    <option value="14:30-15:00">14:30-15:00</option>
+                                    <option value="15:00-15:30">15:00-15:30</option>
+                                    <option value="15:30-16:00">15:30-16:00</option>
+                                    <option value="16:00-16:30">16:00-16:30</option>
+                                </select>
+                            </div>
+
+                            
+                        </div>
+
+
+                        <div class="w-100">
+                            <label class="title-input">Chia sẻ cho tư vấn viên</label>
+                            <textarea type="text" id="booking-description" class="input-booking" placeholder="Nhập nội dung tư vấn ..." data-kt-autosize="true" value=""></textarea>
+                        </div>
+
+                        <div class="button submit booking-body p-0">
+                            <div class="col-12 d-flex flex-row flex-mobile justify-content-end align-items-center gap-16 p-0">
+                                <button class="btn btnHS2 btnUpdate" id="btnUpdateBooking" type="button">Gửi thông tin</button>
+                                <button class="btn btnHS2 btnEdit" id="edit-booking">Sửa lịch tư vấn</button>
+                                <button class="btn btnHS2 btnCancel" id="cancel-booking">Hủy lịch tư vấn</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen small">
+            <div class="banner">
+            </div>
+            <div class="booking-header">
+                <div class="img">
+                    <img src="~/happys/img/booking/ava-small.svg" />
+                </div>
+
+                <div class="w-100 head-detail">
+                    <div class="counselorName">
+                    </div>
+                    <div class="d-flex evaluate">
+                        <img src="~/happys/svg/star.svg" />
+                        <img src="~/happys/svg/star.svg" />
+                        <img src="~/happys/svg/star.svg" />
+                        <img src="~/happys/svg/star.svg" />
+                        <img src="~/happys/svg/star.svg" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="input-time">
+                <span class="title">
+                    Thời gian làm việc
+                </span>
+
+                <span class="content">
+                    08:00 - 22:00 từ thứ 2 - thứ 6
+                </span>
+            </div>
+
+            <div class=" button">
+                <a href="/danh-sach-tu-van-vien" class="btn w-100 btn-light btn-lg rounded-pill" type="button">Thay đổi cán bộ tư vấn</a>
+            </div>
+
+            <label class="title-booking">Thông tin đặt lịch</label>
+
+            <div class="columns">
+                <label class="title-input">Loại đặt lịch hẹn</label>
+                <div class="input-booking">
+                    <label for="online-m" class="select-input">
+                        <input type="radio" id="online-m" class="booking-online-mobile" name="radio-bookingtype" value="@BookingTypeConstant.ONLINE">
+                        <span class="select-content">Đặt lịch hẹn trực tuyến</span>
+                    </label>
+                </div>
+
+                <div class="input-booking">
+                    <label for="offline-m" class="select-input">
+                        <input type="radio" id="offline-m" class="booking-offline-mobile" name="radio-bookingtype" value="@BookingTypeConstant.OFFLINE">
+                        <span class="select-content">Đặt lịch hẹn trực tiếp</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="columns address">
+            </div>
+
+            <div class="columns date datepicker">
+                <label class="title-input">Ngày đặt lịch hẹn</label>
+                <input type="text" id="date-mobile" class="input-booking date-mobile" />
+            </div>
+
+            <div class="columns w-100">
+                <label class="title-input">Lịch trình</label>
+                <select id="time-mobile" class="input-booking time" data-control="select2" data-placeholder="Select an option">
+                    <option value=""></option>
+                    <option value="8:00-9:00">8:00-9:00</option>
+                    <option value="9:00-10:00">9:00-10:00</option>
+                    <option value="10:00-11:00">10:00-11:00</option>
+                    <option value="11:00-12:00">11:00-12:00</option>
+                    <option value="14:00-15:00">14:00-15:00</option>
+                    <option value="15:00-16:00">15:00-16:00</option>
+                    <option value="16:00-17:00">16:00-17:00</option>
+                    <option value="17:00-18:00">17:00-18:00</option>
+                    <option value="18:00-19:00">18:00-19:00</option>
+                    <option value="19:00-20:00">19:00-20:00</option>
+                    <option value="20:00-21:00">20:00-21:00</option>
+                    <option value="21:00-22:00">21:00-22:00</option>
+                </select>
+            </div>
+
+            <div class="columns">
+                <label class="title-input">Nội dung</label>
+                <textarea type="text" id="booking-description" class="input-booking" placeholder="Nhập nội dung tư vấn ..." data-kt-autosize="true" value=""></textarea>
+            </div>
+
+            @*<div class="button submit">
+            <button class="btn btn-light w-100 btn-lg rounded-pill btnSubmit" type="button">Gửi thông tin</button>
+            </div>*@
+        </div>
+
+
+    </div>
+    <!--end::Datatable-->
+    <div class="modal fade" id="reason-cancel-booking">
+        <div class="modal-dialog modal-ml modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Lý do hủy lịch</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="icon-close"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <textarea type="text" id="reason_cancel" class="input-booking" placeholder="Nhập lý do hủy tư vấn ..." data-kt-autosize="true" value=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer sticky-action justify-content-center">
+                    <button type="button" class="btn btn-secondary" id="close-modal" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdateReason">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end::Col-->
+</section>
+<script>
+    var bookingDetailId = @ViewBag.BookingDetailId;
+</script>

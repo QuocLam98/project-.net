@@ -1,0 +1,50 @@
+﻿﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="~/happys/css/consulting_history/consulting_history.css" asp-append-version="true" rel="stylesheet" />
+<style>
+    @@media (max-width:600px) {
+        .tags {
+            margin: 0 !important;
+        }
+        .tag {
+            padding: 5px 12px !important;
+            display: flex;
+        }
+        .content {
+            font-size: 12px !important; 
+        }
+        .body_wrapper {
+            padding: 0px 0px 42px 0px;
+        }
+    }
+</style>
+<div class="parent-header">
+    <div>
+        <span class="text-history">Lịch sử khám</span>
+    </div>
+    <div class="button-container">
+        <div class="parent-button-container parent-consulting-button-waiting" id="parent-consulting-button" data-statusId="@BookingStatusId.SUCCESS_WAIT">
+            <div class="text-button-history">
+                <span>Đang chờ</span>
+            </div>
+        </div>
+        <div class="parent-button-container" id="parent-consulting-button" data-statusId="1000015">
+            <div class="text-button-history">
+                <span>Hoàn thành</span>
+            </div>
+        </div>
+        <div class="parent-button-container" id="parent-consulting-button" data-statusId="1000003">
+            <div class="text-button-history">
+                <span>Đã hủy</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="consulting_history">
+</div>
+<partial name="HappySmile/FrontEnd/_paginate" />
+<script src="~/happys/js/page/consulting_history_web_app.js" asp-append-version="true"></script>

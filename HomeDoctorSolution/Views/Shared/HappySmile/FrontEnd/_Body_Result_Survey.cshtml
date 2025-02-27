@@ -1,0 +1,150 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<div class="container">
+    <div class="d-flex flex-column justify-content-center align-items-center pl-3 pr-3">
+        <div class="header_title"><p>Đánh giá mức độ tình trạng của bạn</p></div>
+        <div class="noti_survey d-flex flex-column">
+            <div class="noti_box d-flex flex-column justify-content-around">
+                <div class="col-12 d-flex noti_item justify-content-center flex-column align-items-center" id="concerned_title">
+                    <p class="title_section">Lo Âu</p>
+                </div>
+                <div class="noti_list col-12 d-flex justify-content-around p-0">
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_concerned mark_normal" data-value="1"><i class="bi bi-check"></i></div>
+                        <div class="title_mark"><p>Bình thường</p></div>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_concerned mark_light" data-value="2"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Nhẹ</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_concerned mark_fit" data-value="3"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Vừa</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_concerned mark_heavy" data-value="4"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Nặng</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_concerned mark_weighty" data-value="5"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Rất nặng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="noti_box d-flex flex-column justify-content-around">
+                <div class="col-12 d-flex noti_item justify-content-center flex-column align-items-center" id="concerned_title">
+                    <p class="title_section">Trầm cảm</p>
+                </div>
+                <div class="noti_list col-12 d-flex justify-content-around p-0">
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_depression mark_normal" data-value="1"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Bình thường</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_depression mark_light" data-value="2"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Nhẹ</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_depression mark_fit" data-value="3"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Vừa</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_depression mark_heavy" data-value="4"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Nặng</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_depression mark_weighty" data-value="5"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Rất nặng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="noti_box d-flex flex-column justify-content-around">
+                <div class="col-12 d-flex noti_item justify-content-center flex-column align-items-center" id="concerned_title">
+                    <p class="title_section">Stress</p>
+                </div>
+                <div class="noti_list col-12 d-flex justify-content-around p-0">
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_stress mark_normal" data-value="1"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Bình thường</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_stress mark_light" data-value="2"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Nhẹ</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_stress mark_fit" data-value="3"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Vừa</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_stress mark_heavy" data-value="4"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Nặng</p>
+                    </div>
+                    <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                        <div class="noti_mark mark_stress mark_weighty" data-value="5"><i class="bi bi-check"></i></div>
+                        <p class="title_mark">Rất nặng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header_result d-flex flex-column justify-content-center align-items-center" id="noti_result">
+            <div class="icon_left"><img src="~/happys/img/result_survey/icon_left.svg" /></div>
+            <div class="infor_survey d-flex flex-column" id="detail_surey">
+                
+            </div>
+            <div class="icon_right d-flex"><img src="~/happys/img/result_survey/icon_right.svg" /></div>
+        </div>
+
+        <div class="social_survey d-flex justify-content-center">
+            <div class="socical_left d-flex justify-content-between">
+                <a href="/danh-sach-tu-van-vien" class="btn btn_social btn_booking">Đặt lịch tư vấn</a>
+            </div>
+            <div class="socical_right d-flex justify-content-between">
+                <a class="btn btn_social btn_review" href="/chi-tiet-bai-trac-nhiem-sktt?id=@ViewBag.surveyAccountId">Xem lại Bài Trắc Nghiệm</a>
+                @*<div class="icon_result icon-print"><img src="~/happys/img/result_survey/icon-print.svg" /></div>*@
+                <button class="icon_result icon-share" id="result_survey_share" data-toggle="modal" data-target="#exampleModal"><img src="~/happys/img/result_survey/icon-share.svg" /></button>
+            </div>
+        </div>
+    </div>
+  
+</div>
+<!--Begin Modal Share -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class='glyphicon glyphicon-envelope text-info'></i>Chia sẻ kết quả</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+                <div class="col-sm-6" >
+                    <div class='form-group'>
+                        <span id="email_error"></span>
+                        <div class='input-group col-xs-8' data-validate="email">
+                            <input type="text" class="form-control " name="validate-email" id="validate_email" placeholder="Email Address" required>
+                            <span id="addEmail" class="input-group-addon primary">Ok</span>
+                        </div>
+                        <div id="list_email">
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center" >
+                <button type="button" class="btn btn-info" id="btnConfirmEmail">Gửi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal Share -->
+<script>
+    var accountId = @ViewBag.AccountId;
+    var surveyAccountId = @ViewBag.surveyAccountId;
+</script>

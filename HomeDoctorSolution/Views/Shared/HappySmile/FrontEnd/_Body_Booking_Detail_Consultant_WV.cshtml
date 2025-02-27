@@ -1,0 +1,292 @@
+﻿
+<style>
+    .consultant_result_header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+    .consultant_result_header_title {
+
+    }
+    .consultant_result_header_content {
+        color: var(--Label, #7D848D);
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .line {
+        height: 5px;
+        width: 100%;
+        background-color: #F5F5F5;
+    }
+
+    .consultant_card_title {
+        color: var(--Blue-sky, #1470F5);
+        font-family: Lexend;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .input {
+        background: #F7F7F9;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border: 0;
+    }
+
+    .consultant_card_group {
+        position: relative;
+        background: #F7F7F9;
+        border-radius: 14px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px;
+        border: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-input {
+        color: var(--Label, #7D848D);
+        font-size: 14px;
+    }
+
+    .text-area {
+        resize: none;
+        background: #F7F7F9;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border: 0;
+    }
+
+    .text-area-no-style {
+        resize: none;
+        background: #F7F7F9;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border: 0;
+        padding: 14px;
+        border-radius: 14px;
+    }
+</style>
+<section class="consultant_result sec_pad_happys">
+    <div class="container">
+        <div class="consultant_result_header">
+            <h3 class="consultant_result_header_title m-0">Phiếu đánh giá tư vấn</h3>
+            <h5 class="consultant_result_header_content m-0 d-none">Thông tin đang được cán bộ tư vấn cập nhật</h5>
+        </div>
+        <div class="line mt-3 mb-3">
+        </div>
+        <div class="consultant_result_body">
+            <div class="consultant_card">
+                <div class="consultant_card_title mb-3">
+                    1. Thông tin cá nhân
+                </div>
+                <div class="consultant_card_body row mb-3">
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Họ và tên</label>
+                            <input type="text" class="input" id="full-name" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Ngày tháng năm sinh</label>
+                            <input type="text" class="input" id="dob" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Giới tính (xác nhận khi sinh)</label>
+                            <input type="text" class="input" id="gender" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Dân tộc - tôn giáo</label>
+                            <input type="text" class="input" id="religiousNation" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Trình độ văn hóa</label>
+                            <input type="text" class="input" id="culturalLevel" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Số điện thoại</label>
+                            <input type="text" class="input" id="phone-number" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Chuyên gia thực hiện</label>
+                            <input type="text" class="input" id="conselor-name" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Thời gian tham vấn</label>
+                            <input type="text" class="input" id="consultingTime" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Hình thức tư vấn</label>
+                            <input type="text" class="input" id="booking-type" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Địa chỉ</label>
+                            <input type="text" class="input" id="address-detail" placeholder="Chưa có dữ liệu" disabled readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line mt-3 mb-3">
+        </div>
+        <div class="consultant_result_body">
+            <div class="consultant_card">
+                <div class="consultant_card_title mb-3">
+                    2. Phần chuyên môn
+                </div>
+                <div class="consultant_card_body row mb-3">
+                    <div class="col-lg-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Lý do đến tham vấn</label>
+                            <textarea type="text" class="text-area" id="booking-reason" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Triệu chứng, biểu hiện thực thể</label>
+                            <textarea type="text" class="text-area" id="symptom-user" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Các mối quan hệ gia đình và xã hội</label>
+                            <textarea type="text" class="text-area" id="religiorelationship" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Tiền sử bản thân và gia đình</label>
+                            <textarea type="text" class="text-area" id="history" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line mt-3 mb-3">
+        </div>
+        <div class="consultant_result_body">
+            <div class="consultant_card">
+                <div class="consultant_card_title mb-3">
+                    3. Kết quả đánh giá sơ bộ
+                </div>
+                <div class="consultant_card_body row mb-3">
+                    <div class="col-lg-12 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Kết quả đánh giá sơ bộ</label>
+                            <textarea type="text" class="text-area" id="assessmentResult" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line mt-3 mb-3">
+        </div>
+        <div class="consultant_result_body">
+            <div class="consultant_card">
+                <div class="consultant_card_title mb-3">
+                    4. Mục tiêu tư vấn
+                </div>
+                <div class="consultant_card_body row mb-3">
+                    <div class="col-lg-12 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Mục tiêu tư vấn</label>
+                            <textarea type="text" class="text-area" id="target" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line mt-3 mb-3">
+        </div>
+        <div class="consultant_result_body">
+            <div class="consultant_card">
+                <div class="consultant_card_title mb-3">
+                    5. Kết quả tư vấn
+                </div>
+                <div class="consultant_card_body row mb-3">
+                    <div class="col-lg-12 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Kết quả tư vấn</label>
+                            <textarea type="text" class="text-area" id="consultingResults" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line mt-3 mb-3">
+        </div>
+        <div class="consultant_result_body">
+            <div class="consultant_card">
+                <div class="consultant_card_title mb-3">
+                    6. Kế hoạch tiếp theo
+                </div>
+                <div class="consultant_card_body row mb-3">
+                    <div class="col-lg-12 mb-3">
+                        <div class="consultant_card_group">
+                            <label class="title-input m-0">Kế hoạch tiếp theo</label>
+                            <textarea type="text" class="text-area" id="consultingPlan" rows="3" placeholder="Chưa có dữ liệu" disabled readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line mt-3 mb-3">
+        </div>
+        <div class="consultant_result_body">
+            <div class="consultant_card card_rating">
+                <div class="consultant_card_title mb-3">
+                    7. Đánh giá của học sinh sau buổi tư vấn
+                </div>
+                <div class="consultant_card_body row mb-3">
+                    <div class="col-lg-12 mb-3">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+                            <p class="mb-3">
+                                Đánh giá
+                            </p>
+                            <div class="my-rating" readOnly></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-3">
+                        <label class="title">Nhận xét</label>
+                        <textarea type="text" class="text-area-no-style" id="review" rows="3" placeholder="Nhập ..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center w-100">
+            <button class="btn btnHS2" id="btnSave" type="button">Hoàn thành</button>
+        </div>
+    </div>
+</section>

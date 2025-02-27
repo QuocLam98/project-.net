@@ -1,0 +1,293 @@
+﻿@{
+    Layout = null;
+}
+<section class="order-section sec_pad_happys">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 message-section">
+                <div class="card-message">
+                    <div class="message-title w-100">
+                        <div class="message-back">
+                            <button class="chat-hide btn btn-icon btn-base btn-sm" type="button">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                        </div>
+                        <div class="message-title-inner d-flex flex-row align-items-center gap-8">
+                            <div class="message-avatar offline">
+                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                            </div>
+                            <div class="message-user-name">
+                                @* Trung trần *@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message-body w-100">
+                        <div class="message-body-container">
+                            <div class="d-flex w-100 h-100 align-items-center justify-content-center ">
+                                <div class="no-message">
+                                    Chọn một người để bắt đầu nhắn tin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message-footer w-100">
+                        <div class="row align-items-center g-4">
+                            <!-- Input -->
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-lg" id="text-send-message" placeholder="Nhập tin nhắn ...." aria-label="type message-themes">
+                                </div>
+                            </div>
+                            <!-- Input -->
+                            <div class="emoji-conainer">
+                                <ul class="emoji-click">
+                                    <li>
+                                        <img src="https://cdn.icon-icons.com/icons2/3288/PNG/512/happy_emo_emoticon_emoji_icon_208299.png" width="30" />
+                                        <div class="triangle"></div>
+                                        <ul class="emoji-box">
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Button -->
+                            <button type="submit" class="btn btn-icon" id="btnSendMessage">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                    <g clip-path="url(#clip0_811_3082)">
+                                        <path d="M20.2593 9.68179L2.52332 1.03007C2.37079 0.955666 2.20329 0.916992 2.03357 0.916992C1.41664 0.916992 0.916504 1.41713 0.916504 2.03406V2.0663C0.916504 2.21619 0.934883 2.36553 0.971238 2.51095L2.67254 9.31613C2.71901 9.50203 2.87617 9.63935 3.06658 9.66053L10.5443 10.4914C10.8037 10.5202 10.9998 10.7394 10.9998 11.0003C10.9998 11.2613 10.8037 11.4805 10.5443 11.5093L3.06658 12.3401C2.87617 12.3613 2.71901 12.4986 2.67254 12.6845L0.971238 19.4897C0.934883 19.6351 0.916504 19.7845 0.916504 19.9343V19.9666C0.916504 20.5835 1.41664 21.0837 2.03357 21.0837C2.20329 21.0837 2.37079 21.045 2.52332 20.9705L20.2593 12.3189C20.7633 12.073 21.0832 11.5612 21.0832 11.0003C21.0832 10.4394 20.7633 9.92764 20.2593 9.68179Z" fill="#007983" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_811_3082">
+                                            <rect width="22" height="22" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </button>
+                            <!-- Button -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 contact-section">
+                <div class="message-contact-container">
+                    <ul class="nav nav-pills mb-3 message-contact" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-message-tab" data-toggle="pill" data-target="#pills-message" type="button" role="tab" aria-controls="pills-message" aria-selected="true">Tin nhắn</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Danh bạ</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-message" role="tabpanel" aria-labelledby="pills-message-tab">
+                            <div class="pills-message-tab-container">
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                            <div class="pills-contact-tab-contact">
+                                <div class="group-contact">
+                                    <h5 class="m-0">Bác sĩ</h5>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="group-contact">
+                                    <h5 class="m-0">Người dùng</h5>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-item">
+                                        <div class="message-left">
+                                            <div class="message-left-avatar">
+                                                <img src="/upload/admin/page/avatar/90506845-e8420580-e122-11ea-82ca-31087fc8486c.png" />
+                                            </div>
+                                        </div>
+                                        <div class="message-center">
+                                            <div class="message-center-account">
+                                                Trung trần
+                                            </div>
+                                            <div class="message-center-message ellipsis2">
+                                                Xin chào mọi người,...
+                                            </div>
+                                        </div>
+                                        <div class="message-right">
+                                            <div class="message-right-count-message">
+                                                5+
+                                            </div>
+                                            <div class="message-right-date">
+                                                08:00
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var targetAccountId = @ViewBag.targetAccountId
+        $(document).ready(function () {
+            // Set focus to the input element with id "text-send-message"
+            $("#text-send-message").focus();
+        });
+</script>

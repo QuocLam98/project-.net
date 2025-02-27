@@ -1,0 +1,111 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="/happys/css/header-user/header-user.css" rel="stylesheet" asp-append-version="true" />
+<script src="~/happys/js/page/header-user.js"></script>
+<nav class="navbar navbar-expand-lg menu_one menu_purple sticky-nav">
+    <div class="container">
+        <a class="navbar-brand header_logo" href="/">
+            <img class="white_logo main_logo" src="/happys/img/logo/logo-2-w.png" srcset="happys/img/logo/logo-2-w.png 1.5x " alt="logo">
+            <img class="white_logo sticky_logo" src="/happys/img/logo/logo-2-w.png" srcset="happys/img/logo/logo-2-w.png 1.5x" alt="logo">
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="menu_toggle">
+                <span class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="hamburger-cross">
+                    <span></span>
+                    <span></span>
+                </span>
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav menu">
+                <li class="nav-item dropdown submenu mega_menu tab-demo">
+                    <a href="/ve-chung-toi" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HappyS</a>
+                </li>
+
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/trac-nghiem-suc-khoe-tam-than" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Trắc Nghiệm Sức Khỏe Tâm Thần
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/dat-lich-tu-van-vien" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Đặt Lịch Tư Vấn
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/dien-dan" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Diễn Đàn
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/tin-tuc" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Tin Tức
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/thu-vien" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Thư Viện
+                    </a>
+                </li>
+            </ul>
+            <div class="right-nav">
+                @if (@ViewBag.AccountId != 0)
+                {
+                    <img src="~/happys/img/counselors/600px.svg" class="ava-banner rounded-circle" />
+                    <a class="ava-name ellipsis1" href="/thong-tin-ca-nhan">@ViewBag.AccountName</a>
+                    <div style="margin-right: 16px;">
+                        <div class="rounded-circle circle">
+                            <img src="~/happys/img/banner/notification.svg" class="noti" />
+                        </div>
+                        <div class="left_number-banner" id="noti">
+                            <span>5+</span>
+                        </div>
+                        @* <img src="~/happys/img/banner/number.svg" class="left_number-banner" /> *@
+                    </div>
+                    <div>
+                        <div class="rounded-circle circle">
+                            <img src="~/happys/img/banner/comment.svg" class="noti" />
+                        </div>
+                        <div class="left_number-banner" id="mess">
+                            <span>5+</span>
+                        </div>
+                        @*   <img src="~/happys/img/banner/number.svg" class="left_number-banner" /> *@
+                    </div>
+
+                }
+                else
+                {
+                    <a class="nav_btn" href="/sign-in">Đăng nhập</a>
+                }
+                @*  <div class="px-2 js-darkmode-btn d-none" title="Toggle dark mode">
+                <label for="something" class="tab-btn tab-btns">
+                <ion-icon name="moon"></ion-icon>
+                </label>
+                <label for="something" class="tab-btn">
+                <ion-icon name="sunny"></ion-icon>
+                </label>
+                <label class=" ball" for="something"></label>
+                <input type="checkbox" name="something" id="something" class="dark_mode_switcher">
+                </div> *@
+            </div>
+        </div>
+    </div>
+</nav>

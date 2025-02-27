@@ -1,0 +1,66 @@
+﻿
+<section class="personal-information sec_pad_happys">
+    <div class="container">
+        <div class="infor_body">
+            <div class="infor_header">
+                <label for="avatar" class="cursor-pointer" onclick="btnUpload()"><img src="" id="account_avatar" type="file"/></label>
+                <p id="account_name"></p>
+            </div>
+            <div class="infor_content d-flex flex-column">
+                <input type="text" placeholder="Tên của bạn" id="profile_name"/>
+                <input type="text" placeholder="Email của bạn" id="profile_email"/>
+                <input type="text" placeholder="Số điện thoại" id="profile_phone"/>
+                <div class="input-group date datepicker">
+                    <input type="text" value="" class="input" id="dob" required="" placeholder="Ngày sinh">
+                </div>
+                <select id="select_sex" class="select2-selection__arrow">
+                    <option selected>Giới tính</option>
+                    <option >Nam</option>
+                    <option >Nữ</option>
+                </select>
+                <select id="select_province" class="select2-selection__arrow">
+                    
+                </select>
+                <script>
+                    async function loadDataSelectshipProvinceAddressId() {
+                        try {
+                            const responseData = await $.ajax({
+                                url: systemURL + 'province/api/list',
+                                type: 'GET',
+                                async: true,
+                                contentType: 'application/json'
+                            });
+                            const data = responseData.data;
+                            return data;
+                        } catch (error) {
+                            console.error("Error loading province data:", error);
+                            return null;
+                        }
+                    }
+
+                    $(document).ready(function () {
+                        loadDataSelectshipProvinceAddressId().then(function (shipProvinceAddressIdData) {
+                            if (shipProvinceAddressIdData) {
+                                shipProvinceAddressIdData.forEach(function (item) {
+                                    $('#select_province').append(new Option(item.name, item.id, false, false));
+                                });
+                            } else {
+                                console.error("No province data available.");
+                            }
+                        });
+                    });
+
+                </script>
+                <select id="select_district" class="select2-selection__arrow">
+                </select>
+                <select id="select_wards" class="select2-selection__arrow">
+                </select>
+                <input type="text" placeholder="Địa chỉ cụ thể(vd: số nhà, tên đường,...)"  id="profile_address"/>
+            </div>
+            <div class="btn_save" id="btn-update"><button>Xoá tài khoản</button></div>
+        </div>
+    </div>
+    <script>
+        var idAccount = '@ViewBag.id';
+    </script>
+</section>

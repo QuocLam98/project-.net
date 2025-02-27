@@ -1,0 +1,257 @@
+﻿<style>
+    @@media screen and (max-width: 768px){
+        .filter-clinic-div {
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 60px;
+        }
+
+        .item_clinic {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+    .container-xl {
+        max-width:1440px;
+        width:100%;
+        padding: 0px 15px;
+        margin:0 auto
+    }
+    #list_clinic {
+        padding:0 -20px;
+        margin-top:60px;
+        display: block !important;
+    }
+
+    #list_clinic p {
+        margin-bottom: 0px;
+    }
+
+    .img_clinic img {
+        width: 100%;
+    }
+
+    .infor_clinic {
+        padding: 16px 13px 16px 16px ;
+        display:flex;
+        gap:8px;
+        flex-direction:column;
+    }
+
+    .item_clinic {
+        margin-bottom:40px;
+        padding:0px 20px;
+    }
+
+    .item_box {
+        position: relative;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+    }
+
+    .title_address {
+        display: flex;
+        gap: 10px;
+        align-items: center
+    }
+
+    .name_clinic p {
+        color: var(--Black, #000);
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .des_clinic p {
+        color: var(--Black, #000);
+        text-align: justify;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
+    .text-infor {
+        padding-left:26px;
+    }
+
+    .btn_call {
+        border-radius: 35px;
+        border: 1px solid #FFF;
+        background: var(--Main-color-2, #007983);
+        box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+        padding: 10px 20px;
+        text-align:center;
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .btn_booking {
+        border-radius: 35px;
+        border: 1px solid #FFF;
+        background: var(--Main-color-1, #FFC800);
+        box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+        padding: 10px 20px;
+        text-align: center;
+        color: var(--Black, #000);
+    }
+
+    .hover_clinic {
+        padding:0px 9px;
+        opacity: 0;
+        position: absolute;
+        bottom: 9px; 
+        width:100%;
+    }
+    .hover_box {
+        border-radius: 10px;
+        background-color: #D9EBED;
+        display:flex;
+        gap:8px;
+        padding: 11px 0px 11px 14px;
+        width:100%;
+        justify-content: center;
+    }
+
+    .item_clinic:hover {
+        
+    }
+    .item_clinic:hover .hover_clinic {
+        transition: all 1s;
+        opacity:1;
+        
+    }
+
+    .hover_clinic button {
+        cursor:pointer;
+    }
+
+    @@media (max-width:600px) {
+        #list_clinic {
+            margin: 0;
+            margin-top: 16px;
+        }
+
+        .container-xl {
+            padding:unset;
+        }
+
+        .item_clinic {
+            margin-bottom: 16px !important;
+        }
+    }
+    .select {
+        appearance: none;
+        width: 100%;
+        height: 44px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--Place, #333);
+        background-color: white;
+        padding: 7px 0px 7px 17px;
+        border-radius: 10px;
+    }
+
+        .search {
+            position: relative;
+        }
+        
+        .search input {
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #FFF;
+            padding: 7px 0px 7px 17px;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--Place, #333);
+            width: 100%;
+        }
+        
+        .search button {
+            position: absolute;
+            right: 0;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #F6AC00;
+            width: 44px;
+            height: 44px;
+        }
+</style>
+<div class="container">
+    <div class="d-flex justify-content-between mt-5 filter-clinic-div">
+        <div class="col-lg-3 col-sm-6" style="padding: 0">
+            <select class="select" id="select-province">
+                <option selected value="0">Chọn Tỉnh/Thành phố</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3 col-sm-6" style="padding: 0">
+            <div class="search">
+                <input type="text" placeholder="Tìm kiếm phòng khám" id="search_clinic_page"/>
+                <button type="submit" class="btn_search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M7.29264 1.2876C3.98683 1.2876 1.29395 3.98048 1.29395 7.28631C1.29395 10.5921 3.98683 13.2902 7.29264 13.2902C8.70466 13.2902 10.0033 12.7954 11.0296 11.9738L13.5283 14.4712C13.6544 14.5921 13.8228 14.6588 13.9975 14.657C14.1722 14.6552 14.3392 14.5851 14.4628 14.4617C14.5864 14.3382 14.6567 14.1713 14.6588 13.9967C14.6608 13.822 14.5943 13.6535 14.4736 13.5272L11.9749 11.0285C12.7972 10.0006 13.2926 8.69995 13.2926 7.28631C13.2926 3.98048 10.5985 1.2876 7.29264 1.2876ZM7.29264 2.62095C9.87787 2.62095 11.958 4.70108 11.958 7.28631C11.958 9.87153 9.87787 11.9569 7.29264 11.9569C4.70742 11.9569 2.62728 9.87153 2.62728 7.28631C2.62728 4.70108 4.70742 2.62095 7.29264 2.62095Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="list_clinic" class="row p-0">
+
+    </div>
+    <div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="booking-modal modal-content">
+                <div class="booking-modal-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="list-ratting-title">
+                            Thông tin đặt lịch
+                        </div>
+                        <div class="close" data-dismiss="modal">
+                            <img src="/homedoctor/img/detail-doctor/close.svg"/>
+                        </div>
+                    </div>
+                    <input class="booking-input" placeholder="Tên của bạn" id="name"/>
+                    <input class="booking-input d-none" placeholder="Số đện thoại" id="phone"/>
+                    <input class="booking-input" placeholder="Số đện thoại" id="phone-number"/>
+                    <select class="booking-input" data-control="select2" id="time" data-placeholder="Giờ đặt">
+                        <option value="">Giờ đặt</option>
+                        <option value="08:00-09:30">08:00-08:30</option>
+                        <option value="08:30-09:00">08:30-09:00</option>
+                        <option value="09:00-09:30">09:00-09:30</option>
+                        <option value="09:30-10:00">09:30-10:00</option>
+                        <option value="10:00-10:30">10:00-10:30</option>
+                        <option value="10:30-11:00">10:30-11:00</option>
+                        <option value="11:00-11:30">11:00-11:30</option>
+                        <option value="13:30-14:00">13:30-14:00</option>
+                        <option value="14:00-14:30">14:00-14:30</option>
+                        <option value="14:30-15:00">14:30-15:00</option>
+                        <option value="15:00-15:30">15:00-15:30</option>
+                        <option value="15:30-16:00">15:30-16:00</option>
+                        <option value="16:00-16:30">16:00-16:30</option>
+                    </select>
+                    <input class="booking-input date datepicker" placeholder="Ngày đặt" id="day"/>
+                    <textarea class="booking-input" placeholder="Mô tả" id="description"></textarea>
+                </div>
+                <div class="booking-footer">
+                    <a class="btn-booking" onclick="bookingDoctor()">
+                        Đặt lịch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="HomeDoctor/FrontEnd/_paginate"/>
+</div>

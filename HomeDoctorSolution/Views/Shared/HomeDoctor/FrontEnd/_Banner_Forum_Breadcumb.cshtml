@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!--================Forum Breadcrumb Area =================-->
+<link rel="stylesheet" href="/homedoctor/css/banner-user/banner-user.css">
+@* <section class="doc_banner_area background search-banner-light">
+    <div class="container">
+        <div class="doc_banner_content">
+        </div>
+    </div>
+</section> *@
+@* <section class="page_breadcrumb" style="background: rgba(40, 152, 216, 1)">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="/@ViewBag.url">@ViewBag.title</a></li>
+                        <li class="breadcrumb-item d-none" id="active">@ViewBag.detail</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div> *@
+@* </section> *@
+<!--================End Forum Breadcrumb Area =================-->
+
+<script>
+    var active = @ViewBag.active;
+    console.log(active)
+    $(document).ready(function () {
+        if (active == 1) {
+            $("#active").removeClass("d-none");
+        }
+        if (localStorage.profile) {
+            let dataProfileBanner = JSON.parse(localStorage.profile);
+            if (dataProfileBanner != "" && dataProfileBanner != undefined) {
+                $(".ava-banner").attr("src", dataProfileBanner.photo);
+                $(".ava-name").text(dataProfileBanner.name);
+            }
+        }
+    });
+</script>

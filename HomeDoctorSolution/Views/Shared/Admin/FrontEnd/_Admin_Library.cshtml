@@ -1,0 +1,264 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<title>Dion - Bác sĩ tại nhà</title>
+<meta charset="utf-8" />
+@* <meta name="description" content="
+            The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo,
+            Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions.
+            Grab your copy now and get life-time updates for free.
+        " />
+<meta name="keywords" content="
+            metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js,
+            Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates,
+            free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button,
+            bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon
+        " /> *@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+@* <meta property="og:title" content="
+            Metronic - Bootstrap Admin Template, HTML, VueJS, React, Angular. Laravel, Asp.Net Core, Ruby on Rails,
+            Spring Boot, Blazor, Django, Express.js, Node.js, Flask Admin Dashboard Theme & Template
+        " /> *@
+<meta property="og:url" content="https://bacsitainha.vn/" />
+<meta property="og:site_name" content="Dion | Bác sĩ tại nhà" />
+@* <link rel="canonical" href="https://preview.keenthemes.com/metronic8" /> *@
+<link rel="shortcut icon" href="/HomeDoctor/img/icon/logo.png" />
+
+<!--begin::Fonts(mandatory for all pages)-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />        <!--end::Fonts-->
+<!--begin::Vendor Stylesheets(used for this page only)-->
+<link href="/admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" asp-append-version="true"/>
+<link href="/admin/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" asp-append-version="true"/>
+<!--end::Vendor Stylesheets-->
+<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+<link href="/admin/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+<link href="/admin/assets/css/style.bundle.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+<!--end::Global Stylesheets Bundle-->
+<!--Begin::Google Tag Manager -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" asp-append-version="true"></script>
+<!--DataTable Library-->
+<link href="/admin/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+<script src="/admin/assets/plugins/custom/datatables/datatables.bundle.js" asp-append-version="true"></script>
+<link href="/admin/assets/plugins/custom/datatables/customtables.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+<script src="/admin/assets/plugins/global/tempus-dominus.init.js" asp-append-version="true"></script>
+<script src="/admin/assets/plugins/custom/fileupload/getsrcktimageinput.js" asp-append-version="true"></script>
+<script src="/admin/assets/plugins/custom/fileupload/uploadfile.js" asp-append-version="true"></script>
+
+
+<!--DataTable Library End-->
+<!--start::CK-Editor 5-->
+<script src="/assets/js/ckeditor/ckeditor.js" asp-append-version="true"></script>
+<script src="/assets/js/ckeditor/config.js" asp-append-version="true"></script>
+<!--end:: CK-Editor 5-->
+<script>
+    var systemURL = window.origin + "/";
+</script>
+<script src="/assets/js/http-service.js" asp-append-version="true"></script>
+<script>
+    var httpService = new HttpService();
+</script>
+<!-- Datetime picker -->
+<script>
+    function formatNumber() {
+        //debugger;
+        $('.column-price , .column-openingPrice , .column-value , .column-amount, .column-available, .column-balance1, .price-format').each(function (event) {
+            // format number
+            $(this).text(function (index, value) {
+                return value
+                    .replace(/\D/g, '')
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            });
+        });
+
+        $('.input-price,.input-depositPrice,.input-openingPrice,.input-buyPrice,.input-stepPrice , .input-value, .input-balance, .input-available, .input-auctionPropertyRegisterFee, .input-registerFee').each(function (event) {
+            $(this).attr('type', 'text');
+
+            // format number
+            $(this).val(function (index, value) {
+                return value
+                    .replace(/\D/g, '')
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            });
+        });
+
+        $('.column-createdTime , .column-publishedTime , .column-openTime , .column-closedTime').each(function (event) {
+            //debugger;
+            var currentValue = $(this).text();
+            if (!currentValue.includes("T")) return;
+            var date = new Date(currentValue);
+            var newValue = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+            //$(this).text(newValue);
+            $(this).text(formatDisplayTimeFromDBTime(currentValue));
+        });
+
+        // $('.column-createdTime').each(function (event) {
+        //    //debugger;
+        //    var currentValue = $(this).text();
+        //    $(this).text(datetimeFormatVietNam(currentValue));
+        //});
+
+
+        $('.input-createdTime , .input-publishedTime').each(function (event) {
+            //debugger;
+            var inputObj = $(this).find("input");
+            var currentValue = inputObj.val();
+            if (!currentValue.includes("T")) return;
+            var date = new Date(currentValue);
+            var newValue = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+            inputObj.val(newValue);
+        });
+
+    }
+    function validateInputNumber() {
+        $('.input-price').each(function () {
+            this.value = this.value.replace(/,/g, '')
+        });
+    }
+    function datetimeFormat(datetime) {
+        try {
+            datetime = datetime.replace(" AM", "");
+            datetime = datetime.replace(" PM", "");
+
+            //let currentDate = "";
+            var currentDate = datetime;
+
+            //in case date or month has only 1 character
+            var array = currentDate.split("/");
+            if (array[0].length == 1) array[0] = "0" + array[0];
+            if (array[1].length == 1) array[1] = "0" + array[1];
+            currentDate = array.join("/");
+
+            if (currentDate.includes("AM") == true || currentDate.includes("PM") == true) {
+                currentDate = currentDate.substring(0, currentDate.indexOf("M") - 2);
+            }
+
+            var dateValue = currentDate.substring(0, 2);
+            var monthValue = currentDate.substring(3, 5);
+            var formatedDate = monthValue + "-" + dateValue + currentDate.substring(5);
+            var returnValue = moment(formatedDate).format("YYYY-MM-DD HH:mm:ss");
+            if (returnValue != "Invalid date") {
+                return returnValue;
+            }
+            else {
+                return "2019-01-01 00:00:00";
+            }
+            //return moment(formatedDate).format("YYYY-MM-DD HH:mm:ss");
+        }
+        catch (err) {
+            return "2020-01-01 00:00:00";
+        }
+    }
+
+
+    function datetimeFormatVietNam(datetime) {
+        try {
+            datetime = datetime.replace(" AM", "");
+            datetime = datetime.replace(" PM", "");
+
+            //let currentDate = "";
+            var currentDate = datetime;
+
+            //in case date or month has only 1 character
+            var array = currentDate.split("/");
+            if (array[0].length == 1) array[0] = "0" + array[0];
+            if (array[1].length == 1) array[1] = "0" + array[1];
+            currentDate = array.join("/");
+
+            if (currentDate.includes("AM") == true || currentDate.includes("PM") == true) {
+                currentDate = currentDate.substring(0, currentDate.indexOf("M") - 2);
+            }
+
+            var dateValue = currentDate.substring(0, 2);
+            var monthValue = currentDate.substring(3, 5);
+            var formatedDate = dateValue + "-" + monthValue + currentDate.substring(5);
+            var returnValue = moment(formatedDate).format("DD/MM/YYYY HH:mm:ss A");
+            if (returnValue != "Invalid date") {
+                return returnValue;
+            }
+            else {
+                return "01/01/2019 00:00:00";
+            }
+            //return moment(formatedDate).format("YYYY-MM-DD HH:mm:ss");
+        }
+        catch (err) {
+            return "2020-01-01 00:00:00";
+        }
+    }
+
+    function camelToSentenceCase(input) {
+        var text = input;
+        var result = text.replace(/([A-Z])/g, " $1");
+        var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+        return finalResult;
+    }
+    function formatDisplayTimeFromDBTime(n) { let t = n.length; 22 == t && (n += "0"), 21 == t && (n += "00"), 19 == t && (n += ".000"); let e = n.substring(0, 4), i = n.substring(5, 7), r = n.substring(8, 10), u = n.substring(11, 13), o = n.substring(14, 16), c = n.substring(17, 19); n.substring(20, t > 23 ? 23 : n.length); return r + "/" + i + "/" + e + " " + u + ":" + o + ":" + c }
+    function formatDatetimeUpdate(dateStr) {
+        //debugger;
+        var [date, time] = dateStr.split(" ");
+        var [day, month, year] = date.split("/");
+        var localISOTime = year + "-" + month + "-" + day + "T" + time;
+        return localISOTime;
+    }
+    function formatDatetime(dateStr) {
+        //debugger;
+        var [date, time] = dateStr.split(" ");
+        var [day, month, year] = date.split("/");
+        var localISOTime = year + "-" + month + "-" + day;
+        return localISOTime;
+    }
+</script>
+<!--start::FS lightbox-->
+<script src="/assets/js/custom/fslightbox/fslightbox.bundle.js" asp-append-version="true"></script>
+<!--end:: FS lightbox-->
+<style>
+    .page-loader {
+        transition: all linear .2s;
+    }
+    .page-loader.hide {
+        visibility: hidden;
+    }
+</style>
+<script src="~/assets/microsoft/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
+<script>
+    // debugger;
+    var ListUserOnline = [];
+    var accountId = "@ViewBag.AccountId";
+    var connectionOnlineChat = new signalR.HubConnectionBuilder()
+        .withUrl(`/AccountSendMessageHub?accountId=${accountId}`)
+        .build();
+
+    connectionOnlineChat.on("SendAccountOnline", function (obj) {
+        ListUserOnline = obj;
+        console.log(ListUserOnline);
+        $(`.card-message .message-avatar`).removeClass("online").addClass("offline");
+        $(`.message-item .message-left-avatar`).removeClass("online");
+        for (var i = 0; i < ListUserOnline.length; i++) {
+            var item = ListUserOnline[i];
+            $(`.card-message[data-id=${item.accountId}] .message-avatar`).removeClass("offline").addClass("online");
+            $(`.message-item[data-account=${item.accountId}] .message-left-avatar`).addClass("online");
+        }
+    });
+    //Gửi noti:
+    //const connectionNoti = new signalR.HubConnectionBuilder()
+    //    .withUrl(`/NotificationHub`)
+    //    .build();
+
+    //connectionNoti.on("SendNotifications", function (obj) {
+    //    //debugger;
+    //    ListUserOnline = obj;
+    //    var notify = new Notification('Hi there!');
+    //});
+
+    //connectionNoti.start().then(function () {
+    //    //document.getElementById("sendButton").disabled = false;
+    //}).catch(function (err) {
+    //    return console.error(err.toString());
+    //});
+
+</script>

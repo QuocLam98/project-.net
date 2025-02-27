@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<div class="container">
+    <div class="content_survey">
+        <div id="process-question"></div>
+        <div class="detail_box d-flex flex-column mx-auto" id="detail_question">
+            <div class="d-flex flex-column question_detail" id="question_box">
+
+            </div>
+            <div class="btn_send d-flex justify-content-between">
+                <button class="btn-detail d-none" id="btn_question_back">Quay lại</button>
+                <button class="btn-detail d-none" id="btn_question_complete">Hoàn thành</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var accountId = @ViewBag.AccountId;
+</script>

@@ -1,0 +1,771 @@
+﻿@{
+    Layout = "_Admin_Layout";
+}
+
+<style>
+    .badge {
+        display: none;
+    }
+</style>
+
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container  container-xxl ">
+        <!--begin::Row-->
+        <div class="row gy-5 g-xl-10">
+            <!--begin::Col-->
+            <div class="col-sm-6 col-xl-2 mb-xl-10">
+                <!--begin::Card widget 2-->
+                <div class="card h-lg-100">
+                    <!--begin::Body-->
+                    <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                        <!--begin::Icon-->
+                        <div class="m-0">
+                            <i class="ki-duotone ki-compass fs-2hx text-gray-600">
+                                <span class="path1"></span><span class="path2"></span>
+                            </i>
+                        </div>
+                        <!--end::Icon-->
+                        <!--begin::Section-->
+                        <div class="d-flex flex-column my-7">
+                            <!--begin::Number-->
+                            <span id="bookingTotal" class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2"></span>
+                            <!--end::Number-->
+                            <!--begin::Follower-->
+                            <div class="m-0">
+                                <span class="fw-semibold fs-6 text-gray-400">
+                                    Yêu cầu đặt lịch
+                                </span>
+
+                            </div>
+                            <!--end::Follower-->
+                        </div>
+                        <!--end::Section-->
+                        <!--begin::Badge-->
+                        <span class="badge badge-light-success fs-base">
+                            <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span class="path1"></span><span class="path2"></span></i>
+
+                            2.1%
+                        </span>
+                        <!--end::Badge-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Card widget 2-->
+            </div>
+            <!--end::Col-->
+            <!--begin::Col-->
+            <div class="col-sm-6 col-xl-2 mb-xl-10">
+                <!--begin::Card widget 2-->
+                <div class="card h-lg-100">
+                    <!--begin::Body-->
+                    <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                        <!--begin::Icon-->
+                        <div class="m-0">
+                            <i class="ki-duotone ki-chart-simple fs-2hx text-gray-600">
+                                <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/Files/File-done.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z M10.875,15.75 C11.1145833,15.75 11.3541667,15.6541667 11.5458333,15.4625 L15.3791667,11.6291667 C15.7625,11.2458333 15.7625,10.6708333 15.3791667,10.2875 C14.9958333,9.90416667 14.4208333,9.90416667 14.0375,10.2875 L10.875,13.45 L9.62916667,12.2041667 C9.29375,11.8208333 8.67083333,11.8208333 8.2875,12.2041667 C7.90416667,12.5875 7.90416667,13.1625 8.2875,13.5458333 L10.2041667,15.4625 C10.3958333,15.6541667 10.6354167,15.75 10.875,15.75 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                            <path d="M10.875,15.75 C10.6354167,15.75 10.3958333,15.6541667 10.2041667,15.4625 L8.2875,13.5458333 C7.90416667,13.1625 7.90416667,12.5875 8.2875,12.2041667 C8.67083333,11.8208333 9.29375,11.8208333 9.62916667,12.2041667 L10.875,13.45 L14.0375,10.2875 C14.4208333,9.90416667 14.9958333,9.90416667 15.3791667,10.2875 C15.7625,10.6708333 15.7625,11.2458333 15.3791667,11.6291667 L11.5458333,15.4625 C11.3541667,15.6541667 11.1145833,15.75 10.875,15.75 Z" fill="#000000" />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </i>
+                        </div>
+                        <!--end::Icon-->
+                        <!--begin::Section-->
+                        <div class="d-flex flex-column my-7">
+                            <!--begin::Number-->
+                            <span id="bookingSuccess" class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2"></span>
+                            <!--end::Number-->
+                            <!--begin::Follower-->
+                            <div class="m-0">
+                                <span class="fw-semibold fs-6 text-gray-400">
+                                    Đã tư vấn
+                                </span>
+
+                            </div>
+                            <!--end::Follower-->
+                        </div>
+                        <!--end::Section-->
+                        <!--begin::Badge-->
+                        <span class="badge badge-light-success fs-base">
+                            <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span class="path1"></span><span class="path2"></span></i>
+
+                            2.1%
+                        </span>
+                        <!--end::Badge-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Card widget 2-->
+            </div>
+            <!--end::Col-->
+            <!--begin::Col-->
+            <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                <!--begin::Card widget 2-->
+                <div class="card h-lg-100">
+                    <!--begin::Body-->
+                    <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                        <!--begin::Icon-->
+                        <div class="m-0">
+                            <i class="ki-duotone ki-abstract-26 fs-2hx text-gray-600"><span class="path1"></span><span class="path2"></span></i>
+
+                        </div>
+                        <!--end::Icon-->
+                        <!--begin::Section-->
+                        <div class="d-flex flex-column my-7">
+                            <!--begin::Number-->
+                            <span id="bookingWait" class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2"></span>
+                            <!--end::Number-->
+                            <!--begin::Follower-->
+                            <div class="m-0">
+                                <span class="fw-semibold fs-6 text-gray-400">
+                                    Chờ tư vấn
+                                </span>
+
+                            </div>
+                            <!--end::Follower-->
+                        </div>
+                        <!--end::Section-->
+                        <!--begin::Badge-->
+                        <span class="badge badge-light-success fs-base">
+                            <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span class="path1"></span><span class="path2"></span></i>
+
+                            2.1%
+                        </span>
+                        <!--end::Badge-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Card widget 2-->
+            </div>
+            <!--end::Col-->
+            <!--begin::Col-->
+            <div class="col-sm-6 col-xl-2 mb-xl-10">
+                <!--begin::Card widget 2-->
+                <div class="card h-lg-100">
+                    <!--begin::Body-->
+                    <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                        <!--begin::Icon-->
+                        <div class="m-0">
+                            <i class="ki-duotone ki-abstract-39 fs-2hx text-gray-600">
+                                <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/Files/File-minus.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                            <rect fill="#000000" x="9" y="12" width="6" height="2" rx="1" />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </i>
+
+                        </div>
+                        <!--end::Icon-->
+                        <!--begin::Section-->
+                        <div class="d-flex flex-column my-7">
+                            <!--begin::Number-->
+                            <span id="bookingCancel" class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2"></span>
+                            <!--end::Number-->
+                            <!--begin::Follower-->
+                            <div class="m-0">
+                                <span class="fw-semibold fs-6 text-gray-400">
+                                    Hủy tư vấn
+                                </span>
+
+                            </div>
+                            <!--end::Follower-->
+                        </div>
+                        <!--end::Section-->
+                        <!--begin::Badge-->
+                        <span class="badge badge-light-danger fs-base">
+                            <i class="ki-duotone ki-arrow-down fs-5 text-danger ms-n1">
+                                <span class="path1"></span><span class="path2"></span>
+                            </i>
+
+                            0.47%
+                        </span>
+                        <!--end::Badge-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Card widget 2-->
+            </div>
+            <!--end::Col-->
+            <!--begin::Col-->
+            <div class="col-sm-6 col-xl-2 mb-xl-10">
+                <!--begin::Card widget 2-->
+                <div class="card h-lg-100">
+                    <!--begin::Body-->
+                    <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                        <!--begin::Icon-->
+                        <div class="m-0">
+                            <i class="ki-duotone ki-map fs-2hx text-gray-600">
+                                <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/General/User.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                            <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </i>
+
+                        </div>
+                        <!--end::Icon-->
+                        <!--begin::Section-->
+                        <div class="d-flex flex-column my-7">
+                            <!--begin::Number-->
+                            <span id="counselorTotal" class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2"></span>
+                            <!--end::Number-->
+                            <!--begin::Follower-->
+                            <div class="m-0">
+                                <span class="fw-semibold fs-6 text-gray-400">
+                                    Cán bộ tư vấn
+                                </span>
+
+                            </div>
+                            <!--end::Follower-->
+                        </div>
+                        <!--end::Section-->
+                        <!--begin::Badge-->
+                        <span class="badge badge-light-success fs-base">
+                            <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span class="path1"></span><span class="path2"></span></i>
+
+                            2.1%
+                        </span>
+                        <!--end::Badge-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Card widget 2-->
+            </div>
+            <!--end::Col-->
+            <!--begin::Col-->
+            <div class="col-sm-6 col-xl-2 mb-5 mb-xl-10">
+                <!--begin::Card widget 2-->
+                <div class="card h-lg-100">
+                    <!--begin::Body-->
+                    <div class="card-body d-flex justify-content-between align-items-start flex-column">
+                        <!--begin::Icon-->
+                        <div class="m-0">
+                            <i class="ki-duotone ki-abstract-35 fs-2hx text-gray-600">
+                                <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo8/dist/../src/media/svg/icons/General/User.svg-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                            <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </i>
+
+                        </div>
+                        <!--end::Icon-->
+                        <!--begin::Section-->
+                        <div class="d-flex flex-column my-7">
+                            <!--begin::Number-->
+                            <span id="adolescentsTotal" class="fw-semibold fs-3x text-gray-800 lh-1 ls-n2"></span>
+                            <!--end::Number-->
+                            <!--begin::Follower-->
+                            <div class="m-0">
+                                <span class="fw-semibold fs-6 text-gray-400">
+                                    Thanh thiếu niên
+                                </span>
+
+                            </div>
+                            <!--end::Follower-->
+                        </div>
+                        <!--end::Section-->
+                        <!--begin::Badge-->
+                        <span class="badge badge-light-danger fs-base">
+                            <i class="ki-duotone ki-arrow-down fs-5 text-danger ms-n1"><span class="path1"></span><span class="path2"></span></i>
+
+                            0.647%
+                        </span>
+                        <!--end::Badge-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::Card widget 2-->
+            </div>
+            <!--end::Col-->
+
+
+        </div>
+        <!--end::Row-->
+        <!--begin::Row-->
+        <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
+            <div class="col-xl-4 mb-xl-10 d-none">
+                <div class="card card-flush h-xl-50 mb-5 mb-xl-10">
+                    <div class="card-header pt-7">
+                        <!--begin::Title-->
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold text-gray-800">Tùy chọn cho biểu đồ</span>
+                        </h3>
+                        <!--begin::Toolbar-->
+                        <div class="card-toolbar">
+                            <label class="fw-semibold fs-6 mb-2">Theo thời gian</label>
+                            <div class="input-group" id="filterCreatedTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                                <input id="filterCreatedTime_input" readonly type="text" class="form-control tableheaderFillter" data-td-target="#filterCreatedTime" />
+                                <span class="input-group-text" title="Chọn" id="open-flatpickr" data-td-target="#filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                </span>
+                                <span class="input-group-text" id="clear-flatpickr" title="Xóa" data-clear="true" data-target="filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar-remove fs-2"><i class="path1"></i><i class="path2"></i><i class="path3"></i><i class="path4"></i><i class="path5"></i><i class="path6"></i></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!--end::Toolbar-->
+                    </div>
+                </div>
+
+            </div>
+            <!--begin::Col-->
+            <div class="col-xl-12 mb-xl-10">
+                <!--begin::Chart widget 38-->
+                <div class="card card-flush mb-5 mb-xl-10">
+                    <!--begin::Header-->
+                    <div class="card-header pt-7">
+                        <!--begin::Title-->
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bold text-gray-800">Biểu đồ thống kê về đặt lịch phỏng vấn</span>
+                            @*<span class="text-gray-400 mt-1 fw-semibold fs-6">Counted in Millions</span>*@
+                        </h3>
+                        <!--end::Title-->
+                        <!--begin::Toolbar-->
+                        <div class="card-toolbar">
+                            <!--begin::Daterangepicker(defined in src/js/layout/app.js)-->
+                            <div id="timeFilter" data-kt-daterangepicker-opens="left" class="btn btn-sm btn-light d-flex align-items-center px-4">
+                                <!--begin::Display range-->
+                                <div id="timeToFilter" class="text-gray-600 fw-bold">
+                                    Loading date range...
+                                </div>
+                                <!--end::Display range-->
+
+                                <i class="ki-duotone ki-calendar-8 fs-1 ms-2 me-0">
+                                    <span class="path1"></span><span class="path2"></span>
+                                    <span class="path3"></span><span class="path4"></span>
+                                    <span class="path5"></span><span class="path6"></span>
+                                </i>
+                            </div>
+                            <!--end::Daterangepicker-->
+                        </div>
+                        <!--end::Toolbar-->
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body d-flex align-items-end px-0 pt-3 pb-5">
+                        <!--begin::Chart-->
+                        <div id="kt_charts_widget_38_chart_1" class="h-325px w-100 min-h-auto ps-4 pe-6" style="min-height: 340px;">
+                        </div>
+                        <!--end::Chart-->
+                    </div>
+                    <!--end: Card Body-->
+                </div>
+                <!--end::Chart widget 38-->
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Row-->
+
+    </div>
+    <!--end::Content container-->
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Cấu hình Moment.js để sử dụng ngôn ngữ tiếng Việt
+        moment.locale('vi');
+
+        //loadDataBooking();
+        //KTChartsWidget38.init();
+        loadDataQuantityDetail();
+        createDateRangePickers();
+
+        document.querySelectorAll(".datepicker").forEach(function(item) {
+            new tempusDominus.TempusDominus(item, datePickerOption);
+        })
+
+
+        $("[data-range-key='Custom Range']").on('click', function(e) {
+            $(".cancelBtn").html("Hủy");
+            $(".applyBtn").html("Áp dụng");
+        });
+    });
+    async function loadDataQuantityDetail() {
+        await $.ajax({
+            url: systemURL + 'booking/api/quantityDetail',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                if (localStorage.token) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+                }
+            },
+            success: function(responseData) {
+                var data = responseData.data;
+                $("#bookingTotal").html(data[0].bookingTotal);
+                $("#bookingSuccess").html(data[0].bookingSuccessTotal);
+                $("#bookingWait").html(data[0].bookingWaitTotal);
+                $("#bookingCancel").html(data[0].bookingCancelTotal);
+                $("#counselorTotal").html(data[0].counselorTotal);
+                $("#adolescentsTotal").html(data[0].adolescentsTotal);
+            },
+            error: function(e) {
+                //console.log(e.message);
+            }
+        });
+    }
+
+    "use strict";
+
+    // Class definition
+    var KTChartsWidget38 = function() {
+        //loadDataBooking();
+        var chart = {
+            self: null,
+            rendered: false
+        };
+
+        // Private methods
+        var initChart = function() {
+            // lấy chuỗi thời gian hiển thị trên biểu đồ
+            var time = $("#timeToFilter").html();
+            var datesArray = [];
+            if (time.indexOf(" - ") !== -1) {
+                var rangeTime = ($("#timeToFilter").html()).split(' - ');
+                //console.log("rangeTime: " + rangeTime)
+
+                var startDate = moment(rangeTime[0], 'DD/MM/YYYY');
+                var endDate = moment(rangeTime[1], 'DD/MM/YYYY');
+
+                var currentDate = startDate.clone();
+
+                while (currentDate.isSameOrBefore(endDate)) {
+                    datesArray.push(currentDate.format('DD/MM/YYYY'));
+                    currentDate.add(1, 'days');
+                }
+                //console.log(datesArray);
+            } else {
+                var oneTime = moment(time, 'DD/MM/YYYY')
+                datesArray.push(oneTime.format('DD/MM'));
+            }
+
+            //loadDataBooking();
+            var dataListBooking = loadDataBooking();
+            var valuesArray = [];
+            dataListBooking.then(result => {
+                console.log("Thành công:", result);
+                //console.log(moment(result[0].createdTime).format("DD/MM/YYYY"));
+                if (result.length != 0) {//trường hợp có data
+                    datesArray.forEach(function(itemTime) {
+                        console.log(itemTime);
+                        var count = 0;
+                        result.forEach(function(itemValue) {
+                            if (moment(itemValue.createdTime).format("DD/MM/YYYY") == itemTime) {
+                                count++;
+                            }
+                        });
+                        valuesArray.push(count);
+                    })
+                }else{
+                    datesArray.forEach(function() {
+                        valuesArray.push(0);
+                    });
+                }
+            }).catch(error => {
+                console.error("Lỗi:", error);
+            });
+
+            var element = document.getElementById("kt_charts_widget_38_chart_1");
+
+            if (!element) {
+                return;
+            }
+
+            var height = parseInt(KTUtil.css(element, 'height'));
+            var labelColor = KTUtil.getCssVariableValue('--bs-gray-900');
+            var borderColor = KTUtil.getCssVariableValue('--bs-border-dashed-color');
+
+            var options = {
+                series: [{
+                    name: 'Tổng số lịch hẹn được đặt',
+                    data: valuesArray
+                }],
+                chart: {
+                    fontFamily: 'inherit',
+                    type: 'bar',
+                    height: height,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: ['28%'],
+                        borderRadius: 5,
+                        dataLabels: {
+                            position: "top" // top, center, bottom
+                        },
+                        startingShape: 'flat'
+                    },
+                },
+                legend: {
+                    show: false
+                },
+                dataLabels: {
+                    enabled: true,
+                    offsetY: -28,
+                    style: {
+                        fontSize: '13px',
+                        colors: [labelColor]
+                    },
+                    formatter: function(val) {
+                        return val;// + "H";
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: datesArray,
+                    axisBorder: {
+                        show: false,
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    labels: {
+                        style: {
+                            colors: KTUtil.getCssVariableValue('--bs-gray-500'),
+                            fontSize: '13px'
+                        }
+                    },
+                    crosshairs: {
+                        fill: {
+                            gradient: {
+                                opacityFrom: 0,
+                                opacityTo: 0
+                            }
+                        }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: KTUtil.getCssVariableValue('--bs-gray-500'),
+                            fontSize: '13px'
+                        },
+                        formatter: function(val) {
+                            return val + " lần";
+                        }
+                    }
+                },
+                fill: {
+                    opacity: 1
+                },
+                states: {
+                    normal: {
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    },
+                    hover: {
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    },
+                    active: {
+                        allowMultipleDataPointsSelection: false,
+                        filter: {
+                            type: 'none',
+                            value: 0
+                        }
+                    }
+                },
+                tooltip: {
+                    style: {
+                        fontSize: '12px'
+                    },
+                    y: {
+                        formatter: function(val) {
+                            return + val + ' lần'
+                        }
+                    }
+                },
+                colors: [KTUtil.getCssVariableValue('--bs-primary'), KTUtil.getCssVariableValue('--bs-primary-light')],
+                grid: {
+                    borderColor: borderColor,
+                    strokeDashArray: 4,
+                    yaxis: {
+                        lines: {
+                            show: true
+                        }
+                    }
+                }
+            };
+
+            chart.self = new ApexCharts(element, options);
+
+            // Set timeout to properly get the parent elements width
+            setTimeout(function() {
+                chart.self.render();
+                chart.rendered = true;
+            }, 200);
+        }
+
+        // Public methods
+        return {
+            init: function() {
+                initChart();
+
+                // Update chart on theme mode change
+                KTThemeMode.on("kt.thememode.change", function() {
+                    if (chart.rendered) {
+                        chart.self.destroy();
+                    }
+
+                    initChart();
+                });
+            }
+        }
+    }();
+
+    // Webpack support
+    if (typeof module !== 'undefined') {
+        module.exports = KTChartsWidget38;
+    }
+
+    var createDateRangePickers = function() {
+        // Check if jQuery included
+        if (typeof jQuery == 'undefined') {
+            return;
+        }
+
+        // Check if daterangepicker included
+        if (typeof $.fn.daterangepicker === 'undefined') {
+            return;
+        }
+
+        var elements = [].slice.call(document.querySelectorAll('#timeFilter'));
+        var start = moment();
+        var end = moment();
+
+        elements.map(function(element) {
+            if (element.getAttribute("data-kt-initialized") === "1") {
+                return;
+            }
+
+            var display = element.querySelector('div');
+            var attrOpens = element.hasAttribute('data-kt-daterangepicker-opens') ? element.getAttribute('data-kt-daterangepicker-opens') : 'left';
+            var range = element.getAttribute('data-kt-daterangepicker-range');
+
+            var cb = function(start, end) {
+                var current = moment();
+
+                if (display) {
+                    if (current.isSame(start, "day") && current.isSame(end, "day")) {
+                        display.innerHTML = start.format('DD/MM/YYYY');
+                    } else {
+                        display.innerHTML = start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY');
+                    }
+                }
+
+
+                // sau khi chọn thời gian filer thì xóa bảng cũ
+                $("#kt_charts_widget_38_chart_1").html("")
+                // xóa xong gọi lại bảng mới
+                KTChartsWidget38.init();
+            }
+
+            if (range === "Hôm nay") {
+                start = moment();
+                end = moment();
+            }
+
+            $(element).daterangepicker({
+                startDate: start,
+                endDate: end,
+                opens: attrOpens,
+                ranges: {
+                    'Hôm nay': [moment(), moment()],
+                    'Hôm qua': [moment().subtract(1, 'day'), moment().subtract(1, 'day')],
+                    '7 ngày gần đây': [moment().subtract(6, 'days'), moment()],
+                    '30 ngày gần đây': [moment().subtract(29, 'days'), moment()],
+                    'Tháng này': [moment().startOf('month'), moment().endOf('month')],
+                    'Tháng trước': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+            element.setAttribute("data-kt-initialized", "1");
+        });
+    }
+
+
+    async function loadDataBooking() {
+        var timeToFilter = $("#timeToFilter").html().split('-');
+        var startDate = timeToFilter[0];
+        var endDate = timeToFilter[1];
+        var dataListPost;
+        if (endDate == undefined) {
+            endDate = startDate
+        }
+        startDate = formatDatetime(startDate.trim());
+        endDate = formatDatetime(endDate.trim());
+        var dataListBooking;
+        await $.ajax({
+            url: systemURL + 'booking/api/FilterReport?startDate=' + startDate + '&endDate=' + endDate,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                if (localStorage.token) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+                }
+            },
+            success: function(responseData) {
+                var data = responseData.data;
+                dataListBooking = data;
+                //console.log(dataListBooking);
+                //KTChartsWidget38.init(dataListBooking);
+            },
+            error: function(e) {
+                //console.log(e.message);
+            }
+        });
+        return dataListBooking;
+    }
+
+    async function getDetailAccountById() {
+        var data;
+        await $.ajax({
+            url: systemURL + "account/api/detail/" + 1000016,
+            method: "GET",
+            success: function(responseData) {
+                data = responseData.data[0];
+            },
+            error: function(e) {
+            },
+        });
+        return data;
+    }
+</script>

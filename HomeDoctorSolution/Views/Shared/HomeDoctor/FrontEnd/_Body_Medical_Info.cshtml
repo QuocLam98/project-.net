@@ -1,0 +1,172 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/homedoctor/css/user-profile/medical-profile.css" rel="stylesheet" />
+
+<div class="tab-pane container p-0" id="medicalinfo" role="tabpanel"
+     aria-labelledby="medicalinfo-tab">
+    <div class="medicalinfo_card">
+        <div class="col-lg-12 p-0 card-title d-flex flex-row justify-content-between">
+            <h3>Thông tin sức khỏe</h3>
+            <div class="card-button">
+                @*<a class="btnEdit cursor-pointer" id="btn_update_anamnesis">
+                Cập nhật
+                <img src="/happys/svg/pen-square.svg"/>
+                </a>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="title-input">Bệnh tim mạch</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="radio_heartdiseasecard_yes" name="radio_heartdiseasecard" value="1">
+                        <label for="radio_heartdiseasecard_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="radio_heartdiseasecard_no" name="radio_heartdiseasecard" value="0">
+                        <label for="radio_heartdiseasecard_no">Không</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="title-input">Bệnh Đái tháo đường</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="diabetes_yes" name="diabetes" value="1">
+                        <label for="diabetes_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="diabetes_no" name="diabetes" value="0">
+                        <label for="diabetes_no">Không</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="title-input">Hen phế quản</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="asthma_yes" name="asthma" value="1">
+                        <label for="asthma_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="asthma_no" name="asthma" value="0">
+                        <label for="asthma_no">Không</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="title-input">Động kinh</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="epilepsy_yes" name="epilepsy" value="1">
+                        <label for="epilepsy_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="epilepsy_no" name="epilepsy" value="0">
+                        <label for="epilepsy_no">Không</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="title-input">Trầm cảm</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="depression_yes" name="depression" value="1">
+                        <label for="depression_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="depression_no" name="depression" value="0">
+                        <label for="depression_no">Không</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="title-input">Stress/ Căng thẳng</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="stress_yes" name="stress" value="1">
+                        <label for="stress_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="stress_no" name="stress" value="0">
+                        <label for="stress_no">Không</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <label class="title-input">Rối loạn lo âu</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="anxietydisorders_yes" name="anxietydisorders" value="1">
+                        <label for="anxietydisorders_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="anxietydisorders_no" name="anxietydisorders" value="0">
+                        <label for="anxietydisorders_no">Không</label>
+                    </div>
+                </div>
+            </div>
+            @* <div class="col-lg-6">
+                <label class="title-input">Bệnh tiêu hóa</label>
+                <div class="radio-group">
+                    <div class="check-box">
+                        <input type="radio" id="" name="anxietydisorders" value="1">
+                        <label for="anxietydisorders_yes">Có</label>
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="" name="anxietydisorders" value="0">
+                        <label for="anxietydisorders_no">Không</label>
+                    </div>
+                </div>
+            </div> *@
+        </div>
+        <div class="col-lg-12 p-0 other-diseases">
+            <label class="title-input">Mắc các bệnh khác (ghi rõ)</label>
+            <textarea type="text" class="input" placeholder="Nhập..." id="medicalinfo-orther"></textarea>
+        </div>
+        <div class="col-lg-12 p-0 title d-flex flex-row justify-content-between">
+            <h3>Thể trạng</h3>
+            <div class="card-button">
+                @*<a class="btnEdit cursor-pointer" id="btn_update_anamnesis">
+                Cập nhật
+                <img src="/happys/svg/pen-square.svg"/>
+                </a>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label class="title-input">Chiều cao (m)</label>
+                <div class="input-group">
+                    <input type="text" class="input-value" maxlength="3" placeholder="Nhập..." name="calculate" id="medicalinfo-height">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label class="title-input">Cân nặng (kg)</label>
+                <div class="input-group">
+                    <input type="text" class="input-value" maxlength="5" placeholder="Nhập..." id="medicalinfo-weight" name="calculate">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label class="title-input">Chỉ số BMI</label>
+                <div class="input-group">
+                    <input type="text" class="input-value" id="medicalinfo-bmi" disable readOnly>
+                    <span class="input-group-text d-none" onclick="calculateBMI()"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 blood-group">
+            <label class="title-input">Nhóm máu</label>
+            <input type="text" class="blood-group-input" id="medicalinfo-blood">
+        </div>
+    </div>
+</div>
+<p class="general-editing" >
+    <button class="btn btnHS" id="general-editing" style="padding: 10px 115px;">Sửa</button>
+</p>

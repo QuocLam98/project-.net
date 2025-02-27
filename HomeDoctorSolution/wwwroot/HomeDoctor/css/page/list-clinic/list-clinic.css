@@ -1,0 +1,145 @@
+﻿.container-xl {
+    max-width: 1440px;
+    width: 100%;
+    padding: 0px 15px;
+    margin: 0 auto
+}
+
+#list_clinic {
+    padding: 0 -20px;
+    margin-top: 74px;
+}
+
+    #list_clinic p {
+        margin-bottom: 0px;
+    }
+
+.img_clinic img {
+    width: 100%;
+    height: 240px;
+}
+
+.infor_clinic {
+    padding: 16px;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.item_clinic {
+    margin-bottom: 40px;
+    padding: 0px 20px;
+}
+
+.item_box {
+    position: relative;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+}
+
+.title_address {
+    display: flex;
+    gap: 10px;
+    align-items: center
+}
+
+.name_clinic p {
+    color: var(--Black, #000);
+    font-family: Mulish;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    overflow: hidden !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.des_clinic p {
+    color: var(--Black, #000);
+    text-align: justify;
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.text-infor {
+    padding-left: 26px;
+    overflow: hidden;
+    /*display: -webkit-box;*/
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.btn_call {
+    border-radius: 35px;
+    border: 1px solid #FFF;
+    background: var(--Main-color-2, #007983);
+    box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+    padding: 10px 20px;
+    text-align: center;
+    color: #FFF !important;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.btn_booking {
+    border-radius: 35px;
+    border: 1px solid #FFF;
+    background: var(--Main-color-1, #FFC800);
+    box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+    padding: 10px 20px;
+    text-align: center;
+    color: var(--Black, #000);
+}
+
+.hover_clinic {
+    padding: 0px 9px;
+    opacity: 0;
+    position: absolute;
+    bottom: 9px;
+    width: 100%;
+}
+
+.hover_box {
+    border-radius: 10px;
+    background-color: #D9EBED;
+    display: flex;
+    gap: 8px;
+    padding: 11px 0px 11px 14px;
+    width: 100%;
+}
+
+.item_clinic:hover {
+}
+
+    .item_clinic:hover .hover_clinic {
+        transition: all 0.5s;
+        opacity: 1;
+    }
+
+.hover_clinic button {
+    cursor: pointer;
+}
+
+.navigation.pagination {
+    margin-top: 0px !important; 
+    padding-bottom: 64px !important; 
+}
+
+.name_clinic a {
+    color: unset !important;
+}
+.des_clinic a {
+    color: unset !important;
+}
+

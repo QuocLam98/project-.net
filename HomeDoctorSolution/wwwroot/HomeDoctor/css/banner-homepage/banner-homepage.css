@@ -1,0 +1,83 @@
+﻿@media screen and (max-width: 768px) {
+    .doc_banner_area {
+        background-image: url('/HomeDoctor/img/banner/BG.png') !important;
+        background-repeat: no-repeat !important;
+        /*background-size: cover;*/
+        background-position: top;
+        background-size: 100% 100%;
+        height: 400px !important;
+        margin-bottom: 20px;
+    }
+
+    .doc_banner_content {
+        display: none;
+    }
+    .recommended_topic_area{
+        margin-bottom: 0;
+    }
+}
+
+.container{
+    height: 100%;
+}
+.doc_banner_content{
+    height: 100%;
+}
+.doc_banner_content_left{
+    height: 100%;
+    justify-content: center;
+}
+.doc_community_area{
+    padding: 120px 0px 0px 0px;
+}
+
+.doc_banner_area {
+    padding: 0 0 20px;
+    background-image: url('/HomeDoctor/img/banner/bg-png.png');
+    background-repeat: no-repeat !important;
+    background-position: bottom;
+    height: 720.342px;
+    background-size: 100% 100%;
+}
+
+.wow {
+    color: black !important;
+}
+
+.wow h2 {
+    font-size: 42px;
+    font-family: Mulish;
+    font-weight: 900;
+    text-transform: uppercase;
+    white-space: nowrap
+}
+
+.wow p {
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.banner_btn, .banner_btn:hover {
+    padding: 8px 27px;
+    text-align: center;
+    border: 1px solid #fff;
+    transition: all 0.3s linear;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    border-radius: 99px;
+    color: white;
+    background: #007983;
+}
+
+@media (min-width: 320px) and (max-width: 1599px) {
+    .doc_banner_area {
+        background-position-x: right !important;
+    }
+}
+
+.w-45 {
+    width: 40% !important;
+}

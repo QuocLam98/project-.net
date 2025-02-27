@@ -1,0 +1,82 @@
+﻿<div class="container">
+    <div class="card-info-wv">
+        <div class="info-header">
+            @* <div class="info-title">
+                <span>Tài Khoản</span>
+            </div>
+
+ *@
+            <div class="info-image">
+                <img class="info-avatar" id="avatar-children" src="" />
+                <form class="upload-image" method="post" enctype="multipart/form-data">
+                    <input type="file" name="imageFile" id="avatar" style="display: none;" accept="image/*" />
+                    <label for="avatar" class="cursor-pointer" onclick="btnUpload()"><img src="/homedoctor/img/header/camera.svg" id="" type="file" /></label>
+                </form>
+
+                <span>@ViewBag.Name</span>
+            </div>
+            <div class="info-order-wv">
+                <div class="info-cart">
+                    <img src="/homedoctor/img/header/cart.svg" />
+                    <div class="info-count">
+                        0
+                    </div>
+                    <span>Đang chờ</span>
+                </div>
+                <div class="info-ship">
+                    <img src="/homedoctor/img/header/ship.svg" />
+                    <div class="info-count">
+                        0
+                    </div>
+                    <span>Đang giao</span>
+                </div>
+                <div class="info-done">
+                    <img src="/homedoctor/img/header/done.svg" />
+                    <div class="info-count">
+                        0
+                    </div>
+                    <span>Hoàn Thành</span>
+                </div>
+                <div class="info-cancel">
+                    <img src="/homedoctor/img/header/cancel.svg" />
+                    <div class="info-count" style="right: 2px !important">
+                        0
+                    </div>
+                    <span>Đã Hủy</span>
+                </div>
+            </div>
+
+            <div class="info-service">
+                <a class="info-booking" href="/lich-su-tu-van">
+                    <img src="/homedoctor/img/header/booking.svg" />
+                    <p>Lịch khám <span class="countBooking-value"></span></p>
+                </a>
+
+                <a href="/thong-tin-y-te" class="info-medical">
+                    <img src="/homedoctor/img/header/booking.svg" />
+                    <p>Hồ sơ y tế</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="info-footer-wv">
+            <a href="/thong-tin-ca-nhan">
+                <img src="/homedoctor/img/header/user.svg" />
+                <span>Thông tin cá nhân</span>
+            </a>
+            <a>
+                <img src="/homedoctor/img/header/protec.svg" />
+                <span>Điều Khoản Chính Sách</span>
+            </a>
+            <a href="/doi-mat-khau">
+                <img src="/homedoctor/img/header/lock.svg" />
+                <span>Đổi mật khẩu</span>
+            </a>
+
+            <a onclick="Logout()" class="cursor-pointer">
+                <img src="/homedoctor/img/header/log-out.svg" />
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </div>
+</div>

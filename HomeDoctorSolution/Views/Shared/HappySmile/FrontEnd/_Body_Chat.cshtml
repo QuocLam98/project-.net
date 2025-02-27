@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="~/happys/css/user-profile/message.css" rel="stylesheet" />
+<div class="container text-center">
+    <div class="row">
+        <div class="col-lg-9" id="list-conversation-none">
+            <div class="card chat-flex h-100">
+                @*User*@
+                <div class="chat-list">
+                    <div class="border-bottom d-flex head">
+                        <div class="d-flex flex-column" style="text-align: left">
+                            <span class="text-header">Tin nhắn </span>
+                        </div>
+                        <div class="d-flex align-items-center position-relative my-1">
+                            @*ô search*@
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="list_health_facilities" id="list-conversation">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-group h-100">
+                    
+                    <div class="card hide-border">
+                        <div class="card-body">
+                            <div class="list-conselor-parent">
+                                <div class="d-flex" style="margin-bottom: 32px;">
+                                    <span class="text-conselor">Cán bộ tư vấn</span>
+                                </div>
+                                <div class="list-conselor" id="kt_tab_counselor">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex" style="margin-bottom: 32px;">
+                                    <span class="text-conselor">Người dùng khác</span>
+                                </div>
+                                <div class="list-student" id="kt_tab_student">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 d-none" id="listmessage">
+            <div class="card h-100">
+                @*User*@
+                <div class="border-bottom d-flex head-listmessage">
+                    <div style="margin-right: 15px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none" class="back-message">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0545 5.84596C12.324 6.0616 12.3677 6.4549 12.1521 6.72444L9.1311 10.5007L12.1521 14.2769C12.3677 14.5464 12.324 14.9398 12.0545 15.1554C11.7849 15.371 11.3916 15.3273 11.176 15.0578L7.84266 10.8911C7.66005 10.6628 7.66005 10.3385 7.84266 10.1102L11.176 5.94357C11.3916 5.67403 11.7849 5.63033 12.0545 5.84596Z" fill="#1B1E28" />
+                        </svg>
+                        <img src="~/happys/svg/rectangle 888.svg" class="rounded-circle" style="width: 48px; height: 48px;" />
+                    </div>
+                    <div class="d-flex flex-column" style="text-align: left" id="checkActive-endUser">
+                        <span id="userName">Trung Trần</span>
+                        <span class="text-online">Không trực tuyến</span>
+                    </div>
+                </div>
+                @*listMessage*@
+                <div class="card-body">
+                    <div id="kt_chatMessageSignalR">
+                    </div>
+                </div>
+                @*SendMessage*@
+                <div class="card-footer d-flex">
+                    <input type="text" class="form-control text-chat" id="chatMessage" placeholder="Nhập tin nhắn" 
+                    data-kt-autosize="false" />
+                    <button class="btn btn-primary d-flex button-send" type="button" data-kt-element="send" id="btnSendMessage">
+                        Send <img src="~/happys/svg/send.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var accountId = @ViewBag.AccountId;
+</script>
+<script src="~/happys/js/page/_chat_user.js"></script>
+<script src="~/assets/microsoft/signalr/dist/browser/signalr.min.js"></script>

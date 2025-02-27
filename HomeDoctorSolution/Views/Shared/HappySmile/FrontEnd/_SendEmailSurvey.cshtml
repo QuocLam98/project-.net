@@ -1,0 +1,128 @@
+﻿<style>
+    .body_wrapper {
+        z-index: unset !important;
+    }
+
+    .modal-backdrop {
+        background-color: #000 !important;
+    }
+
+    .input-group-addon.primary {
+        border-color: rgb(40, 94, 142);
+        width: 36px;
+        display: flex;
+        align-items: center;
+        background-color: rgb(50, 118, 177);
+        justify-content: center;
+        color: #fff;
+        cursor: pointer;
+    }
+    #list_email {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .email_item {
+        border: 1px solid #333;
+        border-radius: 30px;
+        padding: 2px 10px;
+    }
+
+    .close_email {
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    #email_error {
+        font-size: 12px;
+        color: red;
+        text-align: left;
+    }
+</style>
+<!--Begin Modal Share -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class='glyphicon glyphicon-envelope text-info'></i>Chia sẻ kết quả sàng lọc</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+                <div class="col-sm-6">
+                    <div class='form-group'>
+                        <span id="email_error"></span>
+                        <div class='input-group col-xs-8' data-validate="email">
+                            <input type="text" class="form-control " name="validate-email" id="validate_email" placeholder="Email Address" required>
+                            <span id="addEmail" class="input-group-addon primary">Ok</span>
+                        </div>
+                        <div id="list_email">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-info" id="btnConfirmEmail" data-dismiss="modal">Gửi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal Share -->
+<script>
+    var emailString = "";
+    $("#addEmail").on("click", function () {
+        validateEmail();
+    });
+    $("#validate_email").on("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter trên trường nhập liệu
+            validateEmail(); // Gọi hàm xử lý khi nhấn Enter
+        }
+    });
+    function validateEmail() {
+        var email = $("#validate_email").val();
+
+        var gmailRegex = /^[a-zA-Z0-9._-]+@@gmail\.com$/;
+
+        if (gmailRegex.test(email)) {
+            let content = `
+                <span class="email_item">${email}<span class="close_email"><i class="bi bi-x"></i></span></span>
+            `;
+            $("#list_email").append(content);
+
+            // Thêm email vào chuỗi, cách nhau bằng dấu phẩy
+            emailString += email + ",";
+
+            $("#validate_email").val("");
+            $("#email_error").text(""); // Xóa thông báo lỗi nếu có
+        } else {
+            $("#email_error").text("Vui lòng nhập một địa chỉ email Gmail hợp lệ.");
+        }
+    }
+
+    $(document).on("click", ".close_email", function (e) {
+        var emailToRemove = $(this).closest('.email_item').text().trim();
+
+        // Xóa email từ chuỗi
+        emailString = emailString.replace(emailToRemove + ",", "");
+
+        $(this).closest('.email_item').remove();
+    })
+    $(document).on("click", "#btnConfirmEmail", async function (e) {
+        if (emailString.endsWith(',')) {
+            emailString = emailString.slice(0, -1);
+        }
+        await $.ajax({
+            url: systemURL + "survey/api/send-email-result-survey" + "?surveyAccountId=" + id + "&emailString=" + emailString,
+            method: "GET",
+            success: function (responseData) {
+                Swal.fire("Chia sẻ thành công!");
+            },
+            error: function (e) {
+            },
+        });
+        return data;
+    })
+</script>

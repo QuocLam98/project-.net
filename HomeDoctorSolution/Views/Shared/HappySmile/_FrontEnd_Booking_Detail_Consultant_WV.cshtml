@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/happys/css/rating/star-rating-svg.css" asp-append-version="true" rel="stylesheet" />
+<div class="body_wrapper">
+    <partial name="HappySmile/FrontEnd/_Header" />
+    <partial name="HappySmile/FrontEnd/_Body_Booking_Detail_Consultant_WV" />
+    <partial name="HappySmile/FrontEnd/_Footer" />
+</div>
+<script>
+    var checkRole = @ViewBag.CheckRole;
+    var accountId = @ViewBag.accountId;
+    var bookingId = @ViewBag.bookingId;
+    var accountConfirm = @ViewBag.accountConfirm;
+</script>
+<script src="~/happys/js/page/bookingDetailConsultantWV.js" asp-append-version="true"></script>

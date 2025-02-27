@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/happys/css/reviewCounsulorWV/reviewCounsulorWV.css" rel="stylesheet"  asp-append-version="true"/>
+<section id="review-sec" class="none">
+    <div class="review-counsulor-container">
+        <div class="parent-header">
+            <div style="color: black; font-size: 16px; font-family: Lexend; font-weight: 400; word-wrap: break-word">
+                <span id="countReview"></span> đánh giá
+            </div>
+            <div class="rating-course courseReview-rating" data-rate-value=5>
+                <div class="stars" data-stars="5">
+                    <svg height="25" width="23" class="star rating" data-rating="1">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;" />
+                    </svg>
+                    <svg height="25" width="23" class="star rating" data-rating="2">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;" />
+                    </svg>
+                    <svg height="25" width="23" class="star rating" data-rating="3">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;" />
+                    </svg>
+                    <svg height="25" width="23" class="star rating" data-rating="4">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;" />
+                    </svg>
+                    <svg height="25" width="23" class="star rating" data-rating="5">
+                        <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <ul class="review-counsulor-list" id="ulReviewCounsulor">
+            
+        </ul>
+        <div class="button-loadMore">
+            <button class="btn btn-loadMore button-reviewSection" key="loadMore" id="reviewSectionLoadMore">Xem thêm</button>
+        </div>
+    </div>
+</section>
+<script src="~/happys/js/reviewcounsulorwv/reviewcounsulorwv.js" asp-append-version="true"></script>

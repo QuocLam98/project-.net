@@ -1,0 +1,241 @@
+﻿.line-mini {
+    width: 20px;
+    height: 2px;
+    background-color: var(--Main-color-1, #FFC800)
+}
+.service-detail-description {
+    color: var(--Black, #000);
+    text-align: justify;
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+.service-detail-price {
+    color: var(--Main-color-2, #007983);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+.btn.btnHD {
+    border-radius: 35px;
+    box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+    padding: 14px 57px;
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: Mulish;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+.type-warning {
+    background: var(--Main-color-1, #FFC800);
+    box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+}
+.service-detail-info {
+    min-height: 470px;
+   /* background-image: url('/HomeDoctor/img/page/BG.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;*/
+    padding: 120px 0px;
+    color: white;
+}
+.service-detail-info-group-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.service-detail-info-doctor {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: -368px;
+    right: 0;
+}
+
+.service-detail-info-doctor img{
+    top: 47px;
+    right: 0;
+    height: 482.409px;
+    width: auto;
+    position: absolute;
+}
+.service-process-container {
+    display: flex;
+    flex-direction: column;
+    padding: 47px 0px;
+}
+
+.service-step {
+    background: linear-gradient(266deg, rgba(255, 200, 0, 0.25) -0.31%, rgba(255, 200, 0, 0.12) 97.8%);
+    box-shadow: 0px 5.438px 27.19px 0px rgba(0, 121, 131, 0.15);
+    border-radius: 13.595px;
+    border: 1.36px solid #FFF;
+}
+.service-step-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 6.8px;
+    padding: 21px 21px 90px 21px;
+    background-image:url('/HomeDoctor/img/page/BG-service-bot.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+}
+.service-step-title {
+    color: var(--Main-color-2, #007983);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 27.19px; /* 135.95% */
+}
+.service-step p {
+    color: var(--Place, #333);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27.19px; /* 169.938% */
+}
+.slick-dots li button:before {
+    font-size: 16px;
+}
+.slick-dots li.slick-active button:before {
+    color: #F6AC00;
+}
+.slick-slide {
+    margin: 0 27px;
+}
+
+/* the parent */
+.slick-list {
+    margin: 0 -27px;
+}
+.slick-dots {
+    bottom: -44px;
+}
+
+.w-343px {
+    max-width: 343px;
+}
+
+.gap-8 {
+    gap: 8px !important;
+}
+
+.gap-16 {
+    gap: 16px !important;
+}
+
+.gap-32 {
+    gap: 32px !important;
+}
+
+.mt-64 {
+    margin-top: 64px !important;
+}
+
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+
+.mb-60 {
+    margin-bottom: 60px !important;
+}
+
+.py-30 {
+    padding: 30px 0px !important;
+}
+
+.py-60 {
+    padding: 60px 0px !important;
+}
+
+.p-16 {
+    padding: 16px;
+}
+.service-detail-info-top {
+    background-image: url('/HomeDoctor/img/page/BG.png');
+    min-height: 170px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top left;
+}
+.service-detail-info-bottom {
+    background-image: url('/HomeDoctor/img/page/BG.png');
+    min-height: 170px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom left;
+}
+.service-detail-info .service-detail-info-body {
+    background: #007983;
+}
+.service-detail-info-group-text, .service-detail-info-group-title, .service-process-description {
+    text-align: justify;
+}
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .service-detail-info-top {
+        background-image: url('/HomeDoctor/img/page/BG-res.png');
+        min-height: 170px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: top left;
+    }
+    .service-detail-info-bottom {
+        background-image: url('/HomeDoctor/img/page/BG-res.png');
+        min-height: 90px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: bottom left;
+    }
+    .service-detail-info .service-detail-info-body {
+        background: #007983;
+    }
+    .service-detail-info-doctor img {
+        top: -255px;
+        right: 0;
+        height: 307.409px;
+        width: auto;
+    }
+    .service-detail-info {
+        padding: 120px 0px 0px;
+    }
+    .service-step-inner {
+        padding: 21px 21px 120px 21px
+    }
+}
+@media (min-width:601px) and (max-width:991px) {
+    .service-detail-info-doctor img {
+        top: -196px;
+        width: 400px;
+        height: auto;
+        right: 0;
+    }
+}
+@media (min-width:992px) and (max-width:1024px) {
+    .service-detail-info-doctor img {
+        top: -3vh;
+        right: 0;
+        height: 460.409px;
+        width: auto;
+    }
+}
+@media (min-width:1025px) and (max-width:1200px) {
+    .service-detail-info-doctor img {
+        top: 47px;
+        right: 0;
+        height: 482.409px;
+        width: auto;
+    }
+}

@@ -1,0 +1,820 @@
+﻿@media screen and (max-width: 768px) {
+    .homepage-service {
+        grid-template-columns: auto auto;
+    }
+
+    .doc_features_area {
+        margin-top: 0 !important;
+    }
+}
+
+.aboutus-component {
+    margin-top: 78px;
+}
+
+.homepage-service {
+    display: flex;
+    gap: 40px;
+}
+
+.photo-post img {
+    border-radius: 16px;
+    height: 236px;
+    object-fit: cover;
+}
+
+.doc_features_area {
+    position: unset;
+    margin-top: 68px;
+}
+
+.doc_title {
+    margin-bottom: 0px !important;
+}
+
+.recommended_topic_inner {
+    position: unset
+}
+
+.post-overview {
+    color: black;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+}
+
+.post-publish-time {
+    color: black;
+    font-size: 14px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.homepage-service-cilinic {
+    padding: 16px;
+    width: 330px;
+    background: rgba(0, 121, 131, 1);
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0px 3px rgba(1, 85, 91, 1);
+}
+
+.homepage-service-cilinic h2 {
+    background: white;
+    background-clip: text;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 900;
+    color: transparent;
+}
+/*.homepage-service-cilinic a {*/
+/*    color: white;*/
+/*}*/
+
+.homepage-service-cilinic span {
+    color: white;
+    font-size: 14px;
+    font-family: Mulish;
+    font-weight: 400;
+}
+
+.homepage-service-cilinic img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.homepage-service-cilinic a img {
+    width: 38px;
+    height: 16px;
+    object-fit: cover;
+}
+
+.homepage-service-cilinic .arrow-button {
+    display: flex;
+    padding-left: 3px;
+    padding-top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 3px 2px 2px rgba(0, 0, 0, .075);
+}
+
+.homepage-service-booking {
+    padding: 16px;
+    width: 330px;
+    background: rgba(243, 191, 2, 1);
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0px 3px rgba(163, 128, 3, 1);
+}
+
+.homepage-service-booking h2 {
+    background: white;
+    background-clip: text;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 900;
+    color: transparent;
+}
+
+.homepage-service-booking span {
+    color: white;
+    font-size: 14px;
+    font-family: Mulish;
+    font-weight: 400;
+}
+
+.homepage-service-booking img {
+    width: 60px;
+    height: 60px;
+}
+
+.homepage-service-booking a img {
+    width: 38px;
+    height: 16px;
+    object-fit: cover;
+}
+
+.homepage-service-booking .arrow-button {
+    display: flex;
+    padding-left: 3px;
+    padding-top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 3px 2px 2px rgba(163, 128, 3, .075);
+}
+
+.homepage-service-doctor {
+    padding: 16px;
+    width: 330px;
+    background: rgba(0, 121, 131, 1);
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0px 3px rgba(1, 85, 91, 1);
+}
+
+.homepage-service-doctor h2 {
+    background: white;
+    background-clip: text;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 900;
+    color: transparent;
+}
+
+.homepage-service-doctor span {
+    color: white;
+    font-size: 14px;
+    font-family: Mulish;
+    font-weight: 400;
+}
+
+.homepage-service-doctor img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.homepage-service-doctor a img {
+    width: 38px;
+    height: 16px;
+    object-fit: cover;
+}
+
+.homepage-service-doctor .arrow-button {
+    display: flex;
+    padding-left: 3px;
+    padding-top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 3px 2px 2px rgba(0, 0, 0, .075);
+}
+
+.homepage-service-product {
+    padding: 16px;
+    width: 330px;
+    background: rgba(243, 191, 2, 1);
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0px 3px rgba(163, 128, 3, 1);
+}
+
+.homepage-service-product h2 {
+    background: white;
+    background-clip: text;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 900;
+    color: transparent;
+}
+
+.homepage-service-product span {
+    color: white;
+    font-size: 14px;
+    font-family: Mulish;
+    font-weight: 400;
+}
+
+.homepage-service-product img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.homepage-service-product a img {
+    width: 38px;
+    height: 16px;
+    object-fit: cover;
+}
+
+.homepage-service-product .arrow-button {
+    display: flex;
+    padding-left: 3px;
+    padding-top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 3px 2px 2px rgba(163, 128, 3, .075);
+}
+
+.detail-about-me a {
+    color: black;
+    font-size: 32px;
+    font-family: Mulish !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    white-space: nowrap;
+}
+
+.recommended_topic_area {
+    margin-bottom: 50px;
+}
+
+.detail-about-me {
+    gap: 5px;
+}
+
+.detail-about-me span {
+    color: black;
+    font-size: 16px;
+    font-family: Mulish !important;
+    font-weight: 400;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
+.btnHS2 {
+    color: white;
+    font-size: 16px !important;
+    font-family: Mulish !important;
+    font-weight: 400 !important;
+    word-wrap: break-word;
+    white-space: nowrap;
+    background: #007983 !important;
+    width: fit-content !important;
+    height: 54px;
+    align-self: start;
+    padding: 30px 40px !important;
+}
+
+.about_me {
+    box-shadow: inset 0px 0px 50px 0px rgba(2, 2, 48, 0.06);
+}
+
+.forum-title {
+    color: black;
+    font-size: 32px;
+    font-family: Mulish !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    word-wrap: break-word
+}
+
+.doc_community_area {
+    background-image: url('../../img/homepage/bg-product.svg') !important;
+}
+
+.product-item {
+    border-radius: 16px;
+    position: relative;
+    width: 330px;
+    height: 300px;
+    padding: 32px;
+}
+
+.title-product {
+    color: transparent;
+    background: linear-gradient(90deg, rgba(0, 121, 131, 1) 0%, rgba(255, 200, 0, 1) 50%);
+    background-clip: text;
+    font-size: 24px;
+    font-family: Mulish;
+    font-weight: 800;
+    line-height: 30px;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-text {
+    color: #333333;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.product-price {
+    color: #007983;
+    font-size: 18px;
+    font-family: Mulish;
+    font-weight: 900;
+    line-height: 20px;
+}
+
+.product-item img {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.fluid-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.doc_community_info {
+    flex-direction: row
+}
+
+.doc_community_info .product-item:nth-child(1) {
+    background: linear-gradient(266deg, #D0F4FD 0%, #E0FBF9 100%);
+}
+
+.doc_community_info .product-item:nth-child(1) .icon-service {
+    /*background-image: url('../../img/homepage/all.svg');*/
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 160px;
+    width: 205px;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.doc_community_info .product-item:nth-child(2) {
+    background: linear-gradient(266deg, #F8DEFF 0%, #FBEBFF 100%);
+}
+
+.doc_community_info .product-item:nth-child(2) .icon-service {
+    /*background-image: url('../../img/homepage/child.svg');*/
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 160px;
+    width: 205px;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.doc_community_info .product-item:nth-child(3) {
+    background: linear-gradient(266deg, #FFF6DE 0%, #FFFDEB 100%);
+}
+
+.doc_community_info .product-item:nth-child(3) .icon-service {
+    /*background-image: url('../../img/homepage/inhome-png.png');*/
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 160px;
+    width: 205px;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.doc_community_info .product-item:nth-child(4) {
+    background: linear-gradient(266deg, #D0F4FD 0%, #E0FBF9 100%);
+}
+
+.doc_community_info .product-item:nth-child(4) .icon-service {
+    /*background-image: url('../../img/homepage/child.svg');*/
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 160px;
+    width: 205px;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.psychologist-header {
+    color: white;
+    font-size: 32px;
+    font-family: Mulish;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.doc_psychologist_area {
+    background-image: url('../../img/homepage/bg-doctor.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.psychologist-body {
+    margin-bottom: 32px;
+}
+
+.psychologist-header {
+    margin-bottom: 32px;
+    padding-top: 16px;
+}
+
+.psychologist-detail {
+    width: 100%;
+    height: 480px;
+}
+
+.psychologist-detail img {
+    object-fit: contain;
+    border-radius: 15px;
+    width: 100%;
+    height: 255px;
+    object-position: top;
+}
+
+.psychologist-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 16px 25px 16px;
+    gap: 16px;
+}
+
+.psychologist-name {
+    font-size: 24px !important;
+    font-family: Mulish !important;
+    font-weight: 700 !important;
+    color: transparent !important;
+    background: linear-gradient(90deg, rgba(0, 121, 131, 1) 0%, rgba(255, 200, 0, 1) 50%) !important;
+    background-clip: text !important;
+}
+
+.psychologist-hospital {
+    color: #333333 !important;
+    font-size: 18px !important;
+    font-family: Mulish !important;
+    font-weight: 400 !important;
+    line-height: 20px !important;
+    white-space: nowrap;
+    border-radius: 0px;
+    background: none;
+    text-align: center;
+}
+
+.psychologist-overview {
+    background: rgba(0, 120.82, 130.69, 0.10);
+    border-radius: 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Mulish !important;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 12px 35px 3px 35px;
+    text-align: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.doc_psychologist_area .btnHS2 {
+    border: 1px white solid !important;
+    box-shadow: 0px 4px 20px 0px rgb(254 254 254 / 50%);
+}
+
+.doc_featured_news_inner {
+    padding-top: 64px;
+}
+
+.featured-news-title {
+    color: black;
+    font-size: 32px;
+    font-family: Mulish !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.featured-news-first {
+    width: 329px;
+}
+
+.post_name {
+    color: #1B1E28;
+    font-size: 20px;
+    font-family: Mulish !important;
+    font-weight: 800;
+}
+
+@media (min-width: 320px) and (max-width: 600px) {
+    .homepage-service-cilinic, .homepage-service-booking,
+    .homepage-service-doctor, .homepage-service-product {
+        width: 100%;
+        height: 100%;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .homepage-service {
+        display: grid;
+        gap: 16px;
+    }
+
+    .doc_community_info {
+        gap: 16px;
+    }
+
+    .homepage-service-cilinic h2, .homepage-service-booking h2,
+    .homepage-service-doctor h2, .homepage-service-product h2 {
+        margin-bottom: 0px;
+    }
+
+    .btnHS2 {
+        font-size: 14px !important;
+        padding: 40px;
+    }
+
+    .doc_title h2 {
+        font-weight: 900 !important;
+    }
+
+    .doc_community_info {
+        flex-direction: column
+    }
+
+    .product-item {
+        width: 100%;
+        height: 300px;
+    }
+
+    .product-item img {
+        width: 150px
+    }
+
+    .first {
+        grid-row: 1 / span 2
+    }
+
+    .psychologist-header {
+        font-size: 20px;
+    }
+
+    .psychologist-body {
+        flex-direction: column;
+    }
+
+    .doc_psychologist_area {
+        padding: 64px 10px;
+    }
+
+    .psychologist-detail {
+        width: 100%;
+        height: 100%
+    }
+
+    .psychologist-detail img {
+        width: 100%;
+        height: 100%;
+        object-fit: unset;
+    }
+
+    .doc_psychologist_area {
+        background-position-x: center;
+        background-size: cover;
+    }
+
+    .doc_psychologist_inner {
+        padding-top: 64px;
+    }
+
+    .featured-news-detail {
+        flex-direction: column;
+    }
+
+    .featured-news-first {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 991px) {
+    .homepage-service-cilinic, .homepage-service-booking,
+    .homepage-service-doctor, .homepage-service-product {
+        width: 100%;
+        height: 100%;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .fluid-container {
+        padding-top: 64px;
+    }
+
+    .homepage-service {
+        display: grid;
+        gap: 16px;
+    }
+
+    .doc_community_info {
+        gap: 16px;
+    }
+
+    .homepage-service-cilinic h2, .homepage-service-booking h2,
+    .homepage-service-doctor h2, .homepage-service-product h2 {
+        margin-bottom: 0px;
+    }
+
+    .btnHS2 {
+        font-size: 14px !important;
+        padding: 40px;
+    }
+
+    .doc_title h2 {
+        font-weight: 900 !important;
+    }
+
+    .doc_community_info {
+        flex-direction: column;
+    }
+
+    .product-item {
+        width: 100%;
+        height: 300px;
+    }
+
+    .product-item img {
+        width: 150px
+    }
+
+    .psychologist-header {
+        font-size: 20px;
+    }
+
+    .psychologist-body {
+        display: grid;
+    }
+
+    .doc_psychologist_area {
+        padding: 64px 10px;
+    }
+
+    .psychologist-detail {
+        width: 100%;
+        height: 100%
+    }
+
+    .psychologist-detail img {
+        width: 100%;
+        height: 100%;
+        object-fit: unset;
+    }
+
+    .doc_psychologist_area {
+        background-position-x: center;
+        background-size: cover;
+    }
+
+    .doc_psychologist_inner {
+        padding-top: 64px;
+    }
+
+    .featured-news-detail {
+        flex-direction: column;
+        width: 100%
+    }
+
+    .featured-news-first {
+        width: 100%;
+        height: 100%;
+    }
+
+    .psychologist-body {
+        width: 100%
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .homepage-service-cilinic, .homepage-service-booking,
+    .homepage-service-doctor, .homepage-service-product {
+        width: 100%;
+        height: 100%;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .homepage-service {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: auto auto;
+    }
+
+    .doc_community_info {
+        gap: 16px;
+    }
+
+    .homepage-service-cilinic h2, .homepage-service-booking h2,
+    .homepage-service-doctor h2, .homepage-service-product h2 {
+        margin-bottom: 0px;
+    }
+
+    .btnHS2 {
+        font-size: 14px !important;
+        padding: 40px;
+    }
+
+    .doc_title h2 {
+        font-weight: 900 !important;
+    }
+
+    .doc_community_info {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .product-item {
+        width: 450px;
+        height: 300px;
+    }
+
+    .product-item img {
+        width: 150px
+    }
+
+    .psychologist-header {
+        font-size: 20px;
+    }
+
+    .psychologist-body {
+        flex-direction: column;
+    }
+
+    .doc_psychologist_area {
+        padding: 64px 10px;
+    }
+
+    .psychologist-detail {
+        width: 100%;
+        height: 100%
+    }
+
+    .psychologist-detail img {
+        width: 100%;
+        height: 100%;
+        object-fit: unset;
+    }
+
+    .doc_psychologist_area {
+        background-position-x: center;
+        background-size: cover;
+    }
+
+    .doc_psychologist_inner {
+        padding-top: 64px;
+    }
+
+    .featured-news-detail {
+        flex-direction: column;
+        width: 100%
+    }
+
+    .featured-news-first {
+        width: 100%;
+        height: 100%;
+    }
+
+    .psychologist-body {
+        width: 100%
+    }
+}

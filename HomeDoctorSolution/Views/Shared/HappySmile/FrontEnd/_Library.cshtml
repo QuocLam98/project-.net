@@ -1,0 +1,117 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@using HomeDoctorSolution.Util
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" id="viewportMeta">
+<title>Bác sĩ tại nhà</title>
+<link rel="shortcut icon" href="/homedoctor/img/header/icon-shortcut.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/homedoctor/font/css/font.css?family=Mulish:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+@* <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> *@
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/happys/assets/bootstrap/css/bootstrap.min.css" asp-append-version="true">
+<link href="~/happys/css/rating/star-rating-svg.css" rel="stylesheet" asp-append-version="true" />
+<link rel="stylesheet" href="/happys/assets/slick/slick.css" asp-append-version="true">
+<link rel="stylesheet" href="/happys/assets/slick/slick-theme.css" asp-append-version="true">
+<!-- icon css-->
+<link rel="stylesheet" href="/happys/assets/elagent-icon/style.css" asp-append-version="true">
+<link rel="stylesheet" href="/happys/assets/niceselectpicker/nice-select.css" asp-append-version="true">
+<link rel="stylesheet" href="/happys/assets/animation/animate.css" asp-append-version="true">
+<link rel="stylesheet" href="/happys/assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css" asp-append-version="true">
+<link href="~/homedoctor/css/style-main.css" rel="stylesheet" asp-append-version="true" />
+<link rel="stylesheet" href="/happys/css/responsive.css" asp-append-version="true">
+<link rel="stylesheet" href="/happys/css/sweetalert2@7.28.11/sweetalert2.css" asp-append-version="true">
+<link href="/happys/assets/datepicker/bootstrap-datetimepicker.min.css" asp-append-version="true" rel="stylesheet" type="text/css" />
+<script src="/happys/js/jquery-3.5.1.min.js" asp-append-version="true"></script>
+<script>
+    var systemURL = window.origin + "/";
+</script>
+<script src="/happys/js/sweetalert2@7.28.11/sweetalert2.all.min.js" asp-append-version="true"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="stylesheet" href="/happys/css/bootstrap-icons.css" asp-append-version="true" />
+<link href="/happys/assets/select2/select2.min.css" rel="stylesheet" asp-append-version="true" />
+<script src="/happys/assets/select2/select2.min.js" defer asp-append-version="true"></script>
+<script src="~/happys/js/page/http-service.js" asp-append-version="true"></script>
+<script src="/happys/assets/momentjs/moment.min.js" asp-append-version="true"></script>
+<script src="https://accounts.google.com/gsi/client"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0&appId=1074241057146225&autoLogAppEvents=1" nonce="c3WIfvVt"></script>
+<script src="~/happys/assets/momentjs/moment-with-locales.min.js" asp-append-version="true"></script>
+<link href="/admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" asp-append-version="true" rel="stylesheet" type="text/css" />
+<link href="/HomeDoctor/assets/photoswipe/photoswipe.min.css" rel="stylesheet" asp-append-version="true" />
+<link href="/HomeDoctor/assets/photoswipe/default-skin.min.css" rel="stylesheet" asp-append-version="true" />
+<style>
+    .pswp__bg {
+        opacity: 0.8 !important
+    }
+
+    .datepicker {
+        font-family: Mulish, sans-serif;
+    }
+
+        .datepicker::placeholder {
+            color: #333333 !important;
+        }
+</style>
+<script src="/HomeDoctor/assets/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
+<script src="/HomeDoctor/assets/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
+<script src="/HomeDoctor/assets/photoswipe/jqPhotoSwipe.min.js" asp-append-version="true"></script>
+<script src="/admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" asp-append-version="true"></script>
+<script>
+    var httpService = new HttpService();
+    var systemConstant = {
+        accountId: @ViewBag.AccountId,
+        role_admin_id: @SystemConstant.ROLE_SUPER_ADMIN,
+        role_user_id: @SystemConstant.ROLE_USER,
+        role_censor_id: @SystemConstant.ROLE_CENSOR,
+        role_counselor_id: @SystemConstant.ROLE_DOCTOR,
+        notification_status_read: @SystemConstant.NOTIFICATION_STATUS_READ,
+        notification_status_unread: @SystemConstant.NOTIFICATION_STATUS_UNREAD,
+        section_loau: @SystemConstant.SECTION_LOAU,
+        section_stress: @SystemConstant.SECTION_STRESS,
+        section_tramcam: @SystemConstant.SECTION_TRAMCAM,
+        survey_id: @SystemConstant.SURVEY_ID,
+        post_type_Id: @PostContants.POST_TYPE_ID,
+        library_type_Id: @PostContants.LIBRARY_TYPE_ID,
+        bookingType_online: @SystemConstant.BOOKING_TYPE_ONLINE,
+        bookingType_offline: @SystemConstant.BOOKING_TYPE_OFFLINE,
+        bookingStatus_reject: @SystemConstant.BOOKING_STATUS_REJECT,//từ chối
+        bookingStatus_wait_accept: @SystemConstant.BOOKING_STATUS_WAIT_ACCEPT,//chờ xác nhận
+        bookingStatus_wait_done: @SystemConstant.BOOKING_STATUS_WAIT_DONE,//đã xác nhận
+        bookingStatus_confirm: @SystemConstant.BOOKING_STATUS_WAIT_DONE,//đã xác nhận
+        bookingStatus_done: @SystemConstant.BOOKING_STATUS_DONE,//hoàn thành
+        bookingStatus_cancel: @SystemConstant.BOOKING_STATUS_CANCEL,//hủy
+        forum_post_type_waitting_id: @SystemConstant.FORUM_POST_STATUS_WAITING,//bai viet cho duyet
+        bookingStatus_cancel: @SystemConstant.BOOKING_STATUS_CANCEL,//hủy
+        forumPostStatus_confirm: @SystemConstant.FORUM_POST_STATUS_CONFIRM,
+        forumPostStatus_cancel: @SystemConstant.FORUM_POST_STATUS_CANCELED,
+        forumPostStatus_wait: @SystemConstant.FORUM_POST_STATUS_WAITING,
+        counselorDefautId: @SystemConstant.ACCOUNT_DEFAULT_BOOKING,
+    }
+    moment.locale("vi");
+</script>
+<script src="~/assets/microsoft/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
+<script>
+    var accountId = "@ViewBag.AccountId";
+</script>
+<script src="~/homedoctor/js/library.js" asp-append-version="true"></script>
+
+<!--start::CK-Editor 5-->
+<script src="/assets/js/ckeditor/ckeditor.js" asp-append-version="true"></script>
+<script src="/assets/js/ckeditor/config.js" asp-append-version="true"></script>
+<!--end:: CK-Editor 5-->
+@*
+<link href="/admin/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+ *@
+<style>
+    @@font-face {
+        font-family: 'SVN-A Love Of Thunder';
+        src: URL('/HomeDoctor/font/SVN-A Love Of Thunder.ttf') format('truetype');
+    }
+</style>
+

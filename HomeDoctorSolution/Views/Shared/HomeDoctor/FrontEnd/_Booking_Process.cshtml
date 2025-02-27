@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .justify-c{
+        justify-content: center;
+    }
+
+    .justify-ar {
+        justify-content: space-around;
+    }
+    .line-process {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .process-div {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        position: fixed;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .process-div-mobile {
+/*         padding-top: 15px;
+        padding-bottom: 15px; */
+        position: fixed;
+        bottom: 0;
+        z-index: 1;
+        display: none;
+        width: 100%;
+    }
+    .padding-process {
+        padding: 5px 15px;
+        -webkit-box-shadow: 0 0 25px rgb(0 0 0 / 10%);
+        background-color: white;
+        border-radius: 15px;
+        border: 1px solid #E0E0E0;
+    }
+
+    .padding-process-mobile{
+        padding: 5px 10px;
+        background-color: white;
+        border-top: 1px solid #E0E0E0;
+    }
+    .process-go {
+        cursor: pointer;
+    }
+    @@media screen and (max-width: 768px){
+        .process-div {
+            display: none !important;
+        }
+        .process-div-mobile {
+            display: block !important;
+        }
+    }
+    .booking-process-guide {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: center;
+        margin-bottom: 8px;
+        color: #000000;
+        font-weight: 700;
+    }
+
+    .booking-process-guide-mobile {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: center;
+        margin-bottom: 8px;
+        color: #000000;
+        font-weight: 700;
+    }
+
+    .mb-process {
+        width: 100%;
+    }
+</style>
+<div class="container-fluid process-div">
+        <div class="d-flex justify-c">
+            <div class="padding-process">
+            <p class="booking-process-guide">Hướng dẫn đặt lịch khám</p>
+            <div class="d-flex justify-c">
+                <div class="choose-service">
+                    <img onclick="window.location.href='/danh-sach-dich-vu'" class="service-process process-go" src="/HomeDoctor/img/booking-process/service-active.png" />
+                </div>
+                <div class="choose-doctor">
+                    <img class="line-process line-process-1" src="/HomeDoctor/img/booking-process/line-unactive.png" />
+                    <img onclick="window.location.href='/danh-sach-bac-si'" class="process-go doctor-process" src="/HomeDoctor/img/booking-process/doctor-unactive.png" />
+                </div>
+                <div class="choose-confirm">
+                    <img class="line-process line-process-2 " src="/HomeDoctor/img/booking-process/line-unactive.png" />
+                    <img class="process-go confirm-process" src="/HomeDoctor/img/booking-process/confirm-unactive.png" />
+                </div>
+            </div>
+            </div>
+        </div>
+</div>
+<div class="process-div-mobile">
+    <div class="d-flex justify-c">
+        <div class="padding-process-mobile mb-process">
+            <p class="booking-process-guide-mobile">Hướng dẫn đặt lịch khám</p>
+            <div class="d-flex justify-ar">
+                <div class="choose-service">
+                    <img onclick="window.location.href='/danh-sach-dich-vu'" class="service-process process-go" src="/HomeDoctor/img/booking-process-mobile/mobile-service-active.png" />
+                </div>
+                <div class="choose-doctor">
+                    <img class="line-process-mb line-process-1-mb" src="/HomeDoctor/img/booking-process-mobile/mobile-line-unactive.png" />
+                    <img onclick="window.location.href='/danh-sach-bac-si'" class="process-go doctor-process-mobile" src="/HomeDoctor/img/booking-process-mobile/mobile-doctor-unactive.png" />
+                </div>
+                <div class="choose-confirm">
+                    <img class="line-process-mb line-process-2-mb" src="/HomeDoctor/img/booking-process-mobile/mobile-line-unactive.png" />
+                    <img class="process-go confirm-process-mb" src="/HomeDoctor/img/booking-process-mobile/mobile-confirm-unactive.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var url = window.location.href;
+    if (url.includes("danh-sach-dich-vu") || url.includes("chi-tiet-dich-vu") || url.includes("chi-tiet-phong-kham")) {
+
+    }
+    else if (url.includes("danh-sach-bac-si") || url.includes("chi-tiet-bac-si")) {
+        $(".line-process-1").attr("src", "/HomeDoctor/img/booking-process/line-active.png");
+        $(".doctor-process").attr("src", "/HomeDoctor/img/booking-process/doctor-active.png");
+        $(".line-process-1-mb").attr("src", "/HomeDoctor/img/booking-process-mobile/mobile-line-active.png");
+        $(".doctor-process-mobile").attr("src", "/HomeDoctor/img/booking-process-mobile/mobile-doctor-active.png");
+    }
+    
+</script>

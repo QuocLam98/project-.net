@@ -1,0 +1,203 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="/homedoctor/css/footer/footer.css" rel="stylesheet" asp-append-version="true" />
+@* <div class="footer-search">
+    <div class="container">
+        <div class="search-content">
+            <div class="content-search">
+                <span>Đăng ký để nhận tin</span>
+                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the</span>
+            </div>
+            <div class="input-search">
+                <div class="input-button">
+                    <input placeholder="Nhập email của bạn"/>
+                    <a href="" class="btn btnHS2">
+                        Gửi thông tin
+                    </a>
+                </div>
+                <div class="footer-check-box">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label for="defaultCheck1">Tôi đồng ý với Điều khoản & Điều kiện của bác sĩ tại nhà</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+<style>
+    #loading {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(0 0 0 / 70%);
+        visibility: hidden;
+    }
+
+        #loading.show {
+            visibility: visible;
+        }
+
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border: 8px solid #007983;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #007983 transparent transparent transparent;
+        }
+
+            .lds-ring div:nth-child(1) {
+                animation-delay: -0.45s;
+            }
+
+            .lds-ring div:nth-child(2) {
+                animation-delay: -0.3s;
+            }
+
+            .lds-ring div:nth-child(3) {
+                animation-delay: -0.15s;
+            }
+
+    @@keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div id="loading">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+
+  <partial name="HomeDoctor/FrontEnd/_Modal_SignIn" />   
+<footer class="doc_footer_area">
+    <div></div>
+    <div class="doc_footer_top bg-transparent footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xl-3 col-sm-12">
+                    <div class="f_widget doc_about_widget wow fadeInUp" data-wow-delay="0.2s">
+                        <a href="/#">
+                            @*     <img src="happys/img/logo/logo-w.png" class="first_logo sticky_logo" srcset="happys/img/logo/logo-w.png 2x" alt=""> *@
+                            <img style="max-height: 61px" src="/HomeDoctor/img/header/header-logo.png" class="main_logo" alt="">
+                        </a>
+                        @*  <span class="text">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+                        </span> *@
+                        <ul class="list-unstyled">
+                            <div class="footer-logo">
+                                <a href="https://play.google.com/store/apps/details?id=com.dionhomedoctor&pli=1" target="_blank">
+                                    <img src="/HomeDoctor/img/footer/google.png" width="120" style="object-fit: cover" />
+                                </a>
+                                <a href="#">
+                                    <img src="/HomeDoctor/img/footer/appstore.png" width="120" style="object-fit: cover" />
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-3 col-sm-6 footer-space">
+                    <div class="f_widget doc_service_list_widget pl-10 wow fadeInUp" data-wow-delay="0.3s">
+                        <h3 class="f_title_two">DANH MỤC</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="/ve-chung-toi">Về Chúng Tôi</a>
+                            </li>
+                            <li>
+                                <a href="/danh-sach-dich-vu">Dịch Vụ</a>
+                            </li>
+                            <li>
+                                <a href="/danh-sach-phong-kham">Phòng Khám</a>
+                            </li>
+                            <li>
+                                <a href="/danh-sach-bac-si">Đội Ngũ Bác Sĩ</a>
+                            </li>
+                            <li>
+                                <a href="/danh-sach-san-pham">Sản Phẩm</a>
+                            </li>
+                            <li>
+                                <a href="/danh-sach-tin-tuc">Tin Tức</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-3 col-sm-6 footer-space">
+                    <div class="f_widget doc_service_list_widget wow fadeInUp" data-wow-delay="0.4s">
+                        <h3 class="f_title_two">THÔNG TIN</h3>
+                        <ul class="list-unstyled">
+                            @*                             <li><a href="/#">Trợ Giúp</a></li> *@
+                            <li>
+                                <a href="/chinh-sach-bao-mat">Điều Khoản Chính Sách</a>
+                            </li>
+                            @*                             <li><a href="/#">Báo Cáo</a></li>
+                            <li><a href="/#">Hướng Dẫn</a></li>
+                            <li><a href="/#">Kiến Thức</a></li> *@
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-3 col-sm-12  footer-space">
+                    <div class="f_widget doc_service_list_widget pl-20 wow fadeInUp" data-wow-delay="0.5s">
+                        <h3 class="f_title_two">LIÊN HỆ</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a style="text-transform: unset" href="/#"><img src="/homedoctor/img/icon/address.svg" />Địa chỉ: 382 Hồ Tùng Mậu, Phú Diễn, Bắc Từ Liêm, Hà Nội</a>
+                            </li>
+                            <li>
+                                <a style="text-transform: unset" href="tel:034 958 1894"><img src="/homedoctor/img/icon/call.svg" />Hotline: 034 958 1894</a>
+                            </li>
+                            <li>
+                                <a style="text-transform: unset" href="/#"> <img src="/homedoctor/img/icon/gmail.svg" />Email: hung.nguyen@dion.vn</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>s
+    <div class="doc_footer_bottom footerTop" style="background-color: #007983">
+        <div class="container d-flex justify-content-between">
+            <ul class="doc_footer_menu wow fadeInUp menu-none" data-wow-delay="0.2s">
+                <li>
+                    <a class="list" href="/chinh-sach-bao-mat">Điều Khoản Chính Sách</a>
+                </li>
+                @* <li><a class="list" href="/tin-tuc">Tin tức mới nhất</a></li> *@
+
+            </ul>
+            <p class="wow fadeInUp" data-wow-delay="0.3s">
+                © 2024 All Right Reserved Design
+                <span>by Bacsitainha</span>
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XDVBGD1C7E"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-XDVBGD1C7E');
+</script>

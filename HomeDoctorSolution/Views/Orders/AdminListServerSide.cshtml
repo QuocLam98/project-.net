@@ -1,0 +1,1998 @@
+@{
+    Layout = "_Admin_Layout";
+}
+<style>
+    .table-content {
+        padding: 15px;
+        background: var(--bs-app-header-base-bg-color);
+        border-radius: 8px;
+    }
+
+    table thead tr th {
+        white-space: nowrap;
+    }
+
+    #tableData tbody tr td, #tableProduct tbody tr td {
+        vertical-align: middle;
+    }
+
+        #tableData tbody tr td:nth-child(3), #tableData tbody tr td:nth-child(3),
+        #tableData tbody tr td:nth-child(5), #tableData tbody tr td:nth-child(5),
+        #tableData tbody tr td:nth-child(4), #tableData tbody tr td:nth-child(4),
+        #tableData tbody tr td:nth-child(6), #tableData tbody tr td:nth-child(6) {
+            text-align: center !important;
+        }
+
+        #tableData tbody tr td:nth-child(7), #tableData tbody tr td:nth-child(7) {
+            text-align: center !important;
+            width: 80px;
+            max-width: 80px;
+            min-width: 80px;
+        }
+        #tableData tbody tr td:nth-child(8), #tableData tbody tr td:nth-child(8) {
+            text-align: right !important;
+        }
+
+        #tableData tbody tr td:nth-child(9), #tableData tbody tr td:nth-child(9) {
+            width: 200px;
+            max-width: 200px;
+            min-width: 200px;
+            text-align: left !important;
+        }
+
+    .tableProduct tr th:nth-child(2), .tableProduct tr td:nth-child(2) {
+        width: 300px;
+        max-width: 300px;
+        text-align: left !important;
+    }
+
+    .tableProduct tr th:nth-child(3), .tableProduct tr td:nth-child(3) {
+        width: calc(0.75rem + 96px);
+        max-width: 180px;
+        text-align: right;
+        padding-right: 0px !important;
+        vertical-align: baseline;
+    }
+
+    .tableProduct tr th:nth-child(4), .tableProduct tr td:nth-child(4) {
+        width: 110px;
+        max-width: 110px;
+        text-align: right;
+        padding-right: 0px !important;
+        vertical-align: baseline;
+    }
+
+    .tableProduct tr th:nth-child(5), .tableProduct tr td:nth-child(5) {
+        width: calc(0.75rem + 96px);
+        max-width: 180px;
+        text-align: right;
+        padding-right: 0px !important;
+        vertical-align: baseline;
+    }
+
+    .tableProduct tr th:nth-child(6), .tableProduct tr td:nth-child(6) {
+        width: 80px;
+        max-width: 80px;
+        text-align: center
+    }
+
+    .tableProduct tr td:nth-child(3), .tableProduct tr td:nth-child(4),
+    .tableProduct tr td:nth-child(5) {
+        text-align: right !important;
+    }
+
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .new-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-product {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button-quantity {
+        display: flex;
+        height: 30px;
+        justify-content: right;
+    }
+
+    .input-quantity {
+        text-align: center;
+        width: 40px;
+        border-radius: 0px;
+        padding: 0px;
+    }
+
+    .btn-quantity-plus {
+        padding: 5px !important;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .btn-quantity-minus {
+        padding: 5px !important;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+    }
+
+        .product-title .form-group {
+            flex-direction: row;
+            white-space: nowrap;
+            align-items: baseline;
+        }
+
+    .product-name {
+        font-weight: 700;
+        text-align: left;
+    }
+
+    .product-price {
+        text-align: left;
+    }
+
+    .product-price-value {
+        font-weight: 700;
+        color: green
+    }
+
+    .list-detail-product {
+        max-height: 230px;
+        overflow: auto;
+        text-align: center;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .order-details {
+        display: flex;
+    }
+
+    .total-price-product {
+        text-align: right;
+        padding: 8px;
+    }
+
+    .image-product {
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+    .image-product-select {
+        width: 80px;
+        height: 100%;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+    .image-account-select {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+    .gap-10px {
+        gap: 10px;
+    }
+
+    .ellipsis3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .phone {
+        color: black !important;
+        display: flex;
+        gap: 8px;
+    }
+    .column-image {
+        border-radius: 50%;
+    }
+    .no-wr {
+        white-space: nowrap;
+    }
+</style>
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container  container-fluid ">
+        <!--begin::Row-->
+        <div class="table-content">
+            <!--begin::Col-->
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-stack mb-5">
+                <!--begin::Search-->
+                <div class="d-flex align-items-center position-relative my-1">
+                    <i class="ki-duotone ki-magnifier fs-1 position-absolute ms-6"><span class="path1"></span><span class="path2"></span></i>
+                    <input type="search" data-kt-docs-table-filter="search" class="form-control form-control-solid w-250px ps-15" id="search-input" placeholder="Tìm kiếm" />
+                </div>
+                <!--end::Search-->
+                <!--begin::Toolbar-->
+                <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
+                    <!--begin::Filter-->
+                    <button type="button" class="btn btn-light-primary me-3" data-bs-toggle="tooltip" title="Coming Soon">
+                        <i class="ki-duotone ki-filter fs-2"><span class="path1"></span><span class="path2"></span></i>
+                        Bộ lọc
+                    </button>
+                    <!--end::Filter-->
+                    <!--begin::Add customer-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" title="Tạo mới" onclick="editItem(0)">
+                        <i class="ki-duotone ki-plus fs-2"></i>
+                        Tạo mới
+                    </button>
+                    <!--end::Add customer-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Group actions-->
+                <div class="d-flex justify-content-end align-items-center d-none" data-kt-docs-table-toolbar="selected">
+                    <div class="fw-bold me-5">
+                        <span class="me-2" data-kt-docs-table-select="selected_count"></span> Selected
+                    </div>
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" title="Coming Soon">
+                        Selection Action
+                    </button>
+                </div>
+                <!--end::Group actions-->
+            </div>
+            <!--end::Wrapper-->
+            <!--begin::Datatable-->
+            <table id="tableData" class="table table-hover table-rounded table-row-bordered gy-3 gs-3">
+                <thead>
+                    <tr class="fw-bold fs-6 text-gray-800">
+                        <th>STT</th>
+                        <th>Mã</th>
+                        <th>Loại đơn hàng</th>
+                        <th>Trạng thái</th>
+                        <th>Thanh toán</th>
+                        @* <th>Mã trạng thái đơn hàng ship</th> *@
+                        <th>Khách hàng</th>
+                        <th>Số điện thoại</th>
+                        @* <th>Tổng tiền</th> *@
+                        @* <th>Phí ship</th> *@
+                        <th>Thành tiền</th>
+                        @*                         <th>Mã số thuế</th>
+                        <th>Địa chỉ quốc gia gửi hàng</th>
+                        <th>Tỉnh thành phố gửi hàng</th>
+                        <th>Quận gửi hàng</th>
+                        <th>Phường gửi hàng</th> *@
+                        <th>Địa chỉ</th>
+                        @*    <th>Tên người gửi hàng</th>
+                        <th>Số điện thoại người gửi hàng</th> *@
+                        @*                         <th>Mã tỉnh thành phố gửi hàng</th>
+                        <th>Mã quận gửi hàng</th>
+                        <th>Mã phường gửi hàng</th> *@
+                        @*                         <th>Mã vourcher</th> *@
+                        @* <th>Mã vận đơn</th> *@
+                        <th>Ngày tạo</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr class="fs-6">
+                        <th></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th>
+                            <select class="form-select form-select-solid tableheaderFillter" id="filterOrderTypeId" data-control="select2" data-placeholder="Chọn Mã loại đơn hàng" data-allow-clear="true" multiple>
+                            </select>
+                        </th>
+
+                        <th>
+                            <select class="form-select form-select-solid tableheaderFillter" id="filterOrderStatusId" data-control="select2" data-placeholder="Chọn Mã trạng thái đơn hàng" data-allow-clear="true" multiple>
+                            </select>
+                        </th>
+
+                        <th>
+                            <select class="form-select form-select-solid tableheaderFillter" id="filterOrderPaymentStatusId" data-control="select2" data-placeholder="Chọn Mã trạng thái đơn hàng thanh toán" data-allow-clear="true" multiple>
+                            </select>
+                        </th>
+
+                        @*   <th>
+                        <select class="form-select form-select-solid tableheaderFillter" id="filterOrderStatusShipId" data-control="select2" data-placeholder="Chọn Mã trạng thái đơn hàng ship" data-allow-clear="true" multiple>
+                        </select>
+                        </th> *@
+                        @* <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th> *@
+                        @*   <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th> *@
+                        @*   <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th> *@
+                        @* <th><input type="text" class="form-control tableheaderFillter" /></th> *@
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        @*                     <th>
+                        <select class="form-select form-select-solid tableheaderFillter" id="filterVoucherId" data-control="select2" data-placeholder="Chọn Mã vourcher" data-allow-clear="true" multiple>
+                        </select>
+                        </th> *@
+                        @* <th><input type="text" class="form-control tableheaderFillter" /></th> *@
+                        <th>
+                            <div class="input-group" id="filterCreatedTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                                <input id="filterCreatedTime_input" readonly type="text" class="form-control tableheaderFillter" data-td-target="#filterCreatedTime" />
+                                <span class="input-group-text" title="Chọn" id="open-flatpickr" data-td-target="#filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                </span>
+                                <span class="input-group-text" id="clear-flatpickr" title="Xóa" data-clear="true" data-target="filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar-remove fs-2"><i class="path1"></i><i class="path2"></i><i class="path3"></i><i class="path4"></i><i class="path5"></i><i class="path6"></i></i>
+                                </span>
+                            </div>
+                        </th>
+
+                        <th class="text-center">
+                            <div class="search-control">
+                                <button class="btn btn-primary form-control mb-1" title="Tìm kiếm" id="btnTableSearch">
+                                    <span class="svg-icon svg-icon svg-icon-1 svg_search_2 m-0">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"></path>
+                                            <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <button class="btn btn-secondary form-control" title="Reset" id="btnTableResetSearch">
+                                    <span class="svg-icon svg-icon svg-icon-1 svg_cancel m-0">
+                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="9.39844" y="20.7144" width="16" height="2.66667" rx="1.33333" transform="rotate(-45 9.39844 20.7144)" fill="currentColor"></rect>
+                                            <rect x="11.2852" y="9.40039" width="16" height="2.66667" rx="1.33333" transform="rotate(45 11.2852 9.40039)" fill="currentColor"></rect>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr class="border-top fw-bold fs-6 text-gray-800">
+                    </tr>
+                </tfoot>
+            </table>
+            <!--end::Datatable-->
+            <div class="modal fade" id="modal-id">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable" style="--bs-modal-width: 70%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="defaultModalTitle">Modal title</h3>
+
+                            <!--begin::Close-->
+                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <div class="modal-body">
+                            <form action="#">
+                                <div class="row">
+
+                                    <div class="col-sm-6 d-none">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-solid mb-5">
+                                                <span class="input-group-text" id="basic-addon-id">Mã</span>
+                                                <input readonly type="number" autocomplete="off" class="form-control input-id" id="orders-id" placeholder="id" aria-label="id" aria-describedby="basic-addon-id" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <h5>Thông tin đơn hàng</h5>
+                                    </div>
+                                    <div class="col-sm-3 d-none">
+                                        <div class="form-group">
+                                            <span class="required" id="basic-addon-name">Tên đơn hàng</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" required autocomplete="off" class="form-control input-name" id="orders-name" placeholder="name" aria-label="name" aria-describedby="basic-addon-name" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+
+                                        <div class="form-group">
+                                            <span class="required">
+                                                Loại đơn hàng
+                                            </span>
+                                            <div class="input-group flex-nowrap mb-5">
+                                                <div class="overflow-hidden flex-grow-1">
+                                                    <select class="form-select rounded-8 dataSelect" id="orders-orderTypeId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var orderTypeData = [];
+                                            async function loadDataSelectOrderType() {
+                                                await $.ajax({
+                                                    url: systemURL + 'orderType/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        // debugger;
+                                                        var data = responseData.data;
+                                                        orderTypeData = data;
+                                                    },
+                                                    error: function (e) {
+                                                    }
+                                                });
+                                            }
+                                            $(document).ready(function () {
+                                                // loadDataSelectOrderType();
+                                                $.when(loadDataSelectOrderType()).done(function () {
+                                                    $("#filterOrderTypeId").select2();
+                                                    orderTypeData.forEach(function (item) {
+                                                        $('#orders-orderTypeId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterOrderTypeId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <span class="required">
+                                                Trạng thái đơn hàng
+                                            </span>
+                                            <div class="input-group flex-nowrap mb-5">
+                                                <div class="overflow-hidden flex-grow-1">
+                                                    <select class="form-select rounded-8 dataSelect" id="orders-orderStatusId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var orderStatusData = [];
+                                            async function loadDataSelectOrderStatus() {
+                                                await $.ajax({
+                                                    url: systemURL + 'orderStatus/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        var data = responseData.data;
+                                                        orderStatusData = data;
+                                                    },
+                                                    error: function (e) {
+                                                    }
+                                                });
+                                            }
+                                            $(document).ready(function () {
+                                                // loadDataSelectOrderStatus();
+                                                $.when(loadDataSelectOrderStatus()).done(function () {
+                                                    $("#filterOrderStatusId").select2();
+                                                    orderStatusData.forEach(function (item) {
+                                                        $('#orders-orderStatusId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterOrderStatusId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <span class="required">
+                                                Trạng thái thanh toán
+                                            </span>
+                                            <div class="input-group flex-nowrap mb-5">
+                                                <div class="overflow-hidden flex-grow-1">
+                                                    <select class="form-select rounded-8 dataSelect" id="orders-orderPaymentStatusId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var orderPaymentStatusData = [];
+                                            async function loadDataSelectOrderPaymentStatus() {
+                                                await $.ajax({
+                                                    url: systemURL + 'orderPaymentStatus/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        var data = responseData.data;
+                                                        orderPaymentStatusData = data;
+                                                    },
+                                                    error: function (e) {
+                                                    }
+                                                });
+                                            }
+                                            $(document).ready(function () {
+                                                // loadDataSelectOrderPaymentStatus();
+                                                $.when(loadDataSelectOrderPaymentStatus()).done(function () {
+                                                    $("#filterOrderPaymentStatusId").select2();
+                                                    orderPaymentStatusData.forEach(function (item) {
+                                                        $('#orders-orderPaymentStatusId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterOrderPaymentStatusId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-tax">Thuế (VAT)</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-tax" id="orders-tax" placeholder="Thuế" aria-label="tax" aria-describedby="basic-addon-tax" />
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-labelId">Mã vận đơn</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-labelId" id="orders-labelId" placeholder="Mã vận đơn" aria-label="labelId" aria-describedby="basic-addon-labelId" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 d-none">
+                                        <div class="form-group">
+                                            <span class="required">
+                                                Mã trạng thái đơn hàng ship
+                                            </span>
+                                            <div class="input-group flex-nowrap mb-5">
+                                                <div class="overflow-hidden flex-grow-1">
+                                                    <select class="form-select rounded-8 dataSelect" id="orders-orderStatusShipId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var orderStatusShipData = [];
+                                            async function loadDataSelectOrderStatusShip() {
+                                                await $.ajax({
+                                                    url: systemURL + 'orderStatusShip/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        var data = responseData.data;
+                                                        if (data == null) {
+                                                            orderStatusShipData = null
+                                                        }
+                                                        else {
+                                                            orderStatusShipData = data;
+                                                        }
+
+                                                    },
+                                                    error: function (e) {
+                                                    }
+                                                });
+                                            }
+                                            $(document).ready(function () {
+                                                // loadDataSelectOrderStatusShip();
+                                                $.when(loadDataSelectOrderStatusShip()).done(function () {
+                                                    $("#filterOrderStatusShipId").select2();
+                                                    orderStatusShipData.forEach(function (item) {
+                                                        $('#orders-orderStatusShipId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterOrderStatusShipId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    <div class="col-sm-6" style="display:none;">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-solid mb-5">
+                                                <span class="input-group-text" id="basic-addon-active">Kích hoạt</span>
+                                                <input readonly type="number" autocomplete="off" class="form-control input-active" id="orders-active" placeholder="active" aria-label="active" aria-describedby="basic-addon-active" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <h5>Thông tin người nhận hàng</h5>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipRecipientName">Tên người nhận</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                @* <input type="text" autocomplete="off" class="form-control input-AccountName" id="orders-AccountName" placeholder="shipRecipientName" aria-label="shipRecipientName" aria-describedby="basic-addon-shipRecipientName" /> *@
+                                                <select class="form-select rounded-8 dataSelect" id="orders-AccountName" data-control="select2" data-dropdown-parent="#modal-id">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var accountData = [];
+                                        async function LoadDataSelectAccount() {
+                                            await $.ajax({
+                                                url: systemURL + 'account/api/list',
+                                                type: 'GET',
+                                                async: 'true',
+                                                contentType: 'application/json',
+                                                success: function (responseData) {
+                                                    var data = responseData.data;
+                                                    accountData = data;
+                                                    // accountData.forEach(function (item) {
+                                                    //     $('#orders-AccountName').append(new Option(item.name, item.id, false, false));
+                                                    //     // $('#filterOrderStatusShipId').append(new Option(item.name, item.id, false, false));
+                                                    // })
+                                                },
+                                                error: function (e) {
+                                                }
+                                            });
+                                        }
+                                        
+                                    </script>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipRecipientPhone">Số điện thoại người nhận</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-accountPhone" id="orders-accountPhone" placeholder="Số điện thoại người nhận hàng" aria-label="shipRecipientPhone" aria-describedby="basic-addon-shipRecipientPhone" />
+                                                <span class="input-group-text">
+                                                    <a id="phone-tel" href="tel:">
+                                                        <i class="bi bi-telephone-fill fs-2 text-success">
+                                                        </i>
+                                                    </a>
+                                                   
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-info">Nội dung</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-info" id="orders-info" placeholder="info" aria-label="Thông tin" aria-describedby="basic-addon-info" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*   <div class="col-sm-3 d-none">
+                                    <div class="form-group">
+                                    <span id="basic-addon-totalPrice">Tổng tiền</span>
+                                    <div class="input-group input-group-solid mb-5">
+                                    <input type="text" autocomplete="off" class="form-control input-totalPrice" id="orders-totalPrice" placeholder="totalPrice" aria-label="totalPrice" aria-describedby="basic-addon-totalPrice" />
+                                    </div>
+                                    </div>
+                                    </div> *@
+
+                                    <div class="col-sm-3 d-none">
+                                        <div class="form-group">
+                                            <span id="basic-addon-totalShipFee">Tổng tiền ship</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-totalShipFee" id="orders-totalShipFee" placeholder="totalShipFee" aria-label="totalShipFee" aria-describedby="basic-addon-totalShipFee" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <h5>Địa chỉ gửi hàng</h5>
+                                    </div>
+
+                                    @*                                     <div class="col-sm-3">
+                                    <div class="form-group">
+                                    <span id="basic-addon-shipCountryAddress">Địa chỉ quốc gia gửi hàng</span>
+                                    <div class="input-group input-group-solid mb-5">
+                                    <input type="text" autocomplete="off" class="form-control input-shipCountryAddress" id="orders-shipCountryAddress" placeholder="shipCountryAddress" aria-label="shipCountryAddress" aria-describedby="basic-addon-shipCountryAddress" />
+                                    </div>
+                                    </div>
+                                    </div> *@
+
+                                    <div class="col-sm-3 d-none">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipProvinceAddress">Tỉnh thành phố gửi hàng</span>
+                                            <div class="overflow-hidden flex-grow-1">
+                                                <select class="form-select rounded-8 dataSelect" id="orders-shipProvinceAddress" data-control="select2" data-dropdown-parent="#modal-id">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 d-none">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipDistrictAddress">Quận gửi hàng</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-shipDistrictAddress" id="orders-shipDistrictAddress" placeholder="shipDistrictAddress" aria-label="shipDistrictAddress" aria-describedby="basic-addon-shipDistrictAddress" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 d-none">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipWardAddress">Phường gửi hàng</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-shipWardAddress" id="orders-shipWardAddress" placeholder="shipWardAddress" aria-label="shipWardAddress" aria-describedby="basic-addon-shipWardAddress" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipProvinceAddressId">Tỉnh/Thành phố</span>
+                                            <div class="overflow-hidden flex-grow-1">
+                                                <select class="form-select rounded-8 dataSelect" id="orders-shipProvinceAddressId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                </select>
+                                            </div>
+                                            <script>
+                                                async function loadDataSelectshipProvinceAddressId() {
+                                                    await $.ajax({
+                                                        url: systemURL + 'province/api/list',
+                                                        type: 'GET',
+                                                        async: 'true',
+                                                        contentType: 'application/json',
+                                                        success: function (responseData) {
+                                                            var data = responseData.data;
+                                                            if (data == null) {
+                                                                shipProvinceAddressIdData = null
+                                                            }
+                                                            else {
+                                                                shipProvinceAddressIdData = data;
+                                                            }
+
+                                                        },
+                                                        error: function (e) {
+                                                        }
+                                                    });
+                                                }
+                                                $(document).ready(function () {
+                                                    // loadDataSelectshipProvinceAddressId();
+                                                    $.when(loadDataSelectshipProvinceAddressId()).done(function () {
+                                                        $("#filtershipProvinceAddressId").select2();
+                                                        shipProvinceAddressIdData.forEach(function (item) {
+                                                            $('#orders-shipProvinceAddressId').append(new Option(item.name, item.id, false, false));
+                                                            $('#filtershipProvinceAddressId').append(new Option(item.name, item.id, false, false));
+                                                        })
+                                                    });
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipDistrictAddressId">Quận/Huyện</span>
+                                            <div class="overflow-hidden flex-grow-1">
+                                                <select class="form-select rounded-8 dataSelect" id="orders-shipDistrictAddressId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipWardAddressId">Xã/Phường</span>
+                                            <div class="overflow-hidden flex-grow-1">
+                                                <select class="form-select rounded-8 dataSelect" id="orders-shipWardAddressId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <span id="basic-addon-shipAddressDetail">Địa chỉ</span>
+                                            <div class="input-group input-group-solid mb-5">
+                                                <input type="text" autocomplete="off" class="form-control input-shipAddressDetail" id="orders-shipAddressDetail" placeholder="Địa chỉ chi tiết" aria-label="shipAddressDetail" aria-describedby="basic-addon-shipAddressDetail" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*  <div class="col-sm-3 d-none">
+                                    <div class="form-group">
+                                    <span id="basic-addon-finalPrice">Giá cuối cùng</span>
+                                    <div class="input-group input-group-solid mb-5">
+                                    <input type="text" autocomplete="off" class="form-control input-finalPrice" id="orders-finalPrice" placeholder="finalPrice" aria-label="finalPrice" aria-describedby="basic-addon-finalPrice" />
+                                    </div>
+                                    </div>
+                                    </div> *@
+
+                                    <div class="col-sm-3 d-none">
+
+                                        <div class="form-group">
+                                            <span>
+                                                Mã vourcher
+                                            </span>
+                                            <div class="input-group flex-nowrap mb-5">
+                                                <div class="overflow-hidden flex-grow-1">
+                                                    <select class="form-select rounded-8 dataSelect" id="orders-voucherId" data-control="select2" data-dropdown-parent="#modal-id">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    <div class="col-sm-12 row">
+                                        <div class="col-sm-9 product-details border-end">
+                                            <div class="product-title">
+                                                <h3>
+                                                    Danh sách sản phẩm
+                                                </h3>
+
+                                                <div class="form-group col-sm-6">
+                                                    <span class="required">
+                                                        Thêm sản phẩm
+                                                    </span>
+                                                    <div class="input-group flex-nowrap mb-5">
+                                                        <div class="overflow-hidden flex-grow-1">
+                                                            <select class="form-select rounded-8 productId" id="orderDetail-productId" data-control="select2-data-productId" data-dropdown-parent="#modal-id">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <table id="tableProduct" class="table tableProduct table-hover table-rounded table-row-bordered gy-3 gs-3">
+                                                    <thead>
+                                                        <tr class="fw-bold fs-6 text-gray-800">
+                                                            <th>Hình ảnh</th>
+                                                            <th>Tên sản phẩm</th>
+                                                            <th>Giá</th>
+                                                            <th>Số lượng</th>
+                                                            <th>Thành Tiền</th>
+                                                            <th>Thao tác</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr class="border-top fw-bold fs-6 text-gray-800">
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <div class="product-title">
+                                                <h3>
+                                                    Thanh toán và phí
+                                                </h3>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p style=" font-weight: 700;">Thành tiền</p>
+                                                <p style=" font-weight: 700;"><span class="price-format" id="orders-TotalMoney"></span> VNĐ</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p style=" font-weight: 700;">Phí ship</p>
+                                                <p style=" font-weight: 700;"><span id="orders-TotalShipFee"></span> VNĐ</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p style=" font-weight: 700;">Tổng hóa đơn</p>
+                                                <p style=" font-weight: 700;"><span class="price-format" id="orders-finalPrice"></span> VNĐ</p>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <span id="basic-addon-description">Mô tả</span>
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-solid mb-5">
+                                                        <textarea class="form-control  input-description " rows="2" id="orders-description" aria-label="description" aria-describedby="basic-addon-description"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <div class='form-group'>
+                                                    <span id="basic-addon-createdTime">Ngày tạo</span>
+                                                    <div class="input-group input-group-solid mb-5">
+                                                        <div class='form-control date datetimepicker  input-createdTime' id='orders-createdTimeDiv' style='padding:0px;'>
+                                                            <input type='text' autocomplete="off" id="orders-createdTime" required class="form-control datepicker" aria-label="createdTime" aria-describedby="basic-addon-createdTime" disabled readonly />
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"
+                                    data-bs-dismiss="modal">
+                                Đóng
+                            </button>
+                            <button type="button" class="btn btn-primary" id="btnUpdateItem">
+                                <span class="indicator-label">
+                                    Cập nhật
+                                </span>
+                                <span class="indicator-progress">
+                                    Đang tải... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Col-->
+        </div>
+    </div>
+    <!--end::Content container-->
+</div>
+<!--begin:Base load data-->
+<script>
+    var showItem = ['id', 'orderTypeId', 'orderStatusId', 'orderPaymentStatusId', 'orderStatusShipId', 'name', 'totalPrice', 'totalShipFee', 'tax', 'shipCountryAddress', 'shipProvinceAddress', 'shipDistrictAddress', 'shipWardAddress', 'shipAddressDetail', 'shipRecipientName', 'shipRecipientPhone', 'shipProvinceAddressId', 'shipDistrictAddressId', 'shipWardAddressId', 'finalPrice', 'promotionId', 'labelId', 'createdTime', "accountName", "accountId"];
+    var dataSource = [];
+    var updatingItemId = 0;
+    var editObj;
+    var tableUpdating = 0;
+    var table;
+    var selectProduct = $('#orderDetail-productId')
+    var listProduct = $(".list-detail-product")
+    var productData = [];
+    var dataProduct
+    var tableProduct;
+    var orderDetail
+    var shipProvinceAddressIdData = [];
+    var shipDistrictAddressIdData = [];
+    var shipWardAddressIdData = [];
+    listProduct.html("")
+    const submitButton = document.getElementById('btnUpdateItem');
+    submitButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        submitButton.setAttribute('data-kt-indicator', 'on');
+        // Disable button to avoid multiple click
+        submitButton.disabled = true;
+        // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+        updateItem(updatingItemId);
+    });
+    $('#search-input').on("input", function () {
+        table.search($(this).val()).draw();
+    });
+    $(document).ready(function () {
+        // Load data
+        loadData();
+        productTable();
+        LoadDataSelectAccount();
+        // Datetime picker
+        document.querySelectorAll(".datepicker").forEach(function (item) {
+            new tempusDominus.TempusDominus(item, datePickerOption);
+        })
+        $(".datepicker").on('dp.change', function (e) {
+            this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+        });
+        //Flat pickr format
+        $("#filterCreatedTime_input").flatpickr({
+            dateFormat: "d/m/Y",
+            mode: "range",
+        });
+        $("#open-flatpickr").click(function () {
+            $("#filterCreatedTime_input").click();
+        });
+        $("#clear-flatpickr").click(function () {
+            $("#filterCreatedTime_input").val("");
+        });
+
+        $('.dataSelect').select2();
+
+        $("#btnTableSearch").click(function () {
+            tableSearch();
+        });
+
+        $("#tableData thead:nth-child(2) tr th input").keypress(function (e) {
+            let key = e.which;
+            if (key == 13) {
+                $("#btnTableSearch").click();
+            }
+        });
+
+        $("#btnTableResetSearch").click(function () {
+            $(".tableheaderFillter").val("").trigger("change");
+            tableSearch();
+        });
+
+        $("#orderDetail-productId").on("change", function () {
+            if ($("#orderDetail-productId").val()) {
+                var product = getProductById($("#orderDetail-productId").val());
+                if (isExistProductInTable(product.id)) {
+                    swal.fire({
+                        icon: 'warning',
+                        title: 'Thêm sản phẩm vào đơn',
+                        html: 'Sản phẩm đã có trong đơn.'
+                    });
+                }
+                else {
+                    tableProduct.row.add({
+                        "id": 0,
+                        "productId": product.id,
+                        "productName": product.name,
+                        "price": product.price,
+                        "quantity": 1,
+                        "finalPrice": product.price,
+                        "productPhoto": product.photo,
+                        "createdTime": product.createdTime
+                    }).draw();
+
+                    //trigger change lại product
+                    $("#orderDetail-productId").val("").trigger("change");
+                    //Tính toán lại giá tiền cho toàn bộ bảng
+                    calculateAllPrice();
+                }
+            }
+            formatNumber();
+        })
+        formatNumber();
+    });
+  
+    $(".tableProduct").on("click", ".btn-quantity-plus", function (element) {
+        let parent = $(this).parent();
+        var quantity = parseInt(parent.find('.input-quantity').val());
+        quantity += 1;
+        parent.find('.input-quantity').val(quantity).trigger('change')
+        // CalculateGHTKShipFee();
+
+    })
+
+    function onChangeQuantity(element) {
+        let $row = $(element).parents("tr")
+        let data = tableProduct.row($row).data();
+
+        let oldQuantity = parseInt(data.quantity);
+        let newQuantity = $(element).val().replace(/\D/g, '') ? parseInt($(element).val().replace(/\D/g, '')) : oldQuantity;
+        data.quantity = newQuantity;
+        data.finalPrice = newQuantity * data.price;
+        tableProduct.row($row).data(data).draw();
+        calculateAllPrice();
+        formatNumber();
+
+    }
+    $(".tableProduct").on("click", ".btn-quantity-minus", function (element) {
+        let parent = $(this).parent();
+        var quantity = parseInt(parent.find('.input-quantity').val());
+        var oldQuantity = quantity;
+        quantity -= 1;
+        if (quantity == 0) {
+            let $row = parent.parents("tr")
+            let data = tableProduct.row($row).data();
+            Swal.fire({
+                title: 'Xóa sản phẩm',
+                text: "Xóa sản phẩm này khỏi đơn hàng?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Xác nhận',
+                cancelButtonText: 'Huỷ'
+            }).then((result) => {
+                if (result.value) {
+                    tableProduct.row($row).remove().draw();
+                    calculateAllPrice();
+                    // if (!IsHaveNewOrderDetail()) {
+                    //     $(".empty-products").show();
+                    // }
+                }
+                else {
+                    quantity = oldQuantity;
+                    calculateAllPrice();
+                }
+            })
+        }
+        else {
+            parent.find('.input-quantity').val(quantity).trigger('change')
+            calculateAllPrice();
+            // CalculateGHTKShipFee();
+        }
+    })
+
+    function calculateAllPrice() {
+        let totalPrice = 0;
+        tableProduct.rows().every(function (rowIdx, tableLoop, rowLoop) {
+            totalPrice += this.data().finalPrice;
+        });
+        $("#orders-TotalMoney").text(totalPrice).val(totalPrice);
+        let finalPrice = parseInt($("#orders-TotalMoney").val()) + parseInt($("#orders-TotalShipFee").val())
+        $("#orders-finalPrice").val(finalPrice).text(finalPrice);
+        formatNumber();
+    }
+
+    async function getItemById(id) {
+        var data;
+        await $.ajax({
+            url: systemURL + "orders/api/detailbyid/" + id,
+            method: "GET",
+            success: function (responseData) {
+                data = responseData.data[0];
+                dataProduct = data.orderDetails;
+            },
+            error: function (e) {
+            },
+        });
+        return data;
+    }
+
+    function getProductById(id) {
+        const result = productData.find(item => parseInt(item.id) == parseInt(id));
+        return result;
+    }
+    function isExistProductInTable(productId) {
+        let isExist = false;
+        tableProduct.rows().every(function () {
+            if (this.data().productId == productId) isExist = true;
+        });
+        return isExist;
+    }
+
+    function productTable() {
+        tableProduct = $("#tableProduct").DataTable({
+            order: [1, 'desc'],
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            columns: [
+                {
+                    data: "productPhoto",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'><img src='" + row.productPhoto + "' class='image-product' width='50' height='50' /><span>";
+                    },
+                },
+                {
+                    data: "productName",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + row.productName + "<span>";
+                    },
+                },
+                {
+                    data: "price",
+                    render: function (data, type, row, meta) {
+                        return "<span data-price=" + row.id + " class='price-format' id='row" + row.productId + "-column-id'>" + row.price + "<span>";
+                    },
+                },
+                {
+                    data: "quantity",
+                    render: function (data, type, row, meta) {
+                        return `<span class="button-quantity" id='row` + row.id + `-column-id'>
+                                                                                                                        <a class="btn btn-primary btn-quantity-minus"><span class="fas fa-minus"></span></a>
+                                                                                                                                <input onchange="onChangeQuantity(this)" value="`+ row.quantity + `" class="form-control input-quantity"/>
+                                                                                                                        <a class="btn btn-primary btn-quantity-plus"><span class="fas fa-plus"></span></a>
+                                                                                                                        </span>`
+                    },
+                },
+                {
+                    data: "finalPrice",
+                    render: function (data, type, row, meta) {
+                        return "<span data-finalPrice=" + row.id + " class='new-product-priceValue price-format' id='row" + row.productId + "-column-id'>" + row.finalPrice + "<span>";
+                    },
+                },
+
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        return "<div class='d-flex justify-content-center gap-2'>"
+                            + "<button title='Xoá' type='button' onclick='deleteOrderDetail(this)' class='btn btn-icon btn-admin-danger'><i class='fas fa-trash' style='color: #DC3545; '></i></button>"
+                    }
+                },
+
+            ],
+            createdRow: function (row, data, dataIndex) {
+                $(row).attr('data-productId', data.productId);
+                $(row).attr('data-id', data.id);
+            },
+        })
+
+    }
+
+    async function loadDataSelectProduct() {
+        await $.ajax({
+            url: systemURL + 'product/api/list',
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                var data = responseData.data;
+                productData = data;
+            },
+            error: function (e) {
+            }
+        });
+    }
+    $(document).ready(function () {
+        // loadDataSelectProduct();
+        $.when(loadDataSelectProduct()).done(function () {
+            productData.unshift({ id: 0, name: 'Chọn' })
+            $("#orderDetail-productId").select2({
+                language: 'vi',
+                dropdownCssClass: 'bigdrop',
+                minimumInputLength: 1,
+                escapeMarkup: function (markup) { return markup; },
+                ajax: {
+                    url: systemURL + 'product/api/search',
+                    type: "POST",
+                    contentType: "application/json",
+                    data: function (params) {
+                        return JSON.stringify({
+                            searchString: params.term
+                            //pageLimit: 10
+                        });
+                    },
+                    processResults: function (res) {
+                        var data = res.data;
+                        productData = data
+                        return {
+                            results: data
+                        };
+                    }
+                },
+                templateResult: formatProductResult,
+                templateSelection: formatProductSelection
+            });
+
+        });
+    });
+    function formatProductResult(data) {
+        var price = "";
+        return `<div class="d-flex justify-content-between gap-10px p-1">
+                                 <span><img class='image-product-select' src='${data.photo}' /></span>
+                                 <span style="min-width: 120px; display: inline-block">
+                                    <strong class='ellipsis3'>${data.name}</strong>
+                                    <div class="d-flex flex-row justify-content-between p-1">
+                                                <span style="display: inline-block" class='price-format'> ${formatCurrency2(data.price)} vnđ</span>
+                                        <span style="display: inline-block">SL: ${data.quantity}</span>
+                                    </div>
+                                 </span>
+                            </div>
+
+                            <div style="border-bottom: 1px solid #ced4da""></div>
+                    `;
+    }
+    function formatProductSelection(data) {
+        return `\
+                           <div class="">\
+                             <span>${data.name}</span>\
+                           </div>\
+                    `;
+    }
+    function formatAccountResult(data) {
+        var price = "";
+        return `<div class="d-flex justify-content-start gap-10px p-1 align-items-center">
+                                     <span><img class='image-account-select' src='${data.photo}' /></span>
+                                     <span style="min-width: 30px; display: inline-block">
+                                        <strong class='ellipsis3'>${data.name}</strong>
+                                     </span>
+                                </div>
+
+                                <div style="border-bottom: 1px solid #ced4da""></div>
+                        `;
+    }
+    function formatAccountSelection(data) {
+        $("#orders-accountPhone").val(data.phone).attr("href", "tel:" + data.phone);
+       
+        return `\
+                               <div class="">\
+                                 <span class='d-flex flex-row gap-10px align-items-center'><img class='image-account-select' src="${data.photo}"/>${data.name}</span>\
+                               </div>\
+                        `;
+    }
+   
+    async function deleteOrderDetail(element) {
+        let $row = $(element).parents("tr")
+        let data = tableProduct.row($row).data();
+        await swal.fire({
+            icon: 'warning',
+            title: 'Xóa sản phẩm',
+            html: 'Xóa sản phẩm này khỏi đơn hàng?',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.value) {
+                tableProduct.row($row).remove().draw();
+                // Xoá xong phải tính lại tiền tổng đơn
+                calculateAllPrice();
+            }
+            else {
+                // Remove loading indication
+                submitButton.removeAttribute('data-kt-indicator');
+                // Enable button
+                //submitButton.disabled = false;
+            }
+        })
+    }
+    function loadData() {
+        initTable();
+    }
+    function initTable() {
+        table = $('#tableData').DataTable({
+            processing: true,
+            serverSide: true,
+            paging: true,
+            searching: { regex: true },
+            order: [1, 'desc'],
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            ajax: {
+                url: systemURL + "orders/api/list-server-side",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: function (d) {
+                    d.searchAll = $("#search-input").val();
+                    d.orderTypeIds = $("#filterOrderTypeId").val(); d.orderStatusIds = $("#filterOrderStatusId").val(); d.orderPaymentStatusIds = $("#filterOrderPaymentStatusId").val(); d.orderStatusIds = $("#filterOrderStatusId").val(); d.orderStatusShipIds = $("#filterOrderStatusShipId").val(); d.voucherIds = $("#filterVoucherId").val();
+                    return JSON.stringify(d);
+                }
+            },
+            columns: [
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        var info = table.page.info();
+                        var stt = meta.row + 1 + info.page * info.length;
+                        return stt; // This contains the row index
+                    }
+                },
+
+                {
+                    data: "id",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'><b>#" + data + "</b><span>";
+                    },
+                },
+
+                {
+                    data: "orderTypeId",
+                    render: function (data, type, row, meta) {
+                        return generateHTMLStatus(row.orderTypeId, row.orderTypeName, "orderTypeId");
+                    },
+                },
+                {
+                    data: "orderStatusId",
+                    render: function (data, type, row, meta) {
+                        return generateHTMLStatus(row.orderStatusId, row.orderStatusName, "orderStatusId");
+                    },
+                },
+                {
+                    data: "orderPaymentStatusId",
+                    render: function (data, type, row, meta) {
+                        return generateHTMLStatus(row.orderPaymentStatusId, row.orderPaymentStatusName, "orderPaymentStatusId");
+                    },
+                },
+                // {
+                //     data: "orderStatusShipId",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + row.orderStatusName + "<span>";
+                //     },
+                // },
+                // {
+                //     data: "totalPrice",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + (data != null ? data : 0) + "<span>";
+                //     },
+                // },
+
+                {
+                    data: "accountName",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id' class='no-wr'><img class='column-image' width='30' height='30' style='margin-right: 8px;' src='" + row.accountPhoto + "'/>" + data + "<span>";
+                    },
+                },
+                {
+                    data: "accountPhone",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>  <a class='phone' id='phone-tel' href='tel:" + (row.shipRecipientPhone != null ? (row.shipRecipientPhone != '' ? row.shipRecipientPhone : (data != null ? data : 0)) : (data != null ? data : 0)) + "'><i class='bi bi-telephone-fill fs-2 text-success'></i>" + (row.shipRecipientPhone != null ? (row.shipRecipientPhone != '' ? row.shipRecipientPhone : (data != null ? data : 0)) : (data != null ? data : 0)) + "</a><span>";
+                    },
+                },
+                {
+                    data: "finalPrice",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'><b class='price-format'>" + (data != null ? data : 0) + "</b><span>";
+                    },
+                },
+
+                // {
+                //     data: "tax",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipCountryAddress",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipProvinceAddress",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipDistrictAddress",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipWardAddress",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+                {
+                    data: "shipAddressDetail",
+                    render: function (data, type, row, meta) {
+                        var addressFull = row.shipAddressDetail + ", " + row.shipWardAddress + ", " + row.shipDistrictAddress + ", " + row.shipProvinceAddress;
+                        if (addressFull.length <= 6) {
+                            addressFull = 'Chưa nhập địa chỉ';
+                        }
+                        return "<span id='row" + row.id + "-column-id'>" + addressFull + "<span>";
+                    },
+                },
+                // {
+                //     data: "shipRecipientName",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipRecipientPhone",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipProvinceAddressId",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipDistrictAddressId",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+                // {
+                //     data: "shipWardAddressId",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+
+                // {
+                //     data: "promotionId",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + row.voucherName + "<span>";
+                //     },
+                // },
+                // {
+                //     data: "labelId",
+                //     render: function (data, type, row, meta) {
+                //         return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                //     },
+                // },
+
+
+
+                {
+                    data: "createdTime",
+                    render: function (data) {
+                        var tempDate = new Date(data);
+                        var displayValue = moment(data).format("DD/MM/YYYY HH:mm:ss");
+                        return displayValue;
+                    }
+                },
+
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        return "<div class='d-flex justify-content-center gap-2'>"
+                            + "<a title='Cập nhật' onclick='editItem(" + row.id + ")' class='me-2 btn_manage'><span class='svg-icon-success svg-icon  svg-icon-1 svg_teh009'><span class='svg-icon-primary svg-icon  svg-icon-1'> <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path opacity='0.3' fill-rule='evenodd' clip-rule='evenodd' d='M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z' fill='currentColor'></path><path d='M10.9256 11.1882C10.5351 10.7977 10.5351 10.1645 10.9256 9.77397L18.0669 2.6327C18.8479 1.85165 20.1143 1.85165 20.8953 2.6327L21.3665 3.10391C22.1476 3.88496 22.1476 5.15129 21.3665 5.93234L14.2252 13.0736C13.8347 13.4641 13.2016 13.4641 12.811 13.0736L10.9256 11.1882Z' fill='currentColor'></path><path d='M8.82343 12.0064L8.08852 14.3348C7.8655 15.0414 8.46151 15.7366 9.19388 15.6242L11.8974 15.2092C12.4642 15.1222 12.6916 14.4278 12.2861 14.0223L9.98595 11.7221C9.61452 11.3507 8.98154 11.5055 8.82343 12.0064Z' fill='currentColor'></path></svg></span></span></a>"
+                            + "<a title='Cập nhật' onclick='deleteItem(" + row.id + ")' class='me-2 btn_manage'><span class='svg-icon-success svg-icon  svg-icon-1 svg_teh009'><span class='svg-icon-danger svg-icon  svg-icon-1'><svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z' fill='currentColor'></path><path opacity='0.5' d='M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z' fill='currentColor'></path><path opacity='0.5' d='M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z' fill='currentColor'></path></svg></span></a>"
+                    }
+                },
+
+            ],
+            columnDefs: [
+                { targets: "no-sort", orderable: false },
+                { targets: "no-search", searchable: false },
+                { orderable: false, targets: [-1, 0] },
+            ],
+            aLengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            drawCallback: function () {
+                $('#tableData tfoot').html("");
+                $("#tableData thead:nth-child(1) tr").clone(true).appendTo("#tableData tfoot");
+                $('#tableData tfoot tr').addClass("border-top");
+                formatNumber();
+            }
+        });
+    }
+    async function editItem(id) {
+        var dataAcc = accountData;
+        updatingItemId = id;
+        $("#defaultModalTitle").text(id == 0 ? "Thêm mới đơn hàng" : "Cập nhật đơn hàng: #" + id);
+        $("#modal-id").modal('show');
+        tableProduct.clear().draw();
+        if (id > 0) {
+            editObj = await getItemById(id);
+            if (editObj.totalShipFee == null) {
+                editObj.totalShipFee = "0"
+            }
+            if (editObj.finalPrice == null) {
+                editObj.finalPrice = Number(editObj.totalShipFee) + Number(editObj.totalPrice)
+            }
+            if (editObj.orderDetails.length > 0) {
+                editObj.orderDetails.forEach(function (item, index) {
+                    tableProduct.row.add({
+                        "id": item.id,
+                        "productId": item.productId,
+                        "productName": item.productName,
+                        "productPhoto": item.productPhoto,
+                        "price": item.price,
+                        "quantity": item.quantity,
+                        "finalPrice": item.finalPrice,
+
+                    });
+                });
+                tableProduct.draw();
+            }
+            $("#orders-AccountName").select2({
+                language: 'vi',
+                dropdownCssClass: 'bigdrop',
+                minimumInputLength: 1,
+                escapeMarkup: function (markup) { return markup; },
+                data: dataAcc,
+                ajax: {
+                    url: systemURL + 'account/api/search',
+                    type: "POST",
+                    contentType: "application/json",
+                    data: function (params) {
+                        console.log(params)
+                        return JSON.stringify({
+                            searchString: params.term
+                            //pageLimit: 10
+                        });
+                    },
+                    processResults: function (res) {
+                        var data = res.data;
+                        dataAcc = data;
+                        return {
+                            results: data
+                        };
+                    }
+                },
+                templateResult: formatAccountResult,
+                templateSelection: formatAccountSelection
+            });
+        }
+       
+        $("#orders-id").val(id > 0 ? editObj.id : "0");
+        $("#orders-orderTypeId").val(id > 0 ? editObj.orderTypeId : "").trigger("change");
+        $("#orders-orderStatusId").val(id > 0 ? editObj.orderStatusId : "").trigger("change");
+        $("#orders-orderPaymentStatusId").val(id > 0 ? editObj.orderPaymentStatusId : "").trigger("change");
+        $("#orders-orderStatusShipId").val(id > 0 ? editObj.orderStatusShipId : "").trigger("change");
+        $("#orders-orderStatusShipId").val(id > 0 ? editObj.orderStatusShipId : "").trigger("change");
+        $("#orders-active").val(id > 0 ? editObj.active : "");
+        $("#orders-name").val(id > 0 ? editObj.name : "");
+        $("#orders-description").val(id > 0 ? editObj.description : "");
+        $("#orders-info").val(id > 0 ? editObj.info : "");
+        $("#orders-TotalShipFee").val(id > 0 ? editObj.totalShipFee : "0").text(id > 0 ? editObj.totalShipFee : "0");
+        $("#orders-Tax").val(id > 0 ? editObj.tax : "0").text(id > 0 ? editObj.tax : "0");
+        $("#orders-shipCountryAddress").val(id > 0 ? editObj.shipCountryAddress : "");
+        $("#orders-shipProvinceAddress").val(id > 0 ? editObj.shipProvinceAddress : "");
+        $("#orders-shipDistrictAddress").val(id > 0 ? editObj.shipDistrictAddress : "");
+        $("#orders-shipWardAddress").val(id > 0 ? editObj.shipWardAddress : "");
+        $("#orders-shipAddressDetail").val(id > 0 ? editObj.shipAddressDetail : "");
+        $("#orders-AccountName").val(id > 0 ? editObj.accountId : "").trigger("change");
+        $("#orders-accountPhone").val(id > 0 ? (editObj.shipRecipientPhone != null ? editObj.shipRecipientPhone : editObj.accountPhone) : "");
+        $("#phone-tel").attr("href", "tel:" + (id > 0 ? (editObj.shipRecipientPhone != null ? editObj.shipRecipientPhone : editObj.accountPhone) : ""));
+
+        $.when(loadDataSelectshipDistrictAddressId(id > 0 ? editObj.shipProvinceAddressId : ""), loadDataSelectshipWardAddressId(id > 0 ? editObj.shipDistrictAddressId : "")).done(async function () {
+            $("#orders-shipProvinceAddressId").val(id > 0 ? editObj.shipProvinceAddressId : "").trigger("change");
+            $("#orders-shipDistrictAddressId").val(id > 0 ? editObj.shipDistrictAddressId : "").trigger("change");
+            $("#orders-shipWardAddressId").val(id > 0 ? editObj.shipWardAddressId : "").trigger("change");
+        });
+        $("#orders-finalPrice").val(id > 0 ? editObj.finalPrice : "0").text(id > 0 ? editObj.finalPrice : "0")
+        $("#orders-voucherId").val(id > 0 ? editObj.promotionId : "").trigger("change");
+        $("#orders-labelId").val(id > 0 ? editObj.labelId : "");
+        $("#orders-TotalMoney").val(id > 0 ? editObj.totalPrice : "0").text(id > 0 ? editObj.totalPrice : "0");
+        $("#orders-createdTime").val(id > 0 ? moment(editObj.createdTime).format("DD/MM/YYYY HH:mm:ss") : moment(new Date()).format("DD/MM/YYYY HH:mm:ss"));
+
+        formatNumber();
+    }
+    async function updateItem(id) {
+        var actionName = (id == 0 ? "Bạn muốn tạo mới" : "Cập nhật");
+        var obj;
+        var listOrder
+        var listOrderDetail = []
+        if (id > 0) {
+            obj = await getItemById(id);
+        }
+        tableProduct.rows().every(function (rowIdx, tableLoop, rowLoop) {
+            let data = this.data();
+            orderDetail = {
+                id: data.id,
+                orderId: id,
+                productId: data.productId,
+                quantity: data.quantity,
+                price: data.price,
+                finalPrice: data.finalPrice,
+                active: 1,
+                orderDetailStatusId: 0,
+                createdTime: moment(data.createdTime).format("YYYY-MM-DDTHH:mm:ss"),
+            }
+            listOrderDetail.push(orderDetail);
+        })
+        let objName = id > 0 ? obj.name : "item";
+        var shipProvinceAddress = shipProvinceAddressIdData.find(x => x.id == $("#orders-shipProvinceAddressId").val())
+        var shipDistrictAddress = shipDistrictAddressIdData.find(x => x.id == $("#orders-shipDistrictAddressId").val());
+        var shipWardAddress = shipWardAddressIdData.find(x => x.id == $("#orders-shipWardAddressId").val())
+        validateInputNumber();
+        var updatingObj = {
+            "id": $("#orders-id").val(),
+            "orderTypeId": $("#orders-orderTypeId").val(),
+            "orderStatusId": $("#orders-orderStatusId").val(),
+            "orderPaymentStatusId": $("#orders-orderPaymentStatusId").val(),
+            "orderStatusShipId": $("#orders-orderStatusShipId").val(),
+            "active": $("#orders-active").val(),
+            "name": $("#orders-name").val(),
+            "description": $("#orders-description").val(),
+            "info": $("#orders-info").val(),
+            "totalPrice": $("#orders-TotalMoney").val(),
+            "totalShipFee": $("#orders-TotalShipFee").val(),
+            "tax": $("#orders-tax").val(),
+            "shipProvinceAddress": $("#orders-shipProvinceAddressId :selected").text(),
+            "shipDistrictAddress": $("#orders-shipDistrictAddressId :selected").text(),
+            "shipWardAddress": $("#orders-shipProvinceAddressId :selected").text(),
+            "shipAddressDetail": $("#orders-shipAddressDetail").val(),
+            "AccountName": $("#orders-AccountName").val(),
+            "accountPhone": $("#orders-accountPhone").val(),
+            "shipProvinceAddressId": $("#orders-shipProvinceAddressId").val(),
+            "shipDistrictAddressId": $("#orders-shipDistrictAddressId").val(),
+            "shipWardAddressId": $("#orders-shipWardAddressId").val(),
+            "shipRecipientPhone": $("#orders-accountPhone").val(),
+            "finalPrice": $("#orders-finalPrice").val(),
+            "promotionId": $("#orders-voucherId").val(),
+            "labelId": $("#orders-labelId").val(),
+            "accountId": $("#orders-AccountName").val(),
+            "createdTime": formatDatetimeUpdate($("#orders-createdTime").val()),
+            "orderDetails": listOrderDetail,
+        };
+        Swal.fire({
+            title: 'Xác nhận thay đổi?',
+            text: "" + actionName + " đơn hàng " + "#" + id,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Xác nhận',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: systemURL + "orders/api/UpdateOrder",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                toastr.success(
+                                    'Đã cập nhật "#' + id + '" ',
+                                    'Thành Công!',
+                                    { timeOut: 2000, extendedTimeOut: 1000, closeButton: true, closeDuration: 1000 }
+                                );
+                                // Swal.fire(
+                                //     'Thành Công!',
+                                //     'Đã cập nhật "#' + id + '" ',
+                                //     'success'
+                                // );
+                                reGenTable();
+                                // Remove loading indication
+                                submitButton.removeAttribute('data-kt-indicator');
+                                // Enable button
+                                submitButton.disabled = false;
+                            }
+                        },
+                        error: function (e) {
+                            toastr.error(
+                                'Đã xảy ra lỗi, vui lòng thử lại',
+                                'Lỗi!',
+                                { timeOut: 0, extendedTimeOut: 0, closeButton: true, closeDuration: 0 }
+                            );
+                            // Swal.fire(
+                            //     'Lỗi!',
+                            //     'Đã xảy ra lỗi, vui lòng thử lại',
+                            //     'error'
+                            // );
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
+                            // Enable button
+                            submitButton.disabled = false;
+                        }
+                    });
+                };
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    updatingObj.createdTime = new Date();
+                    $.ajax({
+                        url: systemURL + "orders/api/AddOrder",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                toastr.success(
+                                    'Thành công!',
+                                    'Đã thêm mới dữ liệu',
+                                    { timeOut: 0, extendedTimeOut: 0, closeButton: true, closeDuration: 0 }
+                                );
+                                // Swal.fire(
+                                //     'Thành công!',
+                                //     'Đã cập nhật dữ liệu',
+                                //     'success'
+                                // );
+                                updatingObj = responseData.data;
+                                reGenTable();
+                                // Remove loading indication
+                                submitButton.removeAttribute('data-kt-indicator');
+                                // Enable button
+                                submitButton.disabled = false;
+                            }
+                        },
+                        error: function (e) {
+                            toastr.error(
+                                'Đã xảy ra lỗi, vui lòng thử lại',
+                                'Lỗi!',
+                                { timeOut: 0, extendedTimeOut: 0, closeButton: true, closeDuration: 0 }
+                            );
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
+                            // Enable button
+                            submitButton.disabled = false;
+                        }
+                    });
+                }
+            }
+            else {
+                // Remove loading indication
+                submitButton.removeAttribute('data-kt-indicator');
+                // Enable button
+                submitButton.disabled = false;
+            }
+        })
+    }
+    async function deleteItem(id) {
+        updatingObj = table.ajax.json().data.find(c => c.id == id);
+        let objName = id > 0 ? updatingObj.name : "item";
+        Swal.fire({
+            title: 'Xác nhận thay đổi?',
+            text: "Xóa " + objName + "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.value) {
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: systemURL + "orders/api/delete",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "id": id }),
+                    success: function (responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            toastr.success(
+                                'Thành công!',
+                                'Đã xoá đơn hàng #' + id + '.',
+                                { timeOut: 0, extendedTimeOut: 0, closeButton: true, closeDuration: 0 }
+                            );
+                            // Swal.fire(
+                            //     'Thành công!',
+                            //     'Đã xoá đơn hàng #' + id + '.',
+                            //     'success'
+                            // );
+                            reGenTable();
+                        }
+                    },
+                    error: function (e) {
+                        toastr.error(
+                            'Đã xảy ra lỗi, vui lòng thử lại',
+                            'Lỗi!',
+                            { timeOut: 0, extendedTimeOut: 0, closeButton: true, closeDuration: 0 }
+                        );
+                        // Swal.fire(
+                        //     'Lỗi!',
+                        //     'Đã xảy ra lỗi, vui lòng thử lại',
+                        //     'error'
+                        // );
+                    }
+                });
+
+            }
+            else {
+                // Remove loading indication
+                submitButton.removeAttribute('data-kt-indicator');
+                // Enable button
+                submitButton.disabled = false;
+            }
+        })
+    }
+
+    function reGenTable() {
+        tableUpdating = 0;
+        table.destroy();
+        $(".tableHeaderFilter").val(null).trigger("change");
+        $("#tableData tbody").html('');
+        loadData();
+    }
+    function generateHTMLStatus(statusId, text, type) {
+        if (type.toString().toLowerCase() == "ordertypeid") {
+            if (statusId == 10000001) {
+                return `<span class="badge py-3 px-4" style="color:#f16622; background-color:#fde1d3">${text}</span>`;
+            }
+            else if (statusId == 10000002) {
+                return `<span class="badge py-3 px-4" style="color:#2ab338; background-color:#d5f0d8">${text}</span>`;
+            }
+        }
+        else if (type.toString().toLowerCase() == "orderstatusid") {
+            if (statusId == 1000001) {
+                return `<span class="badge py-3 px-4" style="color:#009ef7; background-color:#ccecfe">${text}</span>`;
+            }
+            else if (statusId == 1000002) {
+                return `<span class="badge py-3 px-4" style="color:#7239ea; background-color:#e3d8fb">${text}</span>`;
+            }
+            else if (statusId == 1000003) {
+                return `<span class="badge py-3 px-4" style="color:#dbbb48; background-color:#f8f2db">${text}</span>`;
+            }
+            else if (statusId == 1000004) {
+                return `<span class="badge py-3 px-4" style="color:#2ab338; background-color:#d5f0d8">${text}</span>`;
+            }
+            else if (statusId == 1000005) {
+                return `<span class="badge py-3 px-4" style="color:#949494; background-color:#eaeaea">${text}</span>`;
+            }
+            else if (statusId == 1000006) {
+                return `<span class="badge py-3 px-4" style="color:#d02550; background-color:#f6d4dc">${text}</span>`;
+            }
+            else if (statusId == 1000007) {
+                return `<span class="badge py-3 px-4" style="color:#2ab338; background-color:#d5f0d8">${text}</span>`;
+            }
+            else if (statusId == 1000008) {
+                return `<span class="badge py-3 px-4" style="color:#f16622; background-color:#fde1d3">${text}</span>`;
+            }
+        }
+        else if (type.toString().toLowerCase() == "orderpaymentstatusid") {
+            if (statusId == 1000001) {
+                return `<span class="badge py-3 px-4" style="color:#009ef7; background-color:#ccecfe">${text}</span>`;
+            }
+            else if (statusId == 1000002) {
+                return `<span class="badge py-3 px-4" style="color:#7239ea; background-color:#e3d8fb">${text}</span>`;
+            }
+        }
+    }
+</script>
+<!--end:Base load data-->
+<!--begin:setting in data table-->
+<script>
+    function tableSearch() {
+        table.column(1).search($("#tableData thead:nth-child(2) tr th:nth-child(2) input").val());
+        table.column(2).search($("#tableData thead:nth-child(2) tr th:nth-child(3) input").val());
+        table.column(5).search($("#tableData thead:nth-child(2) tr th:nth-child(6) input").val());
+        table.column(6).search($("#tableData thead:nth-child(2) tr th:nth-child(7) input").val());
+        table.column(7).search($("#tableData thead:nth-child(2) tr th:nth-child(8) input").val());
+        table.column(8).search($("#tableData thead:nth-child(2) tr th:nth-child(9) input").val());
+        table.draw();
+    }
+</script>
+<!--end:setting in data table-->
+
+<script>
+    $(document).ready(function () {
+        $('#orders-shipProvinceAddressId').on('select2:select',async function (e) {
+            // var data = e.params.data;
+            var id = $(this).val();
+            $('#orders-shipDistrictAddressId').html("");
+            $('#orders-shipWardAddressId').html("");
+            await loadDataSelectshipDistrictAddressId(id);
+        });
+        $('#orders-shipDistrictAddressId').on('select2:select', async function (e) {
+            // var data = e.params.data;
+            var id = $(this).val();
+            $('#orders-shipWardAddressId').html("");
+            await loadDataSelectshipWardAddressId(id);
+        });
+
+        $("#orders-AccountName").on("select2:select", function (e) {
+            var data = e.params.data;
+            $('#orders-shipDistrictAddressId').html("");
+            $('#orders-shipWardAddressId').html("");
+            $.when(loadDataSelectshipDistrictAddressId(data.addressCity == null ? '' : data.addressCity)).done(async function () {
+                await loadDataSelectshipWardAddressId(data.addressDistrict == null ? '' : data.addressDistrict);
+                $("#orders-shipProvinceAddressId").val(data.addressCity == null ? '' : data.addressCity).trigger("change");
+                $("#orders-shipDistrictAddressId").val(data.addressDistrict == null ? '' : data.addressDistrict).trigger("change");
+                $("#orders-shipWardAddressId").val(data.addressWard == null ? '' : data.addressWard).trigger("change");
+            });
+        });
+        // LoadDistrict();
+        // LoadWard();
+    });
+    //Load tỉnh thành phố theo từng id
+    async function loadDataSelectshipDistrictAddressId(provinceId) {
+        await $.ajax({
+            url: systemURL + 'district/api/ListByProvinceId/' + provinceId,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                var data = responseData.data;
+                $("#filtershipDistrictAddressId").select2();
+                data.forEach(function (item) {
+                    $('#orders-shipDistrictAddressId').append(new Option(item.name, item.id, false, false));
+                })
+
+            },
+            error: function (e) {
+            }
+        });
+    }
+    async function loadDataSelectshipWardAddressId(districtId) {
+        await $.ajax({
+            url: systemURL + 'ward/api/ListByDistrictId/' + districtId,
+            type: 'GET',
+            async: 'true',
+            contentType: 'application/json',
+            success: function (responseData) {
+                var data = responseData.data;
+                $("#filtershipWardAddressId").select2();
+                data.forEach(function (item) {
+                    $('#orders-shipWardAddressId').append(new Option(item.name, item.id, false, false));
+                })
+
+            },
+            error: function (e) {
+            }
+        });
+    }
+</script>

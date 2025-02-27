@@ -1,0 +1,68 @@
+﻿.tab-pane {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    margin-top: 64px;
+    margin-bottom: 32px;
+}
+
+.medicalinfo_card {
+    padding: 24px 32px 40px 40px;
+}
+
+textarea {
+    border-radius: 15px;
+    border: none;
+    height: 100px;
+}
+
+.other-diseases {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+input, textarea {
+    border-radius: 15px;
+    border: none;
+}
+
+.blood-group {
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-value {
+    /*width: 256.825px;*/
+    height: 48px;
+    flex-shrink: 0;
+    width: 100%;
+    padding: 10px;
+    display: block;
+    outline: none;
+}
+
+.input {
+    padding: 10px;
+    display: block;
+    outline: none;
+}
+
+.general-editing {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 64px;
+}
+
+.blood-group-input {
+    width: 100%;
+    height: 48px;
+    flex-shrink: 0;
+}
+.title{
+    margin-top: 15px;
+}

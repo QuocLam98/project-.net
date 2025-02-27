@@ -1,0 +1,386 @@
+﻿@{
+    Layout = null;
+}
+<script>
+    var orderId = '@ViewBag.OrderId';
+</script>
+<style>
+.select2-selection__rendered{
+    height: 60px;
+    border-radius: 10px;
+}
+.select2-container {
+    width:100% !important;
+}
+.select2-container .select2-selection--multiple {
+    background: #F7F7F9 !important;
+    border-radius: 14px !important;
+    height: 56px !important;
+    border: 0 !important;
+    padding: 0;
+}
+
+.select2-container--default .select2-selection--single {
+    background: #F7F7F9;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    height: 56px;
+    border: 0;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    width: 100%;
+    line-height: 60px;
+    padding: 7px 13px 10px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow svg {
+    padding-top: 10px;
+    width: 24px;
+    height: 100%;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    width: 30px !important;
+    height: 56px;
+}
+
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+    display: inline-flex !important;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    width: 100% !important;
+    height: 56px;
+    margin: 0 !important;
+    padding: 16px;
+    color: var(--Label, #7D848D);
+    /* Text body */
+    font-family: Lexend;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+}
+
+.select2-search--inline {
+    width: 100%;
+    display: flex;
+    position: absolute;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    width: fit-content;
+    top: 65px;
+    height: fit-content;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 12px 20px;
+    border-radius: 15px;
+    background: var(--Blue-sky, #1470F5);
+    justify-content: center;
+    align-items: center;
+    border: unset !important;
+    color: white;
+    gap: 8px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    position: relative !important;
+    border-right: unset !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    color: white;
+    background: #ffffff45;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2px;
+}
+.select2-search__field::placeholder {
+    color: var(--Label, #7D848D);
+    /* Text body */
+    font-family: Lexend;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    width: 30px !important;
+    height: 56px;
+}
+    .select2-container--default .select2-selection--single .select2-selection__arrow svg {
+        width: 15px;
+        height: 100%;
+    }
+.select2-selection__rendered{
+    background: white;
+    /*line-height: 60px;*/
+}
+</style>
+
+<link href="/HomeDoctor/css/page/order/order.css" rel="stylesheet" asp-append-version="true"/>
+<section class="order-section sec_pad_happys">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="order-customer-container d-flex flex-column gap-16">
+                    <div class="order-customer-body d-flex flex-column gap-32">
+                        <div class="order-customer-info d-flex flex-column gap-16">
+                            <h5 class="m-0">Thông tin giao hàng</h5>
+                            <div class="line-mini"></div>
+                            <div class="row">
+                                <div class="col-lg-6 mb-16 h-fit-content">
+                                    <div class="form-group m-0">
+                                        <input type="text" id="account-name" class="inpt-group w-100" placeholder="Tên của bạn"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-16 h-fit-content">
+                                    <div class="form-group m-0">
+                                        <input type="text" id="profile_phone" class="inpt-group w-100" placeholder="Số điện thoại"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-16 h-fit-content">
+
+
+                                    <div class="form-group mt-2">
+                                        <select id="select_province" class="select2-selection__arrow select-input-style">
+                                        </select>
+                                        @* <input type="text" id="addressCity" class="inpt-group w-100" placeholder="Tỉnh/Thành phố"/> *@
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-16 h-fit-content">
+
+                                    <div class="form-group mt-2">
+                                        <select id="select_district" class="select2-selection__arrow">
+                                        </select>
+                                        @* <input type="text" id="addressDistrict" class="inpt-group w-100" placeholder="Quận/Huyện"/> *@
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-16 h-fit-content">
+
+                                    <div class="form-group mt-2">
+                                        <select id="select_wards" class="select2-selection__arrow">
+                                        </select>
+                                        @* <input type="text" id="addressWard" class="inpt-group w-100" placeholder="Phường xã"/> *@
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-16 h-fit-content">
+                                    <div class="form-group mt-2 mb-0">
+                                        <input type="text" id="shipAddressDetail" class="inpt-group w-100" placeholder="Địa chỉ chi tiết"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*                         <div class="order-customer-ship d-flex flex-column gap-16">
+                            <h5 class="m-0">Giao hàng</h5>
+                            <div class="line-mini"></div>
+                            <div class="row">
+                                <div class="col-lg-6 mb-16">
+                                    <div class="radio-group">
+                                        <div class="check-box d-flex flex-row align-items-center gap-8">
+                                            <input type="checkbox" class="checkbox-group" id="order-customer-home" name="order-customer-home" value="1">
+                                            <label for="order-customer-home" class="m-0">Giao hàng tại nhà</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-16">
+                                    <div class="radio-group">
+                                        <div class="check-box d-flex flex-row align-items-center gap-8">
+                                            <input type="checkbox" class="checkbox-group" id="order-customer-more" name="order-customer-more" value="1">
+                                            <label for="order-customer-more" class="m-0">Giao hàng tại địa chỉ khác</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-customer-payment d-flex flex-column gap-16">
+                            <h5 class="m-0">Thanh toán</h5>
+                            <div class="line-mini"></div>
+                            <div class="row">
+                                <div class="col-lg-6 mb-16">
+                                    <div class="radio-group">
+                                        <div class="check-box d-flex flex-row align-items-center gap-8">
+                                            <input type="checkbox" class="checkbox-group" id="order-customer-payment-home" name="order-customer-payment-home" value="1">
+                                            <label for="order-customer-payment-home" class="m-0">Thanh toán khi nhận hàng</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-16">
+                                    <div class="radio-group">
+                                        <div class="check-box d-flex flex-row align-items-center gap-8">
+                                            <input type="checkbox" class="checkbox-group" id="order-customer-payment-bank" name="order-customer-payment-bank" value="1">
+                                            <label for="order-customer-payment-bank" class="m-0">Thanh toán qua chuyển khoản ngân hàng</label>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="link-url">Xem thông tin ngân hàng</a>
+                                </div>
+                            </div>
+                        </div> *@
+                        <div class="order-customer-list d-flex flex-column gap-16">
+                            <h5 class="m-0">Danh sách sản phẩm</h5>
+                            <div class="line-mini"></div>
+                            <div class="order-product-container">
+                                <div class="order-product-header">
+                                    <ul class="nav left">
+                                        <li class="col-lg-6 p-0">Tên sản phẩm</li>
+                                        <li class="col-lg-2 p-0">Đơn giá</li>
+                                        <li class="col-lg-2 p-0">Số lượng</li>
+                                        <li class="col-lg-2 p-0">Thành tiền</li>
+                                    </ul>
+                                </div>
+                                <div class="order-product-body">
+                                    <ul class="navbar-nav product-list">
+                                        @* <li> *@
+                                        @*     <div class="media"> *@
+                                        @*         <div class="order-product-item"> *@
+                                        @*             <div class="order-product-item-info-body align-items-center col-lg-6 col-xs-12 gap-22"> *@
+                                        @*                 <img src="/HomeDoctor/img/page/ProductImage.png" /> *@
+                                        @*                 <div class="order-product-item-info"> *@
+                                        @*                     <div class="order-product-item-info-name"> *@
+                                        @*                         Thực phẩm chức năng Zero Acnes *@
+                                        @*                     </div> *@
+                                        @*                     <div class="order-product-item-info-description"> *@
+                                        @*                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. *@
+                                        @*                     </div> *@
+                                        @*                     <div class="order-product-item-info-mobile"> *@
+                                        @*                         <div class="order-product-item-price-mobile col-lg-2 p-0">100.000 đ</div> *@
+                                        @*                         <div class="order-product-item-quantity-mobile col-lg-2 p-0"> *@
+                                        @*                             <div class="form-inner"> *@
+                                        @*                                 <input type="button" value="-" class="button-minus" data-field="quantity"> *@
+                                        @*                                 <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field"> *@
+                                        @*                                 <input type="button" value="+" class="button-plus" data-field="quantity"> *@
+                                        @*                             </div> *@
+                                        @*                         </div> *@
+                                        @*                     </div> *@
+                                        @*                 </div> *@
+                                        @*             </div> *@
+                                        @*             <div class="order-product-item-price col-lg-2 p-0">100.000 đ</div> *@
+                                        @*             <div class="order-product-item-quantity col-lg-2 p-0"> *@
+                                        @*                 <div class="form-inner"> *@
+                                        @*                     <input type="button" value="-" class="button-minus" data-field="quantity"> *@
+                                        @*                     <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field"> *@
+                                        @*                     <input type="button" value="+" class="button-plus" data-field="quantity"> *@
+                                        @*                 </div> *@
+                                        @*             </div> *@
+                                        @*             <div class="order-product-item-finalprice col-lg-2 p-0">100.000 đ</div> *@
+                                        @*         </div> *@
+                                        @*     </div> *@
+                                        @* </li> *@
+                                        @* <li> *@
+                                        @*     <div class="media"> *@
+                                        @*         <div class="order-product-item"> *@
+                                        @*             <div class="order-product-item-info-body align-items-center col-lg-6 col-xs-12 gap-22"> *@
+                                        @*                 <img src="/HomeDoctor/img/page/ProductImage.png" /> *@
+                                        @*                 <div class="order-product-item-info"> *@
+                                        @*                     <div class="order-product-item-info-name"> *@
+                                        @*                         Thực phẩm chức năng Zero Acnes *@
+                                        @*                     </div> *@
+                                        @*                     <div class="order-product-item-info-description"> *@
+                                        @*                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. *@
+                                        @*                     </div> *@
+                                        @*                     <div class="order-product-item-info-mobile"> *@
+                                        @*                         <div class="order-product-item-price-mobile col-lg-2 p-0">100.000 đ</div> *@
+                                        @*                         <div class="order-product-item-quantity-mobile col-lg-2 p-0"> *@
+                                        @*                             <div class="form-inner"> *@
+                                        @*                                 <input type="button" value="-" class="button-minus" data-field="quantity"> *@
+                                        @*                                 <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field"> *@
+                                        @*                                 <input type="button" value="+" class="button-plus" data-field="quantity"> *@
+                                        @*                             </div> *@
+                                        @*                         </div> *@
+                                        @*                     </div> *@
+                                        @*                 </div> *@
+                                        @*             </div> *@
+                                        @*             <div class="order-product-item-price col-lg-2 p-0">100.000 đ</div> *@
+                                        @*             <div class="order-product-item-quantity col-lg-2 p-0"> *@
+                                        @*                 <div class="form-inner"> *@
+                                        @*                     <input type="button" value="-" class="button-minus" data-field="quantity"> *@
+                                        @*                     <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field"> *@
+                                        @*                     <input type="button" value="+" class="button-plus" data-field="quantity"> *@
+                                        @*                 </div> *@
+                                        @*             </div> *@
+                                        @*             <div class="order-product-item-finalprice col-lg-2 p-0">100.000 đ</div> *@
+                                        @*         </div> *@
+                                        @*     </div> *@
+                                        @* </li> *@
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="form-calc-price d-flex flex-column gap-16">
+                    <h5 class="m-0">Thông tin thanh toán</h5>
+                    <div class="line-mini"></div>
+                    <div class="form-calc-price-inner">
+                        <div class="form-calc-price-line">
+                            <span>Tạm tính</span>
+                            <span>0 đ</span>
+                        </div>
+                        <div class="line-w"></div>
+                        <div class="form-calc-price-line">
+                            <span>Phí vận chuyển</span>
+                            <span>0 đ</span>
+                        </div>
+                        <div class="line-w"></div>
+                        <div class="form-calc-price-line">
+                            <span>Thuế (đã bao gồm)</span>
+                            <span>0 đ</span>
+                        </div>
+                        <div class="line-w"></div>
+                        <div class="form-calc-price-line">
+                            <span>Tổng cộng</span>
+                            <span>0 đ</span>
+                        </div>
+                    </div>
+                    <div class="form-calc-price-description">
+                        <textarea class="form-calc-price-description-text" placeholder="Ghi chú"></textarea>
+                    </div>
+                    <button id="submitbtn" class="btn btnHD type-warning" onClick="AddOrderDetail()">Tạo đơn hàng</button>
+                    <a id="redirectDonHang" style="display:none;"></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    async function loadDataSelectshipProvinceAddressId() {
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'province/api/list',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+
+            const data = responseData.data;
+            return data;
+        } catch (error) {
+            console.error("Error loading province data:", error);
+            return null;
+        }
+    }
+
+    $(document).ready(async function () {
+        const shipProvinceAddressIdData = await loadDataSelectshipProvinceAddressId();
+
+        if (shipProvinceAddressIdData) {
+            shipProvinceAddressIdData.forEach(function (item) {
+                $('#select_province').append(new Option(item.name, item.id, false, false));
+            });
+        } else {
+            console.error("No province data available.");
+        }
+    });
+</script>

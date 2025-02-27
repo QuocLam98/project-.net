@@ -1,0 +1,120 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<div class="tab-pane fade" id="log" role="tabpanel"
+     aria-labelledby="log-tab">
+    <div id="kt_docs_fullcalendar_basic"></div>
+</div>
+<script>
+    const element = document.getElementById("kt_docs_fullcalendar_basic");
+    var todayDate = moment().startOf("day");
+    var YM = todayDate.format("YYYY-MM");
+    var YESTERDAY = todayDate.clone().subtract(1, "day").format("YYYY-MM-DD");
+    var TODAY = todayDate.format("YYYY-MM-DD");
+    var TOMORROW = todayDate.clone().add(1, "day").format("YYYY-MM-DD");
+
+    var calendarEl = document.getElementById("kt_docs_fullcalendar_basic");
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        lang: "vi",
+        headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth"
+        },
+
+        height: 800,
+        contentHeight: 780,
+        aspectRatio: 3,  // see: https://fullcalendar.io/docs/aspectRatio
+
+        nowIndicator: true,
+        now: TODAY + "T09:25:00", // just for demo
+
+        views: {
+            dayGridMonth: { buttonText: "month" },
+            timeGridWeek: { buttonText: "week" },
+            timeGridDay: { buttonText: "day" }
+        },
+
+        initialView: "dayGridMonth",
+        initialDate: TODAY,
+
+        editable: true,
+        dayMaxEvents: true, // allow "more" link when too many events
+        navLinks: true,
+        events: [
+            {
+                title: 'All Day Event',
+                start: '2019-08-01'
+            },
+            {
+                title: 'Long Event',
+                start: '2019-08-07',
+                end: '2019-08-10'
+            },
+            {
+                groupId: '999',
+                title: 'Repeating Event',
+                start: '2019-08-09T16:00:00'
+            },
+            {
+                groupId: '999',
+                title: 'Repeating Event',
+                start: '2019-08-16T16:00:00'
+            },
+            {
+                title: 'Conference',
+                start: '2019-08-11',
+                end: '2019-08-13'
+            },
+            {
+                title: 'Meeting',
+                start: '2019-08-12T10:30:00',
+                end: '2019-08-12T12:30:00'
+            },
+            {
+                title: 'Lunch',
+                start: '2019-08-12T12:00:00'
+            },
+            {
+                title: 'Meeting',
+                start: '2019-08-12T14:30:00'
+            },
+            {
+                title: 'Birthday Party',
+                start: '2019-08-13T07:00:00'
+            },
+            {
+                title: 'Click for Google',
+                url: 'http://google.com/',
+                start: '2019-08-28'
+            }
+        ],
+
+        eventContent: function (info) {
+            var element = $(info.el);
+
+            if (info.event.extendedProps && info.event.extendedProps.description) {
+                if (element.hasClass("fc-day-grid-event")) {
+                    element.data("content", info.event.extendedProps.description);
+                    element.data("placement", "top");
+                    KTApp.initPopover(element);
+                } else if (element.hasClass("fc-time-grid-event")) {
+                    element.find(".fc-title").append(`<div class="fc-description">` + info.event.extendedProps.description + `</div>`);
+                } else if (element.find(".fc-list-item-title").lenght !== 0) {
+                    element.find(".fc-list-item-title").append(`<div class="fc-description">` + info.event.extendedProps.description + `</div>`);
+                }
+            }
+        }
+    });
+    calendar.render();
+
+    $("a.nav-link#log-tab").click(function () {
+        setTimeout(function () {
+            calendar.updateSize();
+        }, 1000);
+    });
+</script>

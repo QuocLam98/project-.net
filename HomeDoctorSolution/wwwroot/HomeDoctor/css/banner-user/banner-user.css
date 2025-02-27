@@ -1,0 +1,63 @@
+﻿@media screen and (max-width: 768px) {
+    .doc_banner_content_left {
+        width: 100% !important;
+    }
+
+    .banner_creative1 {
+        padding-top: 110px;
+        padding-bottom: 0;
+        background-size: 100% 20% !important;
+        background-position: top !important;
+    }
+
+    .banner-title {
+        font-weight: bold !important;
+        font-size: 32px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .doc_banner_content {
+        margin-bottom: 30px !important;
+    }
+}
+
+
+.doc_banner_area {
+    background-image: url('../../img/banner-user/bg.svg');
+    background-repeat: no-repeat !important;
+    background-position: bottom;
+    background-size: cover;
+}
+.wow {
+    color: black !important;
+}
+    .wow h2 {
+        font-size: 42px;
+        font-family: Mulish;
+        font-weight: 900;
+        text-transform: uppercase;
+        white-space: nowrap
+    }
+    .wow p {
+        font-size: 16px;
+        font-family: Mulish;
+        font-weight: 400;
+        text-align: justify;
+    }
+.banner_btn, .banner_btn:hover {
+    padding: 8px 27px;
+    text-align: center;
+    border: 1px solid #fff;
+    transition: all 0.3s linear;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    border-radius: 99px;
+    color: white;
+    background: #007983;
+}
+@media (min-width: 320px) and (max-width: 1599px) {
+    .doc_banner_area {
+        background-position-x: right !important;
+    }
+}

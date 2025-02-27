@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="~/homedoctor/css/personal-information/personal_information.css" rel="stylesheet" asp-append-version="true" />
+<div class="body_wrapper">
+    <partial name="HomeDoctor/FrontEnd/_Header" />
+    @* <partial name="HomeDoctor/FrontEnd/_Banner" /> *@
+    <partial name="HomeDoctor/FrontEnd/_Body_DeleteAccount" />
+    @* <partial name="HomeDoctor/FrontEnd/_Footer" /> *@
+</div>
+@* <script>
+    if (@ViewBag.IsActivedAccount == 1) {
+        Swal.fire("Xác thực tài khoản", "Xác thực tài khoản thành công. <br> Vui lòng đăng nhập để sử dụng hệ thống.", "success").then(function () {
+            location.href = "/sign-in";
+        });
+    }
+</script>
+ *@
+<script src="~/homedoctor/js/page/delete-account/delete-account.js" asp-append-version="true"></script>

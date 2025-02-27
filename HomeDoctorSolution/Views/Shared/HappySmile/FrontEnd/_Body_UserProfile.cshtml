@@ -1,0 +1,161 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+<style>
+    .nav-link {
+        white-space: nowrap;
+    }
+</style>
+<!--================Forum Content Area =================-->
+<section class="forum-user-wrapper" id="self">
+    <div class="container">
+        <div class="row forum_main_inner">
+            <div class="col-lg-4 space-user">
+                <div class="author_option">
+                    <div class="author_img">
+                        <img class="" src="https://static-00.iconduck.com/assets.00/avatar-default-symbolic-icon-2048x1949-pq9uiebg.png" alt="">
+                        <div class="p_upload_item">
+                            <form id="form_change_avatar">
+                                <input type="file" class="d-none" id="avatar" accept="image/*" />
+                                <a class="btnShadow cursor-pointer" id="btnUpload">Tải ảnh lên</a>
+                            </form>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="true">
+                                <i class="fi fi-sr-user"></i> Thông tin cá nhân
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="notify-tab" data-toggle="tab" href="#notify" role="tab"
+                               aria-controls="notify" aria-selected="true">
+                                <i class="fi fi-sr-bell"></i> Thông báo
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab"
+                               aria-controls="message" aria-selected="true">
+                                <i class="fi fi-sr-messages"></i> Tin nhắn
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="medicalinfo-tab" data-toggle="tab" href="#medicalinfo" role="tab"
+                               aria-controls="medicalinfo" aria-selected="true">
+                                <i class="fi fi-sr-book-user"></i> Thông tin y tế
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="surveyHistory-tab" data-toggle="tab" href="#surveyHistory" role="tab"
+                               aria-controls="surveyHistory" aria-selected="true">
+                                <i class="fi fi-sr-notebook"></i> Lịch sử phiếu sàng lọc
+                            </a>
+                        </li>
+                       @*  <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="consultingHistory-tab" data-toggle="tab" href="#consultingHistory" role="tab"
+                               aria-controls="consultingHistory" aria-selected="false">
+                                <i class="fi fi-sr-user-md-chat"></i> Lịch sử tư vấn
+                            </a>
+                        </li> *@
+                        @* <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="log-tab" data-toggle="tab" href="#log" role="tab"
+                               aria-controls="log" aria-selected="false">
+                                <i class="fi fi-sr-calendar-clock"></i> Nhật ký hoạt động
+                            </a>
+                        </li> *@
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="createdForumPostHistory-tab" data-toggle="tab" href="#createdForumPostHistory" role="tab"
+                               aria-controls="log" aria-selected="false">
+                                <i class="fi fi-sr-blog-text"></i> Lịch sử bài đăng
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="commentForumPostHistory-tab" data-toggle="tab" href="#commentForumPostHistory" role="tab"
+                               aria-controls="log" aria-selected="false">
+                                <i class="fi fi-sr-comment-alt"></i> Lịch sử bình luận bài đăng
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" onclick="Logout()">
+                                <i class="fi fi-sr-exit"></i> Đăng xuất
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="forum_body_area">
+                    <div class="forum_topic_list">
+                        <div class="tab-content" id="myTabContent">
+                            <partial name="HappySmile/FrontEnd/_Tab_UserProfile" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Notification" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Message" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Medical_Information" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Vote_Screening_History" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Survey_History" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Consulting_History" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Created_ForumPost_History" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Comment_ForumPost_History" />
+                            @* <partial name="HappySmile/FrontEnd/_Tab_Activitylog" /> *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--================End Forum Content Area =================-->
+@* <script src="~/happys/js/page/userprofile/profile.js" asp-append-version="true"></script> *@
+<!--================End Doc Subscribe Area =================-->
+<script>
+    $(document).ready(function () {
+        var hash = window.location.hash;
+        if (hash.length > 0) {
+            $('.nav-link[role="tab"]').removeClass('active');//remove the default active tab
+            $('.nav-link[href="' + hash + '"]').addClass('active');
+            $('.tab-pane').removeClass('active').removeClass('show');
+            $(hash).addClass('active').addClass('show');
+
+        }
+    });
+
+    $("#myTab a[data-toggle=tab]").click(function () {
+        if (this.hash == "#notify") {
+            let element = $("" + this.hash + " .pagination_default");
+            pageIndex = 1;
+            //loadDataNotification.call();
+            LoadPagingPage("notification/api/CountByAccountId", element, loadDataNotification);
+        }
+        if (this.hash == "#consultingHistory") {
+            let element = $("" + this.hash + " .pagination_default")
+            pageIndex = 1;
+            //loadDataConsuling.call();
+            LoadPagingPage("booking/api/count-list-booking-by-accountId?bookingStatusId=" + @BookingStatusId.SUCCESS_WAIT, element, loadDataConsuling);
+        }
+        if (this.hash == "#surveyHistory") {
+            let element = $("" + this.hash + " .pagination_default");
+            pageIndex = 1;
+            //loadDataCreateForumPost.call();
+            LoadPagingPage("survey/api/count-list-survey-history", element, loadDataSurvey, 10);
+        }
+        if (this.hash == "#createdForumPostHistory") {
+            let element = $("" + this.hash + " .pagination_default");
+            pageIndex = 1;
+            //loadDataCreateForumPost.call();
+            LoadPagingPage("forumpost/api/count-list-created-forum-post-by-accountId", element, loadDataCreateForumPost);
+        }
+        if (this.hash == "#commentForumPostHistory") {
+            let element = $("" + this.hash + " .pagination_default");
+            pageIndex = 1;
+            //loadDataCommentForumPost.call();
+            LoadPagingPage("forumpost/api/count-list-comment-forum-post-by-accountId", element, loadDataCommentForumPost);
+        }
+    })
+</script>

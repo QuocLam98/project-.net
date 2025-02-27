@@ -1,0 +1,462 @@
+﻿.label-bookingform {
+    margin-bottom: 0;
+}
+.booking-input:disabled {
+    background-color: beige;
+}
+.text-start{
+    text-align: left;
+}
+.doctor-detail {
+    /*margin-bottom: 64px;*/
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+.detail-value {
+    margin-top: 32px;
+    display: flex;
+    gap: 40px;
+}
+.detail-cotent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.detail-name {
+    color: black;
+    font-size: 32px;
+    font-family: Mulish;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.detail-des {
+    color: black;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: justify;
+}
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.detail-info-title {
+    color: black;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.detail-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.detail-info-item {
+    display: flex;
+    gap: 10px;
+}
+    .detail-info-item img {
+        margin-bottom: 25px;
+    }
+    .detail-info-item-value {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+.detail-info-item-value-title {
+    color: #333333;
+    font-size: 14px;
+    font-family: Mulish;
+    font-weight: 400;
+    white-space: nowrap;
+}
+.detail-info-item-value-content {
+    color: black;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+    white-space: nowrap;
+}
+.detail-info-button {
+    display: flex;
+    gap: 40px;
+}
+.detail-info-chat {
+    white-space: nowrap;
+    color: white !important;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    background: #007983;
+    box-shadow: 0px 4px 20px rgba(0, 120.82, 130.69, 0.10);
+    border-radius: 35px;
+    border: 1px white solid;
+    width: 100%;
+    height: 100%;
+    padding: 11px 88px;
+    text-align: center;
+}
+.detail-info-booking {
+    white-space: nowrap;
+    color: black !important;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    background: #FFC800;
+    box-shadow: 0px 4px 40px rgba(255, 199.78, 0, 0.25);
+    border-radius: 35px;
+    border: 1px white solid;
+    width: 100%;
+    height: 100%;
+    padding: 11px 88px;
+    text-align: center;
+}
+.detail-description {
+    background-image: url('../../../img/detail-doctor/bg-cotent.svg');
+    background-repeat: no-repeat;
+    padding: 64px 0px;
+    background-size: cover;
+}
+.detail-description-value {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 30px;
+}
+.footer-bg, heade-bg {
+    display: none;
+}
+.detail-description-title {
+    color: white;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.detail-description-content {
+    color: white;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: justify;
+}
+.detail-ratting {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.detail-ratting-title {
+    color: black;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.detail-ratting-value {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+}
+.detail-ratting-item {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.10);
+    border-radius: 15px;
+    padding: 28px 20px;
+    flex: 50%;
+}
+.detail-ratting-header-cotent-footer {
+    display: flex;
+    justify-content: space-between;
+}
+.detail-ratting-header-cotent {
+    display: flex;
+    flex-direction: column;
+}
+.detail-ratting-header-cotent-name {
+    color: black;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+    white-space: nowrap;
+}
+.detail-ratting-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.detail-ratting-header-image img {
+    width: 34px;
+    height: 34px;
+    border-radius: 16px;
+}
+.detail-ratting-header-cotent-time {
+    padding-top: 25px;
+    color: #7D848D;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+}
+.detail-ratting-header-value {
+    display: flex;
+    gap: 64px;
+}
+.detail-ratting-footer {
+    color: black;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+}
+.detail-ratting-button {
+    text-align: -webkit-center;
+}
+.list-ratting {
+    background: white;
+    border-radius: 16px;
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    height: 860px;
+}
+.list-detail-ratting {
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    border-radius: 16px;
+}
+    .list-detail-ratting::-webkit-scrollbar {
+        display: none;
+    }
+    .list-ratting-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+    }
+.close{
+    padding: 9px;
+    background: rgba(0, 120.82, 130.69, 0.20);
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    cursor: pointer;
+}
+.close img {
+    width: 100%;
+    height: 100%;
+}
+.list-ratting-title {
+    color: black;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 700;
+}
+.total-ratting {
+    background-image: url('../../../img/detail-doctor/bg-total.svg');
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 16px;
+    border-radius: 10px;
+    gap: 10px
+}
+.total-title {
+    display: flex;
+    justify-content: space-between;
+}
+.total-number {
+    color: white;
+    font-size: 24px;
+    font-family: Mulish;
+    font-weight: 900;
+}
+.total-count {
+    color: white;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+}
+.modal {
+    background: rgba(0, 0, 0, 0.60) !important;
+}
+.booking-modal {
+    background: white;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    /*height: 640px;*/
+}
+.booking-modal-header {
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 600px !important;
+    }
+} 
+.booking-input, .booking-input:focus {
+    padding: 17px 16px;
+    color: #333333;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 1px rgba(0, 0, 0, 0.05) solid;
+    width: 100%;
+}
+.booking-footer {
+    padding: 16px;
+    display: flex;
+    height: 80px;
+    width: 100%;
+    /*position: absolute;*/
+    bottom: 0px;
+    background: white;
+    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.10);
+    border-radius: 16px
+}
+@media (min-width: 320px) and (max-width: 600px) {
+    .detail-value {
+        flex-direction: column;
+    }
+    .image-doctor, .detail-name, .detail-des {
+        text-align: center;
+    }
+        .image-doctor img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .btn-chat, .btn-booking {
+        padding: 13px 20px;
+    }
+    .detail-info-button {
+        gap: 16px;
+    }
+    .detail-description {
+        background-image: unset;
+        
+    }
+        .detail-description .container {
+            background-color: rgba(0, 121, 131, 1);
+        }
+    .head-bg {
+        height: 100px;
+        background-image: url('../../../img/detail-doctor/head-bg.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: block;
+    }
+    .footer-bg {
+        background-image: url('../../../img/detail-doctor/footer-bg.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100px;
+        background-position: bottom;
+        display: block;
+    }
+    .detail-description-value {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .detail-ratting-header-cotent-name, .detail-ratting-header-cotent-time {
+        font: 14px;
+    }
+    .detail-ratting-value {
+        display: flex;
+        flex-direction: column;
+    }
+    .detail-ratting-header-value {
+        gap: 20px;
+    }
+    .modal-content {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .detail-tag {
+        gap: 8px;
+    }
+        .detail-tag a {
+            font-size: 12px;
+        }
+}
+@media (min-width: 601px) and (max-width: 1199px) {
+    .detail-value {
+        flex-direction: column;
+    }
+    .image-doctor, .detail-name, .detail-des {
+        text-align: center;
+    }
+
+        .image-doctor img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+    .detail-description {
+        background-image: unset;
+    }
+
+        .detail-description .container {
+            background-color: rgba(0, 121, 131, 1);
+            margin: 0px;
+            max-width: 100%;
+        }
+
+    .head-bg {
+        height: 150px;
+        background-image: url('../../../img/detail-doctor/head-bg.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: block;
+    }
+
+    .footer-bg {
+        background-image: url('../../../img/detail-doctor/footer-bg.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 160px;
+        background-position: bottom;
+        display: block;
+    }
+
+    .detail-description-value {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .detail-ratting-value {
+        display: flex;
+        flex-direction: column
+    }
+    .modal-content {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}

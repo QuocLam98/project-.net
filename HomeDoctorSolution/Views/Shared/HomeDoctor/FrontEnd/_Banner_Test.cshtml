@@ -1,0 +1,130 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    .banner-test {
+        background-image: url('/HomeDoctor/img/test-in-home/background-banner-test2.png');
+        background-repeat: no-repeat !important;
+        background-size: cover;
+    }
+
+    .banner-background-content {
+        background-image: url('/HomeDoctor/img/test-in-home/background-banner-test.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .banner-content {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        text-align: right;
+        align-items: end;
+        gap: 32px;
+    }
+
+    .banner-content h3 {
+            max-width: 60%;
+    }
+
+    .banner-test-container {
+        padding: 99px 0 99px 0;
+    }
+
+    .banner-title {
+        color: #007983;
+        text-align: right;
+        font-family: "SVN-A Love Of Thunder";
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .banner-content span {
+        border-radius: 10px;
+        background: linear-gradient(266deg, rgba(0, 121, 131, 0.20) -0.31%, rgba(9, 196, 211, 0.20) 97.8%);
+        padding: var(--radius-md, 8px) 32px;
+        color: #000;
+        text-align: right;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    .banner-img-mobile img {
+        width: 100%;
+        
+    }
+
+    .banner-img-mobile {
+        display: none;
+    }
+
+    .btn-booking-test {
+        padding: 20px 40px;
+        justify-content: center;
+        align-items: center;
+        color: #FFF;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border-radius: 37px;
+        background: #007983;
+        box-shadow: 0px 4px 20px 0px rgba(0, 121, 131, 0.20);
+        border: 0;
+        width: fit-content;
+    }
+
+    @@media screen and (max-width: 768px) {
+        .btn-booking-test {
+            width: 100%;
+        }
+
+        .banner-background-content {
+            background-image: url('/HomeDoctor/img/test-in-home/background-banner-test-mobile.png') !important;
+            padding-top: 350px;
+            padding-bottom: 20px;
+        }
+
+        .banner-content span {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+</style>
+@* <div class="banner-img-mobile">
+    <img src="/HomeDoctor/img/test-in-home/background-mobile.jpg" />
+</div> *@
+<div class="banner-test">
+    <div class="banner-background-content">
+        <div class="container banner-test-container">
+            <div class="banner-content">
+                <h3 class="no-margin banner-title">
+                    Dịch vụ xét nghiệm tại nhà chăm sóc sức khỏe dễ dàng ngay tại tổ ấm của bạn
+                </h3>
+                <span>
+                    Chuyên nghiệp - Nhanh chóng - Tiết kiệm
+                </span>
+                <span>
+                    Hơn 100 loại xét nghiệm, đáp ứng đa dạng nhu cầu tầm soát sức khỏe tận nơi ở mọi lứa tuổi
+                </span>
+                <span>
+                    Ứng dụng hệ thống thiết bị phòng lab hiện đại, tự động hóa với độ chính xác cao
+                </span>
+                <span>
+                    Điều dưỡng chuyên nghiệp, thao tác nhẹ nhàng, từng làm việc tại các bệnh viện lớn
+                </span>
+                <button class="btn-booking-test">Đặt lịch xét nghiệm</button>
+            </div>
+        </div>
+    </div>
+</div>
+

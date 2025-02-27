@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    .linktag-component {
+        padding: 0;
+    }
+    .detail-tag {
+        color: #000;
+        text-align: justify;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    @@media screen and (max-width: 768px){
+        .detail-tag {
+            padding: 16px 20px !important;
+        }
+    }
+</style>
+<link href="~/homedoctor/css/linktag/linktag.css" rel="stylesheet" asp-append-version="true"/>
+<section class="container linktag-component">
+    <div class="detail-tag">
+        <div class="d-flex" style="gap: 16px;">
+            <div class="home-tag">
+                <img src="/homedoctor/img/detail-doctor/home.svg" />
+                <span>
+                    Trang chủ
+                </span>
+            </div>
+            <img src="/homedoctor/img/detail-doctor/right.svg" />
+        </div>
+        <div class="link-first d-flex" style="gap: 16px;">
+            <span>
+                @ViewBag.NameFirst
+            </span>
+            <img src="/homedoctor/img/detail-doctor/right.svg" />
+        </div>
+        <span class="link-second" style="@ViewBag.Hide">
+            @ViewBag.NameSecond
+        </span>
+    </div>
+</section>

@@ -1,0 +1,193 @@
+﻿@media (max-width: 768px) {
+    .card-info-wv {
+        width: 100%;
+        height: auto;
+        background: white;
+    }
+
+    .card-info-wv::-webkit-scrollbar {
+        display: none;
+    }
+
+    .info-header {
+        padding: 19px 22px;
+        gap: 30px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        border-radius: 16px 16px 0px 0px
+    }
+    .info-title {
+        color: black;
+        font-size: 20px;
+        font-family: Mulish;
+        font-weight: 700;
+        white-space: nowrap;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .info-title img {
+        width: 20px;
+        cursor: pointer;
+    }
+
+    .info-image {
+        align-items: center;
+        gap: 14px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .info-image span {
+        color: black;
+        font-size: 20px;
+        font-family: Mulish;
+        font-weight: 700;
+        line-height: 20px;
+        white-space: nowrap;
+    }
+
+    .info-avatar {
+        width: 135px;
+        height: 135px;
+        border-radius: 67.50px;
+        object-fit: cover;
+    }
+
+    .upload-image {
+        position: absolute;
+        right: 188px;
+        bottom: 35px;
+        width: 32px;
+        height: 32px;
+        background-color: rgba(255, 200, 0, 1);
+        cursor: pointer;
+        border-radius: 16px;
+        padding-left: 9px;
+    }
+
+    .upload-image img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .info-order-wv {
+        display: flex;
+        border-radius: 10px;
+        background-image: url('../../../img/header/bg-info-order.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 21px;
+        justify-content: space-around;
+        gap: 18px
+    }
+
+    .info-order-wv span {
+        color: white;
+        font-size: 12px;
+        font-family: Mulish;
+        font-weight: 400;
+        line-height: 20px;
+        white-space: nowrap;
+    }
+
+    .info-cart, .info-done, .info-ship, .info-cancel {
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-cart img, .info-done img, .info-ship img, .info-cancel img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .info-count {
+        width: 18px;
+        height: 18px;
+        background: #FFC800;
+        border-radius: 9px;
+        color: black;
+        font-size: 10px;
+        font-family: Mulish;
+        font-weight: 700;
+        display: flex;
+        position: absolute;
+        right: 9px;
+        top: -10px;
+        padding-left: 5px;
+        flex-direction: column-reverse;
+        align-content: stretch;
+        justify-content: center;
+    }
+
+    .info-service {
+        display: flex;
+        gap: 18px;
+    }
+
+    .info-service p {
+        color: black;
+        font-size: 16px;
+        font-family: Mulish;
+        font-weight: 400;
+        line-height: 20px;
+        white-space: nowrap;
+        margin-bottom: 0px;
+    }
+
+    .info-booking, .info-medical {
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 18px 12px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.10);
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        width: 100%;
+    }
+
+        .info-booking img, .info-medical img {
+            width: 16px;
+            height: 16px;
+            object-fit: cover;
+        }
+
+    .info-footer-wv {
+        background-image: url('../../../img/header/bg-info-footer-wv.svg');
+        background-repeat: no-repeat;
+        background-size: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 65px 16px 30px 16px;
+        background-position: top;
+    }
+
+    .info-footer-wv a {
+        padding: 19px;
+        background: white;
+        display: flex;
+        gap: 10px;
+        border-radius: 10px
+    }
+
+    .info-footer-wv span {
+        color: black;
+        font-size: 14px;
+        font-family: Mulish;
+        font-weight: 700;
+        line-height: 20px;
+        white-space: nowrap;
+    }
+
+    .info-cart img, .info-done img, .info-ship img, .info-cancel img {
+        width: 24px;
+        height: 24px;
+    }
+}

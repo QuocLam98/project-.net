@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <History>True|2024-07-12T09:58:00.4881201Z;True|2024-07-10T14:13:15.1919570+07:00;True|2024-07-08T09:25:03.4339827+07:00;True|2023-12-12T17:19:43.3443339+07:00;True|2023-11-14T16:12:02.0428744+07:00;False|2023-11-14T16:11:20.3230882+07:00;</History>
+    <LastFailureDetails />
+    <_PublishTargetUrl>D:\Developer\homedoctorweb\HomeDoctorSolution\bin\Release\net6.0\publish\</_PublishTargetUrl>
+  </PropertyGroup>
+</Project>

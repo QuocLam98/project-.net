@@ -1,0 +1,199 @@
+﻿<style>
+    @@media screen and (max-width: 768px){
+        .banner_creative1 {
+            padding-top: 110px;
+            padding-bottom: 0px;
+            background-size: 100% 27% !important;
+            background-position: top !important;
+        }
+
+        .filter-service-div {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .list-serivice {
+            padding: 0;
+        }
+    }
+    .select {
+        appearance: none;
+        width: 100%;
+        height: 44px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--Place, #333);
+        background-color: white;
+        padding: 7px 0px 7px 17px;
+        border-radius: 10px;
+    }
+
+    .search {
+        position: relative;
+    }
+
+        .search input {
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #FFF;
+            padding: 7px 0px 7px 17px;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--Place, #333);
+            width: 100%;
+        }
+
+        .search button {
+            position: absolute;
+            right: 0;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #F6AC00;
+            width: 44px;
+            height: 44px;
+        }
+
+    #search-result-message {
+        display: none;
+        color: #425466; 
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <div class="">
+        <div class="d-flex justify-content-between mt-5 filter-service-div">
+            <div class="col-lg-3 col-sm-6" style="padding: 0">
+                <select class="select" id="select_healthFacility">
+                    <option selected value="0">Chọn phòng khám</option>
+                </select>
+            </div>
+            <!--Load data filter-->
+            <script>
+
+            </script>
+            <div class="col-lg-3 col-sm-6" style="padding: 0">
+                <div class="search">
+                    <input type="text" placeholder="Tìm kiếm dịch vụ" id="search_clinic_page" />
+                    <button type="submit" class="btn_search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M7.29264 1.2876C3.98683 1.2876 1.29395 3.98048 1.29395 7.28631C1.29395 10.5921 3.98683 13.2902 7.29264 13.2902C8.70466 13.2902 10.0033 12.7954 11.0296 11.9738L13.5283 14.4712C13.6544 14.5921 13.8228 14.6588 13.9975 14.657C14.1722 14.6552 14.3392 14.5851 14.4628 14.4617C14.5864 14.3382 14.6567 14.1713 14.6588 13.9967C14.6608 13.822 14.5943 13.6535 14.4736 13.5272L11.9749 11.0285C12.7972 10.0006 13.2926 8.69995 13.2926 7.28631C13.2926 3.98048 10.5985 1.2876 7.29264 1.2876ZM7.29264 2.62095C9.87787 2.62095 11.958 4.70108 11.958 7.28631C11.958 9.87153 9.87787 11.9569 7.29264 11.9569C4.70742 11.9569 2.62728 9.87153 2.62728 7.28631C2.62728 4.70108 4.70742 2.62095 7.29264 2.62095Z" fill="white" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="container serivce">
+
+        <div class="" style="margin-top: 60px">
+
+            <div id="search-result-message">
+            </div>
+            <div class="list-serivice">
+            </div>
+            <script>
+                const queryString = window.location.search;
+
+                // Create a URLSearchParams object from the query string
+                const params = new URLSearchParams(queryString);
+
+                // Retrieve the value of a specific parameter
+                const myParamValue = params.get('clinicId');
+                $(document).ready(function () {
+                    // Get the query string from the URL
+
+                    var urlData = 'services/api/ListPagingViewModel?pageIndex=1&pageSize=16';
+                    if (myParamValue != '' && myParamValue != null) {
+                        urlData = 'services/api/ListPagingViewModelClinic?pageIndex=1&pageSize=16&clinicId=' + myParamValue;
+                    }
+                    $.ajax({
+                        url: systemURL + urlData,
+                        type: 'GET',
+                        async: 'true',
+                        contentType: 'application/json',
+                        success: function (responseData) {
+                            var data = responseData.data;
+                            console.log(data);
+                            data.forEach(function (item) {
+                                var formattedPrice = formatCurrency(item.price);
+                                formattedPrice = formattedPrice.replace('₫', 'đ');
+                                var html = '<div href="/chi-tiet-dich-vu/' + item.id + '" class="serivce-item shadow" data-healthFacilityID="' + item.healthFacilityId + '" data-serviceName="' + item.name + '"><div class="service-info"><h2 onclick="hrefService(' + item.id + ')" class="serivce-name" > ' + item.name + ' </h2><a class="detail-clinic" href="/chi-tiet-phong-kham/' + item.healthFacilityId + '-' + item.healthFacilityName + '">' + item.healthFacilityName + ' </a><span onclick="hrefService(' + item.id + ')"> Giá chỉ từ </span><span onclick="hrefService(' + item.id + ')" class="service-price">' + formattedPrice + '</span><img onclick="hrefService(' + item.id + ')" src="' + item.photo + '"/></div></div>'
+                                $('.list-serivice').append(html);
+                            })
+                        },
+                        error: function (e) {
+                        }
+                    })
+                    loadHealthFacility();
+                })
+                function formatCurrency(amount) {
+                    return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+                }
+                $("#select_healthFacility").on("change", function () {
+                    filter()
+                })
+                $("#search_clinic_page").on("keyup", function () {
+                    clearTimeout(timeout);
+                    // Make a new timeout set to go off in 1000ms (1 second)
+                    timeout = setTimeout(function () {
+                        filter()
+                    }, 500);
+                })
+                function loadHealthFacility() {
+                    $.ajax({
+                        url: systemURL + "HealthFacility/api/list",
+                        type: 'GET',
+                        async: 'true',
+                        contentType: 'application/json',
+                        success: function (responseData) {
+                            responseData.data.forEach(function (item) {
+                                $('#select_healthFacility').append($('<option>', {
+                                    value: item.id,
+                                    text: item.name
+                                }));
+                            })
+                            if (myParamValue != null && myParamValue != "") {
+                                $('#select_healthFacility').val(parseInt(myParamValue)).trigger("change");
+                            }
+                        }
+                    })
+                }
+                let timeout = null;
+                function filter() {
+                    var urlData = 'services/api/ListPagingFilter?pageIndex=1&pageSize=16&clinicId=' + $("#select_healthFacility").val() + "&keyword=" + $("#search_clinic_page").val();
+                    if ($("#search_clinic_page").val() != "") {
+                        urlData = 'services/api/ListPagingFilter?pageIndex=1&pageSize=16&clinicId=' + $("#select_healthFacility").val() + "&keyword=" + $("#search_clinic_page").val();
+                    }
+                    $('.list-serivice').html("");
+                    $.ajax({
+                        url: systemURL + urlData,
+                        type: 'GET',
+                        async: 'true',
+                        contentType: 'application/json',
+                        success: function (responseData) {
+                            var data = responseData.data;
+                            console.log(data);
+                            if (data.length == 0) { // Kiểm tra nếu không có kết quả
+                                $('#search-result-message').html('<div class="not-found d-flex flex-column align-items-center"><img style="width:400px;height:auto;" src="/images/default/not-found.png"><p>Không tìm thấy kết quả!</p></div>').show();
+                            } else {
+                                $("#search-result-message").hide(); // Ẩn thông báo nếu có kết quả
+                                data.forEach(function (item) {
+                                    var formattedPrice = formatCurrency(item.price);
+                                    formattedPrice = formattedPrice.replace('₫', 'đ');
+                                    var html = '<div href="/chi-tiet-dich-vu/' + item.id + '" class="serivce-item shadow" data-healthFacilityID="' + item.healthFacilityId + '" data-serviceName="' + item.name + '"><div class="service-info"><h2 onclick="hrefService(' + item.id + ')" class="serivce-name" > ' + item.name + ' </h2><a class="detail-clinic" href="/chi-tiet-phong-kham/' + item.healthFacilityId + '-' + item.healthFacilityName + '">' + item.healthFacilityName + ' </a><span onclick="hrefService(' + item.id + ')"> Giá chỉ từ </span><span onclick="hrefService(' + item.id + ')" class="service-price">' + formattedPrice + '</span><img onclick="hrefService(' + item.id + ')" src="' + item.photo + '"/></div></div>'
+                                    $('.list-serivice').append(html);
+                                });
+                            }
+                        },
+                        error: function (e) {
+                            $('#search-result-message').html('<div class="not-found d-flex flex-column align-items-center"><img style="width:400px;height:auto;" src="/images/default/not-found.png"><p>Không tìm thấy kết quả!</p></div>').show();
+                        }
+                    });
+                }
+                function hrefService(serviceId) {
+                    window.location.href = "/chi-tiet-dich-vu/" + serviceId;
+                }
+            </script>
+    </section>
+</div>

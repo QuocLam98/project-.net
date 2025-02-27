@@ -1,0 +1,1261 @@
+﻿@using HomeDoctorSolution.Constants
+@{
+    Layout = "_Admin_Layout";
+}
+<style>
+    .table-content {
+        padding: 15px;
+        background: var(--bs-app-header-base-bg-color);
+        border-radius: 8px;
+    }
+
+    .photo {
+        height: 120px !important;
+        width: 150px !important;
+        object-fit: cover;
+    }
+
+    table thead tr th {
+        white-space: nowrap;
+    }
+</style>
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container  container-fluid ">
+        <!--begin::Row-->
+        <div class="table-content">
+            <!--begin::Col-->
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-stack mb-5">
+                <!--begin::Search-->
+                <div class="d-flex align-items-center position-relative my-1">
+                    <i class="ki-duotone ki-magnifier fs-1 position-absolute ms-6"><span class="path1"></span><span class="path2"></span></i>
+                    <input type="search" data-kt-docs-table-filter="search" class="form-control form-control-solid w-250px ps-15" id="search-input" placeholder="Tìm kiếm" />
+                </div>
+                <!--end::Search-->
+                <!--begin::Toolbar-->
+                <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
+                    <!--begin::Filter-->
+                    <button type="button" class="btn btn-light-primary me-3" data-bs-toggle="tooltip" title="Coming Soon" hidden>
+                        <i class="ki-duotone ki-filter fs-2"><span class="path1"></span><span class="path2"></span></i>
+                        Bộ lọc
+                    </button>
+                    <!--end::Filter-->
+                    <!--begin::Add customer-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" title="Tạo mới" onclick="editItem(0)">
+                        <i class="ki-duotone ki-plus fs-2"></i>
+                        Tạo mới
+                    </button>
+                    <!--end::Add customer-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Group actions-->
+                <div class="d-flex justify-content-end align-items-center d-none" data-kt-docs-table-toolbar="selected">
+                    <div class="fw-bold me-5">
+                        <span class="me-2" data-kt-docs-table-select="selected_count"></span> Selected
+                    </div>
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" title="Coming Soon">
+                        Selection Action
+                    </button>
+                </div>
+                <!--end::Group actions-->
+            </div>
+            <!--end::Wrapper-->
+            <!--begin::Datatable-->
+            <table id="tableData" class="table table-hover table-rounded table-row-bordered gy-3 gs-3">
+                <thead>
+                    <tr class="fw-bold fs-6 text-gray-800">
+                        <th>STT</th>
+                        <th>Tiêu đề bài viết</th>
+                        <th>Loại bài viết</th>
+                        @*<th>Người tạo</th>*@
+                        <th>Danh mục bài viết</th>
+                        <th>Trạng thái công khai</th>
+                        <th>Tác giả</th>
+                        <th>Hình ảnh</th>
+                        <th>Ngày công khai</th>
+                        <th>Ngày tạo</th>
+                        <th>Thao tác</th>
+
+                    </tr>
+                </thead>
+                <thead>
+                    <tr class="fs-6">
+                        <th></th>
+                        @*<th><input type="text" class="form-control tableheaderFillter" /></th>*@
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th>
+                           
+                        </th>
+                        @*<th><input type="text" class="form-control tableheaderFillter" /></th>*@
+                        <th>
+                            <select class="form-select form-select-solid tableheaderFillter" id="filterPostCategoryId" data-control="select2" data-placeholder="Chọn Danh mục bài viết" data-allow-clear="true" multiple>
+                            </select>
+                        </th>
+
+                        @*<th>
+                        <select class="form-select form-select-solid tableheaderFillter" id="filterPostLayoutId" data-control="select2" data-placeholder="Chọn Layout bài viết" data-allow-clear="true" multiple>
+                        </select>
+                        </th>*@
+
+                        <th>
+                            <select class="form-select form-select-solid tableheaderFillter" id="filterPostPublishStatusId" data-control="select2" data-placeholder="Chọn Trạng thái công khai" data-allow-clear="true" multiple>
+                            </select>
+                        </th>
+
+                        <th>
+                            <select class="form-select form-select-solid tableheaderFillter" id="filterAuthorId" data-control="select2" data-placeholder="Chọn Tác giả" data-allow-clear="true" multiple>
+                            </select>
+                        </th>
+                        <th></th>
+                        <th>
+                            <div class="input-group" id="filterPublishedTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                                <input id="filterPublishedTime_input" readonly type="text" class="form-control tableheaderFillter" data-td-target="#filterPublishedTime" />
+                                <span class="input-group-text" title="Chọn" id="open-flatpickr-PublishedTime" data-td-target="#filterPublishedTime">
+                                    <i class="ki-duotone ki-calendar fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                </span>
+                                <span class="input-group-text" id="clear-flatpickr-PublishedTime" title="Xóa" data-clear="true" data-target="filterPublishedTime">
+                                    <i class="ki-duotone ki-calendar-remove fs-2"><i class="path1"></i><i class="path2"></i><i class="path3"></i><i class="path4"></i><i class="path5"></i><i class="path6"></i></i>
+                                </span>
+                            </div>
+                        </th>
+
+                        <th>
+                            <div class="input-group" id="filterCreatedTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                                <input id="filterCreatedTime_input" readonly type="text" class="form-control tableheaderFillter" data-td-target="#filterCreatedTime" />
+                                <span class="input-group-text" title="Chọn" id="open-flatpickr" data-td-target="#filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                </span>
+                                <span class="input-group-text" id="clear-flatpickr" title="Xóa" data-clear="true" data-target="filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar-remove fs-2"><i class="path1"></i><i class="path2"></i><i class="path3"></i><i class="path4"></i><i class="path5"></i><i class="path6"></i></i>
+                                </span>
+                            </div>
+                        </th>
+
+                        <th class="text-center">
+                            <div class="search-control">
+                                <button class="btn btn-primary form-control mb-1" title="Tìm kiếm" id="btnTableSearch">
+                                    <span class="svg-icon svg-icon svg-icon-1 svg_search_2 m-0">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"></path>
+                                            <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <button class="btn btn-secondary form-control" title="Reset" id="btnTableResetSearch">
+                                    <span class="svg-icon svg-icon svg-icon-1 svg_cancel m-0">
+                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="9.39844" y="20.7144" width="16" height="2.66667" rx="1.33333" transform="rotate(-45 9.39844 20.7144)" fill="currentColor"></rect>
+                                            <rect x="11.2852" y="9.40039" width="16" height="2.66667" rx="1.33333" transform="rotate(45 11.2852 9.40039)" fill="currentColor"></rect>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr class="border-top fw-bold fs-6 text-gray-800">
+                    </tr>
+                </tfoot>
+            </table>
+            <!--end::Datatable-->
+            <div class="modal fade" id="modal-id">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="defaultModalTitle">Modal title</h3>
+
+                            <!--begin::Close-->
+                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <div class="modal-body">
+                            <form action="#">
+                                <div class="row">
+                                    @*Active*@
+                                    <div class="col-sm-6" style="display:none;">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-solid mb-5">
+                                                <span class="input-group-text" id="basic-addon-active">Kích hoạt</span>
+                                                <input readonly type="number" autocomplete="off" class="form-control input-active" id="post-active" placeholder="active" aria-label="active" aria-describedby="basic-addon-active" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*Mã*@
+                                    <div class="col-sm-6" hidden>
+                                        <div class="form-group">
+                                            <div class="input-group input-group-solid mb-5">
+                                                <span class="input-group-text" id="basic-addon-id">Mã</span>
+                                                <input readonly type="number" autocomplete="off" class="form-control input-id" id="post-id" placeholder="id" aria-label="id" aria-describedby="basic-addon-id" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*Tiêu đề bài viết*@
+                                    <div class="col-lg-12 mb-7 fv-row">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2" id="basic-addon-name">Tiêu đề bài viết</label>
+                                                <input type="text" required autocomplete="off" class="form-control input-name" id="post-name" placeholder="" aria-label="name" aria-describedby="basic-addon-name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*Hình ảnh*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="image-input image-input-outline image-input-placeholder ms-20 mt-7" data-kt-image-input="true">
+                                            <div class="w-150px h-150px" id="divImage"><img id="post-photo" src="/assets/media/images/blog/NoImage.png" class="w-150px h-150px rounded thumbnail" file-accept="image/*" /></div>
+                                            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow choseFile" data-fm-target="#post-photo" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar" data-bs-original-title="Change avatar" data-kt-initialized="1">
+                                                <i class="ki-duotone ki-pencil fs-7">
+                                                    <span class="path1 ki-uniEDBC"></span>
+                                                    <span class="path2 ki-uniEDBD"></span>
+                                                </i>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8 mb-7">
+                                        <label class="required fw-semibold fs-6 mb-2">Tóm tắt bài viết</label>
+                                        <textarea id="post-description" rows="6" class="form-control  mb-3 mb-lg-0" placeholder="" data-kt-autosize="true" value=""></textarea>
+                                    </div>
+
+                                    @*Loại bài viết*@
+                                    <div class="col-md-4 mb-7 d-none">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2">Loại bài viết</label>
+                                                <select class="form-select dataSelect" id="post-postTypeId" data-placeholder="" data-dropdown-parent="#modal-id"></select>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var postTypeData = [];
+                                            async function loadDataSelectPostType() {
+                                                await $.ajax({
+                                                    url: systemURL + 'postType/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        //console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                        // debugger;
+                                                        //console.log(responseData)
+                                                        var data = responseData.data;
+                                                        postTypeData = data;
+                                                    },
+                                                    error: function (e) {
+                                                        console.log(e.message);
+                                                    }
+                                                });
+                                            };
+                                            loadDataSelectPostType();
+                                            $(document).ready(function () {
+                                                $.when(loadDataSelectPostType()).done(function () {
+                                                    $("#filterPostTypeId").select2();
+                                                    postTypeData.forEach(function (item) {
+                                                        $('#post-postTypeId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterPostTypeId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    @*Danh mục bài viết*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2">Danh mục bài viết</label>
+                                                <select class="form-select dataSelect" id="post-postCategoryId" data-placeholder="" data-dropdown-parent="#modal-id"></select>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var postCategoryData = [];
+                                            async function loadDataSelectPostCategory() {
+                                                await $.ajax({
+                                                    url: systemURL + 'postCategory/api/ListLibrary',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        //console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                        // debugger;
+                                                        var data = responseData.data;
+                                                        postCategoryData = data;
+                                                    },
+                                                    error: function (e) {
+                                                        //console.log(e.message);
+                                                    }
+                                                });
+                                            }
+                                            loadDataSelectPostCategory();
+                                            $(document).ready(function () {
+                                                $.when(loadDataSelectPostCategory()).done(function () {
+                                                    $("#filterPostCategoryId").select2();
+                                                    postCategoryData.forEach(function (item) {
+                                                        $('#post-postCategoryId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterPostCategoryId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    @*Layout bài viết*@
+                                    <div class="col-md-4 mb-7 d-none">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2">Layout bài viết</label>
+                                                <select class="form-select dataSelect" id="post-postLayoutId" data-placeholder="" data-dropdown-parent="#modal-id"></select>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var postLayoutData = [];
+                                            async function loadDataSelectPostLayout() {
+                                                await $.ajax({
+                                                    url: systemURL + 'postLayout/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        //console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                        // debugger;
+                                                        var data = responseData.data;
+                                                        postLayoutData = data;
+                                                    },
+                                                    error: function (e) {
+                                                        //console.log(e.message);
+                                                    }
+                                                });
+                                            }
+                                            loadDataSelectPostLayout();
+                                            $(document).ready(function () {
+                                                $.when(loadDataSelectPostLayout()).done(function () {
+                                                    $("#filterPostLayoutId").select2();
+                                                    postLayoutData.forEach(function (item) {
+                                                        $('#post-postLayoutId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterPostLayoutId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    @*Tác giả*@
+                                    <div class="col-md-4 mb-7 d-none">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <span class="required fw-semibold fs-6 mb-2">Tác giả</span>
+                                                <select class="form-select dataSelect mt-2" id="post-authorId" data-placeholder="" data-dropdown-parent="#modal-id"></select>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var authorData = [];
+                                            async function loadDataSelectAuthor() {
+                                                await $.ajax({
+                                                    url: systemURL + 'author/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        //console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                        // debugger;
+                                                        var data = responseData.data;
+                                                        authorData = data;
+                                                    },
+                                                    error: function (e) {
+                                                        //console.log(e.message);
+                                                    }
+                                                });
+                                            }
+                                            loadDataSelectAuthor();
+                                            $(document).ready(function () {
+                                                $.when(loadDataSelectAuthor()).done(function () {
+                                                    $("#filterAuthorId").select2();
+                                                    authorData.forEach(function (item) {
+                                                        $('#post-authorId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterAuthorId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    @*Người tạo*@
+                                    <div class="col-md-4 mb-7 d-none">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2" id="basic-addon-postAccountId">Người tạo</label>
+                                                <input type="number" required autocomplete="off" class="form-control input-postAccountId" id="post-postAccountId" placeholder="" aria-label="postAccountId" aria-describedby="basic-addon-postAccountId" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*Trạng thái*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2">Trạng thái công khai</label>
+                                                <select class="form-select dataSelect" id="post-postPublishStatusId" data-placeholder="" data-dropdown-parent="#modal-id"></select>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var postPublishStatusData = [];
+                                            async function loadDataSelectPostPublishStatus() {
+                                                await $.ajax({
+                                                    url: systemURL + 'postPublishStatus/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        //console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                        // debugger;
+                                                        var data = responseData.data;
+                                                        postPublishStatusData = data;
+                                                    },
+                                                    error: function (e) {
+                                                        console.log(e.message);
+                                                    }
+                                                });
+                                            }
+                                            loadDataSelectPostPublishStatus();
+                                            $(document).ready(function () {
+                                                $.when(loadDataSelectPostPublishStatus()).done(function () {
+                                                    $("#filterPostPublishStatusId").select2();
+                                                    postPublishStatusData.forEach(function (item) {
+                                                        $('#post-postPublishStatusId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterPostPublishStatusId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    @*Link tải bài viết*@
+                                    <div class="col-md-4 mb-7 ">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="fw-semibold fs-6 mb-2" id="basic-addon-downloadLink">Đường dẫn tải tài liệu</label>
+                                                <input type="text" autocomplete="off" class="form-control input-downloadLink" id="post-downloadLink" placeholder="" aria-label="downloadLink" aria-describedby="basic-addon-downloadLink" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*Trạng thái bình luận*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <span class="required fw-semibold fs-6 mb-2" id="basic-addon-post-comment-status">Trạng thái bình luận</span>
+                                                <select class="form-select dataSelect mt-2" id="post-comment-statusId" data-placeholder="" data-dropdown-parent="#modal-id"></select>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var postCommentStatusData = [];
+                                            async function loadDataSelectPostCommentStatus() {
+                                                await $.ajax({
+                                                    url: systemURL + 'postCommentStatus/api/list',
+                                                    type: 'GET',
+                                                    async: 'true',
+                                                    contentType: 'application/json',
+                                                    success: function (responseData) {
+                                                        //console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                        // debugger;
+                                                        var data = responseData.data;
+                                                        postCommentStatusData = data;
+                                                    },
+                                                    error: function (e) {
+                                                        //console.log(e.message);
+                                                    }
+                                                });
+                                            }
+                                            loadDataSelectPostCommentStatus();
+                                            $(document).ready(function () {
+                                                $.when(loadDataSelectPostCommentStatus()).done(function () {
+                                                    $("#filterPostCommentStatusId").select2();
+                                                    postCommentStatusData.forEach(function (item) {
+                                                        $('#post-comment-statusId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        $('#filterPostCommentStatusId').append(new Option(item.name, item.id, false, false));
+                                                    })
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+
+                                    @*Url*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2" id="basic-addon-url">Url</label>
+                                                <input type="text" required autocomplete="off" class="form-control input-url" id="post-url" placeholder="" aria-label="url" aria-describedby="basic-addon-url" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*Số lượt xem *@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="fw-semibold fs-6 mb-2" id="basic-addon-viewCount">Số lượt xem</label>
+                                                <input type="number" autocomplete="off" class="form-control input-viewCount" id="post-viewCount" placeholder="" aria-label="viewCount" aria-describedby="basic-addon-viewCount" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*Số lượt bình luận*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="fw-semibold fs-6 mb-2" id="basic-addon-commentCount">Số lượt bình luận</label>
+                                                <input type="number" autocomplete="off" class="form-control input-commentCount" id="post-commentCount" placeholder="" aria-label="commentCount" aria-describedby="basic-addon-commentCount" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*Số lượt thích*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="fw-semibold fs-6 mb-2" id="basic-addon-likeCount">Số lượt thích</label>
+                                                <input type="number" autocomplete="off" class="form-control input-likeCount" id="post-likeCount" placeholder="" aria-label="likeCount" aria-describedby="basic-addon-likeCount" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*Ngày công khai*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class="form-group">
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="required fw-semibold fs-6 mb-2" id="basic-addon-publishedTime">Ngày công khai</label>
+                                                <input type="datetime" required autocomplete="off" class="form-control input-publishedTime datepicker" id="post-publishedTime" placeholder="publishedTime" aria-label="publishedTime" aria-describedby="basic-addon-publishedTime" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*Ngày tạo*@
+                                    <div class="col-md-4 mb-7">
+                                        <div class='form-group'>
+                                            <div class="fv-plugins-icon-container">
+                                                <label class="fw-semibold fs-6 mb-2" id="basic-addon-createdTime">Ngày tạo</label>
+                                                <input type='text' autocomplete="off" id="post-createdTime" required class="form-control " aria-label="createdTime" aria-describedby="basic-addon-createdTime" readonly disabled />
+                                                <label class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-6 d-none">
+                                        <!--begin::Label-->
+                                        <label class="col-form-label fw-semibold fs-6">Chọn thẻ</label>
+                                        @*<div class="fs-7 fw-semibold text-muted">NOTE: Thêm dấu "#" để tạo thẻ mới cho bài viết </div>*@
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        @*  <div class="col-lg-12">
+                                        <select name="postTag" id="postTag" multiple class="form-select form-select-solid form-select-lg">
+                                        </select>
+                                        </div>*@
+
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <div class="fv-plugins-icon-container">
+                                                    @*<label class="required fw-semibold fs-6 mb-2">Danh mục bài viết</label>*@
+                                                    <select class="form-select form-select-solid form-select-lg" id="postTag" data-placeholder="" multiple data-dropdown-parent="#modal-id"></select>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                var tagData = [];
+                                                async function loadDataSelectTag() {
+                                                    await $.ajax({
+                                                        url: systemURL + 'tag/api/list-tag-select?keyWord=&pageSize=9999',
+                                                        type: 'GET',
+                                                        async: 'true',
+                                                        contentType: 'application/json',
+                                                        success: function (responseData) {
+                                                            //console.log(new Date().getSeconds() + ':' + new Date().getMilliseconds() + ' - loaded account');
+                                                            // debugger;
+                                                            var data = responseData.listData;
+                                                            tagData = data;
+                                                        },
+                                                        error: function (e) {
+                                                            //console.log(e.message);
+                                                        }
+                                                    });
+                                                }
+                                                loadDataSelectTag();
+                                                $(document).ready(function () {
+                                                    $.when(loadDataSelectTag()).done(function () {
+                                                        $("#postTag").select2();
+                                                        tagData.forEach(function (item) {
+                                                            $('#postTag').append(new Option(item.text, item.id, false, false)).trigger('change');
+                                                            //$('#filterTagId').append(new Option(item.name, item.id, false, false));
+                                                        })
+                                                    });
+                                                });
+                                            </script>
+                                        </div>
+
+                                        <!--end::Col-->
+                                    </div>
+                                    @*Nội dung*@
+                                    <div class="col-md-12">
+                                        <label class=" col-form-label required fw-semibold fs-6">Nội dung</label>
+                                        <div class="col-lg-12 fv-row">
+                                            <textarea id="post-text" style="display: none; visibility: hidden;" class="form-control form-control mb-3 mb-lg-0 text_editor"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer sticky-action justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary" id="btnUpdateItem">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Col-->
+        </div>
+    </div>
+    <!--end::Content container-->
+</div>
+<!--begin:Base load data-->
+@section Scripts{
+    <partial name="_FileExplorer" />
+}
+<script>
+    var showItem = ['id', 'postTypeId', 'postAccountId', 'postCategoryId', 'postLayoutId', 'postPublishStatusId', 'authorId', 'guId', 'photo', 'video', 'viewCount', 'commentCount', 'likeCount', 'url', 'name', 'text', 'downloadLink', 'publishedTime', 'createdTime'];
+    var dataSource = [];
+    var updatingItemId = 0;
+    var editObj;
+    var tableUpdating = 0;
+    var table;
+    const submitButton = document.getElementById('btnUpdateItem');
+    submitButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        submitButton.setAttribute('data-kt-indicator', 'on');
+        // Disable button to avoid multiple click
+        //submitButton.disabled = true;
+        // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+        updateItem(updatingItemId);
+    });
+    $('#search-input').on("input", function () {
+        table.search($(this).val()).draw();
+    });
+    $(document).ready(function () {
+        // Load data
+        loadData();
+
+        // Datetime picker
+        document.querySelectorAll(".datepicker").forEach(function (item) {
+            new tempusDominus.TempusDominus(item, datePickerOption);
+        })
+        $(".datepicker").on('dp.change', function (e) {
+            // console.log(this.value);
+            this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+            // console.log(this.value);
+        });
+        //Flat pickr format
+        $("#filterCreatedTime_input").flatpickr({
+            dateFormat: "d/m/Y",
+            mode: "range",
+        });
+        $("#open-flatpickr").click(function () {
+            $("#filterCreatedTime_input").click();
+        });
+        $("#clear-flatpickr").click(function () {
+            $("#filterCreatedTime_input").val("");
+        });
+
+        $("#filterPublishedTime_input").flatpickr({
+            dateFormat: "d/m/Y",
+            mode: "range",
+        });
+        $("#open-flatpickr-PublishedTime").click(function () {
+            $("#filterPublishedTime_input").click();
+        });
+        $("#clear-flatpickr-PublishedTime").click(function () {
+            $("#filterPublishedTime_input").val("");
+        });
+
+        $('.dataSelect').select2();
+
+
+        $("#btnTableSearch").click(function () {
+            tableSearch();
+        });
+
+        $("#tableData thead:nth-child(2) tr th input").keypress(function (e) {
+            let key = e.which;
+            if (key == 13) {
+                $("#btnTableSearch").click();
+            }
+        });
+        $("#btnTableResetSearch").click(function () {
+            $(".tableheaderFillter").val("").trigger("change");
+            tableSearch();
+        });
+    });
+    function loadData() {
+        initTable();
+    }
+    function initTable() {
+        table = $('#tableData').DataTable({
+            processing: true,
+            serverSide: true,
+            paging: true,
+            searching: { regex: true },
+            order: [9, 'desc'],
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            ajax: {
+                url: systemURL + "post/api/listlibrary-server-side",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: function (d) {
+                    d.searchAll = $("#search-input").val();
+                    d.postTypeIds = $("#filterPostTypeId").val(); d.postCategoryIds = $("#filterPostCategoryId").val(); d.postLayoutIds = $("#filterPostLayoutId").val(); d.postPublishStatusIds = $("#filterPostPublishStatusId").val(); d.authorIds = $("#filterAuthorId").val(); d.postCommentStatusIds = $("#filterPostCommentStatusId").val()
+                    return JSON.stringify(d);
+                }
+            },
+            columns: [
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        var info = table.page.info();
+                        var stt = meta.row + 1 + info.page * info.length;
+                        return stt; // This contains the row index
+                    }
+                },
+                {
+                    data: "name",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                    },
+                },
+
+                {
+                    data: "postTypeId",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + row.postTypeName + "<span>";
+                    },
+                },
+                {
+                    data: "postCategoryId",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + row.postCategoryName + "<span>";
+                    },
+                },
+                {
+                    data: "postPublishStatusId",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + row.postPublishStatusName + "<span>";
+                    },
+                },
+                {
+                    data: "authorId",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + row.authorName + "<span>";
+                    },
+                },
+                {
+                    data: "photo",
+                    render: function (data, type, row, meta) {
+                        return "<img class='photo' id='row" + row.id + "-column-id' src='" + data + "'/>";
+                    },
+                },
+                {
+                    data: "publishedTime",
+                    render: function (data) {
+                        var tempDate = new Date(data);
+                        var displayValue = moment(data).format("DD/MM/YYYY HH:mm:ss");
+                        return displayValue;
+                    }
+                },
+
+                {
+                    data: "createdTime",
+                    render: function (data) {
+                        var tempDate = new Date(data);
+                        var displayValue = moment(data).format("DD/MM/YYYY HH:mm:ss");
+                        return displayValue;
+                    }
+                },
+
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        return "<div class='d-flex justify-content-center gap-2'>"
+                            + "<a title='Cập nhật' onclick='editItem(" + row.id + ")' class='me-2 btn_manage'><span class='svg-icon-success svg-icon  svg-icon-1 svg_teh009'><span class='svg-icon-primary svg-icon  svg-icon-1'> <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path opacity='0.3' fill-rule='evenodd' clip-rule='evenodd' d='M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z' fill='currentColor'></path><path d='M10.9256 11.1882C10.5351 10.7977 10.5351 10.1645 10.9256 9.77397L18.0669 2.6327C18.8479 1.85165 20.1143 1.85165 20.8953 2.6327L21.3665 3.10391C22.1476 3.88496 22.1476 5.15129 21.3665 5.93234L14.2252 13.0736C13.8347 13.4641 13.2016 13.4641 12.811 13.0736L10.9256 11.1882Z' fill='currentColor'></path><path d='M8.82343 12.0064L8.08852 14.3348C7.8655 15.0414 8.46151 15.7366 9.19388 15.6242L11.8974 15.2092C12.4642 15.1222 12.6916 14.4278 12.2861 14.0223L9.98595 11.7221C9.61452 11.3507 8.98154 11.5055 8.82343 12.0064Z' fill='currentColor'></path></svg></span></span></a>"
+                            + "<a title='Cập nhật' onclick='deleteItem(" + row.id + ")' class='me-2 btn_manage'><span class='svg-icon-success svg-icon  svg-icon-1 svg_teh009'><span class='svg-icon-danger svg-icon  svg-icon-1'><svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z' fill='currentColor'></path><path opacity='0.5' d='M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z' fill='currentColor'></path><path opacity='0.5' d='M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z' fill='currentColor'></path></svg></span></a>"
+                    }
+                },
+
+            ],
+            columnDefs: [
+                { targets: "no-sort", orderable: false },
+                { targets: "no-search", searchable: false },
+                { orderable: false, targets: [-1, 0] },
+            ],
+            aLengthMenu: [
+                [5, 10, 20, 50],
+                [5, 10, 20, 50]
+            ],
+            drawCallback: function () {
+                $('#tableData tfoot').html("");
+                $("#tableData thead:nth-child(1) tr").clone(true).appendTo("#tableData tfoot");
+                $('#tableData tfoot tr').addClass("border-top");
+            }
+        });
+    }
+    async function editItem(id) {
+        updatingItemId = id;
+        $("#postTag").val("").trigger('change');
+        $("#modal-id").modal('show');
+        if (id > 0) {
+            editObj = await getItemById(id);
+        }
+
+        $("#post-photo").attr("file-path", id > 0 ? editObj.photo : "");
+        $("#post-photo").attr("src", id > 0 && editObj.photo != undefined && editObj.photo.trim() != "" ? editObj.photo : "/assets/media/images/blog/NoImage.png").trigger("change");
+
+        //updatingObj.tagIds.forEach(function (item) {
+        //    $("#postTag").append(new Option(item.name, item.id, false, true));
+        //})
+
+        $("#defaultModalTitle").text(id == 0 ? "Thêm mới tài liệu" : "Cập nhật tài liệu");
+        $("#post-id").val(id > 0 ? editObj.id : "");
+        $("#post-postTypeId").val(id > 0 ? editObj.postTypeId : @PostContants.POST_TYPE_ID).trigger("change");
+        $("#post-postAccountId").val(@ViewBag.AccountId);
+        $("#post-postCategoryId").val(id > 0 ? editObj.postCategoryId : @PostContants.POST_CATEGORY_ID).trigger("change");
+        $("#post-postPublishStatusId").val(id > 0 ? editObj.postPublishStatusId : @PostContants.POST_PUBLISHSTATUS).trigger("change");
+        $("#post-postLayoutId").val(id > 0 ? editObj.postLayoutId : "").trigger("change");
+        $("#post-authorId").val(id > 0 ? editObj.authorId : @PostContants.POST_AUTHOR).trigger("change");
+        $("#post-guId").val(id > 0 ? editObj.guId : "");
+        $("#post-active").val(id > 0 ? editObj.active : 0);
+        $("#post-video").val(id > 0 ? editObj.video : "");
+        $("#post-viewCount").val(id > 0 ? editObj.viewCount : "");
+        $("#post-commentCount").val(id > 0 ? editObj.commentCount : "");
+        //$("#postTag").val(id > 0 ? editObj.tagIds : "").trigger("change");
+        $("#post-likeCount").val(id > 0 ? editObj.likeCount : "");
+        $("#post-url").val(id > 0 ? editObj.url : "");
+        $("#post-name").val(id > 0 ? editObj.name : "");
+
+        if (editObj != null) {
+            if (CKEDITOR.instances["post-text"].getData() == "" && editObj.text != "") {
+                CKEDITOR.instances["post-text"].setData(editObj.text);
+
+            } else if (CKEDITOR.instances["survey-text"].getData() != "") {
+                CKEDITOR.instances["post-text"].setData("");
+            }
+        }
+        else if(id==0) {
+            CKEDITOR.instances["post-text"].setData("");
+        }
+
+        $("#post-description").val(id > 0 ? editObj.description : "");
+        $("#post-downloadLink").val(id > 0 ? editObj.downloadLink : "");
+        $("#post-publishedTime").val(id > 0 ? moment(editObj.publishedTime).format("DD/MM/YYYY HH:mm:ss") : moment(new Date()).format("DD/MM/YYYY HH:mm:ss"));
+        $("#post-createdTime").val(id > 0 ? moment(editObj.createdTime).format("DD/MM/YYYY HH:mm:ss") : moment(new Date()).format("DD/MM/YYYY HH:mm:ss"));
+        $("#post-comment-statusId").val(id > 0 ? editObj.postCommentStatusId : "").trigger("change");
+        //console.log(editObj.listTag.map(item=>item.id));
+        $('#postTag').val(id > 0 ? editObj.listTag.map(item => item.id) : null).trigger('change');
+
+
+
+        //var listTagByOfThisPost = [];
+        ////Ajax request to get list tags of this post
+        //listTagByOfThisPost = [1000001,1000002];
+        //$('#postTag').val().trigger('change');
+        //editObj.postTags.foreach(function (item) {
+        //    $('#postTag').val(id > 0 ? item : "").trigger("change");
+        //    //$('#postTag').append(new Option(item.name, item.id, false, false)).trigger('change');
+        //})
+        //formatNumber();
+    }
+    async function updateItem(id) {
+
+        let filePath = $("#post-photo").attr("file-path") || "";
+        filePath = filePath.replace("@UploadFileConst.DEFAULT_THUMB");
+        var actionName = (id == 0 ? "Bạn muốn tạo mới" : "Cập nhật");
+        var obj;
+        if (id > 0) {
+            obj = await getItemById(id);
+        }
+        let objName = id > 0 ? obj.name : "item";
+        validateInputNumber();
+        var updatingObj = {
+            "id": $("#post-id").val(),
+            "postTypeId": @PostContants.LIBRARY_TYPE_ID,
+            "postAccountId": $("#post-postAccountId").val(),
+            "postCategoryId": $("#post-postCategoryId").val(),
+            "postPublishStatusId": $("#post-postPublishStatusId").val(),
+            "postLayoutId":@PostContants.POST_LAYOUT,
+            "authorId": $("#post-authorId").val(),
+            "active": $("#post-active").val(),
+            "photo": filePath,
+            "viewCount": $("#post-viewCount").val() ? $("#post-viewCount").val() : 0,
+            "commentCount": $("#post-commentCount").val(),
+            "likeCount": $("#post-likeCount").val(),
+            "url": $("#post-url").val(),
+            "name": $("#post-name").val(),
+            "text": CKEDITOR.instances["post-text"].getData(),
+            "downloadLink": $("#post-downloadLink").val(),
+            "description": $("#post-description").val(),
+            "publishedTime": formatDatetimeUpdate($("#post-publishedTime").val()),
+            "createdTime": formatDatetimeUpdate($("#post-createdTime").val()),
+            "postCommentStatusId": $('#post-comment-statusId').val(),
+        };
+        Swal.fire({
+            title: 'Xác nhận thay đổi?',
+            text: "" + actionName + " " + objName + "",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Xác nhận',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.value) {
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    //updatingObj.id = $("#post-id").val()
+                    $.ajax({
+                        url: systemURL + "post/api/update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        dataType: "json",
+                        beforeSend: function (xhr) {
+                            if (localStorage.token) {
+                                xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+                            }
+                        },
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Thành Công!',
+                                    'Đã cập nhật "' + objName + '" ',
+                                    'success'
+                                );
+                                $("#modal-id").modal('hide');
+
+                                addPostTag(id);
+                                reGenTable();
+                            } else if (responseData.status == 203 && responseData.message === "POSTNAMEEXIST") {
+                                Swal.fire(
+                                    'Thất bại!',
+                                    'Tên bài viết đã bị trùng với bài viết khác',
+                                    'warning'
+                                );
+                                // Remove loading indication
+                                submitButton.removeAttribute('data-kt-indicator');
+                                // Enable button
+                                submitButton.disabled = false;
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Lỗi!',
+                                'Đã xảy ra lỗi, vui lòng thử lại',
+                                'error'
+                            );
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
+                            // Enable button
+                            submitButton.disabled = false;
+                        }
+                    });
+                };
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    updatingObj.createdTime = new Date();
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: systemURL + "post/api/Add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                Swal.fire(
+                                    'Thành công!',
+                                    'Đã cập nhật dữ liệu',
+                                    'success'
+                                );
+                                $("#modal-id").modal('hide');
+                                updatingObj = responseData.data;
+                                addPostTag(id);
+                                reGenTable();
+                                // Remove loading indication
+                                submitButton.removeAttribute('data-kt-indicator');
+                                // Enable button
+                                submitButton.disabled = false;
+                            }
+                            else if (responseData.status == 203 && responseData.message === "POSTNAMEEXIST") {
+                                Swal.fire(
+                                    'Thất bại!',
+                                    'Tên bài viết đã bị trùng với bài viết khác',
+                                    'warning'
+                                );
+                                // Remove loading indication
+                                submitButton.removeAttribute('data-kt-indicator');
+                                // Enable button
+                                submitButton.disabled = false;
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Lỗi!',
+                                'Đã xảy ra lỗi, vui lòng thử lại',
+                                'error'
+                            );
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
+                            // Enable button
+                            submitButton.disabled = false;
+                        }
+                    });
+                }
+            }
+            else {
+                // Remove loading indication
+                submitButton.removeAttribute('data-kt-indicator');
+                // Enable button
+                submitButton.disabled = false;
+            }
+        })
+    }
+
+    async function addPostTag(id) {
+        $.ajax({
+            url: systemURL + "postTag/api/DetailPostTag?id=" + id,
+            type: "GET",
+            contentType: "application/json",
+            success: function (responseData) {
+                var item2 = $("#postTag").val();
+                item2.forEach(function (item) {
+                    var updatingObj = {
+                        "postId": id,
+                        "tagId": item,
+                        "name": "name",
+                        "Active": 1,
+                        "createdTime": formatDatetime("30/11/2023 09:54:32")
+                    };
+                    $.ajax({
+                        url: systemURL + "postTag/api/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+
+                        }
+                    })
+                })
+            }
+        })
+
+
+    }
+
+    async function deleteItem(id) {
+        updatingObj = table.ajax.json().data.find(c => c.id == id);
+        let objName = id > 0 ? updatingObj.name : "item";
+        Swal.fire({
+            title: 'Xác nhận thay đổi?',
+            text: "Xóa " + objName + "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.value) {
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: systemURL + "post/api/delete",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "id": id }),
+                    success: function (responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire(
+                                'Thành công!',
+                                'Đã xoá ' + updatingObj.name + '.',
+                                'success'
+                            );
+                            reGenTable();
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Lỗi!',
+                            'Đã xảy ra lỗi, vui lòng thử lại',
+                            'error'
+                        );
+                    }
+                });
+
+            }
+            else {
+                // Remove loading indication
+                submitButton.removeAttribute('data-kt-indicator');
+                // Enable button
+                submitButton.disabled = false;
+            }
+        })
+    }
+    async function getItemById(id) {
+        var data;
+        await $.ajax({
+            url: systemURL + "post/api/detailbyid/" + id,
+            method: "GET",
+            success: function (responseData) {
+                data = responseData.data[0];
+            },
+            error: function (e) {
+            },
+        });
+        return data;
+    }
+    function reGenTable() {
+        tableUpdating = 0;
+        table.destroy();
+        $(".tableHeaderFilter").val(null).trigger("change");
+        $("#tableData tbody").html('');
+        loadData();
+    }
+
+    function formatSelection(item) {
+        return item.text;
+    }
+
+    function formatResult(item) {
+        if (item.loading) {
+            return item.text;
+        }
+        return item.text;
+    }
+
+    setTimeout(function () {
+        $.when(loadDataSelectPostType(), loadDataSelectPostCategory(), loadDataSelectAuthor(), loadDataSelectPostPublishStatus(), loadDataSelectPostCommentStatus()).done(function () {//set up layout
+            //$("#postTag").select2({//remote data tag
+            //    language: "vi",
+            //    ajax: {
+            //        url: systemURL + "tag/api/list-tag-select",
+            //        dataType: 'json',
+            //        type: "GET",
+            //        delay: 250,
+            //        data: function (params) {
+            //            var keyword = $.trim(params.term);
+            //            if (keyword != undefined && keyword != null && keyword != "" && keyword.startsWith('#')) {
+            //                keyword = keyword.slice(1);
+            //            }
+            //            return {
+            //                keyWord: keyword, // search term
+            //                pageIndex: params.page,
+            //                pageSize: 20, //page size
+            //            };
+            //        },
+            //        processResults: function (data, params) {
+            //            params.page = params.page || 1;
+            //            return {
+            //                results: data.listData,
+            //                pagination: {
+            //                    more: (params.page * 20) < data.totalRecord//20 is page size
+            //                }
+            //            };
+            //        },
+            //        cache: true
+            //    },
+            //    placeholder: {
+            //        id: '-1', // the value of the option
+            //        text: 'Chọn tag..'
+            //    },
+            //    allowClear: true,
+            //    tags: true,
+            //    templateResult: formatResult,
+            //    templateSelection: formatSelection,
+            //    createTag: function (params) {
+            //        var term = $.trim(params.term);
+            //        if (term === '') {
+            //            return null;
+            //        }
+            //        if (!term.startsWith('#') || term.length < 2) {//check # in created tag
+            //            return null;
+            //        }
+            //        else {
+            //            term = term.slice(1);
+            //        }
+            //        return {
+            //            id: term,
+            //            text: term,
+            //            newTag: true // add additional parameters
+            //        }
+            //    }
+            //}).on("select2:select", function (e) {
+            //    for (var i = 0; i < e.target.length; i++) {
+            //        var target = e.target[i];
+            //        if ($(target).attr("data-select2-tag")) {
+            //            $.ajax({
+            //                url: systemURL + "tag/api/add-tag-for-post",
+            //                type: "POST",
+            //                contentType: "application/json",
+            //                dataType: "json",
+            //                data: JSON.stringify({ name: $(target).text() }),
+            //                async: false,
+            //                success: function (res) {
+            //                    if (res.isSucceeded) {
+            //                        var obj = res.resources;
+            //                        $(target).attr("value", obj.id);
+            //                        $(target).prop("data-select2-tag", false);
+            //                    }
+            //                },
+            //                error: function (e) {
+            //                    $(target).remove();
+            //                }
+            //            })
+            //        }
+            //    }
+            //})
+        });
+    }, 1000)
+</script>
+<!--end:Base load data-->
+<!--begin:setting in data table-->
+<script>
+    function tableSearch() {
+        table.column(1).search($("#tableData thead:nth-child(2) tr th:nth-child(2) input").val());
+        table.column(2).search($("#tableData thead:nth-child(2) tr th:nth-child(3) input").val());
+        table.column(3).search($("#tableData thead:nth-child(2) tr th:nth-child(4) input").val());
+        table.column(4).search($("#tableData thead:nth-child(2) tr th:nth-child(5) input").val());
+        table.column(5).search($("#tableData thead:nth-child(2) tr th:nth-child(6) input").val());
+        table.column(6).search($("#tableData thead:nth-child(2) tr th:nth-child(7) input").val());
+        table.column(7).search($("#tableData thead:nth-child(2) tr th:nth-child(8) input").val());
+        table.column(8).search($("#tableData thead:nth-child(2) tr th:nth-child(9) input").val());
+        table.column(9).search($("#tableData thead:nth-child(2) tr th:nth-child(10) input").val());
+        //table.column(10).search($("#tableData thead:nth-child(2) tr th:nth-child(11) input").val());
+        //table.column(11).search($("#tableData thead:nth-child(2) tr th:nth-child(12) input").val());
+        //table.column(12).search($("#tableData thead:nth-child(2) tr th:nth-child(13) input").val());
+        //table.column(13).search($("#tableData thead:nth-child(2) tr th:nth-child(14) input").val());
+        //table.column(14).search($("#tableData thead:nth-child(2) tr th:nth-child(15) input").val());
+        //table.column(15).search($("#tableData thead:nth-child(2) tr th:nth-child(16) input").val());
+        //table.column(16).search($("#tableData thead:nth-child(2) tr th:nth-child(17) input").val());
+
+        table.draw();
+    }
+</script>
+<!--end:setting in data table-->

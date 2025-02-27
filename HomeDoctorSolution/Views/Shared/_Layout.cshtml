@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html lang="en">
+<!-- Mirrored from html-template.spider-themes.net/docy/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Oct 2023 02:56:17 GMT -->
+<head>
+    <partial name="HappySmile/FrontEnd/_Library" />
+</head>
+
+<body data-scroll-animation="true">
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="round_spinner">
+                <div class="spinner"></div>
+                <div class="text">
+                    <img style="max-height: 50px" src="~/homedoctor/img/header/header-logo.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+    <!-- Back to top button -->
+    <a id="back-to-top" title="Back to Top"></a>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <partial name="HappySmile/FrontEnd/_JavaScript" />
+    @RenderSection("Scripts", required: false)
+</body>
+
+<!-- Mirrored from html-template.spider-themes.net/docy/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Oct 2023 02:56:47 GMT -->
+</html>

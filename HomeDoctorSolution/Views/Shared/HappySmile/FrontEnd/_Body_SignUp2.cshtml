@@ -1,0 +1,132 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="/happys/css/signup/signup.css" asp-append-version="true">
+<div class="body_wrapper">
+    <section class="signup_area">
+        <div class="sign_right signup_right  w-100 overflow-auto">
+            <div class="sign_inner signup_inner">
+                <div class="text-center w-100 sign-top">
+                    <h3>Đăng ký</h3>
+                </div>
+                <div class="sign_up_container">
+                    <form class="register_form" id="regForm" action="/action_page.php">
+                        <!-- One "tab" for each step in the form: -->
+                        <div class="tab">
+                            <div class="row text-left">
+                                <div class="col-sm-6 form-group m-0">
+                                    <div class="small_text">Tên đăng nhập</div>
+                                    <div class="form-group position-relative d-flex">
+                                        <input type="text" class="form-control" name="Tên đăng nhập" id="username" placeholder="Nhập tên đăng nhập" autocomplete="off">
+                                        <label class="invalid_text"></label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group  m-0">
+                                    <div class="small_text">Họ và tên</div>
+                                    <div class="form-group position-relative d-flex">
+                                        <input type="text" class="form-control" name="Họ và tên" id="fullname" placeholder="Vd: Nguyễn Văn A" autocomplete="off">
+                                        <label class="invalid_text"></label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 form-group  m-0">
+                                    <label class="small_text">Ngày sinh</label>
+                                    <div class="form-group position-relative d-flex date datepicker">
+                                        <input type="text" class="form-control" name="Ngày sinh" id="dob" required="">
+                                        <label class="invalid_text"></label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group  m-0">
+                                    <div class="small_text">Email</div>
+                                    <div class="form-group position-relative d-flex">
+                                        <input type="email" class="form-control" id="email" name="Địa chỉ email" placeholder="Nhập địa chỉ Email" oninvalid="if (this.value == ''){this.setCustomValidity('Email không được để trống!')} if (this.value != ''){this.setCustomValidity('Email không đúng định dạng!')}" oninput="setCustomValidity('')" autocomplete="off">
+                                        <label class="invalid_text"></label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group  m-0">
+                                    <div class="small_text">Mật khẩu</div>
+                                    <div class="form-group d-flex flex-row position-relative">
+                                        <input id="signup-password" name="Mật khẩu" placeholder="Nhập mật khẩu" type="password" class="form-control" autocomplete="off">
+                                        <div class="forget_btn">
+                                            <i class="bi bi-eye-slash" id="toggle_password"></i>
+                                        </div>
+                                        <label class="invalid_text"></label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group  m-0">
+                                    <div class="small_text">Xác nhận mật khẩu</div>
+                                    <div class="form-group d-flex flex-row position-relative">
+                                        <input id="confirm-password" name="Xác nhận mật khẩu" placeholder="Nhập lại mật khẩu" type="password" class="form-control" autocomplete="off">
+                                        <div class="forget_btn">
+                                            <i class="bi bi-eye-slash" id="toggle_confirm_password"></i>
+                                        </div>
+                                        <label class="invalid_text"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab mb-5">
+                            <div class="sign_up_container_2">
+                                <div class="card card-sign text-left">
+                                    @*<div class="card-sign-item">
+                                    <label for="select">
+                                    Sở GD & ĐT
+                                    </label>
+                                    <select class="select_formgroup" id="select">
+                                    <option value="0">Sở Giáo dục và đào tạo Hà Nội</option>
+                                    </select>
+                                    </div>
+                                    <div class="card-sign-item">
+                                    <label for="room">
+                                    Phòng GD&ĐT
+                                    </label>
+                                    <select class="select_formgroup" id="room">
+                                    <option value="0">Trường THPT ABC</option>
+                                    </select>
+                                    </div>*@
+                                    <div class="card-sign-item">
+                                        <label for="school">
+                                            Trường học
+                                        </label>
+                                        <select class="select_formgroup" id="school">
+                                            @*<option value="0">Trường ABC</option>*@
+                                        </select>
+                                    </div>
+                                    <div class="card-sign-item">
+                                        <label for="class">
+                                            Lớp học
+                                        </label>
+                                        <select class="select_formgroup" id="class">
+                                            @*<option value="">Lớp ABC</option>
+                                            <option value="1">Lớp ABC</option>*@
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100 d-inline-block">
+                            <div class="d-flex justify-content-center mb-3 gap-15px">
+                                <button class="btn btnHS b-grey" type="button" id="prevBtn" onclick="nextPrev(-1)">Quay lại</button>
+                                <button class="btn btnHS" type="button" id="nextBtn" onclick="nextPrev(1)">Tiếp theo</button>
+                            </div>
+                        </div>
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px; display:none">
+                            <span class="step"></span>
+                            <span class="step"></span>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <p>Đã có tài khoản? <a class="register" href="/sign-in"><b>Đăng nhập</b></a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="sign_footer">
+                    <a class="d-flex flex-row align-items-center justify-content-center gap-16px" href="/"><img src="/happys/svg/back-home.svg" />Về trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,32 @@
+﻿.detail-tag {
+    padding: 16px 0px;
+    display: flex;
+    border-bottom: 1px #D9D9D9 solid;
+    gap: 16px;
+    font-size:13px;
+}
+
+    .detail-tag a {
+        color: black;
+        font-size: 14px;
+        font-family: Mulish;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+.navbar {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.10)
+}
+.home-tag {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+@media (min-width: 320px) and (max-width: 600px) {
+    .detail-tag {
+        gap: 8px;
+    }
+
+        .detail-tag a {
+            font-size: 12px;
+        }
+}

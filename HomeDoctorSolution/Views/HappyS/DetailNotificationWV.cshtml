@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .new-detail-status{
+        color: #1470F5;
+        font-size: 16px;
+        font-family: Lexend;
+        font-weight: 400;
+        line-height: 20px;
+        word-wrap: break-word
+    }
+
+    .sub-thread{
+        color: black;
+        font-size: 16px;
+        font-family: Lexend;
+        font-weight: 400;
+        line-height: 20px;
+        word-wrap: break-word
+    }
+
+    .text-detail-noti{
+        color: black;
+        font-size: 16px;
+        font-family: Lexend;
+        font-weight: 400;
+        line-height: 20px;
+        margin-top: 10px;
+    }
+
+    .new-detail-img{
+        width: 100%;
+        object-fit: cover;
+        margin-top: 10px;
+    }
+    
+    .new-detail-container{
+        padding: 15px;
+    }
+</style>
+<section id="noti-detail-sec" class="none">
+    <div class="space"></div>
+    <a href="#noti-sec" class="btn-back rounded-circle" id="noti"></a>
+
+    <div class="new-detail-container" id="notificationDetail">
+        
+    </div>
+</section>
+<script src="~/happys/js/page/detail-notification.js"></script>
+<script>
+    var getCookies = function () {
+        var pairs = document.cookie.split(";");
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+            var pair = pairs[i].split("=");
+            cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='));
+        }
+        return cookies;
+    }
+    var myCookies = getCookies();
+    localStorage.setItem("token", myCookies.Authorization);
+</script>

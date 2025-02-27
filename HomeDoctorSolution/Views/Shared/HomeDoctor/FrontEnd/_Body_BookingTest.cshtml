@@ -1,0 +1,1316 @@
+﻿<link href="/css/flatpickr.min.css" rel="stylesheet" />
+<script src="/js/flatpickr.min.js"></script>
+<script src="/js/language/vn.js"></script>
+
+<style>
+    /* Modal */
+    body {
+        color: unset;
+    }
+
+    p {
+        color: unset;
+    }
+
+    .result-no-content {
+        display: flex;
+        flex-direction: column;
+        padding: 60px 500px 60px 500px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+        .result-no-content img {
+            width: 100%;
+        }
+
+        .result-no-content p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+    #detail-service-info img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        /* margin-bottom: 16px; */
+    }
+
+    #detail-service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    #modal-service {
+        padding: 0 !important;
+    }
+
+    .modal-item-service {
+        max-width: 50%;
+    }
+
+    .header-title-component {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .detail-facility-component {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-direction: row;
+    }
+
+    #detail-service-facility {
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .detail-money-component {
+        display: flex;
+        flex-direction: row;
+    }
+
+        .detail-money-component p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+    detail-service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    .detail-money-component span {
+        color: #007983;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 20px;
+    }
+
+    .body-service {
+        padding-top: 0;
+        padding-bottom: 0;
+        max-height: 65vh;
+        overflow: auto;
+    }
+
+    .footer-service {
+        justify-content: center;
+        padding: 0;
+        display: block;
+        border-top: 0;
+        margin-top: 26px;
+        text-align: right;
+    }
+
+    .footer-service-component {
+        border-radius: 16px;
+        background: #FFF;
+        box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10);
+        padding: 16px;
+        display: none !important;
+    }
+
+    .footer-service-button {
+        border-radius: 35px;
+        background: var(--Main-color-1, #FFC800);
+        box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+        color: #000;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 14px 25px;
+        border: 0 !important;
+        width: fit-content;
+    }
+
+    .header-service-title {
+        background: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px;
+    }
+
+    .content-result {
+        border-radius: 16px;
+    }
+
+    @@media screen and (max-width: 650px) {
+        .info-service-price {
+            margin-left: 10px;
+        }
+    }
+
+    @@media screen and (max-width: 768px) {
+        .modal-item-service {
+            max-width: unset;
+        }
+
+        .content-result {
+            padding: 0;
+        }
+    }
+    /* End Modal */
+
+    .service-component {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: var(--spacing-xl, 16px) 21px;
+        align-items: flex-end;
+    }
+
+    .service-left-component {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+        .service-left-component img {
+            width: 92px;
+            height: 92px;
+            border-radius: 10px;
+        }
+
+    .service-right-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl, 15px);
+    }
+
+    #service-name {
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px; /* 100% */
+        background: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .service-facility {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+        .service-facility p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 125% */
+        }
+
+    .service-price-component {
+        display: flex;
+        flex-direction: row;
+    }
+
+        .service-price-component p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 125% */
+        }
+
+        .service-price-component span {
+            color: #007983;
+            font-family: Mulish;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: 20px; /* 100% */
+        }
+
+    #service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    .service-right a {
+        color: #007983 !important;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        cursor: pointer;
+    }
+
+    .select-form > .select2-container--default .select2-selection--single {
+        border-radius: 10px !important;
+        border: 1px solid #D9D9D9 !important;
+        background: #FFF !important;
+        height: 50.2083px !important;
+    }
+
+    .select2-results__option {
+        cursor: pointer !important;
+    }
+
+        .select2-results__option:hover {
+            background-color: #007983 !important;
+            color: #fff !important;
+        }
+
+    .select2-dropdown {
+        background: #fff !important;
+        border: 1px solid #D9D9D9 !important;
+        border-top: 0 !important;
+    }
+
+    .select2-selection__rendered {
+        padding-left: 24.94px !important;
+    }
+
+    .booking-container {
+        border-radius: 10px;
+        background: #F5F5F5;
+        margin-top: 16px;
+    }
+
+    .booking-content {
+        padding: 64px 40.5px
+    }
+
+    .content-description h3 {
+        color: #007983;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .content-description p {
+        color: #000;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .content-description {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+
+    .information-component {
+        border-radius: 10px;
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+    }
+
+    .component-title {
+        display: flex;
+        padding: var(--spacing-xl, 16px);
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #D9D9D9;
+    }
+
+        .component-title h3 {
+            color: #007983;
+            font-family: Mulish;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+
+    .booking-content h3 {
+        margin: 0;
+    }
+
+    .general-content {
+        padding: 32px;
+    }
+
+    .input-form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+
+    .input-form label {
+        color: var(--Black, #1B1E28);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; /* 142.857% */
+        margin-bottom: 0;
+    }
+
+    .input-form input {
+        border-radius: 10px;
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+        color: #333333;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+        padding: 14px 24.94px;
+    }
+
+    .booking-content-info {
+        display: flex;
+        gap: 32px;
+        flex-direction: column;
+    }
+
+    /*     .calendar-form {
+                                border-radius: var(--radius-md, 8px);
+                                border: 1px solid #D9D9D9;
+                                padding: var(--spacing-xl, 16px);
+                            } */
+
+    .flatpickr-calendar {
+        -webkit-box-shadow: unset;
+        box-shadow: unset;
+        border-radius: var(--radius-md, 8px);
+        border: 1px solid #D9D9D9;
+    }
+
+    .flatpickr-day {
+        width: calc(100% / 7);
+        max-width: unset;
+    }
+
+    .dayContainer {
+        width: 100%;
+        max-width: unset;
+    }
+
+    .flatpickr-days, .flatpickr-rContainer {
+        width: 100%;
+    }
+
+    .flatpickr-next-month {
+        right: 0;
+    }
+
+    #picker-calendar {
+        display: none;
+    }
+
+    .flatpickr-months {
+        padding-bottom: 15px;
+    }
+
+    .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
+        background: #007983;
+        border-color: #007983;
+    }
+
+    .flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
+        fill: #007983;
+    }
+
+    .flatpickr-weekdays {
+        font-weight: 600;
+    }
+
+    .day-form {
+        border-radius: var(--radius-md, 8px);
+        border: 1px solid #D9D9D9;
+        padding: var(--spacing-xl, 16px);
+        height: 100%;
+    }
+
+    .time-of-day {
+        display: flex;
+        gap: var(--spacing-xl, 16px);
+        flex-direction: row;
+        padding-bottom: var(--spacing-xl, 16px);
+        border-bottom: 1px solid #D9D9D9;
+        justify-content: space-between;
+    }
+
+    .btn-day {
+        border-radius: 10px;
+        background: rgba(0, 121, 131, 0.10);
+        padding: 14px 23px;
+        width: fit-content;
+        color: #000;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        border: 0;
+        width: 120px;
+    }
+
+    .btn-day-active, .btn-time-active {
+        background: #007983 !important;
+        color: #fff !important;
+    }
+
+    .time-of-booking {
+        padding-top: var(--spacing-xl, 16px);
+        display: grid;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 16px var(--spacing-xl, 16px);
+        flex-wrap: wrap;
+        justify-content: space-between;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .btn-time {
+        border-radius: 34px;
+        border: 0.5px solid #D9D9D9;
+        display: flex;
+        padding: var(--radius-md, 8px) 15px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 10px;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        color: #000;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+        background: #fff;
+    }
+
+    .description-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--radius-md, 8px);
+        margin-top: 12px;
+        height: 100%;
+    }
+
+    .text-area {
+        border-radius: 15px;
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+        color: #333333;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 14px 24.94px;
+        height: 100%;
+    }
+
+    .confirm-booking {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-xl, 16px);
+    }
+
+    .checkbox-confirm {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: center;
+    }
+
+        .checkbox-confirm p {
+            color: #000;
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px; /* 125% */
+        }
+
+    .link-ref {
+        color: #007983 !important;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        text-decoration-line: underline !important;
+    }
+
+    .confirm-booking button {
+        border-radius: 33px;
+        background: var(--Main-color-1, #FFC800);
+        width: fit-content;
+        height: 58px;
+        padding: 15px 40px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        color: #000;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border: 0;
+    }
+
+    .checkbox-confirm input {
+        width: 24px;
+        height: 24px;
+    }
+
+    input[type=checkbox] {
+        accent-color: #007983; /* Change to your desired color */
+    }
+
+    .flatpickr-calendar.inline {
+        width: 100%;
+    }
+
+    @@media screen and (max-width: 768px) {
+        .booking-container {
+            margin-top: 0;
+        }
+
+        .booking-content {
+            padding: 0 0 20px 0;
+        }
+
+        .content-description h3 {
+            margin-top: 20px;
+        }
+
+        .general-content {
+            padding: 10px;
+        }
+
+        .input-form {
+            margin-bottom: 20px;
+        }
+
+        .information-component {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-confirm input {
+            width: 50px;
+            height: 50px;
+        }
+
+        .booking-content-info {
+            gap: 20px
+        }
+    }
+
+    @@media screen and (min-width: 769px) and (max-width: 1199px) {
+        .time-of-day {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .btn-day {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .dayContainer {
+            min-width: unset;
+        }
+    }
+
+    @@media screen and (max-width: 510px) {
+        .service-component {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+
+        .service-right-content {
+            gap: 12px;
+        }
+
+        .service-right a {
+            margin-left: 112px;
+        }
+    }
+</style>
+<div class="container booking-container">
+    <div class="booking-content">
+        @* Tiêu đề *@
+        <div class="content-description">
+            <h3>Đặt lịch xét nghiệm tại nhà</h3>
+            <p>Hoàn tất các thông tin sau, chuyên viên chúng tôi sẽ liên hệ để xác nhận lịch cho bạn</p>
+        </div>
+        @* Thông tin chung *@
+        <div class="booking-content-info">
+            <div class="information-component">
+                <div class="service-component">
+                    <div class="service-left">
+                        <div class="service-left-component">
+                            <img src="~/HomeDoctor/img/test-in-home/service-image-demo.png" />
+                            <div class="service-right-content">
+                                <p id="service-name"></p>
+                                <div class="service-facility">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
+                                        <g clip-path="url(#clip0_4682_16805)">
+                                            <path d="M12.7905 6.08152C12.7905 4.26713 11.3144 2.79102 9.49997 2.79102C7.68556 2.79102 6.20947 4.2671 6.20947 6.08152C6.20947 7.89587 7.68556 9.37198 9.49997 9.37198C11.3144 9.37198 12.7905 7.8959 12.7905 6.08152ZM7.65655 6.6089V5.55413H8.97262V4.23802H10.0274V5.55413H11.3435V6.6089H10.0274V7.92498H8.97262V6.6089H7.65655Z" fill="#FFC800" />
+                                            <path d="M15.567 6.06712C15.567 2.7217 12.8453 0 9.49991 0C6.15449 0 3.43286 2.7217 3.43286 6.06712C3.43286 9.89323 8.20729 14.0617 9.49995 15.1199C10.7925 14.0618 15.567 9.89323 15.567 6.06712ZM5.15467 6.08178C5.15467 3.6858 7.10392 1.73651 9.49995 1.73651C11.896 1.73651 13.8452 3.68576 13.8452 6.08178C13.8452 8.47773 11.896 10.427 9.49995 10.427C7.10392 10.427 5.15467 8.47777 5.15467 6.08178Z" fill="#FFC800" />
+                                            <path d="M14.2297 15.337C13.942 15.167 13.5456 15.0182 13.0516 14.8946C12.6325 14.7899 12.1544 14.7059 11.6371 14.6445C10.6314 15.5947 9.86548 16.1793 9.81879 16.2148L9.4999 16.4569L9.181 16.2148C9.13435 16.1793 8.36844 15.5947 7.36268 14.6445C6.84539 14.7059 6.36726 14.7899 5.94823 14.8946C5.45418 15.0182 5.05783 15.167 4.77012 15.337C4.24154 15.6495 4.13062 16.0126 4.13062 16.2622C4.13062 16.5118 4.24158 16.875 4.77012 17.1873C5.05783 17.3574 5.45418 17.5062 5.94823 17.6297C6.90336 17.8685 8.1647 18 9.4999 18C10.8351 18 12.0964 17.8685 13.0516 17.6297C13.5456 17.5062 13.942 17.3574 14.2297 17.1873C14.7582 16.8749 14.8692 16.5118 14.8692 16.2622C14.8692 16.0126 14.7583 15.6495 14.2297 15.337Z" fill="#FFC800" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_4682_16805">
+                                                <rect width="18" height="18" fill="white" transform="translate(0.5)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    <p id="service-facility"></p>
+                                </div>
+                                <div class="service-price-component">
+                                    <p>Giá chỉ từ</p>
+                                    <span id="service-price"></span>
+                                    <span>đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-right">
+                        <a id="view-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            <div class="general-information information-component">
+                <div class="component-title">
+                    <h3>Thông tin của bạn</h3>
+                </div>
+                <div class="general-content">
+                    <div class="row">
+                        <div class="col-lg-4 col-12 input-form mb-20">
+                            <label>1. Họ tên</label>
+                            <input type="text" id="booking-name" placeholder="VD: Trần Văn A">
+                        </div>
+                        <div class="col-lg-4 col-12 input-form mb-20">
+                            <label>2. Ngày sinh</label>
+                            <input class="flatpickr flatpickr-input" id="booking-dob" type="text" readonly="readonly" placeholder="VD: 24/01/1999">
+
+                        </div>
+                        <div class="col-lg-4 col-12 input-form mb-20 select-form">
+                            <label>3. Giới tính</label>
+                            <select id="booking-gender">
+                                <option value="0">Chọn giới tính</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-12 input-form mb-20">
+                            <label>4. Số điện thoại</label>
+                            <input type="text" id="booking-phone" placeholder="VD: 0123456789">
+                        </div>
+                        <div class="col-lg-4 col-12 input-form mb-20">
+                            <label>5. Email</label>
+                            <input type="text" id="booking-email" placeholder="VD: abc@xyz.vn">
+                        </div>
+                        <div class="col-lg-4 col-12 input-form mb-20 select-form">
+                            <label>6. Tỉnh/Thành phố</label>
+                            <select id="booking-province"> </select>
+                        </div>
+                        <div class="col-lg-4 col-12 input-form select-form">
+                            <label>7. Quận/Huyện</label>
+                            <select id="booking-district">
+                                <option value="0">Chọn Quận/Huyện</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-12 input-form select-form">
+                            <label>8. Xã/Phường</label>
+                            <select id="booking-ward">
+                                <option value="0">Chọn Xã/Phường</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-12 input-form">
+                            <label>9. Địa chỉ cụ thể</label>
+                            <input type="text" id="booking-address" placeholder="VD: 307 P. Tây Sơn, Ngã Tư Sở">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*             <div class="address-information information-component">
+            <div class="component-title">
+            <h3>Địa chỉ của bạn</h3>
+            </div>
+            <div class="general-content">
+            <div class="row">
+
+            </div>
+            </div>
+            </div> *@
+            <div class="booking-information information-component">
+                <div class="component-title">
+                    <h3>Thông tin đặt lịch</h3>
+                </div>
+                <div class="general-content">
+                    <div class="row">
+                        <div class="col-lg-4 col-12 input-form">
+                            <label>10. Chọn ngày</label>
+                            <div class="calendar-form">
+                                <input class="flatpickr flatpickr-input" id="picker-calendar" type="text" placeholder="Chọn tháng" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12 input-form">
+                            <label>10. Chọn giờ</label>
+                            <div class="day-form">
+                                <div class="time-of-day">
+                                    <button class="btn-day btn-day-active" value="morning">Sáng</button>
+                                    <button class="btn-day" value="afternoon">Chiều</button>
+                                    <button class="btn-day" value="evening">Tối</button>
+                                </div>
+                                <div class="time-of-booking">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12 select-form input-form">
+                            @*                             <label>11. Loại xét nghiệm</label>
+                            <select id="booking-service"> </select> *@
+                            <div class="description-container">
+                                <label>12. Mô tả</label>
+                                <textarea class="text-area" type="text" id="booking-description" placeholder="VD: Xét nghiệm sức khỏe định kỳ vào lúc 9h ngày ... tại ..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-booking information-component">
+                <div class="checkbox-confirm">
+                    <input id="check-accept" type="checkbox" />
+                    <p>Tôi đã đọc và đồng ý với <a target="_blank" href="/chinh-sach-bao-mat" class="link-ref">Chính sách bảo mật</a> và  <a target="_blank" href="/chinh-sach-bao-mat" class="link-ref">Quy chế hoạt động</a> của Bác sĩ tại nhà.</p>
+                </div>
+                <button id="btn-confirm-booking">
+                    Xác nhận thông tin
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Modal Result *@
+<div class="modal" id="modal-service" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-item-service" role="document">
+        <div class="modal-content content-result" id="content-export">
+            <div class="modal-header header-service">
+                <div class="header-title-component">
+                    <h5 class="modal-title header-service-title" id="detail-service-name"></h5>
+                    <div class="detail-facility-component">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <g clip-path="url(#clip0_4682_16790)">
+                                <path d="M12.2905 6.08152C12.2905 4.26713 10.8144 2.79102 8.99997 2.79102C7.18556 2.79102 5.70947 4.2671 5.70947 6.08152C5.70947 7.89587 7.18556 9.37198 8.99997 9.37198C10.8144 9.37198 12.2905 7.8959 12.2905 6.08152ZM7.15655 6.6089V5.55413H8.47262V4.23802H9.5274V5.55413H10.8435V6.6089H9.5274V7.92498H8.47262V6.6089H7.15655Z" fill="#FFC800" />
+                                <path d="M15.0672 6.06712C15.0672 2.7217 12.3456 0 9.00015 0C5.65473 0 2.93311 2.7217 2.93311 6.06712C2.93311 9.89323 7.70753 14.0617 9.00019 15.1199C10.2927 14.0618 15.0672 9.89323 15.0672 6.06712ZM4.65492 6.08178C4.65492 3.6858 6.60417 1.73651 9.00019 1.73651C11.3962 1.73651 13.3455 3.68576 13.3455 6.08178C13.3455 8.47773 11.3962 10.427 9.00019 10.427C6.60417 10.427 4.65492 8.47777 4.65492 6.08178Z" fill="#FFC800" />
+                                <path d="M13.7299 15.337C13.4422 15.167 13.0459 15.0182 12.5518 14.8946C12.1328 14.7899 11.6547 14.7059 11.1374 14.6445C10.1316 15.5947 9.36573 16.1793 9.31903 16.2148L9.00014 16.4569L8.68125 16.2148C8.63459 16.1793 7.86869 15.5947 6.86293 14.6445C6.34563 14.7059 5.8675 14.7899 5.44848 14.8946C4.95442 15.0182 4.55807 15.167 4.27037 15.337C3.74179 15.6495 3.63086 16.0126 3.63086 16.2622C3.63086 16.5118 3.74182 16.875 4.27037 17.1873C4.55807 17.3574 4.95442 17.5062 5.44848 17.6297C6.40361 17.8685 7.66494 18 9.00014 18C10.3353 18 11.5967 17.8685 12.5518 17.6297C13.0459 17.5062 13.4422 17.3574 13.7299 17.1873C14.2585 16.8749 14.3694 16.5118 14.3694 16.2622C14.3694 16.0126 14.2585 15.6495 13.7299 15.337Z" fill="#FFC800" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_4682_16790">
+                                    <rect width="18" height="18" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p id="detail-service-facility"></p>
+                    </div>
+                    <div class="detail-money-component">
+                        <p>Giá chỉ tử</p>
+                        <span id="detail-service-price"></span>
+                        <span>đ</span>
+                    </div>
+                    @*                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="2" viewBox="0 0 22 2" fill="none">
+                    <path d="M1 1H21" stroke="#FFC800" stroke-width="2" stroke-linecap="round" />
+                    </svg> *@
+                </div>
+
+                <button type="button" class="close header-result-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body body-service" id="detail-service-info">
+            </div>
+            <div class="modal-footer footer-service">
+                <div class="footer-service-component">
+                    <button class="footer-service-button" id="button-service">
+                        Đặt lịch xét nghiệm
+                    </button>
+                </div>
+
+                @* <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var currentServiceId = "@ViewBag.ServiceId";
+    var dataServices = [];
+    $(document).ready(function () {
+        if (accountId == 0) {
+            OpenModalLogin();
+        }
+        $("#modal-signin").on("hidden.bs.modal", function () {
+            Swal.fire({
+                title: "Vui lòng đăng nhập",
+                html: "Bạn cần đăng nhập để sử dụng dịch vụ đặt lịch xét nghiệm",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#443',
+                confirmButtonText: 'Xác nhận',
+                cancelButtonText: 'Huỷ'
+            }).then((result) => {
+                if (result.value) {
+                    OpenModalLogin();
+                }
+                else {
+                    window.location.href = "/xet-nghiem";
+                }
+            })
+        });
+        AddByTimeType("morning");
+        $("#booking-gender").select2();
+        $("#booking-province").select2();
+        $("#booking-district").select2();
+        $("#booking-ward").select2();
+        $("#booking-service").select2();
+
+        $("#booking-province").on("change", function () {
+            LoadDataDistrict();
+        })
+        $("#booking-district").on("change", function () {
+            LoadDataWard();
+        })
+
+        //Load service
+        $.when(LoadDataService()).done(function () {
+            if (currentServiceId != "") {
+                // $('#booking-service').val(currentServiceId).trigger("change");
+                let currentService = dataServices.find(x => x.id == currentServiceId);
+                if (currentService != null) {
+                    //Load vào modal
+                    $("#detail-service-name").text(currentService.name);
+                    $("#detail-service-info").html(currentService.description);
+                    $("#button-service").attr("data-serviceId", currentService.id);
+                    $("#detail-service-facility").text(currentService.healthFacilityName);
+                    $("#detail-service-price").text(formatNumberCart(currentService.price.toString()));
+                    //Load vào giao diện
+                    $("#service-name").text(currentService.name);
+                    $("#service-facility").text(currentService.healthFacilityName);
+                    $("#service-price").text(formatNumberCart(currentService.price.toString()));
+                }
+            }
+        })
+
+        //Sau đó load theo thằng account
+        FillByAccount();
+
+        //Sự kiện confirm booking
+        $("#btn-confirm-booking").on("click", function () {
+            ValidateBooking();
+        })
+    })
+
+    $("#view-detail").on("click", function () {
+        $("#modal-service").modal("show");
+
+    })
+
+    async function LoadDataService() {
+        $('#booking-service').append(new Option("Chọn xét nghiệm", "0", true, true)).trigger("change");
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'services/api/list-test',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            dataServices = responseData.data;
+            dataServices.forEach(function (item) {
+                $('#booking-service').append(new Option(item.name, item.id, false, false));
+            });
+        } catch (error) {
+            console.error("Error loading service data:", error);
+        }
+    }
+
+    async function LoadDataProvince() {
+        $('#booking-province').append(new Option("Chọn Tỉnh/Thành phố", "0", true, true)).trigger("change");
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'province/api/list',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            data.forEach(function (item) {
+                $('#booking-province').append(new Option(item.name, item.id, false, false));
+            });
+        } catch (error) {
+            console.error("Error loading province data:", error);
+        }
+    }
+
+    async function LoadDataDistrict() {
+        $('#booking-district').empty().trigger("change");
+        $('#booking-district').append(new Option("Chọn Quận/Huyện", "0", true, true)).trigger("change");
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'district/api/ListByProvinceId/' + $("#booking-province").val(),
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            data.forEach(function (item) {
+                $('#booking-district').append(new Option(item.name, item.id, false, false));
+            });
+        } catch (error) {
+            console.error("Error loading district data:", error);
+        }
+    }
+
+    async function LoadDataWard() {
+        $('#booking-ward').empty().trigger("change");
+        $('#booking-ward').append(new Option("Chọn Xã/Phường", "0", true, true)).trigger("change");
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'ward/api/ListByDistrictId/' + $("#booking-district").val(),
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            data.forEach(function (item) {
+                $('#booking-ward').append(new Option(item.name, item.id, false, false));
+            });
+        } catch (error) {
+            console.error("Error loading ward data:", error);
+        }
+    }
+
+    var dateRangePicker = new flatpickr("#picker-calendar", {
+        dateFormat: "d/m/Y",
+        locale: "vn",
+        inline: true,
+    })
+
+    var dateDobPicker = new flatpickr("#booking-dob", {
+        dateFormat: "d/m/Y",
+        locale: "vn",
+        disableMobile: "true"
+    })
+
+    $(".btn-day").click(function () {
+        $(".btn-day").removeClass("btn-day-active");
+        $(this).addClass("btn-day-active");
+        AddByTimeType($(this).val());
+    })
+
+    $(".time-of-booking").on("click", ".btn-time", function (element) {
+        $(".btn-time").removeClass("btn-time-active");
+        $(this).addClass("btn-time-active");
+    })
+
+    function AddByTimeType(timeType) {
+        //reset data
+        $(".time-of-booking").html("");
+        let dataTime;
+        let startTime;
+        let endTime;
+        let defaultTimeInterval = 30;
+        switch (timeType) {
+            case "morning":
+                startTime = "07:00";
+                endTime = "11:00";
+                dataTime = GetTimeStrings(startTime, endTime, defaultTimeInterval);
+                break;
+            case "afternoon":
+                startTime = "13:00";
+                endTime = "17:00";
+                dataTime = GetTimeStrings(startTime, endTime, defaultTimeInterval);
+                break;
+            case "evening":
+                startTime = "17:00";
+                endTime = "21:00";
+                dataTime = GetTimeStrings(startTime, endTime, defaultTimeInterval);
+                break;
+            default:
+            // code block
+        }
+        if (dataTime.length > 0) {
+            for (let i = 0; i < dataTime.length; i++) {
+                $(".time-of-booking").append(`<button value="` + dataTime[i] + `" class="btn-time">` + dataTime[i] + `</button>`)
+            }
+        }
+    }
+
+    function GetTimeStrings(startTime, endTime, interval) {
+        // Convert strings to Date objects
+        const startDate = new Date(`2024-06-27T${startTime}:00`);
+        const endDate = new Date(`2024-06-27T${endTime}:00`);
+
+        // Create an empty array to store time strings
+        const timeList = [];
+
+        // Create a loop to iterate at specified intervals
+        let currentTime = startDate;
+        while (currentTime <= endDate) {
+            // Extract hours and minutes for custom formatting
+            const hours = currentTime.getHours().toString().padStart(2, '0');
+            const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+
+            // Combine hours and minutes into a single string (without AM/PM)
+            const timeString = `${hours}:${minutes}`;
+
+            timeList.push(timeString);
+
+            // Add the interval to the current time
+            currentTime = new Date(currentTime.getTime() + interval * 60000);
+        }
+
+        return timeList;
+    }
+
+    function FormatDate(dateString) {
+        const dateObj = new Date(dateString);
+        return dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    }
+
+    async function FillByAccount() {
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'account/api/detail/' + accountId,
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            if (data.length > 0) {
+                let dataUser = data[0];
+                console.log(dataUser);
+                //Fill thông tin chung
+                dataUser.name != null ? $("#booking-name").val(dataUser.name) : "";
+                dataUser.dob != null ? $("#booking-dob").val(FormatDate(dataUser.dob)) : "";
+                dataUser.gender != null ? $("#booking-gender").val(dataUser.gender).trigger("change") : "0";
+                dataUser.phone != null ? $("#booking-phone").val(dataUser.phone) : "";
+                dataUser.email != null ? $("#booking-email").val(dataUser.email) : "";
+                dataUser.gender != null ? $("#booking-gender").val(dataUser.gender).trigger("change") : "0";
+
+                //Fill tỉnh thành phố
+                $.when(LoadDataProvince()).done(function () {
+                    dataUser.addressCity != null ? $("#booking-province").val(dataUser.addressCity).trigger("change") : "0";
+                    var x = LoadDataDistrict();
+                    $.when(x).done(function () {
+                        dataUser.addressDistrict != null ? $("#booking-district").val(dataUser.addressDistrict).trigger("change") : "0";
+                        var y = LoadDataWard();
+                        $.when(y).done(function () {
+                            dataUser.addressWard != null ? $("#booking-ward").val(dataUser.addressWard).trigger("change") : "0";
+                        });
+                    });
+                });
+                dataUser.address != null ? $("#booking-address").val(dataUser.address) : "";
+            }
+        } catch (error) {
+            console.error("Error loading service data:", error);
+        }
+    }
+
+    function ValidateBooking() {
+        var errorList = [];
+        var phoneno = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+        if ($("#booking-name").val().length == 0) {
+            errorList.push("Họ tên không được để trống.");
+        }
+
+        if ($("#booking-name").val().length > 255) {
+            errorList.push("Họ tên có độ dài tối đa là 255 ký tự.");
+        }
+        if ($("#booking-dob").val().length == 0) {
+            errorList.push("Vui lòng chọn ngày sinh.");
+        }
+        if ($("#booking-gender").val() == 0) {
+            errorList.push("Vui lòng chọn giới tính.");
+        }
+        if ($("#booking-phone").val().length == 0) {
+            errorList.push("Số điện thoại được để trống.");
+        }
+        if ($("#booking-phone").val().length > 0) {
+            var isValidPhone = $("#booking-phone").val().match(phoneno);
+            if (!isValidPhone) {
+                errorList.push("Số điện thoại không hợp lệ.");
+            }
+        }
+        if ($("#booking-email").val().length == 0) {
+            errorList.push("Email không được để trống.");
+        }
+        if ($("#booking-province").val() == 0) {
+            errorList.push("Tỉnh/Thành phố không được để trống.");
+        }
+        if ($("#booking-district").val() == 0) {
+            errorList.push("Quận/Huyện không được để trống.");
+        }
+        if ($("#booking-ward").val() == 0) {
+            errorList.push("Xã/Phường không được để trống.");
+        }
+        if ($("#booking-address").val().length == 0) {
+            errorList.push("Địa chỉ cụ thể không được để trống.");
+        }
+        if ($("#picker-calendar").val().length == 0) {
+            errorList.push("Vui lòng chọn ngày làm xét nghiệm.");
+        }
+        if ($(".btn-time-active").length == 0) {
+            errorList.push("Vui lòng chọn thời gian làm xét nghiệm.");
+        }
+        if ($("#booking-service").val() == 0) {
+            errorList.push("Vui lòng chọn loại xét nghiệm.");
+        }
+        if ($("#check-accept").prop('checked') == false) {
+            errorList.push("Vui lòng đồng ý với Chính sách bảo mật và Quy chế hoạt động");
+        }
+
+        if (errorList.length > 0) {
+            var contentError = "<ul>";
+
+            errorList.forEach(function (item, index) {
+                contentError += "<li class='text-start'>" + item + "</li>";
+            });
+            contentError += "</ul>";
+
+            Swal.fire(
+                'Đặt lịch không thành công',
+                contentError,
+                'warning'
+            );
+        }
+        else {
+            AddNewBooking();
+        }
+    }
+
+    function AddNewBooking() {
+        let timeStart = formatDateBooking($('.btn-time.btn-time-active').val() + " " + $("#picker-calendar").val());
+        var booking = {
+            "id": 0,
+            "accountId": parseInt(accountId),
+            "bookingTypeId": 1000001,
+            "bookingStatusId": 1000001,
+            "counselorId": 0,
+            "name": $("#booking-name").val(),
+            "url": $("#booking-phone").val(),
+            "address": $("#booking-address").val() + ", " + $("#booking-ward option:selected").text() + ", " + $("#booking-district option:selected").text() + ", " + $("#booking-province option:selected").text(),
+            "startTime": timeStart,
+            "endTime": "",
+            "info": $("#booking-description").val(),
+            "reason": "",
+            "serviceId": currentServiceId,
+            "gender": $("#booking-gender option:selected").text(),
+            "dob": $("#booking-dob").val(),
+            "email": $("#booking-email").val(),
+            "active": 1,
+            "createdTime": new Date()
+        };
+        Swal.fire({
+            title: 'Đặt lịch khám',
+            html: "Bạn có chắc chắn muốn đặt lịch xét nghiệm?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            cancelButtonText: 'Hủy',
+            confirmButtonText: 'Đồng ý',
+        }).then((result) => {
+            if (result.value) {
+                AddBooking(booking)
+            };
+        })
+    }
+
+    async function AddBooking(obj) {
+        $("#loading").addClass("show")
+        var response = await httpService.postAsync("Booking/api/add", obj);
+        if (response.status == 201 && response.message === "CREATED") {
+            $("#loading").removeClass("show")
+            Swal.fire({
+                html: '<strong>Đặt lịch xét nghiệm thành công</strong>',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Đồng ý',
+            }).then((result) => {
+                if (result) {
+                    window.location.href = "/lich-su-xet-nghiem";
+                }
+            })
+        }
+        else {
+            $("#loading").removeClass("show");
+            Swal.fire({
+                html: 'Đặt lịch xét nghiệm không thành công, vui lòng thử lại sau!',
+                icon: 'error'
+            });
+        }
+    }
+
+    function formatDateBooking(date_str) {
+        try {
+            // Split the string into time and date parts
+            const [time, date] = date_str.split(" ");
+
+            // Re-arrange date format (DD/MM/YYYY to YYYY-MM-DD)
+            const date_parts = date.split("/");
+            const formatted_date = date_parts.reverse().join("-");
+
+            // Combine formatted date and time with milliseconds set to zero
+            return `${formatted_date}T${time}:00.000`;
+        } catch (error) {
+            console.error("Invalid input format: {date_str}");
+            return null;
+        }
+    }
+</script>

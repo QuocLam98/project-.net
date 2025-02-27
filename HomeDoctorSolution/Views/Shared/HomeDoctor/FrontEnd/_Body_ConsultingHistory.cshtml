@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<section class="consulting-history">
+    <div class="container">
+        <div class="history-box">
+            <div class="head-history">
+                <div class="list-status d-flex">
+                    <p onclick="wait()" id="consulting_history_wait" aria-labelledby="parent-consulting-button-wait" class="tab-content" role="tabpanel">Đang chờ</p>
+                    <p onclick="confirm()" id="consulting_history_confirm" aria-labelledby="parent-consulting-button-confirm" class="tab-content" role="tabpanel">Đã xác nhận</p>
+                    <p onclick="done()" id="consulting_history_done" aria-labelledby="parent-consulting-button-done" class="tab-content" role="tabpanel">Hoàn thành</p>
+                    <p onclick="cancel()" id="consulting_history_cancel" aria-labelledby="parent-consulting-button-cancel" class="tab-content" role="tabpanel">Đã hủy</p>
+                </div>
+            </div>
+            <div class="content-history-wait">
+                <div class="list-history d-flex flex-column" id="lst_history_wait">
+                    
+                </div>
+            </div>
+            <div class="content-history-confirm">
+                <div class="list-history d-flex flex-column" id="lst_history_confirm">
+                </div>
+            </div>
+            <div class="content-history-done">
+                <div class="list-history d-flex flex-column" id="lst_history_done">
+                    
+                </div>
+            </div>
+            <div class="content-history-cancel">
+                <div class="list-history d-flex flex-column" id="lst_history_cancel">
+                   
+                </div>
+            </div>
+            <partial name="HomeDoctor/FrontEnd/_paginate" />
+        </div>
+    </div>
+</section>
+<div class="container"><div style="border-bottom: 1px #D9D9D9 solid;"></div></div>

@@ -1,0 +1,406 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--
+Author: Keenthemes
+Product Name: Metronic
+Product Version: 8.1.8
+Purchase: https://1.envato.market/EA4JP
+Website: http://www.keenthemes.com
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html lang="en">
+<!--begin::Head-->
+<!-- Mirrored from preview.keenthemes.com/metronic8/demo1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Jun 2023 10:01:44 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <partial name="Admin/FrontEnd/_Admin_Library" />
+
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+    <!--begin::Theme mode setup on page load-->
+    <script>
+        var defaultThemeMode = "light";
+        var themeMode;
+        if (document.documentElement) {
+            if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+            } else {
+                if (localStorage.getItem("data-bs-theme") !== null) {
+                    themeMode = localStorage.getItem("data-bs-theme");
+                } else {
+                    themeMode = defaultThemeMode;
+                }
+            }
+
+            if (themeMode === "system") {
+                themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
+        }
+    </script>
+    <!--end::Theme mode setup on page load-->
+    <!--Begin::Google Tag Manager (noscript) -->
+    <!--End::Google Tag Manager (noscript) -->
+    <div class="page-loader d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex align-items-center">
+            <img alt="Logo" class="theme-light-hide h-70px" id="loadingLogo" src="~/homedoctor/img/header/header-logo.png">
+        </div>
+
+        <div class="d-flex align-items-center mt-5">
+            <span class="spinner-border text-primary" role="status"></span>
+            <span class="text-muted fs-6 fw-semibold ms-5">Đang tải...</span>
+        </div>
+    </div>
+    <!--begin app -->
+    <!--begin::App-->
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+        <!--begin::Page-->
+        <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
+            <!--begin::Header-->
+            <partial name="Admin/FrontEnd/_Admin_Layout_Header" />
+            <!--end::Header-->
+            <!--begin::Wrapper-->
+            <div class="app-wrapper  flex-column flex-row-fluid " id="kt_app_wrapper">
+                <!--begin::Sidebar-->
+                <partial name="Admin/FrontEnd/_Admin_Layout_Sidebar_Production" />
+                <!--end::Sidebar-->
+                <!--begin::Main-->
+                <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                    <!--begin::Content wrapper-->
+                    <div class="d-flex flex-column flex-column-fluid">
+                        <!--begin::Toolbar-->
+                        <partial name="Admin/FrontEnd/_Admin_Layout_Main_Toolbar" />
+                        <!--end::Toolbar-->
+                        <!--begin::Content-->
+                        @RenderBody()
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Content wrapper-->
+                    <partial name="Admin/FrontEnd/_Admin_Layout_Main_Footer" />
+                </div>
+                <!--end:::Main-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::App-->
+    <!--End: begin app -->
+    <!--begin::App layout builder-->
+    <div id="kt_app_layout_builder"
+         class="bg-body"
+         data-kt-drawer="true"
+         data-kt-drawer-name="app-settings"
+         data-kt-drawer-activate="true"
+         data-kt-drawer-overlay="true"
+         data-kt-drawer-width="{default:'300px', 'lg': '380px'}"
+         data-kt-drawer-direction="end"
+         data-kt-drawer-toggle="#kt_app_layout_builder_toggle"
+         data-kt-drawer-close="#kt_app_layout_builder_close">
+
+        <!--begin::Card-->
+        <div class="card border-0 shadow-none rounded-0 w-100">
+            <!--begin::Card header-->
+            <div class="card-header bgi-position-y-bottom bgi-position-x-end bgi-size-cover bgi-no-repeat rounded-0 border-0 py-4"
+                 id="kt_app_layout_builder_header"
+                 style="background-image:url('/admin/assets/media/misc/layout/customizer-header-bg.jpg')">
+
+                <!--begin::Card title-->
+                <h3 class="card-title fs-3 fw-bold text-white flex-column m-0">
+                    Bác sĩ tại nhà
+                    <small class="text-white opacity-50 fs-7 fw-semibold pt-1">
+                        Giúp sản phẩm của bạn được tùy chỉnh sâu sắc
+                    </small>
+                </h3>
+                <!--end::Card title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <button type="button"
+                            class="btn btn-sm btn-icon btn-color-white p-0 w-20px h-20px rounded-1"
+                            id="kt_app_layout_builder_close">
+                        <i class="ki-duotone ki-cross-square fs-2"><span class="path1"></span><span class="path2"></span></i>
+                    </button>
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body position-relative" id="kt_app_layout_builder_body">
+                <!--begin::Content-->
+                <div id="kt_app_settings_content"
+                     class="position-relative scroll-y me-n5 pe-5"
+                     data-kt-scroll="true"
+                     data-kt-scroll-height="auto"
+                     data-kt-scroll-wrappers="#kt_app_layout_builder_body"
+                     data-kt-scroll-dependencies="#kt_app_layout_builder_header, #kt_app_layout_builder_footer"
+                     data-kt-scroll-offset="5px">
+
+                    <!--begin::Form-->
+                    <form class="form" method="POST" id="kt_app_layout_builder_form" action="https://preview.keenthemes.com/metronic8/demo1/index.php">
+                        <input type="hidden" id="kt_app_layout_builder_action" name="layout-builder[action]" />
+
+                        <!--begin::Card body-->
+                        <div class="card-body p-0">
+
+                            <!--begin::Form group-->
+                            <div class="form-group">
+                                <!--begin::Heading-->
+                                <div class="mb-6">
+                                    <h4 class="fw-bold text-dark">Chủ để</h4>
+                                    <div class="fw-semibold text-muted fs-7 d-block lh-1">
+                                        Chọn chủ đề
+                                    </div>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Options-->
+                                <div class="row " data-kt-buttons="true" data-kt-buttons-target=".form-check-image,.form-check-input">
+                                    <!--begin::Col-->
+                                    <div class="col-6">
+                                        <!--begin::Option-->
+                                        <label class="form-check-image form-check-success">
+                                            <!--begin::Image-->
+                                            <div class="form-check-wrapper border-gray-200 border-2">
+                                                <img src="/admin/assets/media/preview/demos/demo1/light-ltr.png" class="form-check-rounded mw-100" alt="" />
+                                            </div>
+                                            <!--end::Image-->
+                                            <!--begin::Check-->
+                                            <div class="form-check form-check-custom form-check-solid form-check-sm form-check-success">
+                                                <input class="form-check-input" type="radio" value="light" name="theme_mode" id="kt_layout_builder_theme_mode_light" />
+
+                                                <!--begin::Label-->
+                                                <div class="form-check-label text-gray-700">
+                                                    Nền sáng
+                                                </div>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Check-->
+                                        </label>
+                                        <!--end::Option-->
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-6">
+                                        <!--begin::Option-->
+                                        <label class="form-check-image form-check-success">
+                                            <!--begin::Image-->
+                                            <div class="form-check-wrapper border-gray-200 border-2">
+                                                <img src="/admin/assets/media/preview/demos/demo1/dark-ltr.png" class="form-check-rounded mw-100" alt="" />
+                                            </div>
+                                            <!--end::Image-->
+                                            <!--begin::Check-->
+                                            <div class="form-check form-check-custom form-check-solid form-check-sm form-check-success">
+                                                <input class="form-check-input" type="radio" value="dark" name="theme_mode" id="kt_layout_builder_theme_mode_dark" />
+
+                                                <!--begin::Label-->
+                                                <div class="form-check-label text-gray-700">
+                                                    Nền tối
+                                                </div>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Check-->
+                                        </label>
+                                        <!--end::Option-->
+                                    </div>
+                                    <!--end::Col-->
+
+                                </div>
+                                <!--end::Options-->
+                            </div>
+                            <!--end::Form group-->
+                            <div class="separator separator-dashed my-5"></div>
+
+                            <!--begin::Form group-->
+                            <div class="form-group">
+                                <!--begin::Heading-->
+                                <div class="mb-6">
+                                    <h4 class="fw-bold text-dark">Bố cục</h4>
+
+                                    <span class="fw-semibold text-muted fs-7 lh-1">
+                                        2 bổ cục chính.
+                                    </span>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Options-->
+                                <div class="row gy-3" data-kt-buttons="true" data-kt-buttons-target=".form-check-image:not(.disabled),.form-check-input:not([disabled])">
+                                    <!--begin::Col-->
+                                    <div class="col-6">
+                                        <!--begin::Option-->
+                                        <label class="form-check-image form-check-success active  active">
+                                            <!--begin::Image-->
+                                            <div class="form-check-wrapper border-gray-200 border-2">
+                                                <img src="/admin/assets/media/misc/layout/dark-sidebar.png" class="form-check-rounded mw-100" alt="" />
+                                            </div>
+                                            <!--end::Image-->
+                                            <!--begin::Check-->
+                                            <div class="form-check form-check-custom form-check-success form-check-sm form-check-solid">
+                                                <input class="form-check-input" type="radio"
+                                                       checked
+                                                       value="dark-sidebar"
+                                                       name="layout-builder[layout][app][general][layout]" />
+
+                                                <!--begin::Label-->
+                                                <div class="form-check-label text-gray-700">
+                                                    Thanh menu tối
+                                                </div>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Check-->
+                                        </label>
+                                        <!--end::Option-->
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-6">
+                                        <!--begin::Option-->
+                                        <label class="form-check-image form-check-success   ">
+                                            <!--begin::Image-->
+                                            <div class="form-check-wrapper border-gray-200 border-2">
+                                                <img src="/admin/assets/media/misc/layout/light-sidebar.png" class="form-check-rounded mw-100" alt="" />
+                                            </div>
+                                            <!--end::Image-->
+                                            <!--begin::Check-->
+                                            <div class="form-check form-check-custom form-check-success form-check-sm form-check-solid">
+                                                <input class="form-check-input" type="radio"
+                                                       value="light-sidebar"
+                                                       name="layout-builder[layout][app][general][layout]" />
+
+                                                <!--begin::Label-->
+                                                <div class="form-check-label text-gray-700">
+                                                     Thanh menu sáng
+                                                </div>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Check-->
+                                        </label>
+                                        <!--end::Option-->
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Options-->
+                            </div>
+                            <!--end::Form group-->
+
+                        </div>
+                        <!--end::Card body-->
+                    </form>
+                    <!--end::Form-->
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Card body-->
+            <!--begin::Card footer-->
+            <div class="card-footer border-0 d-flex gap-3 pb-9 pt-0" id="kt_app_layout_builder_footer">
+                <button type="button" id="kt_app_layout_builder_preview" class="btn btn-primary flex-grow-1 fw-semibold">
+
+                    <!--begin::Indicator label-->
+                    <span class="indicator-label">
+                        Áp dụng
+                    </span>
+                    <!--end::Indicator label-->
+                    <!--begin::Indicator progress-->
+                    <span class="indicator-progress">
+                        Đang tải...    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                    <!--end::Indicator progress-->
+                </button>
+
+                <button type="button" id="kt_app_layout_builder_reset" class="btn btn-light flex-grow-1 fw-semibold">
+
+                    <!--begin::Indicator label-->
+                    <span class="indicator-label">
+                        Mặc định
+                    </span>
+                    <!--end::Indicator label-->
+                    <!--begin::Indicator progress-->
+                    <span class="indicator-progress">
+                        Đang tải...    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                    <!--end::Indicator progress-->
+                </button>
+            </div>
+            <!--end::Card footer-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::App layout builder-->
+    <!--begin::App settings toggle-->
+    <button id="kt_app_layout_builder_toggle"
+            class="btn btn-dark app-layout-builder-toggle lh-1 py-4 "
+            title="Cài đặt"
+            data-bs-custom-class="tooltip-inverse"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            data-bs-dismiss="click"
+            data-bs-trigger="hover">
+        <i class="ki-duotone ki-setting-4 fs-4 me-1"></i> Cài đặt màn hình
+    </button>
+    <!--end::App settings toggle-->
+    <partial name="Admin/FrontEnd/_Admin_Javascript" />
+    <script>
+        var systemConfig = {
+            languageDataTable: {
+                oAria: {
+                    sSortAscending: ": Sắp xếp thứ tự tăng dần",
+                    sSortDescending: ": Sắp xếp thứ tự giảm dần"
+                },
+                oPaginate: {
+                    sFirst: "Đầu tiên",
+                    sLast: "Cuối cùng",
+                    sNext: "Sau",
+                    sPrevious: "Trước"
+                },
+                sEmptyTable: "Không có dữ liệu",
+                sInfo: "Hiển thị _START_ tới _END_ của _TOTAL_ dữ liệu",
+                sThousands: ".",
+                sInfoEmpty: "Hiển thị 0 tới 0 của 0 dữ liệu",
+                sInfoFiltered: "(được lọc từ _MAX_ dữ liệu)",
+                sInfoPostFix: "",
+                sDecimal: ",",
+                sLengthMenu: "_MENU_ ",
+                sLoadingRecords: "Đang tải...",
+                sProcessing: `<span class="svg-icon svg-icon-success svg-icon-2hx"><svg class="spin" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                        <path opacity="0.3" d="M13.341 22H11.341C10.741 22 10.341 21.6 10.341 21V18C10.341 17.4 10.741 17 11.341 17H13.341C13.941 17 14.341 17.4 14.341 18V21C14.341 21.6 13.941 22 13.341 22ZM18.5409 10.7L21.141 9.19997C21.641 8.89997 21.7409 8.29997 21.5409 7.79997L20.5409 6.09997C20.2409 5.59997 19.641 5.49997 19.141 5.69997L16.5409 7.19997C16.0409 7.49997 15.941 8.09997 16.141 8.59997L17.141 10.3C17.441 10.8 18.0409 11 18.5409 10.7ZM8.14096 7.29997L5.54095 5.79997C5.04095 5.49997 4.44096 5.69997 4.14096 6.19997L3.14096 7.89997C2.84096 8.39997 3.04095 8.99997 3.54095 9.29997L6.14096 10.8C6.64096 11.1 7.24095 10.9 7.54095 10.4L8.54095 8.69997C8.74095 8.19997 8.64096 7.49997 8.14096 7.29997Z" fill="currentColor"/>
+                                                                                                                        <path d="M13.3409 7H11.3409C10.7409 7 10.3409 6.6 10.3409 6V3C10.3409 2.4 10.7409 2 11.3409 2H13.3409C13.9409 2 14.3409 2.4 14.3409 3V6C14.3409 6.6 13.9409 7 13.3409 7ZM5.54094 18.2L8.14095 16.7C8.64095 16.4 8.74094 15.8 8.54094 15.3L7.54094 13.6C7.24094 13.1 6.64095 13 6.14095 13.2L3.54094 14.7C3.04094 15 2.94095 15.6 3.14095 16.1L4.14095 17.8C4.44095 18.3 5.04094 18.5 5.54094 18.2ZM21.1409 14.8L18.5409 13.3C18.0409 13 17.4409 13.2 17.1409 13.7L16.1409 15.4C15.8409 15.9 16.0409 16.5 16.5409 16.8L19.1409 18.3C19.6409 18.6 20.2409 18.4 20.5409 17.9L21.5409 16.2C21.7409 15.7 21.6409 15 21.1409 14.8Z" fill="currentColor"/>
+                                                                                                                        </svg>
+                                                                                                                                        </span>   Đang tải...`,
+                sSearch: "Tìm kiếm:",
+                sSearchPlaceholder: "",
+                sUrl: "",
+                sZeroRecords: "Không tìm thấy kết quả"
+
+            }
+        }
+        //created: JinDo
+        //date: 15/12/2023
+        //description: Formmat Price
+        function customFormatValue(value, number, char) {
+            if (number == undefined || number == null) {
+                number = 3;
+            }
+            if (char == undefined || char == null) {
+                char = '.';
+            }
+            value = value != null ? value.toString() : "";
+            var pattern = new RegExp(`\\B(?=(\\d{${number}})+(?!\\d))`, 'g');
+            return value
+                .replace(/\D{-}/g, '')
+                .replace(pattern, char);
+        }
+        //end Formmat Price
+    </script>
+    @await RenderSectionAsync("Scripts",false)
+</body>
+
+<!--end::Body-->
+<!-- Mirrored from preview.keenthemes.com/metronic8/demo1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Jun 2023 10:03:48 GMT -->
+</html>

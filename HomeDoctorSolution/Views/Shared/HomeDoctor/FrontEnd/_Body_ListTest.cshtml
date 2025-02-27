@@ -1,0 +1,747 @@
+﻿<style>
+    /* Modal */
+    body {
+        color: unset;
+    }
+
+    p {
+        color: unset;
+    }
+
+    .result-no-content {
+        display: flex;
+        flex-direction: column;
+        padding: 60px 500px 60px 500px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+        .result-no-content img {
+            width: 100%;
+        }
+
+        .result-no-content p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+    #detail-service-info img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        /* margin-bottom: 16px; */
+    }
+
+    #detail-service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    #modal-service {
+        padding: 0 !important;
+    }
+
+    .modal-item-service {
+        max-width: 50%;
+    }
+
+    .header-title-component {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .detail-facility-component {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-direction: row;
+    }
+
+    #detail-service-facility {
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .detail-money-component {
+        display: flex;
+        flex-direction: row;
+    }
+
+        .detail-money-component p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+    detail-service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    .detail-money-component span {
+        color: #007983;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 20px;
+    }
+
+    .body-service {
+        padding-top: 0;
+        padding-bottom: 0;
+        max-height: 65vh;
+        overflow: auto;
+    }
+
+    .footer-service {
+        justify-content: center;
+        padding: 0;
+        display: block;
+        border-top: 0;
+        margin-top: 26px;
+        text-align: right;
+    }
+
+    .footer-service-component {
+        border-radius: 16px;
+        background: #FFF;
+        box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.10);
+        padding: 16px;
+    }
+
+    .footer-service-button {
+        border-radius: 35px;
+        background: var(--Main-color-1, #FFC800);
+        box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+        color: #000;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 14px 25px;
+        border: 0 !important;
+        width: fit-content;
+    }
+
+    .header-service-title {
+        background: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px;
+    }
+
+    .content-result {
+        border-radius: 16px;
+    }
+
+    @@media screen and (max-width: 650px) {
+        .info-service-price {
+            margin-left: 10px;
+        }
+    }
+    @@media screen and (max-width: 768px) {
+        .modal-item-service {
+            max-width: unset;
+        }
+
+        .content-result {
+            padding: 0;
+        }
+    }
+    /* End Modal */
+
+    .filter-component {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 32px 0px 32px 0px;
+    }
+
+    .filter-component-status {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        width: 50%;
+    }
+
+    .input-form label {
+        color: var(--Black, #1B1E28);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+        margin-bottom: 8px;
+    }
+
+    .input-form input {
+        width: 100%;
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 12px 14px;
+        border-radius: 10px !important;
+        border: 1px solid #D9D9D9 !important;
+        background: #FFF !important;
+        height: 50.2083px !important;
+        font-size: 16px;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .select-form {
+        width: 40%;
+    }
+
+        .select-form > .select2-container--default .select2-selection--single {
+            border-radius: 10px !important;
+            border: 1px solid #D9D9D9 !important;
+            background: #FFF !important;
+            height: 50.2083px !important;
+        }
+
+    .select2-results__option {
+        cursor: pointer !important;
+    }
+
+        .select2-results__option:hover {
+            background-color: #007983 !important;
+            color: #fff !important;
+        }
+
+    .select2-dropdown {
+        background: #fff !important;
+        border: 1px solid #D9D9D9 !important;
+        border-top: 0 !important;
+    }
+
+    .select2-selection__rendered {
+        padding-left: 14px !important;
+    }
+
+    .btn-search {
+        border-radius: 10px;
+        border: 1px solid #D9D9D9;
+        background: #F6AC00;
+        padding-left: 14px;
+        padding-right: 14px;
+        height: 50.2083px !important;
+        position: absolute;
+        right: 0px;
+    }
+
+    .search-component {
+        position: relative;
+    }
+
+    .search-div {
+        width: 25%;
+    }
+
+    .best-service-item {
+        border-radius: 10px;
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+        padding: var(--spacing-xl, 16px) 21px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-direction: row;
+        width: 49%;
+    }
+
+    .item-info {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+        .item-info img {
+            width: 92px;
+            height: 92px;
+            border-radius: 10px;
+        }
+
+    .item-info-service {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl, 15px);
+    }
+
+    .info-service-name {
+        color: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background: linear-gradient(90deg, #007983 0%, #FFC800 103.21%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px;
+    }
+
+    .item-info-service-facility {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+        .item-info-service-facility p {
+            color: var(--Place, #333);
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+        }
+
+    .info-service-price {
+        margin-left: 16px;
+        margin-right: 5px;
+    }
+
+    .item-info-service-price {
+        /* gap: var(--spacing-xl, 16px); */
+        display: flex;
+        flex-direction: row;
+    }
+
+    .service-function-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .item-info-service-price p {
+        color: var(--Place, #333);
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .item-info-service-price span {
+        color: #007983;
+        font-family: Mulish;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 20px;
+    }
+
+    .function-detail {
+        color: #007983 !important;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        cursor: pointer;
+    }
+
+    .function-book {
+        padding: 11px var(--spacing-xl, 16px);
+        border-radius: 37px;
+        background: #007983;
+        color: #FFF;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border: 0 !important;
+    }
+
+    .list-service-item {
+        display: flex;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: var(--spacing-xl, 16px) 20px;
+        flex-wrap: wrap;
+    }
+
+    .result-component {
+        padding: 0;
+    }
+
+    @@media screen and (max-width: 768px) {
+        .select-form {
+            width: 100%;
+        }
+
+        .filter-component-status {
+            width: 100%;
+        }
+
+        .result-no-content {
+            padding: 0;
+        }
+
+        .best-service-item {
+            align-items: unset;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .best-service-item {
+            width: 100%;
+        }
+
+        .service-function-container {
+            justify-content: space-between;
+        }
+
+        .filter-component {
+            padding: 15px;
+        }
+
+        .result-component {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .filter-component {
+            flex-direction: column;
+        }
+
+        .search-div {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+
+    @@media screen and (max-width: 429px) {
+        .filter-component-status {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+</style>
+<div class="container filter-component">
+    <div class="filter-component-status">
+        <div class="input-form select-form">
+            <label>Tỉnh/Thành phố</label>
+            <select id="filter-province">
+            </select>
+        </div>
+        <div class="input-form select-form">
+            <label>Cơ sở ý tế</label>
+            <select id="filter-facility">
+            </select>
+        </div>
+    </div>
+    <div class="input-form search-div">
+        <label>Tên xét nghiệm</label>
+        <div class="search-component">
+            <input id="filter-keyword" placeholder="VD: HIV, TSH, PSA,...">
+            <button class="btn-search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M7.29313 1.28711C3.98732 1.28711 1.29443 3.97999 1.29443 7.28582C1.29443 10.5916 3.98732 13.2898 7.29313 13.2898C8.70515 13.2898 10.0038 12.7949 11.0301 11.9733L13.5288 14.4707C13.6549 14.5916 13.8233 14.6583 13.998 14.6565C14.1727 14.6547 14.3397 14.5846 14.4633 14.4612C14.5869 14.3377 14.6572 14.1708 14.6592 13.9962C14.6613 13.8215 14.5948 13.653 14.4741 13.5267L11.9754 11.0281C12.7977 10.0001 13.2931 8.69946 13.2931 7.28582C13.2931 3.97999 10.5989 1.28711 7.29313 1.28711ZM7.29313 2.62046C9.87836 2.62046 11.9585 4.7006 11.9585 7.28582C11.9585 9.87104 9.87836 11.9564 7.29313 11.9564C4.70791 11.9564 2.62777 9.87104 2.62777 7.28582C2.62777 4.7006 4.70791 2.62046 7.29313 2.62046Z" fill="white" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container result-component">
+    <div class="list-service-item">
+        @*         <div class="best-service-item">
+        <div class="item-info">
+        <img src="/HomeDoctor/img/test-in-home/service-image-demo.png">
+        <div class="item-info-service">
+        <p class="info-service-name">Xét nghiệm HIV</p>
+        <div class="item-info-service-facility">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <g clip-path="url(#clip0_4682_15879)">
+        <path d="M12.29 6.08152C12.29 4.26713 10.8139 2.79102 8.99949 2.79102C7.18507 2.79102 5.70898 4.2671 5.70898 6.08152C5.70898 7.89587 7.18507 9.37198 8.99949 9.37198C10.8139 9.37198 12.29 7.8959 12.29 6.08152ZM7.15606 6.6089V5.55413H8.47214V4.23802H9.52691V5.55413H10.843V6.6089H9.52691V7.92498H8.47214V6.6089H7.15606Z" fill="#FFC800"></path>
+        <path d="M15.0667 6.06712C15.0667 2.7217 12.3451 0 8.99967 0C5.65425 0 2.93262 2.7217 2.93262 6.06712C2.93262 9.89323 7.70704 14.0617 8.9997 15.1199C10.2923 14.0618 15.0667 9.89323 15.0667 6.06712ZM4.65443 6.08178C4.65443 3.6858 6.60368 1.73651 8.9997 1.73651C11.3957 1.73651 13.345 3.68576 13.345 6.08178C13.345 8.47773 11.3957 10.427 8.9997 10.427C6.60368 10.427 4.65443 8.47777 4.65443 6.08178Z" fill="#FFC800"></path>
+        <path d="M13.7299 15.337C13.4422 15.167 13.0459 15.0182 12.5518 14.8946C12.1328 14.7899 11.6547 14.7059 11.1374 14.6445C10.1316 15.5947 9.36573 16.1793 9.31903 16.2148L9.00014 16.4569L8.68125 16.2148C8.63459 16.1793 7.86869 15.5947 6.86293 14.6445C6.34563 14.7059 5.8675 14.7899 5.44848 14.8946C4.95442 15.0182 4.55807 15.167 4.27037 15.337C3.74179 15.6495 3.63086 16.0126 3.63086 16.2622C3.63086 16.5118 3.74182 16.875 4.27037 17.1873C4.55807 17.3574 4.95442 17.5062 5.44848 17.6297C6.40361 17.8685 7.66494 18 9.00014 18C10.3353 18 11.5967 17.8685 12.5518 17.6297C13.0459 17.5062 13.4422 17.3574 13.7299 17.1873C14.2585 16.8749 14.3694 16.5118 14.3694 16.2622C14.3694 16.0126 14.2585 15.6495 13.7299 15.337Z" fill="#FFC800"></path>
+        </g>
+        <defs>
+        <clipPath id="clip0_4682_15879">
+        <rect width="18" height="18" fill="white"></rect>
+        </clipPath>
+        </defs>
+        </svg>
+        <p>Phòng khám AGAPE </p>
+        </div>
+        <div class="item-info-service-price">
+        <p>Giá chỉ từ</p>
+        <span class="info-service-price">50,000</span><span>đ</span>
+        </div>
+        </div>
+        </div>
+        <div class="service-function-container">
+        <a onclick="ShowService(1000037)" class="function-detail">Xem chi tiết</a>
+        <button onclick="RedirectBooking(1000037)" class="function-book">Đặt lịch ngay</button>
+        </div>
+        </div> *@
+    </div>
+</div>
+@* Modal Result *@
+<div class="modal" id="modal-service" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-item-service" role="document">
+        <div class="modal-content content-result" id="content-export">
+            <div class="modal-header header-service">
+                <div class="header-title-component">
+                    <h5 class="modal-title header-service-title" id="detail-service-name"></h5>
+                    <div class="detail-facility-component">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <g clip-path="url(#clip0_4682_16790)">
+                                <path d="M12.2905 6.08152C12.2905 4.26713 10.8144 2.79102 8.99997 2.79102C7.18556 2.79102 5.70947 4.2671 5.70947 6.08152C5.70947 7.89587 7.18556 9.37198 8.99997 9.37198C10.8144 9.37198 12.2905 7.8959 12.2905 6.08152ZM7.15655 6.6089V5.55413H8.47262V4.23802H9.5274V5.55413H10.8435V6.6089H9.5274V7.92498H8.47262V6.6089H7.15655Z" fill="#FFC800" />
+                                <path d="M15.0672 6.06712C15.0672 2.7217 12.3456 0 9.00015 0C5.65473 0 2.93311 2.7217 2.93311 6.06712C2.93311 9.89323 7.70753 14.0617 9.00019 15.1199C10.2927 14.0618 15.0672 9.89323 15.0672 6.06712ZM4.65492 6.08178C4.65492 3.6858 6.60417 1.73651 9.00019 1.73651C11.3962 1.73651 13.3455 3.68576 13.3455 6.08178C13.3455 8.47773 11.3962 10.427 9.00019 10.427C6.60417 10.427 4.65492 8.47777 4.65492 6.08178Z" fill="#FFC800" />
+                                <path d="M13.7299 15.337C13.4422 15.167 13.0459 15.0182 12.5518 14.8946C12.1328 14.7899 11.6547 14.7059 11.1374 14.6445C10.1316 15.5947 9.36573 16.1793 9.31903 16.2148L9.00014 16.4569L8.68125 16.2148C8.63459 16.1793 7.86869 15.5947 6.86293 14.6445C6.34563 14.7059 5.8675 14.7899 5.44848 14.8946C4.95442 15.0182 4.55807 15.167 4.27037 15.337C3.74179 15.6495 3.63086 16.0126 3.63086 16.2622C3.63086 16.5118 3.74182 16.875 4.27037 17.1873C4.55807 17.3574 4.95442 17.5062 5.44848 17.6297C6.40361 17.8685 7.66494 18 9.00014 18C10.3353 18 11.5967 17.8685 12.5518 17.6297C13.0459 17.5062 13.4422 17.3574 13.7299 17.1873C14.2585 16.8749 14.3694 16.5118 14.3694 16.2622C14.3694 16.0126 14.2585 15.6495 13.7299 15.337Z" fill="#FFC800" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_4682_16790">
+                                    <rect width="18" height="18" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p id="detail-service-facility"></p>
+                    </div>
+                    <div class="detail-money-component">
+                        <p>Giá chỉ tử</p>
+                        <span id="detail-service-price"></span>
+                        <span>đ</span>
+                    </div>
+                    @*                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="2" viewBox="0 0 22 2" fill="none">
+                    <path d="M1 1H21" stroke="#FFC800" stroke-width="2" stroke-linecap="round" />
+                    </svg> *@
+                </div>
+
+                <button type="button" class="close header-result-btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body body-service" id="detail-service-info">
+            </div>
+            <div class="modal-footer footer-service">
+                <div class="footer-service-component">
+                    <button class="footer-service-button" id="button-service">
+                        Đặt lịch xét nghiệm
+                    </button>
+                </div>
+
+                @* <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#filter-province").select2();
+        $("#filter-facility").select2();
+
+        // Load data
+        $.when(
+            LoadDataProvince(),
+            LoadDataHealthFacility(),
+            LoadDataService(),
+        ).done(function () {
+            //loadData();
+            Filter();
+        }).fail(function () {
+            //loadData();
+            Filter();
+        });
+
+        $('#filter-province').on("change", function () {
+            $('#filter-facility').empty().trigger("change");
+            $('#filter-facility').append(new Option("Chọn cơ sở y tế", "", true, true)).trigger("change");
+            if ($(this).val() == "") {
+                dataHealthFacility.forEach(function (item) {
+                    $('#filter-facility').append(new Option(item.name, item.id, false, false));
+                });
+            }
+            else {
+                let dataResult = dataHealthFacility.filter(x => x.provinceId == $(this).val());
+                if (dataResult.length > 0) {
+                    dataResult.forEach(function (item) {
+                        $('#filter-facility').append(new Option(item.name, item.id, false, false));
+                    });
+                }
+            }
+        })
+        $('#filter-province').on("change", function () {
+            Filter();
+        });
+
+        $("#filter-keyword").on("input", function () {
+            Filter();
+        })
+        $(".footer-service-button").on("click", function () {
+            window.location.href = '/dat-lich-xet-nghiem?serviceId=' + $(this).attr("data-serviceId");
+        })
+    })
+    var dataProvince = [];
+    async function LoadDataProvince() {
+        $('#filter-province').append(new Option("Chọn Tỉnh/Thành phố", "", true, true)).trigger("change");
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'province/api/list',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            dataProvince = data;
+            data.forEach(function (item) {
+                $('#filter-province').append(new Option(item.name, item.id, false, false));
+            });
+        } catch (error) {
+            console.error("Error loading province data:", error);
+        }
+    }
+
+    var dataHealthFacility = [];
+    async function LoadDataHealthFacility() {
+        $('#filter-facility').append(new Option("Chọn cơ sở y tế", "", true, true)).trigger("change");
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'healthfacility/api/list',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            dataHealthFacility = data;
+            data.forEach(function (item) {
+                $('#filter-facility').append(new Option(item.name, item.id, false, false));
+            });
+        } catch (error) {
+            console.error("Error loading facility data:", error);
+        }
+    }
+
+    var dataService = [];
+    async function LoadDataService() {
+        try {
+            const responseData = await $.ajax({
+                url: systemURL + 'services/api/list-test',
+                type: 'GET',
+                async: true,
+                contentType: 'application/json'
+            });
+            const data = responseData.data;
+            dataService = data;
+        } catch (error) {
+            console.error("Error loading service data:", error);
+        }
+    }
+    function Filter() {
+        $(".list-service-item").html("");
+        let healthFacilityId = $("#filter-facility").find('option');
+        var healFacilityIds = [];
+        healthFacilityId.each(function () {
+            healFacilityIds.push($(this).val());
+        });
+        let keyword = stringToSlug($("#filter-keyword").val().trim().toLowerCase());
+        let dataResult = dataService.filter(x => stringToSlug(x.name.toLowerCase()).includes(keyword));
+        if (healFacilityIds.length > 0) {
+            dataResult = dataResult.filter(x => healFacilityIds.includes(x.healthFacilityId.toString()));
+        }
+        if (dataResult.length > 0) {
+            for (let i = 0; i < dataResult.length; i++) {
+                $(".list-service-item").append(`<div class="best-service-item">
+                                <div class="item-info">
+                                    <img src="`+ dataResult[i].photo + `">
+                                    <div class="item-info-service">
+                                            <p class="info-service-name">`+ dataResult[i].name + `</p>
+                                        <div class="item-info-service-facility">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                                <g clip-path="url(#clip0_4682_15879)">
+                                                    <path d="M12.29 6.08152C12.29 4.26713 10.8139 2.79102 8.99949 2.79102C7.18507 2.79102 5.70898 4.2671 5.70898 6.08152C5.70898 7.89587 7.18507 9.37198 8.99949 9.37198C10.8139 9.37198 12.29 7.8959 12.29 6.08152ZM7.15606 6.6089V5.55413H8.47214V4.23802H9.52691V5.55413H10.843V6.6089H9.52691V7.92498H8.47214V6.6089H7.15606Z" fill="#FFC800"></path>
+                                                    <path d="M15.0667 6.06712C15.0667 2.7217 12.3451 0 8.99967 0C5.65425 0 2.93262 2.7217 2.93262 6.06712C2.93262 9.89323 7.70704 14.0617 8.9997 15.1199C10.2923 14.0618 15.0667 9.89323 15.0667 6.06712ZM4.65443 6.08178C4.65443 3.6858 6.60368 1.73651 8.9997 1.73651C11.3957 1.73651 13.345 3.68576 13.345 6.08178C13.345 8.47773 11.3957 10.427 8.9997 10.427C6.60368 10.427 4.65443 8.47777 4.65443 6.08178Z" fill="#FFC800"></path>
+                                                    <path d="M13.7299 15.337C13.4422 15.167 13.0459 15.0182 12.5518 14.8946C12.1328 14.7899 11.6547 14.7059 11.1374 14.6445C10.1316 15.5947 9.36573 16.1793 9.31903 16.2148L9.00014 16.4569L8.68125 16.2148C8.63459 16.1793 7.86869 15.5947 6.86293 14.6445C6.34563 14.7059 5.8675 14.7899 5.44848 14.8946C4.95442 15.0182 4.55807 15.167 4.27037 15.337C3.74179 15.6495 3.63086 16.0126 3.63086 16.2622C3.63086 16.5118 3.74182 16.875 4.27037 17.1873C4.55807 17.3574 4.95442 17.5062 5.44848 17.6297C6.40361 17.8685 7.66494 18 9.00014 18C10.3353 18 11.5967 17.8685 12.5518 17.6297C13.0459 17.5062 13.4422 17.3574 13.7299 17.1873C14.2585 16.8749 14.3694 16.5118 14.3694 16.2622C14.3694 16.0126 14.2585 15.6495 13.7299 15.337Z" fill="#FFC800"></path>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_4682_15879">
+                                                        <rect width="18" height="18" fill="white"></rect>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            <p>`+ dataResult[i].healthFacilityName + `</p>
+                                        </div>
+                                        <div class="item-info-service-price">
+                                            <p>Giá chỉ từ</p>
+                                            <span class="info-service-price">`+ formatNumberCart(dataResult[i].price.toString()) + `</span><span>đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service-function-container">
+                                    <a onclick="ShowService(`+ dataResult[i].id + `)" class="function-detail">Xem chi tiết</a>
+                                    <button onclick="RedirectBooking(`+ dataResult[i].id + `)" class="function-book">Đặt lịch ngay</button>
+                                </div>
+                            </div> `)
+            }
+        }
+        else {
+            $(".list-service-item").append(`<div class="result-no-content">
+                                          <img src="/HomeDoctor/img/test-in-home/empty-filter.png">
+                                           <p>Không có kết quả phù hợp</p>
+                                        </div>`)
+            // alert("none data");
+        }
+    }
+
+    function RedirectBooking(serviceId) {
+        window.location.href = "/dat-lich-xet-nghiem?serviceId=" + serviceId
+    }
+    function ShowService(serviceId) {
+        let currentService = dataService.find(x => x.id == serviceId);
+        if (currentService != null) {
+            $("#modal-service").modal("show");
+            $("#detail-service-name").text(currentService.name);
+            $("#detail-service-info").html(currentService.description);
+            $("#button-service").attr("data-serviceId", currentService.id);
+            $("#detail-service-facility").text(currentService.healthFacilityName);
+            $("#detail-service-price").text(formatNumberCart(currentService.price.toString()));
+
+        }
+    }
+    function stringToSlug(str) {
+        // remove accents
+        var from = "àáãảạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệđùúủũụưừứửữựòóỏõọôồốổỗộơờớởỡợìíỉĩịäëïîöüûñçýỳỹỵỷ",
+            to = "aaaaaaaaaaaaaaaaaeeeeeeeeeeeduuuuuuuuuuuoooooooooooooooooiiiiiaeiiouuncyyyyy";
+        for (var i = 0, l = from.length; i < l; i++) {
+            str = str.replace(RegExp(from[i], "gi"), to[i]);
+        }
+
+        str = str.toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\-]/g, '-')
+            .replace(/-+/g, '-');
+
+        return str;
+    }
+
+</script>

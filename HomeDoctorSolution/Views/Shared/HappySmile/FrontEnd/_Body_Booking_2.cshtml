@@ -1,0 +1,177 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    .gap-16 {
+        gap: 16px;
+    }
+    input:disabled {
+        opacity: 0.5; /* Điều chỉnh độ mờ */
+    }
+    textarea:disabled {
+        opacity: 0.5; /* Điều chỉnh độ mờ */
+    }
+    .btnCancel{
+        background:#ff0b0b !important;
+    }
+    .btnUpdate{
+        background:#00b100 !important;
+    }
+
+    .booking-detail {
+        margin-left: 0px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .img img {
+        margin-top: 0px !important;
+    }
+    .button-add-container {
+        width: 55px;
+        text-align: center;
+        padding-top: 12px;
+        height: 48px;
+        border-radius: 15px;
+    }
+
+        .button-add-container:hover {
+            width: 55px;
+        height: 48px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    @@media (min-width: 375px) and (max-width: 600px) {
+        .text-button-history {
+            font-size: 12px !important;
+            line-height: 14px !important;
+        }
+    }
+</style>
+@* <link rel="stylesheet" href="/happys/css/booking/booking.css"> *@
+<link rel="stylesheet" href="/happys/css/booking/bookingv3.css">
+<div class="container tab-pane mt-5" id="consultingHistory" role="tabpanel"
+     aria-labelledby="consultingHistory-tab">
+    <div class="parent-header border-bottom">
+        <div class="title-history">
+            <span class="text-history">Lịch sử khám</span>
+            <div class="btn btnHS" id="btnAddBooking" onclick="addBooking()">
+                Tạo lịch tư vấn
+            </div>
+        </div>
+        <div class="button-container" id="myTab" role="tablist">
+            <div class="parent-button-container parent-consulting-button-wait" onclick="wait()" data-toggle="tab" role="tab" aria-controls="consulting_history_wait" href="#consulting_history_wait" id="parent-consulting-button-wait" aria-selected="true" data-statusId="@BookingStatusId.WAIT">
+                <div class="text-button-history">
+                    <span>chờ xác nhận</span>
+                </div>
+            </div>
+            <div class="parent-button-container" id="parent-consulting-button-accept" onclick="accept()" data-toggle="tab" role="tab" aria-controls="consulting_history_accept" href="#consulting_history_accept" data-statusId="@BookingStatusId.ACCEPT" aria-selected="false">
+                <div class="text-button-history">
+                    <span>Đã xác nhận</span>
+                </div>
+            </div>
+            <div class="parent-button-container" id="parent-consulting-button-done" onclick="done()" data-toggle="tab" role="tab" aria-controls="consulting_history_done" href="#consulting_history_done" data-statusId="1000015" aria-selected="false">
+                <div class="text-button-history">
+                    <span>Đã Tư Vấn</span>
+                </div>
+            </div>
+            <div class="parent-button-container" id="parent-consulting-button-cancel" onclick="cancel()" data-toggle="tab" role="tab" aria-controls="consulting_history_cancel" href="#consulting_history_cancel" data-statusId="1000003" aria-selected="false">
+                <div class="text-button-history">
+                    <span>Đã hủy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="booking-detail" id="booking-detail">
+        <div class="booking-body shadow ">
+            <label class="title-booking d-none" id="done">Đã hoàn thành</label>
+            <label class="title-booking d-none" id="accept">Đã xác nhận</label>
+            <label class="title-booking d-none" id="wait">Chờ xác nhận</label>
+            <label class="title-booking d-none" id="cancel">Đã hủy</label>
+            <label class="title-booking d-none" id="reject">Đã bị từ chối</label>
+            <div class="columns w-100">
+                <label class="title-input">Hình thức tư vấn</label>
+                <div class=" row">
+                    <label for="online-pc" class="select-input col-6">
+                        <input type="radio" id="online-pc" class="booking-online" name="radio-bookingtype" value="@BookingTypeConstant.ONLINE">
+                        <span class="select-content">Đặt lịch hẹn trực tuyến</span>
+                    </label>
+                    <label for="offline-pc" class="select-input col-6">
+                        <input type="radio" id="offline-pc" class="booking-offline" name="radio-bookingtype" value="@BookingTypeConstant.OFFLINE">
+                        <span class="select-content">Đặt lịch hẹn trực tiếp</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="columns w-100 address">
+                <label class="title-input">Địa chỉ tư vấn</label>
+                <input id="booking-address" class="input-booking" type="text" disabled readonly/>
+            </div>
+            <div class="columns w-100 phone">
+                <label class="title-input">Số điện thoại</label>
+                <input id="booking-phone" class="input-booking" type="text"/>
+            </div>
+
+            <div class="booking-col">
+                <div class="columns date datepicker">
+                    <label class="title-input">Ngày đặt lịch</label>
+                    <input type="text" id="date-pc" class="input-booking" />
+                </div>
+                <div class="columns">
+                    <label class="title-input">Thời gian</label>
+                    <select id="time-pc" class="input-booking time" data-control="select2" data-placeholder="Select an option">
+                        <option value=""></option>
+                        <option value="08:00-09:30">08:00-08:30</option>
+                        <option value="08:30-09:00">08:30-09:00</option>
+                        <option value="09:00-09:30">09:00-09:30</option>
+                        <option value="09:30-10:00">09:30-10:00</option>
+                        <option value="10:00-10:30">10:00-10:30</option>
+                        <option value="10:30-11:00">10:30-11:00</option>
+                        <option value="11:00-11:30">11:00-11:30</option>
+                        <option value="13:30-14:00">13:30-14:00</option>
+                        <option value="14:00-14:30">14:00-14:30</option>
+                        <option value="14:30-15:00">14:30-15:00</option>
+                        <option value="15:00-15:30">15:00-15:30</option>
+                        <option value="15:30-16:00">15:30-16:00</option>
+                        <option value="16:00-16:30">16:00-16:30</option>
+                    </select>
+                </div>
+
+
+            </div>
+
+
+            <div class="w-100">
+                <label class="title-input">Chia sẻ cho tư vấn viên</label>
+                <textarea type="text" id="booking-description" class="input-booking" placeholder="Nhập nội dung tư vấn ..." data-kt-autosize="true" value=""></textarea>
+            </div>
+
+            <div class="button submit booking-body p-0">
+                <div class="col-12 d-flex button-booking flex-row justify-content-end align-items-center gap-16 p-0">
+                    <button class="btn btnHS2 btnUpdate" id="btnUpdateBooking" type="button">Gửi thông tin</button>
+                    <button class="btn btnHS2 d-none btnEdit" id="edit-booking">Sửa lịch tư vấn</button>
+                    <button class="btn btnHS2 d-none btnCancel" id="cancel-booking">Hủy lịch tư vấn</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <div id="consulting_history_wait" aria-labelledby="parent-consulting-button-wait" class="tab-content" role="tabpanel">
+        </div>
+        <div id="consulting_history_accept" aria-labelledby="parent-consulting-button-accept" class="tab-content" role="tabpanel">
+        </div>
+        <div id="consulting_history_done" aria-labelledby="parent-consulting-button-done" class="tab-content" role="tabpanel">
+        </div>
+        <div id="consulting_history_cancel" aria-labelledby="parent-consulting-button-cancel" class="tab-content" role="tabpanel">
+        </div>
+    </div>
+    <partial name="HappySmile/FrontEnd/_paginate" />
+
+</div>
+@* <script src="~/happys/js/page/consulting_history.js"></script> *@
+<script>
+    var roleId = @ViewBag.RoleId;
+</script>

@@ -1,0 +1,47 @@
+﻿@{ Layout = null; }
+<script>
+    setTimeout(function () {
+        $(".page-loader").addClass('hide');
+    }, 500);
+</script>
+<!--begin::Javascript-->
+<script>var hostUrl = "/admin/assets/index.html";</script>
+
+<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+<script src="/admin/assets/plugins/global/plugins.bundle.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/scripts.bundle.js" asp-append-version="true"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used for this page only)-->
+<script src="/admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/index.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/xy.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/percent.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/radar.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/themes/Animated.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/map.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/geodata/worldLow.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/geodata/continentsLow.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/geodata/usaLow.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js" asp-append-version="true"></script>
+<script src="/admin/cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js" asp-append-version="true"></script>
+<script src="/admin/assets/plugins/custom/datatables/datatables.bundle.js" asp-append-version="true"></script>
+<!--end::Vendors Javascript-->
+<!--begin::Custom Javascript(used for this page only)-->
+<script src="/admin/assets/js/widgets.bundle.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/custom/widgets.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/custom/apps/chat/chat.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/custom/utilities/modals/upgrade-plan.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/custom/utilities/modals/create-app.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/custom/utilities/modals/new-target.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/custom/utilities/modals/users-search.js" asp-append-version="true"></script>
+<!--end::Custom Javascript-->
+<!--end::Javascript-->
+
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>*@
+<script src="~/assets/js/ajaxSetup.js" asp-append-version="true"></script>
+<script src="~/assets/js/pages/_layout.js" asp-append-version="true"></script>
+<script src="/admin/assets/js/select2_language_vi.js" asp-append-version="true"></script>
+<script>
+    $.fn.select2.defaults.set('language', 'vi');
+</script>
+

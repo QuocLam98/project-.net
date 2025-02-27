@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/happys/css/survey_history/surey_history.css" rel="stylesheet" />
+<div class="tab-pane fade active show" id="surveyHistory" role="tabpanel"
+     aria-labelledby="surveyHistory-tab">
+    <div id="survey_history">
+    </div>
+</div>
+<script>
+    var getCookies = function () {
+        var pairs = document.cookie.split(";");
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+            var pair = pairs[i].split("=");
+            cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='));
+        }
+        return cookies;
+    }
+    var myCookies = getCookies();
+    localStorage.setItem("token", myCookies.Authorization);
+</script>
+<script src="~/happys/js/page/surveyhistory.js" asp-append-version="true"></script>
+<script src="~/happys/js/page/paginate.js" asp-append-version="true"></script>

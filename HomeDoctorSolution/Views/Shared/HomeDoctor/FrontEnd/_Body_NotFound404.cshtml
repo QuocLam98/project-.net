@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .not-found {
+        padding-bottom: 64px;
+    }
+
+        .not-found img {
+            max-width: 500px;
+            width: 100%;
+        }
+
+    .text-notfound {
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--brand_color);
+        font-size: 50px;
+    }
+
+    @@media (max-width:600px) {
+        .not-found {
+            padding-bottom: 32px;
+        }
+
+            .not-found img {
+                max-width: 100%;
+            }
+    }
+</style>
+<section class="not-found">
+    <div class="container text-center">
+        <img src="~/happys/img/404/bg404.png" />
+        <p class="text-notfound">404</p>
+        <p>Không tìm thấy đường dẫn này</p>
+        <a href="/" class="btn btnHS2">Mời quay về trang chủ</a>
+    </div>
+</section>

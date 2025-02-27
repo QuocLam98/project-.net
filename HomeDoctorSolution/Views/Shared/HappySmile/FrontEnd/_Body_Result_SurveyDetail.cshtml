@@ -1,0 +1,556 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+
+    .result_survey_section_answer {
+        height: fit-content;
+        background: #F5F5F5;
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+        .result_survey_section_answer label, .result_survey_section_question p {
+            margin: 0 !important;
+            font-size: 15px;
+        }
+
+    .gap-16px {
+        gap: 16px;
+    }
+
+    .result_survey_list_container {
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+
+    .result_survey_section_question p {
+        font-weight: 600;
+    }
+
+    .result_survey_section_question {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .col-lg-6-happys {
+        width: calc(50% - 20px);
+    }
+
+    .result_survey_sumary {
+        border-radius: 24px;
+        height: fit-content;
+        flex-shrink: 0;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content:center;
+        gap: 32px;
+        position: relative;
+        margin-bottom: 32px;
+        padding: 130px 17px;
+    }
+
+        .result_survey_sumary:before {
+            content: "“";
+            font-family: Lexend;
+            font-weight: 400;
+            font-size: 150px;
+            color: #333;
+            opacity: 0.4;
+            position: absolute;
+            left: 15px;
+            width: 38px;
+            height: 38px;
+            line-height: 130px;
+            top: 0;
+            z-index: 1;
+        }
+
+        .result_survey_sumary:after {
+            content: "’’";
+            font-family: Lexend;
+            font-weight: 400;
+            font-size: 150px;
+            color: #333;
+            opacity: 0.4;
+            position: absolute;
+            right: 50px;
+            width: 38px;
+            height: 38px;
+            line-height: 65px;
+            bottom: 0;
+            z-index: 1;
+        }
+
+    .result_survey_sumary_title {
+        color: var(--White, #333);
+        text-align: center;
+        font-family: Lexend;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .result_survey_sumary_description {
+        color: var(--White, #333);
+        text-align: center;
+        font-family: Lexend;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+    }
+
+    .icon_result {
+        padding-left: 14px;
+        padding-right: 14px;
+        color: #1470f5;
+        background-color: #1470f5;
+        border-radius: 48px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 4px 20px 0px rgba(20, 112, 245, 0.50);
+    }
+
+    .noti_result {
+        align-items: flex-start;
+        justify-content: center;
+        gap: 32px;
+        background: var(--Vng, #FFC133);
+    }
+
+        .noti_result > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+    .noti_box {
+        border-radius: 20px;
+        background-color: #F5F5F5;
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+        border-top: 5px solid #1470f5;
+    }
+
+    .noti_item {
+        padding: 21px 0px;
+        gap: 16px;
+    }
+
+    .noti_mark {
+        width: 36px;
+        height: 36px;
+        border-radius: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 30px;
+    }
+
+    .title_mark {
+        text-transform: uppercase;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .question_count {
+        display: flex;
+        justify-content: center;
+        color: var(--Blue-sky, #1470F5);
+        font-family: Oswald;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    }
+
+    .noti_box {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        max-width: 214px;
+        width: 100%;
+    }
+
+    .noti_title {
+        color: #000;
+        text-align: center;
+        font-family: Lexend;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    .noti_des {
+        color: #000;
+        text-align: center;
+        font-family: Lexend;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 125% */
+    }
+
+    .noti_survey {
+        width: 100%;
+        gap: 32px;
+        margin-top:32px;
+        margin-bottom:32px;
+    }
+
+    .noti_list {
+        background-color: #fff;
+        border-radius: 15px;
+    }
+
+    .title_section {
+        color: #333;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        padding : 0;
+    }
+
+    .mark_normal {
+        background-color: #36A100;
+    }
+
+    .mark_light {
+        background-color: #1AC517;
+    }
+
+    .mark_fit {
+        background-color: #FFC133;
+    }
+
+    .mark_heavy {
+        background-color: #F68822;
+    }
+
+    .mark_weighty {
+        background-color: #FF0000;
+    }
+
+    .mark_active {
+        background-color: #fff !important;
+        border: 1px solid #333 !important;
+    }
+
+    #back-to-top {
+        display:none !important;
+    }
+    @@media (max-width: 576px) {
+        .col-xs-12-happys {
+            width: 100%;
+        }
+
+        .result_survey_section {
+            flex-direction: column-reverse;
+            gap: 32px;
+        }
+
+        .result_survey_sumary {
+            padding: 80px 17px;
+        }
+
+        .title_mark {
+            font-size: 14px;
+            text-align: center;
+            height: 40px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .result_survey_section {
+            flex-direction: column-reverse;
+            gap: 32px;
+        }
+
+        .result_survey_sumary {
+            height: fit-content;
+        }
+
+        .title_mark {
+            font-size: 14px;
+            text-align: center;
+            height: 40px;
+        }
+    }
+
+    .icon_result {
+        padding-left: 14px;
+        padding-right: 14px;
+        color: #1470f5;
+        background-color: #1470f5;
+        border-radius: 48px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 4px 20px 0px rgba(20, 112, 245, 0.50);
+    }
+
+    .body_wrapper {
+        z-index: unset !important;
+    }
+
+    .modal-backdrop {
+        background-color: #000 !important;
+    }
+
+    .input-group-addon.primary {
+        border-color: rgb(40, 94, 142);
+        width: 36px;
+        display: flex;
+        align-items: center;
+        background-color: rgb(50, 118, 177);
+        justify-content: center;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    #list_email {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .email_item {
+        border: 1px solid #333;
+        border-radius: 30px;
+        padding: 2px 10px;
+    }
+
+    .close_email {
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    #email_error {
+        font-size: 12px;
+        color: red;
+        text-align: left;
+    }
+    
+</style>
+<div class="noti_survey d-flex flex-column container">
+    <div class="noti_box d-flex flex-column justify-content-around">
+        <div class="col-12 d-flex noti_item justify-content-center flex-column align-items-center" id="concerned_title">
+            <p class="title_section">Lo Âu</p>
+        </div>
+        <div class="noti_list col-12 d-flex justify-content-around p-0">
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_concerned mark_normal" data-value="1"><i class="bi bi-check"></i></div>
+                <div class="title_mark"><p>Bình thường</p></div>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_concerned mark_light" data-value="2"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Nhẹ</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_concerned mark_fit" data-value="3"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Vừa</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_concerned mark_heavy" data-value="4"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Nặng</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_concerned mark_weighty" data-value="5"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Rất nặng</p>
+            </div>
+        </div>
+    </div>
+    <div class="noti_box d-flex flex-column justify-content-around">
+        <div class="col-12 d-flex noti_item justify-content-center flex-column align-items-center" id="concerned_title">
+            <p class="title_section">Trầm cảm</p>
+        </div>
+        <div class="noti_list col-12 d-flex justify-content-around p-0">
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_depression mark_normal" data-value="1"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Bình thường</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_depression mark_light" data-value="2"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Nhẹ</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_depression mark_fit" data-value="3"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Vừa</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_depression mark_heavy" data-value="4"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Nặng</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_depression mark_weighty" data-value="5"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Rất nặng</p>
+            </div>
+        </div>
+    </div>
+    <div class="noti_box d-flex flex-column justify-content-around">
+        <div class="col-12 d-flex noti_item justify-content-center flex-column align-items-center" id="concerned_title">
+            <p class="title_section">Stress</p>
+        </div>
+        <div class="noti_list col-12 d-flex justify-content-around p-0">
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_stress mark_normal" data-value="1"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Bình thường</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_stress mark_light" data-value="2"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Nhẹ</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_stress mark_fit" data-value="3"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Vừa</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_stress mark_heavy" data-value="4"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Nặng</p>
+            </div>
+            <div class="col-2 d-flex noti_item justify-content-center flex-column align-items-center">
+                <div class="noti_mark mark_stress mark_weighty" data-value="5"><i class="bi bi-check"></i></div>
+                <p class="title_mark">Rất nặng</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="result_survey_list_container container">
+    <div class="result_survey_section row">
+        <div class="col-lg-9">
+            <div class="result_survey_section_title">
+                <h3>Kết quả bài sàng lọc: <span id="title_survey"></span></h3>
+                <div class="result_survey_section_question justify-content-between gap-16px">
+                    @*   <p>1. Câu hỏi 1:</p>
+                    <div class="result_survey_section_answer d-flex flex-row align-items-center gap-16px">
+                    <input type="radio" id="html" name="fav_language" value="HTML">
+                    <label for="html">HTML</label>
+                    <input type="radio" id="css" name="fav_language" value="CSS">
+                    <label for="css">CSS</label>
+                    <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                    <label for="javascript">JavaScript</label>
+                    <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                    <label for="javascript">JavaScript</label>
+                    </div> *@
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="result_survey_sumary" id="noti_result">
+                <div class="result_survey_sumary_title" id="identify_counselor">
+                </div>
+            </div>
+            @* <div class="d-flex flex-row gap-16px">
+                <a class="btn btnHS2" href="/danh-sach-tu-van-vien">Đặt lịch tư vấn</a>
+                <button class="btn btnHS2 icon_result icon-share" id="result_survey_share" data-toggle="modal" data-target="#exampleModal"><img src="/happys/img/result_survey/icon-share.svg"></button>
+            </div> *@
+        </div>
+    </div>
+</div>
+<!--Begin Modal Share -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class='glyphicon glyphicon-envelope text-info'></i>Chia sẻ kết quả sàng lọc</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex justify-content-center">
+                <div class="col-sm-6">
+                    <div class='form-group'>
+                        <span id="email_error"></span>
+                        <div class='input-group col-xs-8' data-validate="email">
+                            <input type="text" class="form-control " name="validate-email" id="validate_email" placeholder="Email Address" required>
+                            <span id="addEmail" class="input-group-addon primary">Ok</span>
+                        </div>
+                        <div id="list_email">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-info" id="btnConfirmEmail" data-dismiss="modal">Gửi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal Share -->
+<script>
+    var emailString = "";
+    $("#addEmail").on("click", function () {
+        validateEmail();
+    });
+    $("#validate_email").on("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter trên trường nhập liệu
+            validateEmail(); // Gọi hàm xử lý khi nhấn Enter
+        }
+    });
+    function validateEmail() {
+        var email = $("#validate_email").val();
+
+        var gmailRegex = /^[a-zA-Z0-9._-]+@@gmail\.com$/;
+
+        if (gmailRegex.test(email)) {
+            let content = `
+                    <span class="email_item">${email}<span class="close_email"><i class="bi bi-x"></i></span></span>
+                `;
+            $("#list_email").append(content);
+
+            // Thêm email vào chuỗi, cách nhau bằng dấu phẩy
+            emailString += email + ",";
+
+            $("#validate_email").val("");
+            $("#email_error").text(""); // Xóa thông báo lỗi nếu có
+        } else {
+            $("#email_error").text("Vui lòng nhập một địa chỉ email Gmail hợp lệ.");
+        }
+    }
+
+    $(document).on("click", ".close_email", function (e) {
+        var emailToRemove = $(this).closest('.email_item').text().trim();
+
+        // Xóa email từ chuỗi
+        emailString = emailString.replace(emailToRemove + ",", "");
+
+        $(this).closest('.email_item').remove();
+    })
+    $(document).on("click", "#btnConfirmEmail", async function (e) {
+        if (emailString.endsWith(',')) {
+            emailString = emailString.slice(0, -1);
+        }
+        await $.ajax({
+            url: systemURL + "survey/api/send-email-result-survey" + "?surveyAccountId=" + id + "&emailString=" + emailString,
+            method: "GET",
+            success: function (responseData) {
+                Swal.fire("Chia sẻ thành công!");
+            },
+            error: function (e) {
+            },
+        });
+        return data;
+    })
+</script>

@@ -1,0 +1,517 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<style>
+    .modal-open {
+        overflow-y: scroll;
+    }
+    .menu > .nav-item > .nav-link {
+        font-size: 16px !important;
+    }
+</style>
+<link href="/homedoctor/css/header-homepage/header-homepage.css" rel="stylesheet" asp-append-version="true" />
+<script src="/homedoctor/js/page/header-homepage/header.js" asp-append-version="true"></script>
+<div class="header-top">
+    <div class="container header-top-content">
+        <div class="header-top-item">
+            <a href="tel:034 958 1894" class="header-top-flex-content">
+                <img src="/homedoctor/img/header/phone-call.svg" />
+                <span>034 958 1894</span>
+            </a>
+            <div class="header-top-flex-content">
+                <img src="/homedoctor/img/header/email.svg" />
+                <span>hung.nguyen@dion.vn</span>
+            </div>
+        </div>
+
+        <div class="header-top-item">
+            <a href="#">Hướng Dẫn Vận Chuyển</a>
+            <a href="/chinh-sach-bao-mat">Điều Khoản Chính Sách</a>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg menu_one menu_purple sticky-nav">
+    <div class="container">
+        <a class="navbar-brand header_logo" href="/">
+            <img class="first_logo sticky_logo" style="max-height: 60px" src="/HomeDoctor/img/header/header-logo.png" srcset="/HomeDoctor/img/header/header-logo.png" alt="logo">
+            <img class="white_logo main_logo" style="max-height: 60px" src="/HomeDoctor/img/header/header-logo.png" srcset="/HomeDoctor/img/header/header-logo.png 1.7x" alt="logo">
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="menu_toggle">
+                <span class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="hamburger-cross">
+                    <span></span>
+                    <span></span>
+                </span>
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav menu ml-auto">
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Trang Chủ
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/ve-chung-toi" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Về Chúng Tôi
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/xet-nghiem" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Xét nghiệm
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/danh-sach-phong-kham" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Cơ sở y tế
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/danh-sach-bac-si" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Đội Ngũ Bác Sĩ
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/danh-sach-dich-vu" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Dịch Vụ
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/danh-sach-san-pham" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Sản Phẩm
+                    </a>
+                </li>
+                <li class="nav-item dropdown submenu">
+                    <a class="nav-link dropdown-toggle" href="/danh-sach-tin-tuc" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Tin Tức
+                    </a>
+                </li>
+            </ul>
+            <div class="right-nav">
+                @if (@ViewBag.AccountId != 0)
+                {
+                    <a class="header-item" href="/tin-nhan">
+                        <img src="/homedoctor/img/header/chat.svg" />
+                        @* <div class="item-count">0</div> *@
+                    </a>
+                    <div class="header-item card-show" onmouseover="showCardOrder()">
+                        <img src="/homedoctor/img/header/shopping.svg" />
+                        <div class="item-count item-count-cart">0</div>
+                    </div>
+                    <div class="info-button" onmouseover="showCardInfo()">
+                        <img class="header-info-avatar" id="avatar-big"src=""/>
+                        <span id="name-user">
+                        </span>
+                    </div>
+                }
+                else
+                {
+                    <div class="header-item card-show" onmouseover="showCardOrder()">
+                        <img src="/homedoctor/img/header/shopping.svg" />
+                        <div class="item-count item-count-cart">0</div>
+                    </div>
+                    <a class="nav_btn" style="cursor: pointer" onclick="OpenModalLogin()">Đăng nhập</a>
+                }
+                @*  <div class="px-2 js-darkmode-btn d-none" title="Toggle dark mode">
+                <label for="something" class="tab-btn tab-btns">
+                <ion-icon name="moon"></ion-icon>
+                </label>
+                <label for="something" class="tab-btn">
+                <ion-icon name="sunny"></ion-icon>
+                </label>
+                <label class=" ball" for="something"></label>
+                <input type="checkbox" name="something" id="something" class="dark_mode_switcher">
+                </div> *@
+            </div>
+        </div>
+
+        <div class="card-info shadow-lg" onmouseover="showCardInfo()" onmouseout="closeCardInfo()"> 
+            <div class="info-header">
+                <div class="info-title">
+                    <span>Tài Khoản</span>
+                </div>
+
+
+                <div class="info-image">                  
+                    <img class="info-avatar" id="avatar-children" src=""/>
+                    <form class="upload-image" method="post" enctype="multipart/form-data">
+                        <input type="file" name="imageFile" id="avatar" style="display: none;" accept="image/*"/>
+                        <label for="avatar" class="cursor-pointer" onclick="btnUpload()"><img src="/homedoctor/img/header/camera.svg" id="" type="file" /></label>
+                    </form>
+                 
+                    <span>@ViewBag.Name</span>
+                </div>        
+                <div class="info-order">
+                    <div class="info-cart"  onclick="window.location.href='/lich-su-don-hang'">
+                        <img src="/homedoctor/img/header/cart.svg" />
+                        <div class="info-count">
+                            0
+                        </div>
+                        <span>Đang chờ</span>
+                    </div>
+                    <div class="info-ship"  onclick="window.location.href='/lich-su-don-hang'">
+                        <img src="/homedoctor/img/header/ship.svg" />
+                        <div class="info-count">
+                            0
+                        </div>
+                        <span>Đang giao</span>
+                    </div>
+                    <div class="info-done"  onclick="window.location.href='/lich-su-don-hang'">
+                        <img src="/homedoctor/img/header/done.svg" />
+                        <div class="info-count">
+                            0
+                        </div>
+                        <span>Hoàn Thành</span>
+                    </div>
+                    <div class="info-cancel"  onclick="window.location.href='/lich-su-don-hang'">
+                        <img src="/homedoctor/img/header/cancel.svg" />
+                        <div class="info-count" style="right: 2px !important">
+                            0
+                        </div>
+                        <span>Đã Hủy</span>
+                    </div>
+                </div>
+
+                <div class="info-service">
+                    <a class="info-booking" href="/lich-su-tu-van">
+                        <img src="/homedoctor/img/header/booking.svg" />
+                        <p>Lịch khám <span class="countBooking-value"></span></p>
+                    </a>
+                    <a href="/thong-tin-y-te" class="info-medical">
+                        <img src="/homedoctor/img/header/icon-ho-so-y-te.png" />
+                        <p>Hồ sơ y tế</p>
+                    </a>
+                    <a href="/lich-su-xet-nghiem" class="info-medical info-test-at-home">
+                        <img src="/homedoctor/img/header/icon-ket-qua-xet-nghiem.png" />
+                        <p>Tra cứu kết quả xét nghiệm</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="info-footer">
+                <a href="/thong-tin-ca-nhan">
+                    <img src="/homedoctor/img/header/user.svg" />
+                    <span>Thông tin cá nhân</span>
+                </a>
+                <a>
+                    <img src="/homedoctor/img/header/protec.svg" />
+                    <span style="cursor: pointer" onclick="window.location.href='/chinh-sach-bao-mat'">Điều Khoản Chính Sách</span>
+                </a>
+                <a href="/doi-mat-khau">
+                    <img src="/homedoctor/img/header/lock.svg" />
+                    <span>Đổi mật khẩu</span>
+                </a>
+                <a onclick="Logout()" class="cursor-pointer">
+                    <img src="/homedoctor/img/header/log-out.svg" />
+                    <span>Đăng xuất</span>
+                </a>
+            </div>
+        </div>
+@*         <div class="card-chat shadow-lg" onmouseover="showCardChat()" onmouseout="closeCardChat()">
+            <div class="chat-header">
+                <div>
+                    <span>Tin nhắn</span>
+                </div>
+            </div>
+            <div class="select-chat">
+                <div class="color-background">
+                </div>
+                <span class="tab-selected" id="chat">
+                    Đoạn chat
+                </span>
+                <span class="tab-not-select" id="phone">
+                    Danh bạ
+                </span>
+            </div>
+            <div class="list-chat">
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar">
+                        <img class="item-avatar" src="/homedoctor/img/header/avatar.svg" />
+                        <img class="item-online" src="/homedoctor/img/header/online.svg" />
+                    </div>
+                    <div class="chat-cotent">
+                        <span class="chat-name">
+                            Trung Trần
+                        </span>
+                        <span class="chat-value">
+                            Xin chào mọi người tôi là
+                        </span>
+                    </div>
+                    <div class="chat-time">
+                        <div class="chat-count">
+                            5+
+                        </div>
+                        <div class="chat-time-online">
+                            08:00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+        <div class="card-order shadow-lg" onmouseover="showCardOrder()" onmouseout="closeCardOrder()">
+            <div class="card-content">
+                <div class="card-order-title">
+                    <span>Giỏ hàng</span>
+                </div>
+                <div class="card-list-order" id="card-list-order">
+@*                     <div class="card-order-item">
+                        <div class="card-product-img">
+                            <img src="/homedoctor/img/header/product-img.svg" />
+                        </div>
+                        <div class="card-product-value">
+                            <div class="card-product-name">
+                                Thực phẩm chức năng Zero Supperman
+                            </div>
+                            <div class="card-product-price">
+                                150.000<span> đ</span>
+                            </div>
+                            <div class="card-order-footer">
+                                <div class="card-order-quantity">
+                                    <div class="card-order-minus">
+                                        <img src="/homedoctor/img/header/minus.svg" />
+                                    </div>
+                                    <input />
+                                    <div class="card-order-plus">
+                                        <img src="/homedoctor/img/header/plus.svg" />
+                                    </div>
+                                </div>
+                                <div class="card-order-delete">
+                                    <img src="/homedoctor/img/header/delete.svg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div> *@
+                    <div class="no-product">
+                        <img src="/homedoctor/img/header/product-0.svg" />
+                        <span>Chưa có sản phẩm trong giỏ hàng</span>
+                    </div>
+                </div>
+            </div>
+            <div id="orderButton" class="card-order-button">
+                <div class="card-order-total">
+                    <span>
+                        Tạm tính:
+                    </span>
+                    <span class="card-order-total-price">
+                        0 <span>đ</span>
+                    </span>
+                </div>
+                <div class="card-order-button-buy" onclick="window.location.href='/tao-don-hang'">
+                    Đặt ngay
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal " id="modal-alert" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document" style="max-width: 600px; object-fit: contain">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><img style="width: 50%" src="/HomeDoctor/img/header/header-logo.png" srcset="/HomeDoctor/img/header/header-logo.png 1.7x" alt="logo"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" onclick="removeModalShow()">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Hợp tác cùng Bác Sĩ Tại Nhà!</h5>
+                <p>Chúng tôi đang cần tìm đối tác để cùng phát triển và kinh doanh ứng dụng đặt lịch khám Home Doctor - Bác Sĩ Tại Nhà.  Quý đối tác vui lòng liên hệ: <a href="tel:034 958 1894">034.958.1894</a> hoặc email: <a href="#">hung.nguyen@dion.vn</a>, xin chân thành cảm ơn.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="removeModalShow()">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="/homedoctor/js/toastr/toastr.css">
+<script src="/homedoctor/js/toastr/toastr.min.js"></script>
+<script src="/homedoctor/js/page/userprofiles/profile.js" asp-append-version="true"></script>
+
+ <script>
+    // function removeModalShow() {
+    //     localStorage.setItem("visit", "True");
+    // }
+    // $(document).ready(function () {
+    //     // if (localStorage.getItem("visit") == null) {
+    //         $("#modal-alert").modal("show");
+    //     // }
+    // })
+
+</script>
+

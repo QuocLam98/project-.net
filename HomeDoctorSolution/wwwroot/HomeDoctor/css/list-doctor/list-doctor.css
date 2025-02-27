@@ -1,0 +1,313 @@
+﻿@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 600px !important;
+    }
+}
+.text-start {
+    text-align: left;
+}
+.booking-input:disabled {
+    background-color: beige;
+}
+.name_healthfacility {
+    color: #007983;
+    font-weight: bold;
+}
+.name_healthfacility:hover {
+    color: #007983;
+    font-weight: bold;
+}
+
+.container-xl {
+    max-width: 1440px;
+    width: 100%;
+    padding: 0px -20px;
+    margin: 0 auto
+}
+
+#list_doctor p {
+    margin-bottom: unset;
+}
+
+.img_doctor img {
+    width: 100%;
+}
+
+.item_doctor {
+    padding: 0px 20px 0px 0px;
+    margin-bottom: 40px;
+}
+
+.img_doctor img {
+    object-fit: contain;
+    border-radius: 15px;
+    width: 100%;
+    height: 255px;
+    object-position: top;
+}
+.item_box {
+    border: 1px solid rgba(0, 121, 131, 0.20);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.10);
+    border-radius: 10px;
+    position: relative;
+}
+
+.img_doctor {
+    width: 100%;
+}
+.flex-name-rating {
+    display: flex;
+    justify-content: space-between;
+}
+.booking-footer {
+    padding: 16px;
+    display: flex;
+    height: 80px;
+    width: 100%;
+    /*position: absolute;*/
+    bottom: 0px;
+    background: white;
+    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.10);
+    border-radius: 16px
+}
+.image-doctor img {
+    -webkit-box-shadow: 0 0 25px rgb(0 0 0 / 10%);
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.line-mini {
+    width: 20px;
+    height: 2px;
+    background-color: var(--Main-color-1, #FFC800);
+}
+
+.required:after {
+    content: "*";
+    position: relative;
+    font-size: inherit;
+    color: #f1416c;
+    padding-left: 0.25rem;
+    font-weight: 600;
+}
+.label-bookingform {
+    margin-bottom: 0;
+}
+.list-ratting-title {
+    color: black;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 700;
+}
+.booking-modal {
+    background: white;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    /*height: 640px;*/
+}
+
+.booking-modal-header {
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.booking-input, .booking-input:focus {
+    padding: 17px 16px;
+    color: #333333;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 1px rgba(0, 0, 0, 0.05) solid;
+    width: 100%;
+}
+.infor_doctor {
+    padding: 16px 16px 25px 16px;
+    text-align: center;
+}
+
+.name_doctor {
+    background: var(--Linear, linear-gradient(90deg, #007983 0%, #FFC800 103.21%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.medical_doctor {
+    color: var(--Place, #333);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.des_doctor {
+    color: var(--Black, #000);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 11px 10px;
+    border-radius: 10px;
+    background: rgba(0, 121, 131, 0.10);
+   
+}
+.des_doctor p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    text-align:justify;
+}
+.item_doctor:hover .hover_doctor  {
+    transition: all 1s;
+    opacity: 1;
+}
+/*.item_doctor:hover .des_doctor {*/
+/*    transition: all 1s;*/
+/*    opacity: 0;*/
+/*}*/
+.hover_box {
+    border-radius: 10px;
+    background-color: #D9EBED;
+    display: flex;
+    gap: 8px;
+    padding: 11px 0px 11px 14px;
+    width: 100%;
+    justify-content: center;
+}
+.hover_doctor {
+    padding: 0px 16px;
+    opacity: 0;
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+}
+.btn_call {
+    border-radius: 35px;
+    border: 1px solid #FFF;
+    background: var(--Main-color-2, #007983);
+    box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+    padding: 10px 20px;
+    text-align: center;
+    color: #FFF !important;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 10px;
+}
+.btn_booking {
+    border-radius: 35px;
+    border: 1px solid #FFF;
+    background: var(--Main-color-1, #FFC800);
+    box-shadow: 0px 4px 40px 0px rgba(255, 200, 0, 0.25);
+    padding: 10px 20px;
+    text-align: center;
+    color: var(--Black, #000) !important;
+    cursor:pointer;
+    margin: 10px;
+}
+.infor_doctor {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.home_doctor {
+    margin-top: 45px;
+    margin-bottom: 64px;
+}
+@media (max-width:600px) {
+    #list_doctor {
+        margin: 0;
+        margin-top: 16px;
+    }
+
+    .item_doctor {
+        margin-bottom: 16px !important;
+    }
+}
+@media (min-width: 320px) and (max-width: 600px) {
+    .detail-value {
+        flex-direction: column;
+    }
+
+    .image-doctor, .detail-name, .detail-des {
+        text-align: center;
+    }
+
+        .image-doctor img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .btn-chat, .btn-booking {
+        padding: 13px 20px;
+    }
+
+    .detail-info-button {
+        gap: 16px;
+    }
+
+    .detail-description {
+        background-image: unset;
+    }
+
+        .detail-description .container {
+            background-color: rgba(0, 121, 131, 1);
+        }
+
+    .head-bg {
+        height: 100px;
+        background-image: url('../../../img/detail-doctor/head-bg.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: block;
+    }
+
+    .footer-bg {
+        background-image: url('../../../img/detail-doctor/footer-bg.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100px;
+        background-position: bottom;
+        display: block;
+    }
+
+    .detail-description-value {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .detail-ratting-header-cotent-name, .detail-ratting-header-cotent-time {
+        font: 14px;
+    }
+
+    .detail-ratting-value {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail-ratting-header-value {
+        gap: 20px;
+    }
+
+    .modal-content {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .detail-tag {
+        gap: 8px;
+    }
+
+        .detail-tag a {
+            font-size: 12px;
+        }
+}

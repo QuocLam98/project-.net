@@ -1,0 +1,119 @@
+﻿.list-serivice {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 40px;
+}
+
+.serivce-item {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    width: 320px;
+    border: 1px white solid;
+    border-radius: 15px;
+    background: linear-gradient(266deg, #D0F4FD 0%, #E0FBF9 100%);
+    /*width: 100% !important;*/
+    height: 250px;
+    position: relative;
+    cursor: pointer;
+}
+
+    .serivce-item img {
+        position: absolute;
+        width: 200px;
+        bottom: 0px;
+        right: 0px;
+    }
+
+.list-serivice .serivce-item:nth-child(1) {
+    background: linear-gradient(266deg, #D0F4FD 0%, #E0FBF9 100%);
+}
+
+.list-serivice .serivce-item:nth-child(2) {
+    background: linear-gradient(266deg, #F8DEFF 0%, #FBEBFF 100%);
+}
+
+.list-serivice .serivce-item:nth-child(3) {
+    background: linear-gradient(266deg, #FFF6DE 0%, #FFFDEB 100%);
+}
+
+.list-serivice .serivce-item:nth-child(4) {
+    background: linear-gradient(266deg, #D0F4FD 0%, #E0FBF9 100%);
+}
+
+.service-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.serivce-name {
+    background: linear-gradient(90deg, rgba(0,121,131,1) 0%, rgba(255,200,0,1) 50%);
+    background-clip: text;
+    font-size: 20px;
+    font-family: Mulish;
+    font-weight: 800;
+    color: transparent;
+    margin-bottom: 5px;
+}
+
+.service-info span {
+    color: #333333;
+    font-size: 16px;
+    font-family: Mulish;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.service-price {
+    color: #007983 !important;
+    font-size: 18px !important;
+    font-family: Mulish !important;
+    font-weight: 900 !important;
+    line-height: 20px !important;
+}
+
+.serivce {
+    padding: 0px 0px 160px;
+}
+
+@media (min-width: 320px) and (max-width: 600px) {
+    .list-serivice {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 16px;
+    }
+
+    .serivce-item {
+        width: 100%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 991px) {
+    .list-serivice {
+        grid-template-columns: auto auto;
+        padding: 0px 16px;
+    }
+
+    .serivce-item {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1899px) {
+    .list-serivice {
+        grid-template-columns: auto auto;
+        padding: 0px 16px;
+    }
+
+    .serivce-item {
+        width: 100%;
+    }
+}
+
+.detail-clinic, .detail-clinic:hover{
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+     
+}

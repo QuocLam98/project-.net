@@ -1,0 +1,678 @@
+﻿@{
+    Layout = null;
+}
+<link href="/homedoctor/css/rating/star-rating-svg.css" rel="stylesheet" asp-append-version="true" />
+<script src="/homedoctor/js/rating/rate.js" asp-append-version="true"></script>
+<style>
+    @@media screen and (max-width: 768px){
+        .linktag-component {
+            display: none;
+        }
+        .image-doctor > img {
+            width: 100% !important;
+            height: 400px !important;
+        }
+        .flex-name-rating {
+            flex-direction: column;
+        }
+
+        .image-doctor, .detail-name, .detail-des {
+            text-align: left;
+        }
+
+        .detail-description {
+            padding: 0 !important
+        }
+
+        .footer-bg, .head-bg{
+            display: none;
+        }
+
+        .doctor-experience {
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            border-radius: 15px;
+        }
+
+        .check-confirm-term-of-service {
+            align-items: flex-start !important;
+        }
+
+        .check-confirm-term-of-service input {
+            margin-top: 7px !important;
+            margin-bottom:unset !important;
+        }
+    }
+
+    .flex-name-rating {
+        display: flex;
+        justify-content: space-between;
+    }
+    .image-doctor img{
+        -webkit-box-shadow:0 0 25px rgb(0 0 0 / 10%);
+        width:500px;
+        height:500px;
+        object-fit:cover;
+    }
+
+    .line-mini {
+        width: 20px;
+        height: 2px;
+        background-color: var(--Main-color-1, #FFC800);
+    }
+
+    .required:after {
+        content: "*";
+        position: relative;
+        font-size: inherit;
+        color: #f1416c;
+        padding-left: 0.25rem;
+        font-weight: 600;
+    }
+
+    .check-confirm-term-of-service {
+        align-items: center;
+    }
+
+    .check-confirm-term-of-service input {
+        margin-bottom: 3px;
+    }
+</style>
+<section class="doctor-detail">
+    <div class="container">
+        <div class="detail-value">
+            <div class="image-doctor">
+                <img src="/homedoctor/img/detail-doctor/ava.svg" />
+            </div>
+            <div class="detail-cotent">
+                <div class="flex-name-rating">
+                    <div class="detail-name">
+                        BS. Trung Tran
+                    </div>
+                    <div class="my-rating" readOnly></div>
+                </div>
+                <div class="line-mini"></div>
+                <div class="detail-info-title">
+                    Giới thiệu
+                </div>
+                <div class="detail-des">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                </div>
+                <div class="detail-info">
+                    <div class="detail-info-title">
+                        Thông tin chi tiết
+                    </div>
+                    <div class="detail-info-content">
+                        <div class="detail-info-item">
+                            <img src="/homedoctor/img/detail-doctor/depart.svg" />
+                            <div class="detail-info-item-value">
+                                <span class="detail-info-item-value-title">
+                                    Chuyên khoa:
+                                </span>
+                                <span class="detail-info-item-value-content" id="specialist">
+                                    Nội tổng quát
+                                </span>
+                            </div>
+                        </div>
+                        <div class="detail-info-item">
+                            <img src="/homedoctor/img/detail-doctor/address.svg" />
+                            <div class="detail-info-item-value">
+                                <span class="detail-info-item-value-title">
+                                    Phòng khám, Bệnh viện:
+                                </span>
+                                <span class="detail-info-item-value-content" id="healthFacility">
+                                    Đại học Y dược Hà Nội
+                                </span>
+                            </div>
+                        </div>
+                        <div class="detail-info-item">
+                            <img src="/homedoctor/img/detail-doctor/skill.svg" />
+                            <div class="detail-info-item-value">
+                                <span class="detail-info-item-value-title">
+                                    Bằng cấp:
+                                </span>
+                                <span class="detail-info-item-value-content" id="position">
+                                    Bác sĩ đa khoa
+                                </span>
+                            </div>
+                        </div>
+                        <div class="detail-info-item">
+                            <img src="/homedoctor/img/detail-doctor/lang.svg" />
+                            <div class="detail-info-item-value">
+                                <span class="detail-info-item-value-title">
+                                    Ngôn ngữ:
+                                </span>
+                                <span class="detail-info-item-value-content" id="language">
+                                    Tiếng Anh
+                                </span>
+                            </div>
+                        </div>
+                        <div class="detail-info-item">
+                            <img src="/homedoctor/img/detail-doctor/file.svg" />
+                            <div class="detail-info-item-value">
+                                <span class="detail-info-item-value-title">
+                                    Giấy phép hành nghề:
+                                </span>
+                                <span class="detail-info-item-value-content" id="experience">
+                                    Đang cập nhật
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-info-button">
+                        <a onclick="RedirectToChat()" class="btn-chat">
+                            Chat ngay
+                        </a>
+                        <a class="btn-booking" onclick="openModalBooking()">
+                            Đặt lịch khám
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="detail-description">
+        <div class="head-bg"></div>
+        <div class="container doctor-experience">
+            <div class="detail-description-value">
+                <div class="detail-description-title">
+                    Học vấn và kinh nghiệm
+                </div>
+                <div class="detail-description-content">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer-bg"></div>
+    </div>
+  @*   <div class="container">
+        <div class="detail-ratting">
+            <div class="detail-ratting-title">
+                Đánh giá nổi bật
+            </div>
+            <div class="detail-ratting-value">
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-ratting-button">
+                <button type="button" class="btn-more" data-toggle="modal" data-target="#ratting">
+                    Xem thêm
+                </button>
+            </div>
+        </div>
+    </div> *@
+</section>
+
+<div class="modal fade" id="ratting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="list-ratting modal-content">
+            <div class="list-ratting-header">
+                <div class="list-ratting-title">
+                    Danh sách đánh giá
+                </div>
+                <div class="close" data-dismiss="modal">
+                    <img src="/homedoctor/img/detail-doctor/close.svg" />
+                </div>
+            </div>
+            <div class="total-ratting">
+                <div class="total-title">
+                    <div class="total-number">
+                        5.0
+                    </div>
+                    <div class="my-rating" readOnly></div>
+                </div>
+                <div class="total-count">
+                    120 lượt đánh giá
+                </div>
+            </div>
+            <div class="list-detail-ratting">
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+
+                <div class="detail-ratting-item">
+                    <div class="detail-ratting-header">
+                        <div class="detail-ratting-header-image">
+                            <img src="/homedoctor/img/detail-doctor/avatar-ratting.svg" />
+                        </div>
+                        <div class="detail-ratting-header-value">
+                            <div class="detail-ratting-header-cotent">
+                                <div class="detail-ratting-header-cotent-name">
+                                    Nhật Minh
+                                </div>
+                                <div class="my-rating" readOnly></div>
+                            </div>
+
+                            <div class="detail-ratting-header-cotent-time">
+                                <span>
+                                    20/10/2023
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-ratting-footer">
+                        <span>Bác sĩ tư vấn nhiệt tình và tỉ mỉ, cảm ơn bác sĩ rất nhiều!!!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="booking-modal modal-content">
+            <div class="booking-modal-header">
+                <div class="d-flex justify-content-between">
+                    <div class="list-ratting-title">
+                        Thông tin đặt lịch
+                        <div class="line-mini"></div>
+
+                    </div>
+                    <div class="close" data-dismiss="modal">
+                        <img src="/homedoctor/img/detail-doctor/close.svg" />
+                    </div>
+                </div>
+                <div style="margin-top: 10px">
+                    <p class="label-bookingform required">Loại đặt lịch</p>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <div style="width: 100%">
+                            <input checked id="349" type="radio" value="1000001" name="question1">
+                            <label style="margin-bottom: 0" for="349">Khám tại nhà</label>
+                        </div>
+                        <div style="width: 100%">
+                            <input id="350" type="radio" value="1000002" name="question1">
+                            <label style="margin-bottom: 0" for="350">Khám tại phòng khám</label>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 14px">
+                    <div style="width: 70%">
+                        <p class="label-bookingform">Tên bác sĩ</p>
+                        <input class="booking-input" id="doctor-name" disabled readonly />
+                    </div>
+                    <div style="width: 100%">
+                        <p class="label-bookingform">Tên dịch vụ</p>
+                        <input class="booking-input" id="service" disabled readonly />
+                        @* <span class="service-fee-value"><span class="column-price">1.000.000</span>đ</span> *@
+                    </div>
+                </div>
+                <div>
+                    <p class="label-bookingform required">Địa chỉ khám (Nếu khám tại nhà hãy điền địa chỉ nhà của bạn)</p>
+                    <input type="text" class="booking-input" id="booking-address" />
+                </div>
+                <div style="margin-top: 10px">
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <div style="width: 100%">
+                            <input id="351" type="checkbox" value="1000001" name="question2">
+                            <label style="margin-bottom: 0" for="351">Thêm người phụ thuộc</label>
+                        </div>                  
+                    </div>
+                </div>
+                <div style="display: flex; gap: 14px;">
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Họ tên người khám</p>
+                        <input class="booking-input" id="name" />
+                    </div>
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Số điện thoại</p>
+                        <input class="booking-input" id="phone-number" />
+                    </div>
+                </div>
+               
+                <div style="display: flex; gap: 14px;">
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Ngày đặt</p>
+                        <input class="booking-input date datepicker2" id="day" placeholder="Chọn ngày"/>
+                    </div>
+                    <div style="width: 100%">
+                        <p class="label-bookingform required">Giờ đặt</p>
+                        <select class="booking-input" data-control="select2" id="time">
+                           
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="label-bookingform">Ghi chú</p>
+                    <textarea class="booking-input" id="description"></textarea>
+                </div>
+
+                <div class="form-check d-flex check-confirm-term-of-service">
+                    <input type="checkbox" class="form-check-input" value="" id="pxp-confirmCheckbox" />
+                    <label class="form-check-label" for="pxp-confirmCheckbox">
+                        Tôi đồng ý với <a href="/chinh-sach-bao-mat">Điều khoản dịch vụ</a> và <a href="/chinh-sach-bao-mat">Chính sách bảo mật</a>
+                    </label>
+                </div>
+            </div>
+            <div class="booking-footer">
+                <a class="btn-booking" onclick="validateBooking()">
+                    Đặt lịch
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    id = @ViewBag.IdDoctor;
+    accountId = @ViewBag.AccountId;
+</script>
+<script src="~/homedoctor/js/page/doctor-detail/doctor-detail.js" asp-append-version="true"></script>

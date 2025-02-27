@@ -1,0 +1,1210 @@
+@using HomeDoctorSolution.Constants;
+@{
+    Layout = "_Admin_Layout";
+}
+<style>
+    .table-content {
+        padding: 15px;
+        background: var(--bs-app-header-base-bg-color);
+        border-radius: 8px;
+    }
+
+    table thead tr th {
+        white-space: nowrap;
+    }
+
+    #tableData thead tr th:nth-child(1),
+    #tableData tbody tr td:nth-child(1),
+    #tableData tfoot tr th:nth-child(1) {
+        text-align: center;
+        width: 20px !important;
+        max-width: 20px !important;
+    }
+
+    #tableData thead tr th:nth-child(2),
+    #tableData tbody tr td:nth-child(2),
+    #tableData tfoot tr th:nth-child(2) {
+        text-align: left;
+        width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    #tableData thead tr th:nth-child(3),
+    #tableData tbody tr td:nth-child(3),
+    #tableData tfoot tr th:nth-child(3) {
+        text-align: left;
+        width: 350px !important;
+        max-width: 350px !important;
+    }
+
+    #tableData thead tr th:nth-child(4),
+    #tableData tbody tr td:nth-child(4),
+    #tableData tfoot tr th:nth-child(4) {
+        text-align: center;
+        width: 100px !important;
+        max-width: 100px !important;
+    }
+
+    #tableData thead tr th:nth-child(5),
+    #tableData tbody tr td:nth-child(5),
+    #tableData tfoot tr th:nth-child(5) {
+        text-align: center;
+        width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    #tableData thead tr th:nth-child(6),
+    #tableData tbody tr td:nth-child(6),
+    #tableData tfoot tr th:nth-child(6) {
+        text-align: center;
+        width: 70px !important;
+        max-width: 70px !important;
+    }
+
+    #tableDataQuestionAnswer {
+        white-space: nowrap;
+    }
+
+        #tableDataQuestionAnswer thead tr th:nth-child(1),
+        #tableDataQuestionAnswer tbody tr td:nth-child(1) {
+            text-align: center !important;
+            width: 121px !important;
+        }
+
+        #tableDataQuestionAnswer thead tr th:nth-last-child(1),
+        #tableDataQuestionAnswer tbody tr td:nth-last-child(1) {
+            text-align: center !important;
+            width: 80px !important;
+        }
+
+        #tableDataQuestionAnswer tbody tr td:nth-last-child(2),
+        #tableDataQuestionAnswer thead tr th:nth-last-child(2) {
+            text-align: center !important;
+            width: 96px !important;
+        }
+
+        #tableDataQuestionAnswer tbody tr td:nth-child(2) {
+            width: 77% !important;
+        }
+
+</style>
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container  container-fluid ">
+        <!--begin::Row-->
+        <div class="table-content">
+            <!--begin::Col-->
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-stack mb-5">
+                <!--begin::Search-->
+                <div class="d-flex align-items-center position-relative my-1">
+                    <i class="ki-duotone ki-magnifier fs-1 position-absolute ms-6"><span class="path1"></span><span class="path2"></span></i>
+                    <input type="search" data-kt-docs-table-filter="search" class="form-control form-control-solid w-250px ps-15" id="search-input" placeholder="Tìm kiếm" />
+                </div>
+                <!--end::Search-->
+                <!--begin::Toolbar-->
+                <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
+                    <!--begin::Filter-->
+                    @*<button type="button" class="btn btn-light-primary me-3" data-bs-toggle="tooltip" title="Coming Soon">
+                    <i class="ki-duotone ki-filter fs-2"><span class="path1"></span><span class="path2"></span></i>
+                    Bộ lọc
+                    </button>*@
+                    <!--end::Filter-->
+                    <!--begin::Add customer-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" title="Tạo mới" onclick="editItem(0)">
+                        <i class="ki-duotone ki-plus fs-2"></i>
+                        Tạo mới
+                    </button>
+                    <!--end::Add customer-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Group actions-->
+                <div class="d-flex justify-content-end align-items-center d-none" data-kt-docs-table-toolbar="selected">
+                    <div class="fw-bold me-5">
+                        <span class="me-2" data-kt-docs-table-select="selected_count"></span> Selected
+                    </div>
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" title="Coming Soon">
+                        Selection Action
+                    </button>
+                </div>
+                <!--end::Group actions-->
+            </div>
+            <!--end::Wrapper-->
+            <!--begin::Datatable-->
+            <table id="tableData" class="table table-hover table-rounded table-row-bordered gy-3 gs-3">
+                <thead>
+                    <tr class="fw-bold fs-6 text-gray-800">
+                        <th>STT</th>
+                        <th>Loại câu hỏi</th>
+                        <th>Nội dung</th>
+                        <th>Điểm số</th>
+                        <th>Ngày tạo</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr class="fs-6">
+                        <th></th>
+                        <th>
+                            <select class="form-select tableheaderFillter" id="filterQuestionTypeId" data-control="select2" data-placeholder="" data-allow-clear="true" multiple>
+                            </select>
+                        </th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th><input type="text" class="form-control tableheaderFillter" /></th>
+                        <th>
+                            <div class="input-group" id="filterCreatedTime" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                                <input id="filterCreatedTime_input" readonly type="text" class="form-control tableheaderFillter" data-td-target="#filterCreatedTime" />
+                                <span class="input-group-text" title="Chọn" id="open-flatpickr" data-td-target="#filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar fs-2"><span class="path1"></span><span class="path2"></span></i>
+                                </span>
+                                <span class="input-group-text" id="clear-flatpickr" title="Xóa" data-clear="true" data-target="filterCreatedTime">
+                                    <i class="ki-duotone ki-calendar-remove fs-2"><i class="path1"></i><i class="path2"></i><i class="path3"></i><i class="path4"></i><i class="path5"></i><i class="path6"></i></i>
+                                </span>
+                            </div>
+                        </th>
+
+                        <th class="text-center">
+                            <div class="search-control">
+                                <button class="btn btn-primary form-control mb-1" title="Tìm kiếm" id="btnTableSearch">
+                                    <span class="svg-icon svg-icon svg-icon-1 svg_search_2 m-0">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"></path>
+                                            <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <button class="btn btn-secondary form-control" title="Reset" id="btnTableResetSearch">
+                                    <span class="svg-icon svg-icon svg-icon-1 svg_cancel m-0">
+                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="9.39844" y="20.7144" width="16" height="2.66667" rx="1.33333" transform="rotate(-45 9.39844 20.7144)" fill="currentColor"></rect>
+                                            <rect x="11.2852" y="9.40039" width="16" height="2.66667" rx="1.33333" transform="rotate(45 11.2852 9.40039)" fill="currentColor"></rect>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr class="border-top fw-bold fs-6 text-gray-800">
+                    </tr>
+                </tfoot>
+            </table>
+            <!--end::Datatable-->
+            <div class="modal fade" id="modal-id" data-bs-backdrop="static">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="defaultModalTitle"></h3>
+
+                            <!--begin::Close-->
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                            <!--end::Close-->
+                        </div>
+                        <div class="modal-body">
+                            <form action="#">
+                                <div class="col-sm-6">
+                                    <div class="form-group" style="display:none">
+                                        <div class="input-group input-group-solid mb-5">
+                                            <span class="input-group-text" id="basic-addon-id">Mã</span>
+                                            <input readonly type="number" autocomplete="off" class="form-control input-id" id="question-id" placeholder="id" aria-label="id" aria-describedby="basic-addon-id" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" style="display:none">
+                                        <div class="input-group input-group-solid mb-5">
+                                            <span class="input-group-text" id="basic-addon-active">Kích hoạt</span>
+                                            <input readonly type="number" autocomplete="off" class="form-control input-active" id="question-active" placeholder="active" aria-label="active" aria-describedby="basic-addon-active" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @*     <div class="col-md-4 mb-7">
+                                    <div class="image-input image-input-outline image-input-placeholder ms-20 mt-7" data-kt-image-input="true">
+                                    <div class="w-125px h-125px" id="divImage"><img id="accountPhoto" class="w-125px h-125px rounded" /></div>
+                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Add image question" data-bs-original-title="Add image question" data-kt-initialized="1">
+                                    <span class="svg-icon svg-icon-muted svg-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
+                                    <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
+                                    </svg>
+                                    </span>
+                                    <input id="inputUploadPhoto" type="file" name="question-photo" accept=".png, .jpg, .jpeg">
+                                    <input id="photoQuestionPath" type="text" class="d-none" />
+                                    </label>
+                                    </div>
+                                    </div> *@
+
+                                    <div class="col-md-12 mb-3">
+                                        <lable class="form-lable" for="name">
+                                            Tên câu hỏi
+                                            <span class="text-danger">*</span>
+                                        </lable>
+                                        <input type="text" class="form-control" id="question-name" required />
+                                        <div class="invalid-feedback">
+                                            Hãy điền tên
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-lable" for="">
+                                            Loại câu hỏi
+                                        </label>
+                                        <select class="form-select" id="question-questionTypeId">
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-lable" for="score">
+                                            Điểm
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="question-score" />
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <label class="">
+                                            Ngày tạo
+                                        </label>
+                                        <div class="">
+                                            <input type="text" class="form-control" id="question-createdTime" readonly disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-lable" for="description">
+                                            Mô tả
+                                        </label>
+                                        <textarea class="form-control" id="question-description" data-kt-autosize="true"></textarea>
+
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label text-lg-end">
+                                            Danh sách câu trả lời
+                                        </label>
+                                        <table id="tableDataQuestionAnswer" class="table  gy-5  align-middle">
+                                            <thead>
+                                                <tr class="fw-semibold fs-6 text-muted">
+                                                    <th>Stt</th>
+                                                    <th>Tiêu đề câu hỏi</th>
+                                                    @*<th>Đáp án</th>*@
+                                                    <th>Thao tác</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                        <button type="button" class="btn btn-primary btn-sm" id="btnAddQuestionAnswer">
+                                            <span class="svg-icon svg-icon svg-icon-1 svg_plus p-0">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3" d="M11 13H7C6.4 13 6 12.6 6 12C6 11.4 6.4 11 7 11H11V13ZM17 11H13V13H17C17.6 13 18 12.6 18 12C18 11.4 17.6 11 17 11Z" fill="currentColor"></path>
+                                                    <path d="M22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2C17.5 2 22 6.5 22 12ZM17 11H13V7C13 6.4 12.6 6 12 6C11.4 6 11 6.4 11 7V11H7C6.4 11 6 11.4 6 12C6 12.6 6.4 13 7 13H11V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V13H17C17.6 13 18 12.6 18 12C18 11.4 17.6 11 17 11Z" fill="currentColor"></path>
+                                                </svg>
+                                            </span>
+
+                                            Thêm câu trả lời
+                                        </button>
+
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer sticky-action justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary" id="btnUpdateItem">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Col-->
+        </div>
+    </div>
+    <!--end::Content container-->
+</div>
+<!--begin:Base load data-->
+<script>
+    var showItem = ['id', 'questionTypeId', 'photo', 'name', 'score', 'text', 'createdTime'];
+    var dataSource = [];
+    //var questionTypeSource = [];
+    var listQuestionAnswer = [];
+    var updatingItemId = 0;
+    var editObj;
+    var tableUpdating = 0;
+    var table;
+    const submitButton = document.getElementById('btnUpdateItem');
+    submitButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        submitButton.setAttribute('data-kt-indicator', 'on');
+        // Disable button to avoid multiple click
+        submitButton.disabled = true;
+        // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+        updateItem(updatingItemId);
+    });
+    $("#search-input").on('keyup', function (e) {
+        let key = e.which;
+        if (key == 13) {
+            table.search($(this).val()).draw();
+        }
+    });
+
+    //add question answer
+    var indexQA = 0;
+
+    $("#btnAddQuestionAnswer").on("click", function () {
+        indexQA++;
+        if (!listQuestionAnswer) {
+            listQuestionAnswer = []; // Khởi tạo mảng nếu chưa tồn tại
+        }
+
+        if (listQuestionAnswer.length == 0) {
+            $("#tableDataQuestionAnswer tbody").html(``);
+        }
+
+        genQuestionAnswerTable();
+    })
+
+    var questionTypePreviousId = 0;
+    var isChangeQuestionType = false;
+
+    $("#question-questionTypeId").on('select2:selecting', function () {
+        questionTypePreviousId = $("#question-questionTypeId").val();
+    })
+
+    $(document).ready(function () {
+        // Load data
+        loadData();
+        loadQuestionType();
+
+        // Datetime picker
+        document.querySelectorAll(".datepicker").forEach(function (item) {
+            new tempusDominus.TempusDominus(item, datePickerOption);
+        })
+        $(".datepicker").on('dp.change', function (e) {
+            // console.log(this.value);
+            this.value = moment(this.value).format("YYYY-MM-DD HH:mm:ss");
+            // console.log(this.value);
+        });
+        //Flat pickr format
+        $("#filterCreatedTime_input").flatpickr({
+            dateFormat: "d/m/Y",
+            mode: "range",
+        });
+        $("#open-flatpickr").click(function () {
+            $("#filterCreatedTime_input").click();
+        });
+        $("#clear-flatpickr").click(function () {
+            $("#filterCreatedTime_input").val("");
+        });
+
+        $('.dataSelect').select2();
+
+
+        $("#btnTableSearch").click(function () {
+            tableSearch();
+        });
+
+        $("#tableData thead:nth-child(2) tr th input").keypress(function (e) {
+            let key = e.which;
+            if (key == 13) {
+                $("#btnTableSearch").click();
+            }
+        });
+        $("#btnTableResetSearch").click(function () {
+            $(".tableheaderFillter").val("").trigger("change");
+            tableSearch();
+        });
+        $("#question-questionTypeId").on('change', function () {
+            if ($("#modal-id").hasClass("show")) {
+                if ($("#question-questionTypeId").val() != questionTypePreviousId)
+                    swal.fire({
+                        title: "Đổi loại câu hỏi",
+                        html: "Bạn có chắc chắn muốn đổi loại câu hỏi? Danh sách câu trả lời sẽ bị xóa.",
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#443',
+                        cancelButtonText: 'Không',
+                        confirmButtonText: 'Có'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $("#tableDataQuestionAnswer tbody").html('');
+                            indexQA = 0;
+                            listQuestionAnswer = [];
+                            genQuestionAnswerTable();
+
+                        } else {
+                            $("#question-questionTypeId").val(questionTypePreviousId).trigger("change");
+
+                        }
+
+                    })
+
+
+            } else {
+                $("#tableDataQuestionAnswer tbody").html('');
+                indexQA = 0;
+                listQuestionAnswer = [];
+                genQuestionAnswerTable();
+            }
+
+        })
+    });
+
+    function loadData() {
+        initTable();
+    }
+    function initTable() {
+        table = $('#tableData').DataTable({
+            processing: true,
+            serverSide: true,
+            paging: true,
+            searching: { regex: true },
+            "oLanguage": {
+                "sUrl": "/js/Vietnamese.json"
+            },
+            order: [4, 'desc'],
+            ajax: {
+                url: systemURL + "question/api/list-server-side",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: function (d) {
+                    d.searchAll = $("#search-input").val();
+                    d.questionTypeIds = $("#filterQuestionTypeId").val();
+                    return JSON.stringify(d);
+                }
+            },
+            columns: [
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        var info = table.page.info();
+                        var stt = meta.row + 1 + info.page * info.length;
+                        return stt; // This contains the row index
+                    }
+                },
+                {
+                    data: "questionTypeName",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                    },
+                },
+                {
+                    data: "name",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                    },
+                },
+
+                {
+                    data: "score",
+                    render: function (data, type, row, meta) {
+                        return "<span id='row" + row.id + "-column-id'>" + data + "<span>";
+                    },
+                },
+
+                {
+                    data: "createdTime",
+                    render: function (data) {
+                        var tempDate = new Date(data);
+                        var displayValue = moment(data).format("DD/MM/YYYY HH:mm:ss");
+                        return displayValue;
+                    }
+                },
+
+                {
+                    data: 'id',
+                    render: function (data, type, row, meta) {
+                        return "<div class='d-flex justify-content-center gap-2'>"
+                            + "<a title='Cập nhật' onclick='editItem(" + row.id + ")' class='me-2 btn_manage'><span class='svg-icon-success svg-icon  svg-icon-1 svg_teh009'><span class='svg-icon-primary svg-icon  svg-icon-1'> <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path opacity='0.3' fill-rule='evenodd' clip-rule='evenodd' d='M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z' fill='currentColor'></path><path d='M10.9256 11.1882C10.5351 10.7977 10.5351 10.1645 10.9256 9.77397L18.0669 2.6327C18.8479 1.85165 20.1143 1.85165 20.8953 2.6327L21.3665 3.10391C22.1476 3.88496 22.1476 5.15129 21.3665 5.93234L14.2252 13.0736C13.8347 13.4641 13.2016 13.4641 12.811 13.0736L10.9256 11.1882Z' fill='currentColor'></path><path d='M8.82343 12.0064L8.08852 14.3348C7.8655 15.0414 8.46151 15.7366 9.19388 15.6242L11.8974 15.2092C12.4642 15.1222 12.6916 14.4278 12.2861 14.0223L9.98595 11.7221C9.61452 11.3507 8.98154 11.5055 8.82343 12.0064Z' fill='currentColor'></path></svg></span></span></a>"
+                            + "<a title='Cập nhật' onclick='deleteItem(" + row.id + ")' class='me-2 btn_manage'><span class='svg-icon-success svg-icon  svg-icon-1 svg_teh009'><span class='svg-icon-danger svg-icon  svg-icon-1'><svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z' fill='currentColor'></path><path opacity='0.5' d='M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z' fill='currentColor'></path><path opacity='0.5' d='M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z' fill='currentColor'></path></svg></span></a>"
+                    }
+                },
+
+            ],
+            columnDefs: [
+                { targets: "no-sort", orderable: false },
+                { targets: "no-search", searchable: false },
+                { orderable: false, targets: [-1, 0] },
+            ],
+            aLengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            drawCallback: function () {
+                $('#tableData tfoot').html("");
+                $("#tableData thead:nth-child(1) tr").clone(true).appendTo("#tableData tfoot");
+                $('#tableData tfoot tr').addClass("border-top");
+            }
+        });
+    }
+    async function editItem(id) {
+        updatingItemId = id;
+        listQuestionAnswer = [];
+        $("#modal-id").modal('show');
+        if (id > 0) {
+            editObj = await getItemById(id);
+        }
+        autosize.destroy($('#question-description'));
+        autosize($('#question-description'));
+        $("#defaultModalTitle").text(id == 0 ? "Thêm mới câu hỏi" : "Cập nhật câu hỏi");
+        $("#question-id").val(id > 0 ? editObj.id : "0");
+        $("#question-questionTypeId").val(id > 0 ? editObj.questionTypeId : "").trigger("change");
+        $("#question-active").val(id > 0 ? editObj.active : "");
+        $("#question-photo").val(id > 0 ? editObj.photo : "");
+        $("#question-name").val(id > 0 ? editObj.name : "");
+        $("#question-score").val(id > 0 ? editObj.score : "");
+        $("#question-description").val(id > 0 ? editObj.description : "");
+        $("#question-text").val(id > 0 ? editObj.text : "");
+        $("#question-createdTime").val(id > 0 ? moment(editObj.createdTime).format("DD/MM/YYYY HH:mm:ss") : moment(new Date()).format("DD/MM/YYYY HH:mm:ss"));
+        listQuestionAnswer = editObj.listQuestionAnswer;
+        loadListAnswerByQuestionTypeId(editObj.questionTypeId);
+        //formatNumber();
+        //listQuestionAnswer = id > 0 ?editObj.answers:[];
+
+        //genQuestionAnswerTable();
+        //console.log(editObj)
+    }
+    async function updateItem(id) {
+        var actionName = (id == 0 ? "Bạn muốn tạo mới" : "Cập nhật");
+        var obj;
+        if (id > 0) {
+            obj = await getItemById(id);
+        }
+        let objName = id > 0 ? obj.name : "item";
+        validateInputNumber();
+        var updatingObj = {
+            "id": $("#question-id").val(),
+            "questionTypeId": $("#question-questionTypeId").val(),
+            "active": $("#question-active").val(),
+            "photo": $("#question-photo").val(),
+            "name": $("#question-name").val(),
+            "score": $("#question-score").val(),
+            "description": $("#question-description").val(),
+            "text": $("#question-text").val(),
+            "createdTime": formatDatetimeUpdate($("#question-createdTime").val()),
+            "listAnswer": listQuestionAnswer,
+
+        };
+        Swal.fire({
+            title: 'Xác nhận thay đổi?',
+            text: "" + actionName + " " + objName + "",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#443',
+            confirmButtonText: 'Xác nhận',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.value) {
+                $("#modal-id").modal('hide');
+                //CALL AJAX TO UPDATE
+                if (id > 0) {
+                    $.ajax({
+                        url: systemURL + "question/api/update",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                                Swal.fire(
+                                    'Thành Công!',
+                                    'Đã cập nhật "' + objName + '" ',
+                                    'success'
+                                );
+                                reGenTable();
+                                listQuestionAnswer = [];
+                                // Remove loading indication
+                                submitButton.removeAttribute('data-kt-indicator');
+                                // Enable button
+                                submitButton.disabled = false;
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Lỗi!',
+                                'Đã xảy ra lỗi, vui lòng thử lại',
+                                'error'
+                            );
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
+                            // Enable button
+                            submitButton.disabled = false;
+                        }
+                    });
+                };
+                //CALL AJAX TO CREATE
+                if (id == 0) {
+                    updatingObj.id = 1;
+                    delete updatingObj["id"]
+                    updatingObj.active = 1;
+                    updatingObj.createdTime = new Date();
+                    console.log(updatingObj);
+                    $.ajax({
+                        url: systemURL + "question/api/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(updatingObj),
+                        success: function (responseData) {
+                            // debugger;
+                            if (responseData.status == 201 && responseData.message === "CREATED") {
+                                Swal.fire(
+                                    'Thành công!',
+                                    'Đã cập nhật dữ liệu',
+                                    'success'
+                                );
+                                updatingObj = responseData.data;
+                                reGenTable();
+                                listQuestionAnswer = [];
+                                // Remove loading indication
+                                submitButton.removeAttribute('data-kt-indicator');
+                                // Enable button
+                                submitButton.disabled = false;
+                            }
+                        },
+                        error: function (e) {
+                            //console.log(e.message);
+                            Swal.fire(
+                                'Lỗi!',
+                                'Đã xảy ra lỗi, vui lòng thử lại',
+                                'error'
+                            );
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
+                            // Enable button
+                            submitButton.disabled = false;
+                        }
+                    });
+                }
+            }
+            else {
+                // Remove loading indication
+                submitButton.removeAttribute('data-kt-indicator');
+                // Enable button
+                submitButton.disabled = false;
+            }
+        })
+    }
+    async function deleteItem(id) {
+        updatingObj = table.ajax.json().data.find(c => c.id == id);
+        let objName = id > 0 ? updatingObj.name : "item";
+        Swal.fire({
+            title: 'Xác nhận thay đổi?',
+            text: "Xóa " + objName + "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xoá',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.value) {
+                //CALL AJAX TO DELETE
+                $.ajax({
+                    url: systemURL + "question/api/delete",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "id": id }),
+                    success: function (responseData) {
+                        // debugger;
+                        if (responseData.status == 200 && responseData.message === "SUCCESS") {
+                            Swal.fire(
+                                'Thành công!',
+                                'Đã xoá ' + updatingObj.name + '.',
+                                'success'
+                            );
+                            reGenTable();
+                        }
+                    },
+                    error: function (e) {
+                        //console.log(e.message);
+                        Swal.fire(
+                            'Lỗi!',
+                            'Đã xảy ra lỗi, vui lòng thử lại',
+                            'error'
+                        );
+                    }
+                });
+
+            }
+            else {
+                // Remove loading indication
+                submitButton.removeAttribute('data-kt-indicator');
+                // Enable button
+                submitButton.disabled = false;
+            }
+        })
+    }
+    async function getItemById(id) {
+        var data;
+        await $.ajax({
+            url: systemURL + "question/api/detail/" + id,
+            method: "GET",
+            success: function (responseData) {
+                data = responseData.data[0];
+            },
+            error: function (e) {
+            },
+        });
+        return data;
+    }
+    function reGenTable() {
+        tableUpdating = 0;
+        table.destroy();
+        $(".tableHeaderFilter").val(null).trigger("change");
+        $("#tableData tbody").html('');
+        loadData();
+    }
+    async function loadQuestionType() {
+        try {
+            await $.ajax({
+                url: systemURL + 'questionType/api/list',
+                type: 'GET',
+                async: 'true',
+                contentType: 'application/json',
+                success: function (responseData) {
+                    var data = responseData.data;
+                    data.forEach(function (item, index) {
+                        var data = {
+                            id: item.id,
+                            text: item.name
+                        };
+                        var newOption = new Option(data.text, data.id, false, false);
+                        var newOption2 = new Option(data.text, data.id, false, false);
+                        $('#question-questionTypeId').append(newOption).trigger('change');
+                        $('#filterQuestionTypeId').append(newOption2).trigger('change');
+                    });
+                    //$("#question-questionTypeId").select2();
+                    $("#question-questionTypeId").select2({
+                        dropdownParent: $("#modal-id"),
+                    });
+                    $("#filterQuestionTypeId").select2({
+                        placeholder: '',
+                        allowClear: true,
+                    });
+                },
+                error: function (e) {
+                    //console.log(e.message);
+                    if (e.status === 401) {
+                        Swal.fire(
+                            'Quản lý câu hỏi',
+                            'Phiên đăng nhập của bạn đã hết hạn, vui lòng đăng nhập để sử dụng tính năng này.',
+                            'error'
+                        ).then(function () {
+                            window.location.href = "@Url.Action("LoginPage","Home")";
+                        });
+                    }
+                    else if (e.status == 403) {
+                        Swal.fire(
+                            'Quản lý câu hỏi',
+                            'Bạn không có quyền sử dụng tính năng này.',
+                            'error'
+                        );
+                    }
+                    else {
+                        Swal.fire(
+                            'Quản lý câu hỏi',
+                            'Không thể hiển thị loại câu hỏi, vui lòng thử lại.',
+                            'error'
+                        );
+                    }
+                }
+            });
+        }
+        catch (e) {
+            console.error(e);
+            //$('#fillterRole,#selectAccountRole').html("").trigger("change");
+        }
+    }
+
+    var DeleteIcon = "<span class='svg-icon-danger svg-icon  svg-icon-1'><svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z' fill='currentColor'></path><path opacity='0.5' d='M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z' fill='currentColor'></path><path opacity='0.5' d='M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z' fill='currentColor'></path></svg>";
+
+    function genQuestionAnswerTable() {
+        indexQA++;
+        if (listQuestionAnswer.length == 0) {
+            $("#tableDataQuestionAnswer tbody").html(``);
+        }
+        var content = '';
+        if (indexQA <= 0) {
+            indexQA = 1;
+
+        }
+        var tempLength = listQuestionAnswer.length - listQuestionAnswer.filter(item => item.isDeleted === true).length;
+        if (listQuestionAnswer.length == 0 || tempLength == 0) {
+            $("#tableDataQuestionAnswer tbody").html("");
+        }
+
+        //console.log(indexQA);
+        if ($("#question-questionTypeId").val() == @QuestionTypeId.SINGLE_CHOICE) {
+
+
+            content = `
+                                                <tr id='row-answer-`+ indexQA + `'>
+                                                    <td>
+                                                                <span class="column-question-index" id='title-QA-`+ indexQA + `' data-IndexQA='` + indexQA + `'>Câu trả lời #` + (tempLength + 1) + `</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control  mb-3 mb-lg-0 input-QA" id='input-QA-`+ indexQA + `' data-IndexQA='` + indexQA + `' placeholder='Nhập câu trả lời'>
+                                                    </td>
+
+                                                    <td>
+                                                                <button type='button' onclick='deleteQuestionAnswerItem(${indexQA})' class='btn btn-icon btn-admin-delete'>
+                                                                 <span class="svg-icon-danger svg-icon  svg-icon-1">`+ DeleteIcon + `</span></button>
+                                                    </td>
+                                                </tr>
+                                                `;
+
+            var obj = {
+                id: indexQA,
+                answer: "",
+                name: "",
+                correct: ((listQuestionAnswer.length == 0 || tempLength == 0) ? true : false),
+                isAdded: true,
+                createdTime: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+            listQuestionAnswer.push(obj);
+        }
+
+        if ($("#question-questionTypeId").val() == @QuestionTypeId.MULTIPLE_CHOICE) {
+
+            content = `
+                                            <tr id='row-answer-`+ indexQA + `'>
+                                        <td>
+                                                    <span class="column-question-index" id='title-QA-`+ indexQA + `' data-IndexQA='` + indexQA + `'>Câu trả lời #` + (tempLength + 1) + `</span>
+                                        </td>
+                                        <td>
+                                                                <input type="text" class="form-control  mb-3 mb-lg-0  input-QA" id='input-QA-`+ indexQA + `' data-IndexQA='` + indexQA + `' placeholder='Nhập câu trả lời'>
+                                        </td>
+
+                                        <td>
+                                                <button type='button' onclick='deleteQuestionAnswerItem(${indexQA})' class='btn btn-icon btn-admin-delete'>
+                                                <span class="svg-icon-danger svg-icon  svg-icon-1">`+ DeleteIcon + `</span></button>
+                                        </td>
+                                    </tr>
+                                                        `;
+
+
+            var obj = {
+                id: indexQA,
+                answer: "",
+                name: "",
+                correct: false,
+                isAdded: true,
+                createdTime: moment().format("YYYY-MM-DD HH:mm:ss")
+
+            }
+            listQuestionAnswer.push(obj);
+        }
+
+        if ($("#question-questionTypeId").val() == @QuestionTypeId.TRUE_FALSE_CHOICE) {
+            content = `
+                                        <tr>
+                                            <td>
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                    <input class="form-check-input cursor-pointer radio-TFQA" type="radio" value="" id='qa-`+ indexQA + `' data-IndexQA='` + indexQA + `' name='trueFalseQA' checked="checked"/>
+                                                                        <label class="form-check-label cursor-pointer" for="qa-`+ indexQA + `">
+                                                        Đúng
+                                                        </label>
+                                                    </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                                            <input class="form-check-input cursor-pointer radio-TFQA" type="radio" value="" data-IndexQA='` + (indexQA + 1) + `' id='qa-` + (indexQA + 1) + `' name='trueFalseQA'/>
+                                                                <label class="form-check-label cursor-pointer" for="qa-`+ indexQA + `">
+                                                        Sai
+                                                        </label>
+                                                    </div>
+                                            </td>
+                                        </tr>
+                                            `;
+
+            $("#btnAddQuestionAnswer").hide();
+
+            var objTrue = {
+                id: indexQA,
+                answer: "Đúng",
+                correct: true,
+                name: "",
+                isAdded: true,
+                createdTime: moment().format("YYYY-MM-DD HH:mm:ss")
+
+            };
+            var objFalse = {
+                id: (indexQA + 1),
+                answer: "Sai",
+                correct: false,
+                name: "",
+                isAdded: true,
+                createdTime: moment().format("YYYY-MM-DD HH:mm:ss")
+
+            }
+            listQuestionAnswer.push(objTrue);
+            listQuestionAnswer.push(objFalse);
+            $("#tableDataQuestionAnswer thead tr").addClass("d-none");
+
+
+        } else {
+            $("#btnAddQuestionAnswer").show();
+            $("#tableDataQuestionAnswer thead tr").removeClass("d-none");
+
+        }
+        $("#tableDataQuestionAnswer tbody").append(content);
+        $("#tableDataQuestionAnswer").removeClass('d-none');
+    }
+
+    function deleteQuestionAnswerItem(id) {
+        swal.fire({
+            title: 'Xóa câu trả lời',
+            html: 'Bạn có chắc chắn muốn xóa câu trả lời này?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            cancelButtonText: 'Hủy',
+            confirmButtonText: 'Xóa'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("#row-answer-" + id).remove();
+                var qaIndexInList = listQuestionAnswer.findIndex((obj => obj.id === parseInt(id)));
+
+                if (listQuestionAnswer[qaIndexInList].isAdded) {
+                    listQuestionAnswer = listQuestionAnswer.filter(item => item.id !== parseInt(id));
+
+                } else {
+                    listQuestionAnswer[qaIndexInList].isDeleted = true;
+                    listQuestionAnswer[qaIndexInList].isUpdated = false;
+                    listQuestionAnswer[qaIndexInList].isAdded = false;
+                }
+                //listQuestionAnswer = listQuestionAnswer.filter(item => item.id !== id)
+
+                let totalAnswer = listQuestionAnswer.length;
+                let totalAnswerDelete = listQuestionAnswer.filter(item => item.isDeleted === true).length;
+                let tempLength = (totalAnswer - totalAnswerDelete);
+                //console.log(totalAnswer);
+                //console.log(totalAnswerDelete);
+                //console.log(tempLength);
+                if (totalAnswer > 0) {
+                    for (var i = 0; i < tempLength; i++) {
+                        $($(".column-question-index")[i]).text('Câu trả lời #' + (i + 1));
+                    }
+                }
+
+                if (listQuestionAnswer.length == 0 || tempLength == 0) {
+                    $("#tableDataQuestionAnswer tbody").html(`<tr><td colspan="4">Không có câu trả lời</td></tr>`);
+                    indexQA = 0;
+                }
+
+                Swal.fire(
+                    'Xóa câu trả lời',
+                    'Câu trả lời bạn chọn đã được xóa thành công.',
+                    'success'
+                );
+            }
+        })
+    }
+
+    //input nhap cau tra loi
+    $("#tableDataQuestionAnswer").on("change", ".input-QA", function () {
+        var id = parseInt($(this).attr("data-IndexQA"));
+        var qaIndexInList = listQuestionAnswer.findIndex((obj => obj.id === id));
+        listQuestionAnswer[qaIndexInList].name = $("#input-QA-" + id).val().trim();
+        listQuestionAnswer[qaIndexInList].answer = $("#input-QA-" + id).val().trim();
+
+        if (listQuestionAnswer[qaIndexInList].isAdded) {
+            listQuestionAnswer[qaIndexInList].isAdded = true;
+            listQuestionAnswer[qaIndexInList].isDeleted = false;
+            listQuestionAnswer[qaIndexInList].isUpdated = false;
+
+        } else {
+            listQuestionAnswer[qaIndexInList].isAdded = false;
+            listQuestionAnswer[qaIndexInList].isDeleted = false;
+            listQuestionAnswer[qaIndexInList].isUpdated = true;
+        }
+
+    })
+
+    //don lua chon
+    $("#tableDataQuestionAnswer").on("change", ".radio-QA", function () {
+        var id = parseInt($(this).attr("data-IndexQA"));
+        var qaIndexInList = listQuestionAnswer.findIndex((obj => obj.id === id));
+        listQuestionAnswer[qaIndexInList].correct = $("#isTrue-QA-" + id).is(":checked");
+
+        if (listQuestionAnswer[qaIndexInList].isAdded) {
+            listQuestionAnswer[qaIndexInList].isAdded = true;
+            listQuestionAnswer[qaIndexInList].isDeleted = false;
+            listQuestionAnswer[qaIndexInList].isUpdated = false;
+
+        } else {
+            listQuestionAnswer[qaIndexInList].isAdded = false;
+            listQuestionAnswer[qaIndexInList].isDeleted = false;
+            listQuestionAnswer[qaIndexInList].isUpdated = true;
+        }
+
+        //update correct QA con lai trong list
+        listQuestionAnswer.forEach(function (item) {
+            if (item.id !== id) {
+                item.correct = false;
+                if (item.isAdded) {
+                    item.isAdded = true;
+                    item.isDeleted = false;
+                    item.isUpdated = false;
+                } else {
+                    item.isAdded = false;
+                    item.isDeleted = false;
+                    item.isUpdated = true;
+                }
+            }
+        })
+
+    })
+
+    //da lua chon
+    $("#tableDataQuestionAnswer").on("change", ".checkbox-QA", function () {
+        var id = parseInt($(this).attr("data-IndexQA"));
+        var qaIndexInList = listQuestionAnswer.findIndex((obj => obj.id === id));
+        listQuestionAnswer[qaIndexInList].correct = $("#isTrue-QA-" + id).is(":checked");
+        if (listQuestionAnswer[qaIndexInList].isAdded) {
+            listQuestionAnswer[qaIndexInList].isAdded = true;
+            listQuestionAnswer[qaIndexInList].isDeleted = false;
+            listQuestionAnswer[qaIndexInList].isUpdated = false;
+
+        } else {
+            listQuestionAnswer[qaIndexInList].isAdded = false;
+            listQuestionAnswer[qaIndexInList].isDeleted = false;
+            listQuestionAnswer[qaIndexInList].isUpdated = true;
+        }
+
+    })
+
+    //dung sai
+    //$("#tableDataQuestionAnswer").on("click", ".radio-TFQA", function () {
+    //    var id = parseInt($(this).attr("data-IndexQA"));
+    //    var qaIndexInList;
+    //    var qaIndexTemp;
+    //    if ($("#qa-" + id).is(":checked")) {
+    //        qaIndexInList = listQuestionAnswer.findIndex((obj => obj.id === id));
+    //        listQuestionAnswer[qaIndexInList].correct = $("#qa-" + id).is(":checked");
+    //        qaIndexTemp = listQuestionAnswer.findIndex((obj => obj.id !== id));
+    //        listQuestionAnswer[qaIndexTemp].correct = $("#qa-" + qaIndexTemp.id).is(":checked");
+
+    //        if (listQuestionAnswer[qaIndexInList].isAdded) {
+    //            listQuestionAnswer[qaIndexInList].isAdded = true;
+    //            listQuestionAnswer[qaIndexInList].isDeleted = false;
+    //            listQuestionAnswer[qaIndexInList].isUpdated = false;
+
+
+    //            listQuestionAnswer[qaIndexTemp].isAdded = true;
+    //            listQuestionAnswer[qaIndexTemp].isDeleted = false;
+    //            listQuestionAnswer[qaIndexTemp].isUpdated = false;
+
+    //        } else {
+    //            listQuestionAnswer[qaIndexInList].isAdded = false;
+    //            listQuestionAnswer[qaIndexInList].isDeleted = false;
+    //            listQuestionAnswer[qaIndexInList].isUpdated = true;
+
+    //            listQuestionAnswer[qaIndexTemp].isAdded = false;
+    //            listQuestionAnswer[qaIndexTemp].isDeleted = false;
+    //            listQuestionAnswer[qaIndexTemp].isUpdated = true;
+    //        }
+
+
+    //    }
+    //})
+    function loadListAnswerByQuestionTypeId(id) {
+        $("#tableDataQuestionAnswer tbody").html('');
+        var content = '';
+        indexQA = listQuestionAnswer.length;
+        if (id == @QuestionTypeId.SINGLE_CHOICE) {
+            listQuestionAnswer.forEach(function (item, index) {
+                content += `
+                                                            <tr id='row-answer-`+ item.id + `'>
+                                                                <td>
+                                                                                                <span class="column-question-index" id='title-QA-`+ item.id + `' data-IndexQA='` + item.id + `'>Câu trả lời #` + (index + 1) + `</span>
+                                                                </td>
+                                                                <td>
+                                                                                            <input type="text" class="form-control  mb-3 mb-lg-0 input-QA" id='input-QA-`+ item.id + `' data-IndexQA='` + item.id + `' placeholder='Nhập câu trả lời'>
+                                                                </td>
+
+                                                                <td>
+                                                                            <button type='button' onclick='deleteQuestionAnswerItem(${item.id})' class='btn btn-icon btn-admin-delete'>
+                                                                        <span class="svg-icon-danger svg-icon  svg-icon-1">`+ DeleteIcon + `</span></button>
+                                                                </td>
+                                                            </tr>
+                                                            `;
+            })
+
+
+        }
+
+        if (id == @QuestionTypeId.MULTIPLE_CHOICE) {
+            listQuestionAnswer.forEach(function (item, index) {
+                //console.log(item);
+                content += `
+                                                <tr id='row-answer-`+ item.id + `'>
+                                                    <td>
+                                                                <span class="column-question-index" id='title-QA-`+ item.id + `' data-IndexQA='` + item.id + `'>Câu trả lời #` + (index + 1) + `</span>
+                                                    </td>
+                                                    <td>
+                                                                            <input type="text" class="form-control  mb-3 mb-lg-0  input-QA" id='input-QA-`+ item.id + `' data-IndexQA='` + item.id + `' placeholder='Nhập câu trả lời'>
+                                                    </td>
+
+                                                    <td>
+                                                                    <button type='button' onclick='deleteQuestionAnswerItem(${item.id})' class='btn btn-icon btn-admin-delete'>
+                                                            <span class="svg-icon-danger svg-icon  svg-icon-1">`+ DeleteIcon + `</span></button>
+                                                    </td>
+                                                </tr>
+                                                                    `;
+            })
+        }
+
+        if ($("#questionTypeId").val() == @QuestionTypeId.TRUE_FALSE_CHOICE) {
+            listQuestionAnswer.forEach(function (item, index) {
+                content += `
+                                                    <tr>
+                                                        <td>
+                                                                <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-check-input cursor-pointer radio-TFQA" type="radio" value="" id='qa-`+ item.id + `' data-IndexQA='` + item.id + `' name='trueFalseQA'/>
+                                                                                            <label class="form-check-label cursor-pointer" for="qa-`+ item.id + `">
+                                                                   `+ item.answer + `
+                                                                    </label>
+                                                                </div>
+                                                        </td>
+                                                    </tr>
+                                                        `;
+
+            })
+        }
+
+        $("#tableDataQuestionAnswer tbody").html(content);
+        listQuestionAnswer.forEach(function (item) {
+            $("#input-QA-" + item.id).val(item.name);
+            $("#isTrue-QA-" + item.id).prop('checked', item.correct);
+            $("#qa-" + item.id).prop('checked', item.correct);
+
+        })
+    };
+
+
+</script>
+<!--end:Base load data-->
+<!--begin:setting in data table-->
+<script>
+    function tableSearch() {
+        table.column(1).search($("#tableData thead:nth-child(2) tr th:nth-child(2) input").val());
+        table.column(2).search($("#tableData thead:nth-child(2) tr th:nth-child(3) input").val());
+        table.column(3).search($("#tableData thead:nth-child(2) tr th:nth-child(4) input").val());
+        table.column(4).search($("#tableData thead:nth-child(2) tr th:nth-child(5) input").val());
+
+        table.draw();
+    }
+</script>
+<!--end:setting in data table-->

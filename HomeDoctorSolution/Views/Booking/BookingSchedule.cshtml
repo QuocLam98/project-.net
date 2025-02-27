@@ -1,0 +1,991 @@
+﻿@{
+    Layout = "_Admin_Layout";
+    
+}
+@using HomeDoctorSolution.Util
+<style type="text/css">
+    .fc-day-mon,
+    .fc-day-wed,
+    .fc-day-fri,
+    .fc-day-sun {
+        background: #E6F2F3;
+    }
+    
+    .fc-day-tue,
+    .fc-day-thu,
+    .fc-day-sat {
+        background: #FFFAE6;
+    }
+
+    .badge-6 {
+        font-size: 14px;
+        line-height: 15px;
+        font-weight: 500;
+        color: white!important;
+        margin-bottom: 15px;
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        display: inline-block;
+        background: var(--bs-primary);
+        color: var(--bs-primary);
+    }
+
+    .fc .fc-button-primary {
+        background-color: #4d6eeb !important;
+        border-color: #4d6eeb !important;
+        color: white !important;
+    }
+
+        .fc .fc-button-primary:hover,
+        .fc .fc-button-primary:focus,
+        .fc .fc-button-primary:active {
+            background-color: #2f57ef !important;
+            border-color: #2f57ef !important;
+            color: white !important;
+        }
+
+        .fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+            background-color: #2f57ef !important;
+            border-color: #2f57ef !important;
+            color: white !important;
+        }
+
+
+    .modal-backdrop {
+        position: inherit !important;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+    }
+
+    .rbt-team-modal {
+        background: rgb(0 0 0 / 50%) !important;
+    }
+
+
+    .modal-content {
+        min-width: 700px !important;
+        border-radius: 10px !important;
+    }
+
+    #btnCopyLinkEvent i {
+        padding-left: 0px !important;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 18px;
+    }
+
+    @@media (min-width: 768px) {
+
+        .fc-daygridmonth-view .fc-scroller {
+            overflow: hidden !important;
+        }
+    }
+
+    @@media (max-width: 1199.98px) {
+        .fc .fc-toolbar {
+            flex-direction: column !important;
+        }
+    }
+
+    @@media (max-width: 767.98px) {
+        .modal-content {
+            width: 100% !important;
+        }
+    }
+
+    .fc-toolbar-title {
+        font-size: 30px !important;
+    }
+
+    .rbt-round-btn i {
+        margin-right: 0;
+    }
+
+    p {
+        margin-bottom: 0px;
+    }
+
+    .inner {
+        margin: 0 30px;
+    }
+
+    .fc-view-harness {
+        height: 700px !important
+    }
+
+</style>
+<style>
+    #loading {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(0 0 0 / 70%);
+        visibility: hidden;
+    }
+
+        #loading.show {
+            visibility: visible;
+        }
+
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border: 8px solid #007983;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #007983 transparent transparent transparent;
+        }
+
+            .lds-ring div:nth-child(1) {
+                animation-delay: -0.45s;
+            }
+
+            .lds-ring div:nth-child(2) {
+                animation-delay: -0.3s;
+            }
+
+            .lds-ring div:nth-child(3) {
+                animation-delay: -0.15s;
+            }
+
+    @@keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div id="loading">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container  container-fluid ">
+        <!-- Start MyEvent  -->
+        <div class="pxp-dashboard-content-details">
+            <h1>Lịch khám</h1>
+            <div class="row g-5" id="calendar">
+            </div>
+        </div>
+        <!-- End MyEvent  -->
+        <!-- Start Detail Event  -->
+        <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModal" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Modal title</h3>
+
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3 d-none">
+                                    <span class="required fw-semibold fs-6 mb-2" id="basic-addon-photo">Tên</span>
+                                    <input type="text" class="form-control mb-3 mb-lg-0 bs_max_length" id="booking-photo" aria-label="" />
+                                </div>
+                                <div class="col-md-4 mb-3 d-none">
+                                    <span class="required fw-semibold fs-6 mb-2" id="basic-addon-photo">Id</span>
+                                    <input type="text" class="form-control mb-3 mb-lg-0 bs_max_length" id="booking-id" aria-label="" />
+                                </div>
+                                <div class="col-sm-4 mb-3">
+                                    <label class="required fw-semibold fs-6 mb-2" id="basic-addon-accountId">Người đặt lịch</label>
+                                    <input type="text" class="form-control mb-3 mb-lg-0 bs_max_length mb-2" id="booking-accountName" aria-label="" readonly disabled />
+                                    <input type="text" class="form-control mb-3 mb-lg-0 bs_max_length mb-2 d-none" id="booking-accountId" aria-label="" readonly disabled />
+                                </div>
+
+                                <div class="col-sm-4 mb-3 d-none">
+                                    <div class="form-group">
+                                        <div class="fv-plugins-icon-container">
+                                            <label class="required fw-semibold fs-6 mb-2">Cán bộ tự vấn</label>
+                                            <input class="form-control" id="booking-counselorId">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var accountData = [];
+                                        async function loadDataSelectAccount() {
+                                            await $.ajax({
+                                                url: systemURL + 'account/api/list',
+                                                type: 'GET',
+                                                async: 'true',
+                                                contentType: 'application/json',
+                                                beforeSend: function (xhr) {
+                                                    if (localStorage.token) {
+                                                        xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+                                                    }
+                                                },
+                                                success: function (responseData) {
+                                                    var data = responseData.data
+                                                    accountData = data;
+                                                },
+                                                error: function (e) {
+                                                }
+                                            });
+                                        }
+                                        $(document).ready(function () {
+                                            loadDataSelectAccount();
+                                            $.when(loadDataSelectAccount()).done(function () {
+                                                $("#filterAccountId").select2();
+                                                var roleIdGetLog = @ViewBag.roleIdGetLog;
+                                                accountData.forEach(function (item) {
+                                                    //$('#booking-accountId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                    if (item.isActivated == 1 && item.active == 1) {
+                                                        //if (item.roleId == @RoleId.COUNSELOR) {
+                                                        //    if (item.id == @AdminAccountConst.COUNSELOR_DEFAULT) {
+                                                        //        $('#booking-counselorId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        //        $('#filterCounselorId').append(new Option(item.name, item.id, false, false));
+                                                        //        $("#booking-counselorId").select2({
+                                                        //            dropdownParent: $("#modal-id"),
+                                                        //            data: item
+                                                        //        });
+                                                        //    }
+                                                        //    else {
+                                                        //        if (item.schoolId == schoolId) {
+                                                        //            $('#booking-counselorId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                        //            $('#filterCounselorId').append(new Option(item.name, item.id, false, false));
+                                                        //            $("#booking-counselorId").select2({
+                                                        //                dropdownParent: $("#modal-id"),
+                                                        //                data: item
+                                                        //            });
+                                                        //        }
+                                                        //    }
+                                                        //}
+                                                        //else if (item.roleId == @RoleId.ADOLESCENTS) {
+                                                        //    if (item.schoolId == schoolId) {
+                                                        //        $('#filterAccountId').append(new Option(item.name, item.id, false, false));
+                                                        //    }
+                                                        //}
+                                                        if (roleIdGetLog == @RoleId.SUPER_ADMIN) {
+                                                            if (item.roleId == @RoleId.COUNSELOR) {
+                                                                $('#booking-counselorId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                                $('#filterCounselorId').append(new Option(item.name, item.id, false, false));
+                                                                $("#booking-counselorId").select2({
+                                                                    dropdownParent: $("#modal-id"),
+                                                                    data: item
+                                                                });
+                                                            }
+                                                            if (item.roleId == @RoleId.ADOLESCENTS) {
+                                                                $('#filterAccountId').append(new Option(item.name, item.id, false, false));
+                                                            }
+                                                        }
+                                                        else {
+                                                            if (item.schoolId == schoolId) {
+                                                                if (item.roleId == @RoleId.COUNSELOR) {
+                                                                    $('#booking-counselorId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                                    $('#filterCounselorId').append(new Option(item.name, item.id, false, false));
+                                                                    $("#booking-counselorId").select2({
+                                                                        dropdownParent: $("#modal-id"),
+                                                                        data: item
+                                                                    });
+                                                                }
+                                                                if (item.roleId == @RoleId.ADOLESCENTS) {
+                                                                    $('#filterAccountId').append(new Option(item.name, item.id, false, false));
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                })
+
+                                            });
+                                        });
+                                    </script>
+                                </div>
+
+                                <div class="col-sm-4 mb-3">
+                                    <div class="form-group">
+                                        <div class="fv-plugins-icon-container">
+                                            <label class="required fw-semibold fs-6 mb-2">Trạng thái đặt lịch</label>
+                                            <select class="form-select  dataSelect" id="booking-bookingStatusId" data-placeholder="" disabled readonly>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var bookingStatusData = [];
+                                        async function loadDataSelectBookingStatus() {
+                                            await $.ajax({
+                                                url: systemURL + 'bookingStatus/api/list',
+                                                type: 'GET',
+                                                async: 'true',
+                                                contentType: 'application/json',
+                                                success: function (responseData) {
+                                                    // debugger;
+                                                    var data = responseData.data;
+                                                    bookingStatusData = data;
+                                                },
+                                                error: function (e) {
+                                                    //console.log(e.message);
+                                                }
+                                            });
+                                        }
+                                        loadDataSelectBookingStatus();
+                                        $(document).ready(function () {
+                                            $.when(loadDataSelectBookingStatus()).done(function () {
+                                                $("#filterBookingStatusId").select2();
+                                                bookingStatusData.forEach(function (item) {
+                                                    $('#booking-bookingStatusId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                    $('#filterBookingStatusId').append(new Option(item.name, item.id, false, false));
+                                                    $("#booking-bookingStatusId").select2({
+                                                        dropdownParent: $("#modal-id"),
+                                                        data: item
+                                                    });
+                                                })
+                                            });
+                                        });
+                                    </script>
+                                </div>
+
+                                <div class="col-sm-6 d-none">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-solid mb-3">
+                                            <span class="input-group-text" id="basic-addon-id">Mã</span>
+                                            <input readonly type="number" autocomplete="off" class="form-control input-id" id="booking-id" placeholder="id" aria-label="id" aria-describedby="basic-addon-id" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-4 mb-3">
+                                    <div class="form-group">
+                                        <div class="fv-plugins-icon-container">
+                                            <label class="required fw-semibold fs-6 mb-2">Loại đặt lịch</label>
+                                            <select class="form-select  dataSelect" id="booking-bookingTypeId" data-placeholder="" readonly disabled>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        var bookingTypeData = [];
+                                        async function loadDataSelectBookingType() {
+                                            await $.ajax({
+                                                url: systemURL + 'bookingType/api/list',
+                                                type: 'GET',
+                                                async: 'true',
+                                                contentType: 'application/json',
+                                                success: function (responseData) {
+                                                    // debugger;
+                                                    var data = responseData.data;
+                                                    bookingTypeData = data;
+                                                },
+                                                error: function (e) {
+                                                    //console.log(e.message);
+                                                }
+                                            });
+                                        }
+                                        loadDataSelectBookingType();
+                                        $(document).ready(function () {
+                                            $.when(loadDataSelectBookingType()).done(function () {
+                                                $("#filterBookingTypeId").select2();
+                                                bookingTypeData.forEach(function (item) {
+                                                    $('#booking-bookingTypeId').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                    //$('#booking-type').append(new Option(item.name, item.id, false, false)).trigger('change');
+                                                    $('#filterBookingTypeId').append(new Option(item.name, item.id, false, false));
+                                                    $("#booking-bookingTypeId").select2({
+                                                        dropdownParent: $("#modal-id"),
+                                                        data: item
+                                                    });
+                                                })
+                                            });
+                                        });
+                                    </script>
+                                </div>
+
+
+                                <div class="col-sm-4" style="display:none;">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-solid mb-3">
+                                            <span class="input-group-text" id="basic-addon-active">Kích hoạt</span>
+                                            <input readonly type="number" autocomplete="off" class="form-control input-active" id="booking-active" placeholder="active" aria-label="active" aria-describedby="basic-addon-active" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 d-none">
+                                    <span class="required fw-semibold fs-6 mb-2" id="basic-addon-name">Tên</span>
+                                    <input type="text" class="form-control mb-3 mb-lg-0 bs_max_length" id="booking-name" aria-label="" />
+                                </div>
+
+                                <div class="col-sm-8 mb-3">
+                                    <label class="fw-semibold fs-6 mb-2" id="basic-addon-url">Số điện thoại</label>
+                                    <input type="text" class="form-control mb-3 mb-lg-0 bs_max_length" id="booking-url" aria-label="" disabled readonly />
+                                </div>
+
+                                <div class="col-sm-12 mb-3" id="row-address">
+                                    <label class="fw-semibold fs-6 mb-2" id="basic-addon-address">Địa chỉ</label>
+                                    <input type="text" class="form-control mb-3 mb-lg-0 bs_max_length" id="booking-address" aria-label="" disabled readonly />
+                                </div>
+
+                                <div class="col-sm-12 mb-3">
+                                    <span class="fw-semibold fs-6 mb-2" id="basic-addon-description">Các lưu ý của người đặt lịch</span>
+                                    <textarea class="form-control" rows="4" id="booking-info" data-kt-autosize="true" disabled readonly></textarea>
+                                </div>
+
+                                <div class="col-sm-4 mb-3">
+                                    <label class="required fw-semibold fs-6 mb-2" id="basic-addon-startTime">Thời gian bắt đầu</label>
+                                    <div class='form-control date datetimepicker  input-startTime' id='booking-startTimeDiv' style='padding:0px;'>
+                                        <input type='text' autocomplete="off" id="booking-startTime" required class="form-control datepicker" aria-label="startTime" aria-describedby="basic-addon-startTime" disabled readonly />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            <span class="path1"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 mb-3">
+                                    <label class="required fw-semibold fs-6 mb-2" id="basic-addon-endTime">Thời gian kết thúc</label>
+                                    <div class='form-control date datetimepicker  input-endTime' id='booking-endTimeDiv' style='padding:0px;'>
+                                        <input autocomplete="off" id="booking-endTime" required class="form-control datepicker" aria-label="endTime" aria-describedby="basic-addon-endTime" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            <span class="path1"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 mb-3">
+                                    <label class="fw-semibold fs-6 mb-2">Ngày tạo</label>
+                                    <input type="text" id="booking-createdTime" class="form-control  mb-3 mb-lg-0" placeholder="" value="" readonly disabled>
+                                </div>
+
+                                <div class="col-sm-12" id="row-reason">
+                                    <label class="fw-semibold fs-6 mb-2">Lý do từ chối hoặc hủy lịch</label>
+                                    <input type="text" id="booking-reason" class="form-control  mb-3 mb-lg-0" placeholder="" value="" readonly disabled>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer sticky-action justify-content-center">
+                        <button type="button" class="btn btn-success changeStatusBooking" data-bs-dismiss="modal" id="btnAccept">Xác nhận</button>
+                        <button type="button" class="btn btn-primary changeStatusBooking" data-bs-dismiss="modal" id="btnDone">Hoàn thành</button>
+                        @* <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btnReject">Từ chối</button> *@
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btnCancel">Hủy</button>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                       @*  <button type="button" class="btn btn-primary" id="btnUpdateItem">Đặt lại lịch</button> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="reason-cancel-booking">
+            <div class="modal-dialog modal-ml modal-dialog-centered">
+                <div class="modal-content shadow-lg">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Lý do hủy lịch</h3>
+
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="icon-close"><span class="path1"></span><span class="path2"></span></i>
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control mb-3 d-none" id="status-reason" aria-label="" disabled />
+                                        <textarea type="text" id="reason_cancel" class="form-control  input-description" placeholder="Nhập lý do ..." data-kt-autosize="true" value=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer sticky-action justify-content-center">
+                        <button type="button" class="btn btnHS  btn-secondary" id="close-modal" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btnHS  btn-primary changeStatusBooking" id="btnUpdateReason">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered justify-content-center">
+                <div class="modal-content w-800">
+                    <div class="modal-header mb--20">
+                        <button type="button" class="btn d-none" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-x"></i>
+                        </button>
+                        <h3 class="modal-title">Tên cuộc phỏng vấn</h3>
+                    </div>
+                    <div class="modal-body mt-5 ml-5">
+                        <div class="inner">
+                            <div class="row g-5 row--30 align-items-center">
+                                <div class="col-md-12">
+                                    <span class="badge-6 " id="eventStatus"></span>
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="d-flex align-items-center" id="eventTimeDiv">
+                                        <i class="fa fa-regular fa-calendar me-3"></i>
+
+                                        <p id="eventTime" class="ms-1"></p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="btn-button">
+                                        <button class="btn btn-primary" id="btnLinkEvent" title="Tham gia buổi tư vấn">
+                                        </button>
+
+                                        <button class="btn btn-secondary" id="btnCopyLinkEvent" title="Sao chép đường dẫn">
+                                            <i class="fa fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="d-flex align-items-center mt-3" id="linkDiv">
+                                        <i class="fa fa-link me-3"></i>
+                                        <p id="eventLink"></p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="d-flex align-items-center" id="eventLocationDiv">
+                                        <i class="fa fa-solid fa-location-dot me-3"></i>
+                                        <p id="eventLocation" class="ms-2"></p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="d-flex align-items-center" id="eventDescriptionDiv">
+                                        <i class="fa fa-align-right me-3"></i>
+                                        <p id="eventDescription" class="ms-1"></p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+        <!-- End Detail Event  -->
+    </div>
+    <!--end::Content container-->
+</div>
+<script src="~/assets/js/index.global.min.js"></script>
+<script src="~/assets/js/vi.global.min.js"></script>
+<script>
+    var accountId = @ViewBag.AccountId;
+</script>
+<script>
+    var calendar;
+    var listEvents = [];
+    var checkReason = false;
+    var datePickerOptionCustom = {
+        display: {
+            buttons: {
+                today: true,
+                clear: true,
+                close: true,
+            },
+            components: {
+                decades: true,
+                year: true,
+                month: true,
+                date: true,
+                hours: true,
+                minutes: true,
+                seconds: true
+            }
+        },
+        localization: VIlocalization
+    };
+    $(document).ready(function() {
+        loadListEvent();
+        document.querySelectorAll(".datepicker").forEach(function (item) {
+            new tempusDominus.TempusDominus(item, datePickerOptionCustom);
+        })      
+    });
+    function loadDataModal(id) {
+        $.ajax({
+            url: systemURL + "booking/api/DetailViewModel/" + id,
+            type: "GET",          
+            success: function (response) {
+                $("#row-reason").removeClass("d-none");
+                var data = response.data[0];
+                $("#booking-id").val(data.id);
+                $("#booking-accountName").val(data.accountName);
+                $("#booking-accountId").val(data.accountId);
+                $("#booking-bookingStatusId").val(data.bookingStatusId).trigger("change");
+                $("#booking-bookingTypeId").val(data.bookingTypeId).trigger("change");
+                $("#booking-url").val(data.url);
+                $("#booking-address").val(data.address);
+                $("#booking-info").val(data.info);
+                $("#booking-startTime").val(moment(data.startTime).format("DD/MM/YYYY HH:mm:ss"));
+                if (data.endTime != null) {
+                    $("#booking-endTime").val(moment(data.endTime).format("DD/MM/YYYY HH:mm:ss"));
+                }
+                $("#booking-createdTime").val(moment(data.createdTime).format("DD/MM/YYYY HH:mm:ss"));
+                if (data.reason != "" && data.reason != null) {
+                    $("#booking-reason").val(data.reason);
+                } else {
+                    $("#row-reason").addClass("d-none");
+                }
+                if (data.bookingStatusId == @SystemConstant.BOOKING_STATUS_CANCEL || data.bookingStatusId == @SystemConstant.BOOKING_STATUS_DONE) {
+                    $(".changeStatusBooking").css("display", "none");
+                    $("#btnCancel").css("display", "none");
+                }else if(data.bookingStatusId == @SystemConstant.BOOKING_STATUS_WAIT_DONE){
+                    $("#btnAccept").css("display", "none");
+                    $("#btnCancel").css("display", "block");
+                } 
+                else {
+                    $(".changeStatusBooking").css("display", "block");
+                    $("#btnCancel").css("display", "block");
+                }
+                $("#booking-counselorId").val(data.counselorId);
+            },
+            error: function (e) {
+                //console.log(e);          
+            }
+        })
+    }
+    function initCalendar() {
+        const isEvenColumn = false;
+        calendar = new FullCalendar.Calendar($("#calendar")[0], {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+
+            },
+            buttonText: {
+                today: 'Hôm nay',
+                month: 'Tháng',
+                week: 'Tuần',
+                day: 'Ngày',
+                list: 'Lịch biểu',
+                //prev: 'Trước',
+                //next: 'Tiếp',
+                //prevYear: '&laquo;',
+                //nextYear: '&raquo;',
+            },
+            windowResize: function(arg) {
+                //console.log(arg);
+                calendar.updateSize();
+
+            },
+            allDayText: 'Cả ngày',
+            /*timeZone: 'Asia/Ho_Chi_Minh',*/
+            locale: 'vi',
+            events: listEvents,
+            eventColor: '#2F57EF21',
+            eventTextColor: '#2F57EF',
+            eventClick: function(info) {
+                info.jsEvent.preventDefault();
+                $("#eventModal").modal("show");
+                loadDataModal(info.event.url)
+                $("#eventModal .modal-title").text(info.event.title);
+                $("#eventStatus").text(info.event.extendedProps.eventStatusName);
+                if (info.event.extendedProps.eventStatusId == 1000015) {
+                    $("#eventStatus").addClass("bg-success text-white");
+                    $("#eventStatus").removeClass("bg-color-warning-opacity color-warning");
+                    $("#eventStatus").removeClass("bg-danger text-white");
+                } else if (info.event.extendedProps.eventStatusId == 1000002) {
+                    $("#eventStatus").removeClass("bg-success text-white");
+                    $("#eventStatus").addClass("bg-primary text-white");
+                    $("#eventStatus").removeClass("bg-danger text-white");
+                    $("#eventStatus").removeClass("bg-secondary text-white");
+                }
+                else if (info.event.extendedProps.eventStatusId == 1000001) {
+                    $("#eventStatus").removeClass("bg-success text-white");
+                    $("#eventStatus").addClass("bg-color-warning-opacity color-warning");
+                    $("#eventStatus").removeClass("bg-danger text-white");
+                } else if (info.event.extendedProps.eventStatusId == 1000003) {
+                    $("#eventStatus").removeClass("bg-success text-white");
+                    $("#eventStatus").addClass("bg-secondary text-white");
+                    $("#eventStatus").removeClass("bg-danger text-white");
+                    $("#eventStatus").removeClass("bg-color-warning-opacity color-warning");
+                }
+                else {
+                    $("#eventStatus").removeClass("bg-success text-white");
+                    $("#eventStatus").removeClass("bg-color-warning-opacity color-warning");
+                    $("#eventStatus").addClass("bg-danger text-white");
+                }
+                if (info.event.url != "") {
+                    if (info.event.extendedProps.eventTypeId == 1001 || info.event.extendedProps.eventTypeId == 1002) {
+                        $("#btnLinkEvent").text("Tham gia bằng " + info.event.extendedProps.eventTypeName);
+
+                    }
+                    else {
+                        $("#btnLinkEvent").text("Tham gia");
+                    }
+                    $("#btnLinkEvent").attr("url", info.event.url);
+
+
+                    $("#btnLinkEvent").removeClass("d-none");
+                    $("#linkDiv").removeClass("d-none");
+                    $("#btnCopyLinkEvent").removeClass("d-none");
+                    $("#eventLink").removeClass("d-none");
+                    $("#eventLink").text(info.event.url);
+                } else {
+                    $("#btnLinkEvent").addClass("d-none");
+                    $("#linkDiv").addClass("d-none");
+                    $("#btnCopyLinkEvent").addClass("d-none");
+                    $("#eventLink").addClass("d-none");
+                    $("#eventLink").text("");
+                    $("#btnLinkEvent").removeAttr("url");
+                }
+
+                if (info.event.extendedProps.location != "") {
+                    $("#eventLocation").text(info.event.extendedProps.location);
+                    $("#eventLocationDiv").removeClass("d-none");
+                } else {
+                    $("#eventLocationDiv").addClass("d-none");
+                }
+
+                if (info.event.extendedProps.description != "") {
+                    $("#eventDescription").text(info.event.extendedProps.description);
+                    $("#eventDescriptionDiv").removeClass("d-none");
+                } else {
+                    $("#eventDescriptionDiv").addClass("d-none");
+
+                }
+
+                if (info.event.start != null && info.event.end != null) {
+                    var date1 = moment(info.event.start);
+                    var date2 = moment(info.event.end);
+
+                    if (date1.isSame(date2, 'day')) {
+                        $('#eventTime').text(moment(info.event.start).format('dddd') + ", " + moment(info.event.start).format("DD") + " tháng " + moment(info.event.start).format("MM") + ", " + moment(info.event.start).format("HH:mm") + " - " + moment(info.event.end).format("HH:mm"));
+                    } else {
+                        $('#eventTime').text(moment(info.event.start).format('dddd') + ", " + moment(info.event.start).format("DD") + " tháng " + moment(info.event.start).format("MM, HH:mm") + " - " + moment(info.event.end).format('dddd') + ", " + moment(info.event.end).format("DD") + " tháng " + moment(info.event.end).format("MM, HH:mm"));
+                    }
+
+                } else if (info.event.start != null && info.event.end == null) {
+                    $('#eventTime').text(moment(info.event.start).format("DD") + " tháng " + moment(info.event.start).format("MM, HH:mm"));
+
+                } else {
+                    $('#eventTime').text(moment(info.event.end).format("DD") + moment(info.event.end).format("MM, HH:mm"));
+                }
+            },
+            eventDidMount: function (info) {
+                if (info.event.extendedProps.background) {
+                    info.el.style.background = info.event.extendedProps.background;
+                    info.el.style.whiteSpace = 'normal';
+                    info.el.style.textOverflow = 'ellipsis2';
+                }
+                if (info.event.extendedProps.background) {
+                                info.el.style.background = info.event.extendedProps.background;
+                                info.el.style.whiteSpace = 'normal';
+                                info.el.style.textOverflow = 'ellipsis2';
+                            }
+            },
+            //eventDidMount: function (info) {
+            //    //$(info.el).find(".fc-event-title").html(info.event.title + " - " + info.event.extendedProps.eventStatusName);
+            //}
+        });
+        calendar.render();
+        $(".fc-next-button").attr("title", "Tiếp");
+        $(".fc-prev-button").attr("title", "Trước");
+        $(".fc-today-button").attr("title", "Hôm nay");
+        $(".fc-dayGridMonth-button").attr("title", "Tháng");
+        $(".fc-timeGridWeek-button").attr("title", "Tuần");
+        $(".fc-timeGridDay-button").attr("title", "Ngày");
+        $(".fc-listWeek-button").attr("title", "Lịch biểu");
+    }
+    var dataTest
+    function loadListEvent() {
+        //$("#loading").addClass("show");
+        $.ajax({
+            url: systemURL + "booking/api/lich-cua-tu-van-nien/" + accountId,
+            type: "GET",
+            async: true,
+            beforeSend: function(xhr) {
+                if (localStorage.token) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
+                }
+            },
+            success: function(response) {
+                console.log(response);
+                var data = response.data;
+                listEvents = data.map(item => ({
+                    id: item.id,
+                    title: item.name + " " + item.url,
+                    start: (item.startTime != null ? item.startTime : ""),
+                    end: (item.endTime != null ? item.endTime : ""),
+                    url: (item.id != null ? item.id : ""),
+                    background: item.bookingStatusId == 1000001 ? "#FEF3C7" : 
+                                (item.bookingStatusId == 1000002 ? "#50CD89" : 
+                                    (item.bookingStatusId == 1000003 ? "rgb(182, 228, 255)" : 
+                                        (item.bookingStatusId == 1000004 ? "rgb(255, 228, 230)" :
+                                        (item.bookingStatusId == 1000005 ? "#FFE4E6" : 
+                                            (item.bookingStatusId == 1000006 ? "#9FF7C8" : 
+                                                "rgba(16, 185, 129, 0.1)"
+                                            )
+                                        )
+                                    )
+                                )
+                                ),
+
+                    extendedProps: {
+                        description: item.description,
+                        location: item.address,
+                        eventStatusName: item.bookingStatusName,
+                        eventStatusId: item.bookingStatusId,
+                        createdTime: item.createdTime,
+                        eventTypeName: item.bookingTypeName,
+                        eventTypeId: item.bookingTypeId,
+                    },
+                })
+                );
+                initCalendar();
+                //$("#loading").removeClass("show");
+            },
+            error: function(e) {
+                //console.log(e);
+                initCalendar();
+                // window.location.reload();
+                //$("#loading").removeClass("show");
+            }
+        })
+    }
+
+    $("#btnLinkEvent").on("click", function() {
+        window.open($(this).attr("url"), "_blank");
+    })
+
+    $("#btnCopyLinkEvent").on("click", function() {
+        navigator.clipboard.writeText($("#btnLinkEvent").attr("url"));
+        Toast.fire("Sự kiện", "Đường dẫn đã được sao chép thành công!", "success");
+    })
+
+    $(".changeStatusBooking").click(function () {
+        var bookingStatusId = 0;
+        var isUpdate = 1;
+        if ($(this).attr("id") == "btnDone") {
+            bookingStatusId = parseInt(@SystemConstant.BOOKING_STATUS_DONE);
+
+        } else if ($(this).attr("id") == "btnUpdateReason") {
+            bookingStatusId = parseInt(@SystemConstant.BOOKING_STATUS_CANCEL);
+            if ($("#reason_cancel").val() == "") {
+                Swal.fire({
+                    title: "Không cập nhật được lịch tư vấn",
+                    html: 'Lý do không được để trống',
+                    icon: 'error'
+                })
+                isUpdate = 0;
+            }
+        } else if ($(this).attr("id") == "btnAccept") {
+            bookingStatusId = parseInt(@SystemConstant.BOOKING_STATUS_WAIT_DONE);
+        }
+        var startTimeData = $("#booking-startTime").val();
+        var startTime = startTimeData.split("/");
+        var finalStartTime = startTime[1] + "/" + startTime[0] + "/" + startTime[2];
+        var finalEndTime = "";
+       
+        if ($("#booking-endTime").val() != "") {
+            var endTimeData = $("#booking-endTime").val();
+            var endTime = endTimeData.split("/");
+            finalEndTime = endTime[1] + "/" + endTime[0] + "/" + endTime[2];
+            if (new Date(finalEndTime) < new Date(finalStartTime) && isUpdate == 1) {
+                Swal.fire({
+                    title: "Không cập nhật được lịch tư vấn",
+                    html: 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu',
+                    icon: 'error'
+                })
+                isUpdate = 0;
+            }
+       }
+        var createdTimeData = $("#booking-createdTime").val();
+        var createdTime = createdTimeData.split("/");
+        var finalCreatedTime = createdTime[1] + "/" + createdTime[0] + "/" + createdTime[2];
+        if (isUpdate == 1) {
+            var obj = {
+                "id": parseInt($("#booking-id").val()),
+                "accountId": parseInt($("#booking-accountId").val()),
+                "bookingTypeId": parseInt($("#booking-bookingTypeId").val()),
+                "bookingStatusId": bookingStatusId,
+                "counselorId": parseInt($("#booking-counselorId").val()),
+                "active": 1,
+                "name": $("#booking-accountName").val(),
+                "url": $("#booking-url").val(),
+                "address": $("#booking-address").val(),
+                "startTime": finalStartTime,
+                "endTime": finalEndTime,
+                "createdTime": moment(finalCreatedTime).format("YYYY-MM-DDTHH:mm:ss"),
+                "reason": $("#reason_cancel").val()
+            }
+            $("#loading").addClass("show");
+            $.ajax({
+                url: systemURL + "booking/api/update",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(obj),
+                success: function (response) {
+                    $("#loading").removeClass("show");
+                    Swal.fire({
+                        title: "Cập nhật lịch khám",
+                        html: 'Lịch khám được cập nhật thành công!',
+                        icon: 'success'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            loadListEvent();
+                            $("#reason-cancel-booking").modal("hide");
+                        }
+                    });
+
+                },
+                error: function (e) {
+                    console.log(e);
+                    $("#loading").removeClass("show");
+                    Swal.fire({
+                        title: "Cập nhật lịch khám",
+                        html: 'Lịch khám không được cập nhật thành công!',
+                        icon: 'error'
+                    });
+                }
+            })
+        }
+       
+    })
+    $("#btnCancel").click(function () {
+        $("#reason_cancel").val("");
+        $("#reason-cancel-booking").modal("show");
+    })
+    $("#close-modal").click(function () {
+        $("#eventModal").modal("show");
+    })
+    $("#btnUpdateReason").click(function(){
+        checkReason = true;
+    })
+</script>

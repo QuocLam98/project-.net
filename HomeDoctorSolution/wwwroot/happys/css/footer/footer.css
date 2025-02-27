@@ -1,0 +1,97 @@
+﻿.footer {
+    background-image: url('../../img/banner/footer.svg');
+    padding: 150px 0 70px !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.footerTop {
+    border-top: 0px !important;
+}
+
+.text {
+    text-align: justify;
+    color: white;
+    font-size: 16px;
+    font-family: SF Pro Display;
+    font-weight: 400;
+    line-height: 20px;
+    white-space: pre-line;
+}
+
+.doc_service_list_widget a {
+    color: white !important;
+    font-size: 16px !important;
+}
+
+.doc_footer_bottom p {
+    color: white !important;
+}
+
+.icon {
+    background-color: #007bff !important;
+    color: white !important;
+}
+
+doc_footer_menu a {
+    background-color: none;
+    color: white !important;
+}
+
+.f_title_two {
+    color: white !important;
+}
+
+.list {
+    color: white !important;
+}
+
+.doc_service_list_widget {
+    padding-top: 45px;
+}
+
+.doc_service_list_widget h3 {
+        font-size: 24px !important;
+        white-space: nowrap;
+    }
+
+@media (min-width: 320px) and (max-width: 575px) {
+    .footer .row {
+        padding-top: 150px;
+    }
+}
+
+@media(min-width: 576px) and (max-width: 600px) {
+    .footer {
+        background-image: url('../../img/banner/footer-600px.svg');
+        padding: 38px 0 70px !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
+    .list-unstyled {
+        margin-top: 16px !important;
+    }
+    .menu-none {
+        display: none !important;
+    }
+    .doc_service_list_widget {
+        padding-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 991px) {
+    .footer {
+        background-image: url('../../img/banner/footer-600px.svg') !important;
+        padding: 60px 0 0px !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: top !important;
+    }
+    .doc_service_list_widget {
+        padding-top: 0px !important;
+    }
+    .list-unstyled {
+        margin-top: 16px !important;
+    }
+}

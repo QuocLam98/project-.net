@@ -1,0 +1,11 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/HomeDoctor/css/rating/star-rating-svg.css" asp-append-version="true" rel="stylesheet" />
+<div class="body_wrapper">
+    <partial name="HappySmile/FrontEnd/_Body_Booking_Detail_Consultant" />
+</div>
+<script>
+    var checkRole = '@ViewBag.CheckRole' == 'True' ? true : false;
+</script>
+<script src="~/happys/js/page/bookingDetailConsultant.js" asp-append-version="true"></script>

@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="/happys/css/user-profile/profile.css">
+<div class="tab-pane fade show active" id="profile" role="tabpanel"
+     aria-labelledby="profile-tab">
+    <div class="profile_info">
+      @*   <div class="row p_info_item_inner">
+            <div class="col-sm-3">
+                <div class="p_info_item_happys">
+                    <img src="/happys/img/forum/author-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-sm-9 d-flex align-items-end">
+                <div class="p_upload_item">
+                    <form id="form_change_avatar">
+                        <p>
+                            Tải hình ảnh dạng JPEG, PNG,....
+                            >= 1mb
+                        </p>
+                        <input type="file" class="d-none" id="avatar" accept="image/*" />
+                        <button type="button" class="btn btnHS" id="btnUpload">Tải ảnh lên</button>
+                    </form>
+                  
+                </div>
+            </div>
+        </div> *@
+        <div class="row mt-3 mb-3">
+            <div class="col-lg-6">
+                <label class="title-input">Họ và tên</label>
+                <input type="text" class="input" id="fullname" readonly>
+            </div>
+            <div class="col-lg-6">
+                <label class="title-input">Email</label>
+                <input type="text" class="input" id="email" readonly>
+            </div>
+            <div class="col-lg-6">
+                <label class="title-input" for="gender">
+                    Giới tính
+                </label>
+                <input type="text" class="input" id="gender" readonly>
+            </div>
+            <div class="col-lg-6">
+                <label class="title-input">Ngày sinh</label>
+                <div class="input-group date datepicker">
+                    <input type="text" value="" class="input" id="dob" required="" readonly>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label class="title-input">Địa chỉ</label>
+                <input type="text" class="input" id="address" readonly>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var id = "@ViewBag.id"
+</script>
+<script src="~/happys/js/page/customerprofile/profile.js" asp-append-version="true"></script>

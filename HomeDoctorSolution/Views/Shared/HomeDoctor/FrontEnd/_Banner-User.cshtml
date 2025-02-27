@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="/homedoctor/css/banner-user/banner-user.css" rel="stylesheet" asp-append-version="true" />
+<section class="doc_banner_area banner_creative1 text-banner" >
+    <div class="container " >
+        <div class="doc_banner_content d-flex flex-row flex-xs-column flex-md-column align-items-start">
+            <div class="doc_banner_content_left d-flex flex-column align-items-start">
+                <h2 class="wow fadeInUp banner-title">@ViewBag.Title</h2>
+                <p class="wow fadeInUp text-justify desription-page-banner" data-wow-delay="0.2s">@ViewBag.Description</p>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .desription-page-banner {
+        line-height: 28px !important;
+    }
+</style>

@@ -1,0 +1,173 @@
+﻿@{
+    Layout = "_Admin_Layout";
+}
+<style>
+    #chatMessageSignalR{
+        max-height: 400px!important;
+        min-height: 400px;
+    }
+
+    #kt_tab_pane_counselor {
+        max-height: 200px;
+        overflow: scroll;
+    }
+
+    .item-scroll-counselor {
+        height: 70px;
+    }
+
+    #kt_tab_pane_student {
+        max-height: 200px;
+        overflow: scroll;
+    }
+
+    .item-scroll-student {
+        height: 70px;
+    }
+
+    #kt_tab_pane_7{
+        max-height: 280px;
+        overflow: scroll;
+        padding-right: 15px;
+    }
+
+    .item-scroll-listConversation {
+        height: 70px;
+    }
+
+    .text-list-conversation {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        width: 210px;
+    }
+
+</style>
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+    <!--begin::Content container-->
+    <div id="kt_app_content_container" class="app-container  container-fluid ">
+        <!--begin::Layout-->
+        <div class="d-flex flex-column flex-lg-row">
+            <!--begin::Sidebar-->
+            <div class="flex-column flex-lg-row-auto w-100 w-lg-300px w-xl-400px mb-10 mb-lg-0">
+                <!--begin::Contacts-->
+                <div class="card card-flush">
+                </div>
+                <!--end::Contacts-->
+                <div class="card ">
+                    <div class="card-header card-header-stretch">
+                        @*<div class="pt-7 pb-7 w-100">
+                            <form class="w-100 position-relative" autocomplete="off">
+                                <!--begin::Icon-->
+                                <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 ms-5 translate-middle-y"><span class="path1"></span><span class="path2"></span></i>            <!--end::Icon-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-solid px-13" id="tableSaerch" name="search" value="" placeholder="Tìm kiếm theo tên người dùng hoặc email..." />
+                                <!--end::Input-->
+                            </form>
+                        </div>*@
+                        <div class="card-toolbar">
+                            <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0 d-flex justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_7">Tin nhắn</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_8">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="kt_tab_pane_7" role="tabpanel">
+                            </div>
+
+                            <div class="tab-pane fade" id="kt_tab_pane_8" role="tabpanel">
+                                <h5 class="mt-7">Cán bộ tư vấn<span id="countCounselor"></span></h5>
+                                <div id="kt_tab_pane_counselor">
+                                    
+                                </div>
+                                <h5 class="mt-7">Danh bạ<span id="countStudent"></span></h5>
+                                <div id="kt_tab_pane_student">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <!--end::Sidebar-->
+            <!--begin::Content-->
+            <div class="flex-lg-row-fluid ms-lg-7 ms-xl-10" id="myTable" style="display:none">
+                <!--begin::Messenger-->
+                <div class="card" id="kt_chat_messenger">
+                    <!--begin::Card header-->
+                    <div class="card-header" id="kt_chat_messenger_header">
+                        <!--begin::Title-->
+                        <div class="card-title">
+                            <!--begin::User-->
+                            <div class="d-flex justify-content-center flex-column d-flex">
+                                <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1" id="userName"></a>
+                                <!--begin::Info-->
+                                <div class="mb-0 lh-1" id="checkActive">
+                                    <span class="badge badge-warning badge-circle w-10px h-10px me-1"></span>
+                                    <span class="fs-7 fw-semibold text-muted">Không trực tuyến</span>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                            <!--end::User-->
+                        </div>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Card header-->
+                    <!--begin::Card body-->
+                    <div class="card-body" id="kt_chat_messenger_body">
+                        <!--begin::Messages-->
+                        <div class="scroll-y me-n5 pe-5 h-300px h-lg-auto">
+                            <div class="scroll-y me-n5 pe-5 h-300px h-lg-auto"
+                                 id="chatMessageSignalR"
+                                 data-kt-element="messages"
+                                 data-kt-scroll="true"
+                                 data-kt-scroll-activate="{default: false, lg: true}"
+                                 data-kt-scroll-max-height="auto"
+                                 data-kt-scroll-dependencies="#kt_header, #kt_app_header, #kt_app_toolbar, #kt_toolbar, #kt_footer, #kt_app_footer, #kt_chat_messenger_header, #kt_chat_messenger_footer"
+                                 data-kt-scroll-wrappers="#kt_content, #kt_app_content, #kt_chat_messenger_body"
+                                 data-kt-scroll-offset="5px">
+                            </div>
+                            
+                            <!--end::Card body-->
+                            <!--begin::Card footer-->
+                            <div class="card-footer pt-4" id="kt_chat_messenger_footer">
+                                <!--begin::Input-->
+                                <input class="form-control form-control-flush mb-3" rows="1" data-kt-element="input" placeholder="Viết tin nhắn..." id="chatMessage" />
+                                <!--end::Input-->
+                                <!--begin:Toolbar-->
+                                <div class="d-flex flex-stack">
+                                    <!--begin::Actions-->
+                                    <div class="d-flex align-items-center me-2" id="chatMessage">
+                                    </div>
+                                    <!--end::Actions-->
+                                    <!--begin::Send-->
+                                    <button id="sendButton" class="btn btn-primary" type="button" data-kt-element="send" value="Send Message">Gửi</button>
+                                    <!--end::Send-->
+                                </div>
+                                <!--end::Toolbar-->
+                            </div>
+                            <!--end::Card footer-->
+                        </div>
+                        <!--end::Messenger-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        var accountId = @ViewBag.AccountId;
+    </script>
+    <script src="~/assets/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/assets/js/chat.js"></script>
+

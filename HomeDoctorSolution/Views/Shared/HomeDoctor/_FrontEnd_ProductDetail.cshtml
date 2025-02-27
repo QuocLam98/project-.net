@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="~/homedoctor/css/homepage/homepage.css" rel="stylesheet" asp-append-version="true" />
+<div class="body_wrapper">
+    <partial name="HomeDoctor/FrontEnd/_Header" />
+    <partial name="HomeDoctor/FrontEnd/_Link_Tag" />
+    <partial name="HomeDoctor/FrontEnd/_Body_ProductDetail" />
+    <partial name="HomeDoctor/FrontEnd/_Footer" />
+</div>
+<script>
+    var productId = @ViewBag.ProductId;
+</script>
+<script src="~/HomeDoctor/js/page/product-detail/product-detail.js" asp-append-version="true"></script>

@@ -1,0 +1,14 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link href="~/happys/css/rating/star-rating-svg.css" asp-append-version="true" rel="stylesheet" />
+<div class="body_wrapper">
+    <partial name="HappySmile/FrontEnd/_Body_Booking_Detail_Consultant" />
+</div>
+<script>
+    var checkRole = @ViewBag.CheckRole;
+</script>
+<script src="~/happys/js/page/bookingDetailConsultant.js" asp-append-version="true"></script>

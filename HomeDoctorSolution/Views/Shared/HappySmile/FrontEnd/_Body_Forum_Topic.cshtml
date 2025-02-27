@@ -1,0 +1,305 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+
+<style>
+    .item-forum {
+        /*margin: 18px 0px 0px 15px;*/
+        display: flex;
+        margin: 18px 0px 23px 15px;
+    }
+
+    .card {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        border-radius: 15px;
+        background: #F5F5F5;
+        gap: 170px;
+    }
+
+    .share-with-us {
+        color: var(--Black, #1B1E28);
+        font-family: SF Pro Display;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0px;
+        padding: 12px;
+    }
+
+    .title {
+        color: var(--Black, #1B1E28);
+        font-family: SF Pro Display;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        margin-left: 12px;
+        max-height: 2em; 
+        text-overflow: ellipsis; 
+    }
+
+    .forum-option {
+        margin-top: 32px;
+        margin-bottom: 16px;
+        border-radius: 15px;
+        background: var(--Blue-sky, #1470F5);
+        color: white;
+        padding: 20px;
+    }
+    /*.navbar-nav{
+        row-gap: 33px;
+    }*/
+
+    /*.forum_l_inner .forum_body .topic_list li{
+        padding: unset;
+    }*/
+    /*.media{
+        border: 1px solid;
+        padding: 15px;
+    }*/
+    .featured-member{
+        gap: 16px;
+    }
+
+    .featured-member {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .featured-member-photo img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        object-fit: cover;
+    }
+
+    .featured-member-detail {
+        margin-left: 16px;
+    }
+
+    .featured-member-name {
+        color: var(--Black, #1B1E28);
+        text-align: justify;
+        /* Textbody bold */
+        font-family: SF Pro Display;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; /* 125% */
+    }
+    .list-member{
+        gap: 16px;
+    }
+    .pagination_inner{
+        justify-content: flex-end;
+    }
+
+    .btn.btnHS2 {
+        /*   width: 90%;*/
+        margin-right: 10px;
+    }
+    .rounded-circle{
+        width: 45px;
+        object-fit:cover;
+        height: 45px;
+    }
+    .img_cmt {
+        border-radius : 25px;
+        object-fit:cover;
+    }
+    .add-forum {
+        margin-right:22px !important;
+    }
+
+    a {
+        color: #333 !important;
+    }
+   @@media (max-width : 600px) {
+        .card {
+            flex-direction: column !important;
+            gap:8px;
+            padding : 16px !important;
+        }
+
+        .item-forum {
+            display: flex;
+            align-items: stretch; 
+        }
+
+        .title {
+            flex: 1; 
+        }
+        .right_side_forum {
+            margin-top:16px !important;
+        }
+
+        .r_widget  {
+            margin-bottom:16px;
+        }
+
+        .c_head {
+            margin-bottom:16px;
+        }
+
+        .forum_sidebar_area {
+            padding-top:16px;
+            padding-bottom:16px;        
+        }
+
+        .forum-option {
+            margin-top:16px;
+            margin-bottom:16px !important;
+        }
+
+        .media-right {
+            width: 140px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 30px;
+        }
+
+        .forum_body .topic_list li .media .media-right {
+            left:65px;
+        }
+    }
+
+    @@media only screen and (min-width: 600px) {
+        .title {
+            max-height:unset;
+        } 
+        .card {
+            gap:unset;
+            justify-content:space-between;
+        }  
+    }
+    @@media only screen and (min-width: 1200px) {
+        .forum_topic_list_inner {
+            margin-left:unset;
+        }
+
+        .right_side_forum {
+            margin-left: unset !important;
+        }
+    }
+
+    @@media (max-width: 1500px) {
+        .forum_topic_list_inner {
+            margin-left: unset !important;
+            margin-right: unset !important;
+        }
+    }
+
+    @@media (min-width: 1300px) {
+
+        .forum_topic_list_inner {
+            margin-right: unset !important;
+        }
+
+        .right_side_forum {
+            margin-left: unset !important;
+        }
+    }
+    
+    @@media (min-width : 992px)
+    {
+        .right_side_forum {
+            margin-left:unset!important;
+        }
+    }
+</style>
+<!--================Forum Body Area =================-->
+<section class="forum_sidebar_area" id="sticky_doc">
+    <div class="container">
+        <div class="row">
+           @*  <div class="col-xl-2 d-none d-xl-block">
+                
+            </div> *@
+            <div class="col-xl-9 col-lg-8">
+                <div class="forum_topic_list_inner">
+                    <div class="card headed col-sm-12 p-0 ">
+                        <div class="item-forum">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90" fill="none">
+                                <g clip-path="url(#clip0_413_32331)">
+                                    <path d="M65.625 44.999H24.375C22.3125 44.999 20.625 43.3115 20.625 41.249V14.999C20.625 12.9365 22.3125 11.249 24.375 11.249H30V3.74902L37.5 11.249H65.625C67.6875 11.249 69.375 12.9365 69.375 14.999V41.249C69.375 43.3115 67.6875 44.999 65.625 44.999Z" fill="#F99F10" />
+                                    <path d="M37.5 11.249L30 3.74902V11.249H24.375C22.3125 11.249 20.625 12.9365 20.625 14.999V41.249C20.625 43.3115 22.3125 44.999 24.375 44.999H28.125C28.125 44.999 30.9375 35.8115 43.6875 29.4365C56.4375 23.0615 61.875 11.249 61.875 11.249H37.5Z" fill="#F9C900" />
+                                    <path d="M43.125 45H84.375C86.4375 45 88.125 46.6875 88.125 48.75V75C88.125 77.0625 86.4375 78.75 84.375 78.75H78.75V86.25L71.25 78.75H43.125C41.0625 78.75 39.375 77.0625 39.375 75V48.75C39.375 46.6875 41.0625 45 43.125 45Z" fill="#FC5696" />
+                                    <path d="M43.125 45C41.0625 45 39.375 46.6875 39.375 48.75V75C39.375 77.0625 41.0625 78.75 43.125 78.75H45C45 78.75 55.5 66.1875 62.625 61.125C69.75 55.875 78.75 45 78.75 45H43.125Z" fill="#FC92C3" />
+                                    <path d="M46.875 28.125H5.625C3.5625 28.125 1.875 29.8125 1.875 31.875V58.125C1.875 60.1875 3.5625 61.875 5.625 61.875H11.25V69.375L18.75 61.875H46.875C48.9375 61.875 50.625 60.1875 50.625 58.125V31.875C50.625 29.8125 48.9375 28.125 46.875 28.125Z" fill="#74CC5E" />
+                                    <path d="M5.625 28.125C3.5625 28.125 1.875 29.8125 1.875 31.875V58.125C1.875 60.1875 3.5625 61.875 5.625 61.875H9.375C9.375 61.875 14.4375 59.4375 23.4375 47.8125C32.4375 36.1875 43.125 28.125 43.125 28.125H5.625Z" fill="#A8EA92" />
+                                    <path d="M77.4369 63.3748C76.6869 64.1248 75.9369 65.4373 74.8119 65.2498C73.8744 65.0623 73.1244 64.1248 72.5619 63.5623C72.3744 63.3748 71.6244 62.4373 71.4369 62.4373C71.2494 62.4373 71.0619 62.8123 70.8744 62.8123C69.5619 63.7498 68.6244 65.8123 66.5619 64.8748C65.4369 64.3123 64.6869 63.1873 63.7494 62.2498C62.8119 63.1873 61.4994 65.2498 59.8119 65.0623C58.3119 65.0623 56.9994 62.9998 56.0619 61.8748C54.5619 63.5623 52.8744 65.9998 50.6244 63.9373C49.6869 63.1873 48.7494 62.2498 47.9994 61.3123C48.7494 60.9373 49.4994 60.5623 49.8744 59.8123C50.4369 60.3748 51.7494 61.4998 52.1244 61.4998C52.3119 61.4998 52.4994 60.9373 52.6869 60.7498C53.4369 60.1873 53.8119 59.2498 54.3744 58.4998C56.4369 56.2498 58.3119 58.8748 59.8119 60.5623C61.1244 59.2498 62.6244 56.4373 64.8744 57.9373C65.6244 58.3123 66.1869 59.2498 66.7494 59.8123C67.4994 60.5623 67.3119 60.7498 68.2494 59.9998C69.5619 58.8748 70.8744 57.3748 72.5619 58.6873C73.4994 59.4373 74.2494 60.5623 74.9994 61.4998C75.7494 60.9373 79.4994 56.2498 80.4369 57.5623C81.3744 59.2498 77.9994 62.6248 77.4369 63.3748ZM13.1244 41.2498C8.4369 41.0623 8.0619 48.9373 13.1244 48.7498C17.6244 48.5623 18.3744 41.2498 13.1244 41.2498ZM26.2494 41.2498C21.1869 41.4373 21.5619 48.9373 26.2494 48.7498C30.9369 48.7498 31.3119 40.8748 26.2494 41.2498ZM39.3744 41.2498C34.8744 40.8748 34.3119 48.7498 39.3744 48.7498C44.4369 48.9373 44.0619 41.6248 39.3744 41.2498ZM54.5619 29.0623C53.4369 25.4998 59.6244 25.8748 61.6869 27.1873C62.8119 30.7498 56.6244 30.3748 54.5619 29.0623Z" fill="white" />
+                                    <path d="M89.8125 49.3125C89.8125 57.75 89.625 66.1875 89.4375 74.625C89.625 80.0625 84.1875 81.5625 79.875 80.0625C81.375 91.6875 75.5625 84 71.0625 80.625C64.125 78.75 39 84.75 38.0625 76.125C37.875 72 38.4375 67.6875 38.625 63.5625C32.25 63.375 25.6875 63 19.3125 63.375C16.125 65.0625 9.5625 74.4375 10.125 65.4375C11.4375 59.4375 0.9375 68.625 0.5625 56.625C0.5625 51.375 0 45.75 0 40.3125C0 37.125 0.1875 34.125 0.5625 31.125C0.75 30.5625 0.5625 28.875 3.5625 27.5625C8.25 25.6875 14.625 27.375 19.5 26.625C15.5625 -1.87499 30.1875 16.3125 29.0625 5.81251C30 0.187512 34.5 8.43751 38.4375 9.75001C39.1875 9.93751 44.8125 9.93751 46.875 9.93751C69.5625 9.56251 73.125 3.18751 70.6875 33C70.3125 36.375 71.0625 40.3125 69.75 43.5C76.125 44.4375 89.25 39.375 89.8125 49.3125ZM21.5625 26.4375C28.5 27.375 51.75 22.5 52.5 31.6875C52.875 35.8125 52.6875 40.125 52.5 44.25C75.5625 42.9375 66 46.3125 67.6875 16.125C68.8125 11.25 52.6875 13.125 45.5625 13.125C44.4375 13.125 41.4375 13.125 40.6875 13.125C36.375 12.9375 33.75 10.6875 31.3125 6.93751C32.8125 13.3125 30.1875 13.5 24.75 12.9375C20.625 13.6875 23.0625 23.0625 21.5625 26.4375ZM42.9375 60.375C45.375 60.5625 49.3125 61.125 48.75 57.375C48.9375 51.9375 49.125 46.6875 48.9375 41.25C48.375 37.6875 51.1875 29.8125 45.375 30.1875C33 29.8125 20.625 30 8.4375 30.1875C6.75 30.1875 3.5625 29.4375 3.75 32.25C3 39.9375 3.375 47.8125 3.1875 55.5C2.25 67.125 14.4375 54.375 11.8125 67.3125C13.875 65.0625 16.125 62.625 18.5625 60.9375C26.625 60.1875 34.875 60.5625 42.9375 60.375ZM49.3125 63C46.875 64.3125 42.9375 63.5625 40.5 63.5625C40.875 67.5 40.875 71.4375 41.25 75.375C41.8125 78 45.75 77.0625 47.625 77.0625C57.9375 78 71.8125 73.125 78 84C74.625 71.0625 86.0625 83.8125 86.4375 73.6875C86.4375 72.5625 86.0625 68.0625 86.0625 67.5C86.4375 37.125 88.6875 50.0625 52.3125 46.5C51.75 51.375 52.875 57 51 61.5C50.8125 61.875 50.25 62.4375 49.3125 63Z" fill="white" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_413_32331">
+                                        <rect width="90" height="90" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <div>
+                                <p class="share-with-us">
+                                    Chia sẻ với chúng tôi!!!
+                                </p>
+                                <div class="title">
+                                    Nơi giao lưu, chia sẻ những kiến thức bổ ích về sức khỏe và đời sống. Nếu có những thông tin bổ ích, đừng ngần ngại chia sẻ nhé!
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btnHS2 add-forum" onclick="myFunction()" id="create-forum-post">
+                            <div class="add-forum-text">Đăng bài diễn đàn</div>
+                        </button>
+                    </div>
+                    <div class="forum-option border mb-5">
+                        <div class="row m-0">
+                            <div id="title_categor_forum" class="topic col-lg-5" style="font-weight: bold;">
+                                
+                            </div>
+                            <div class="topic col-lg-2 d-flex justify-content-end" style="font-weight: bold;">
+                            </div>
+                            <div class="topic col-lg-2 d-flex justify-content-end" style="font-weight: bold;">
+                                
+                            </div>
+                            <div class="topic col-lg-3 d-flex justify-content-end" style="font-weight: bold;padding-right: 32px;">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum_l_inner">
+                        <div class="forum_body">
+                            <ul class="navbar-nav topic_list" id="list-forum-post"> 
+                            </ul>
+                        </div>
+                    </div>
+                    <partial name="HappySmile/FrontEnd/_paginate" />
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4">
+                <div class="right_side_forum">
+                    
+                    <aside class="r_widget user_list_wd">
+                        <div class="r_heading d-flex justify-content-between">
+                            <h3>Chủ đề</h3>
+                        </div>
+                        <ul class="navbar-nav list-unstyled ticket_categories" id="typical-category">
+                        </ul>
+                    </aside>
+                    <div class="widget status_widget">
+                        <h4 class="c_head">Thành viên nổi bật</h4>
+                        <div class="featured-member row" id="featureda-account">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Forum Body Area =================-->

@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="/happys/css/signin/signin.css" asp-append-version="true">
+<div class="body_wrapper">
+    <section class="signup_area">
+        <div class="sign_right signup_right w-100 overflow-auto">
+            <div class="sign_inner signup_inner">
+                <div class="text-center w-100 sign-top">
+                    <h3>Đăng nhập</h3>
+                </div>
+                <div class="sign_up_container">
+                    <form class="row login_form">
+                        <div class="col-lg-12 form-group">
+                            <div class="small_text">Tên đăng nhập</div>
+                            <input type="email" class="form-control" id="username" placeholder="Nhập tên đăng nhập">
+                        </div>
+                        <div class="col-lg-12 form-group m-0">
+                            <div class="small_text">Mật khẩu</div>
+                            <div class="form-group d-flex flex-row">
+                                <input id="password" name="confirm-password" type="password" class="form-control" autocomplete="off" placeholder="Nhập mật khẩu">
+                                <div class="forget_btn">
+                                    <i class="bi bi-eye-slash" id="toggle_password"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 form-group d-flex flex-row justify-content-end align-items-center">
+                            @*                                <div class="d-flex flex-row justify-content-center align-items-center switch_container">
+                            <label class="switch">
+                            <input id="check_remember_password" type="checkbox">
+                            <span class="slider round"></span>
+                            </label>
+                            <span>
+                            <b>Nhớ mật khẩu</b>
+                            </span>
+                            </div> *@
+                            <div class="forward_password_container">
+                                <a href="/quen-mat-khau">
+                                    <b>Quên mật khẩu</b>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center d-flex flex-column gap-15px">
+                            <button type="button" id="btnLogin" class="btn btnHS2">Đăng nhập</button>
+                            <div class="or-text">Hoặc đăng nhập bằng</div>
+                            <div class="round">
+                                ------
+                            </div>
+                            <div class="d-flex flex-row login_social align-items-center justify-content-center">
+                                <a href="#" class="btn-google d-flex flex-row align-items-center mt-0" id="login-width-facebook"><img src="/happys/img/facebook.png" alt=""></a>
+                                <a href="#" class="btn-google d-flex flex-row align-items-center mt-0" id="login-width-google"><img src="/happys/img/google.png" alt=""></a>
+                            </div>
+                            <p>Chưa có tài khoản? <a class="register" href="/sign-up"><b>Đăng ký</b></a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="sign_footer">
+                    <a class="d-flex flex-row align-items-center justify-content-center gap-16px" href="/"><img src="/happys/svg/back-home.svg" />Về trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

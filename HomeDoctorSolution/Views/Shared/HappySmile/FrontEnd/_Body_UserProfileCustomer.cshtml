@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<style>
+    .nav-link {
+        white-space: nowrap;
+    }
+
+    @@media (max-width: 991px) {
+    .mobile {
+        margin-bottom: 16px;
+    }
+
+        .author_img img {
+            height: 100% !important;
+        }
+    }
+</style>
+<!--================Forum Content Area =================-->
+<section class="forum-user-wrapper" id="customer">
+    <div class="container">
+        <div class="row forum_main_inner">
+            <div class="col-lg-4 mobile">
+                <div class="author_option">
+                    <div class="author_img">
+                        <img class="" src="https://static-00.iconduck.com/assets.00/avatar-default-symbolic-icon-2048x1949-pq9uiebg.png" alt="">
+                    </div>
+                    <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="true">
+                                <i class="icon_profile"></i> Thông tin cá nhân
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="createdForumPostHistory-tab" data-toggle="tab" href="#createdForumPostHistory" role="tab"
+                               aria-controls="log" aria-selected="false">
+                                <i class="icon_document"></i> Lịch sử bài đăng
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="commentForumPostHistory-tab" data-toggle="tab" href="#commentForumPostHistory" role="tab"
+                               aria-controls="log" aria-selected="false">
+                                <i class="icon_comment"></i> Lịch sử bình luận bài đăng
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="forum_body_area">
+                    <div class="forum_topic_list">
+                        <div class="tab-content" id="myTabContent">
+                            <partial name="HappySmile/FrontEnd/_Tab_UserProfileCustomer" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Created_ForumPost_HistoryCustomer" />
+                            <partial name="HappySmile/FrontEnd/_Tab_Comment_ForumPost_HistoryCustomer" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Forum Content Area =================-->
+@* <script src="~/happys/js/page/userprofile/profile.js" asp-append-version="true"></script> *@
+<!--================End Doc Subscribe Area =================-->
+<script>
+    var id = "@ViewBag.id"
+    $("#myTab a[data-toggle=tab]").click(function () {
+        if (this.hash == "#createdForumPostHistory") {
+            let element = $("" + this.hash + " .pagination_default");
+            pageIndex = 1;
+            loadDataCreateForumPost.call();
+            LoadPagingPage("forumpost/api/count-list-created-forum-post-by-accountIdCustomer/" + id, element, loadDataCreateForumPost);
+        }
+        if (this.hash == "#commentForumPostHistory") {
+            let element = $("" + this.hash + " .pagination_default");
+            pageIndex = 1;
+            loadDataCommentForumPost.call();
+            LoadPagingPage("forumpost/api/count-list-comment-forum-post-by-accountIdCustomer/" + id, element, loadDataCommentForumPost);
+        }
+    })
+</script>
